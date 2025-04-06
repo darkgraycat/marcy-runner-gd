@@ -11,6 +11,7 @@ script = ExtResource("1_1ey13")
 [node name="UiCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
+visible = false
 offset_left = 96.0
 offset_right = 224.0
 offset_bottom = 24.0

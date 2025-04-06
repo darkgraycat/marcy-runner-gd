@@ -15,10 +15,13 @@ script = ExtResource("1_0ubtx")
 [node name="BlockSegment0" parent="." instance=ExtResource("3_tomy5")]
 
 [node name="BlockSegment1" parent="." instance=ExtResource("3_tomy5")]
-position = Vector2(0, 48)
+position = Vector2(0, 32)
 
 [node name="BlockSegment2" parent="." instance=ExtResource("3_tomy5")]
-position = Vector2(0, 80)
+position = Vector2(0, 64)
 
 [node name="BlockSegment3" parent="." instance=ExtResource("3_tomy5")]
-position = Vector2(0, 112)
+position = Vector2(0, 96)
+
+[node name="BlockSegment4" parent="." instance=ExtResource("3_tomy5")]
+position = Vector2(0, 128)

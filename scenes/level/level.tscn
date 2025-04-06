@@ -12,23 +12,35 @@ script = ExtResource("1_f7ki7")
 
 [node name="Blocks" type="Node2D" parent="."]
 
-[node name="Block" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(80, 128)
+[node name="Block0" parent="Blocks" instance=ExtResource("3_grm78")]
+position = Vector2(24, 136)
+
+[node name="Block1" parent="Blocks" instance=ExtResource("3_grm78")]
+position = Vector2(72, 136)
 
 [node name="Block2" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(128, 128)
+position = Vector2(120, 136)
 
 [node name="Block3" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(176, 128)
+position = Vector2(168, 136)
 
 [node name="Block4" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(360, 120)
+position = Vector2(216, 136)
 
 [node name="Block5" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(312, 104)
+position = Vector2(264, 136)
 
 [node name="Block6" parent="Blocks" instance=ExtResource("3_grm78")]
-position = Vector2(224, 128)
+position = Vector2(312, 136)
+
+[node name="Block7" parent="Blocks" instance=ExtResource("3_grm78")]
+position = Vector2(360, 136)
+
+[node name="Block8" parent="Blocks" instance=ExtResource("3_grm78")]
+position = Vector2(408, 136)
+
+[node name="Block9" parent="Blocks" instance=ExtResource("3_grm78")]
+position = Vector2(456, 136)
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 position = Vector2(184, 96)

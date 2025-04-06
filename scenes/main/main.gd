@@ -4,7 +4,7 @@ extends Node2D
 @onready var debug_label: Label = $UiCanvasLayer/DebugLabel
 
 func _ready() -> void:
-	Utils.notification.connect(_on_notification)
+	Util.notification.connect(_on_notification)
 	load_level(0)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -17,5 +17,5 @@ func _on_notification(message: String, ch: int) -> void:
 
 func load_level(index: int) -> void:
 	var path: String = "res://resources/levels/level_%d.tres" % index
-	var level_params := Utils.load_resource(path) as LevelParams
+	var level_params := Util.load_resource(path) as LevelParams
 	level.set_params(level_params)

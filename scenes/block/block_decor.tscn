@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cudk33qiccmto" path="res://scenes/block/block-decors.png" id="1_mctt4"]
 
 [node name="BlockDecor" type="Sprite2D"]
-position = Vector2(0, -16)
+position = Vector2(0, -32)
 texture = ExtResource("1_mctt4")
+centered = false
 vframes = 5
