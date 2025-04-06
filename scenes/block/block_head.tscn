@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxiyhj703ovk6"]
 
-[ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://scenes/block/block-heads.png" id="1_bex4t"]
+[ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://assets/sprites/block-heads.png" id="1_bex4t"]
 
 [node name="BlockHead" type="Sprite2D"]
 position = Vector2(0, -16)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cudk33qiccmto"
-path="res://.godot/imported/block-decors.png-8758137821b7a9d5c60066d5ae1250a4.ctex"
+uid="uid://cemsqmclvyits"
+path="res://.godot/imported/block-segments.png-ed125f0b33f690ed3849c0a50d3babad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/block/block-decors.png"
-dest_files=["res://.godot/imported/block-decors.png-8758137821b7a9d5c60066d5ae1250a4.ctex"]
+source_file="res://assets/sprites/block-segments.png"
+dest_files=["res://.godot/imported/block-segments.png-ed125f0b33f690ed3849c0a50d3babad.ctex"]
 
 [params]
 

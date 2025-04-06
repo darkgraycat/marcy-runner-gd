@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/background/background.gd" id="1_v83sv"]
 [ext_resource type="PackedScene" uid="uid://b27pjumg7wqrx" path="res://scenes/background/background_row.tscn" id="2_608wv"]
-[ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://scenes/background/backgrounds_suns.png" id="2_lsm2l"]
+[ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://assets/sprites/backgrounds_suns.png" id="2_lsm2l"]
 
 [node name="Background" type="Node2D"]
 script = ExtResource("1_v83sv")

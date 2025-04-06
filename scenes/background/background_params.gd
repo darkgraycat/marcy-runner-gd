@@ -1,8 +1,8 @@
 class_name BackgroundParams extends Resource
 
-@export_file("*.background.txt") var file_path: String:
+@export_file("background_*.txt") var asset_path: String:
 	set(value):
-		file_path = value
+		asset_path = value
 		from_string(Util.load_as_text(value))
 
 var sky_color := Color.WHITE

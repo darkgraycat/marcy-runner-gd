@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://syrf6g8dkf6e"
-path="res://.godot/imported/player.png-d340f81abf0a3162ec6e69b8e169a012.ctex"
+uid="uid://dnflnlgitpp67"
+path="res://.godot/imported/block-heads.png-83fa92e133a60ef00a9ba9f4065e0870.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/player.png"
-dest_files=["res://.godot/imported/player.png-d340f81abf0a3162ec6e69b8e169a012.ctex"]
+source_file="res://assets/sprites/block-heads.png"
+dest_files=["res://.godot/imported/block-heads.png-83fa92e133a60ef00a9ba9f4065e0870.ctex"]
 
 [params]
 
