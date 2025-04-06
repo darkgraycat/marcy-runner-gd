@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b27pjumg7wqrx"]
+
+[ext_resource type="Script" path="res://scenes/background/background_row.gd" id="1_2xbg2"]
+[ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://scenes/background/backgrounds.png" id="1_f0gnw"]
+
+[node name="BackgroundRow" type="Node2D"]
+script = ExtResource("1_2xbg2")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("1_f0gnw")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 32, 320, 32)
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+offset_top = 32.0
+offset_right = 320.0
+offset_bottom = 160.0

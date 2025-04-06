@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs4vyf646u67e"]
+
+[ext_resource type="Script" path="res://scenes/background/background.gd" id="1_v83sv"]
+[ext_resource type="PackedScene" uid="uid://b27pjumg7wqrx" path="res://scenes/background/background_row.tscn" id="2_608wv"]
+[ext_resource type="Texture2D" uid="uid://cav0f7a25w7s8" path="res://scenes/background/backgrounds_suns.png" id="2_lsm2l"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_v83sv")
+
+[node name="SkyCanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="SkyColorRect" type="ColorRect" parent="SkyCanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="SunSprite2D" type="Sprite2D" parent="SkyCanvasLayer"]
+position = Vector2(96, 48)
+texture = ExtResource("2_lsm2l")
+vframes = 4
+
+[node name="BackgroundRow0" parent="." instance=ExtResource("2_608wv")]
+modulate = Color(0.6, 0.6, 0.6, 1)
+position = Vector2(0, 48)
+scroll_scale = 0.1
+
+[node name="BackgroundRow1" parent="." instance=ExtResource("2_608wv")]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(0, 72)
+scroll_scale = 0.2
+
+[node name="BackgroundRow2" parent="." instance=ExtResource("2_608wv")]
+modulate = Color(0.4, 0.4, 0.4, 1)
+position = Vector2(0, 96)
+scroll_scale = 0.3
+
+[node name="BackgroundRow3" parent="." instance=ExtResource("2_608wv")]
+modulate = Color(0.3, 0.3, 0.3, 1)
+position = Vector2(0, 120)
+scroll_scale = 0.4
+
+[node name="BackgroundRow4" parent="." instance=ExtResource("2_608wv")]
+modulate = Color(0.2, 0.2, 0.2, 1)
+position = Vector2(0, 144)
+scroll_scale = 0.5

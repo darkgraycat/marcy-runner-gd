@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfiuc5ml05flq"]
+
+[ext_resource type="Texture2D" uid="uid://cemsqmclvyits" path="res://scenes/block/block-segments.png" id="1_gcs7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s5a4"]
+size = Vector2(48, 32)
+
+[node name="BlockSegment" type="Sprite2D"]
+position = Vector2(0, 16)
+texture = ExtResource("1_gcs7u")
+vframes = 6
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_0s5a4")
+one_way_collision = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd62wfbj7lava"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
+[ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/level/level.tscn" id="2_kli8p"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1ey13")
+
+[node name="Level" parent="." instance=ExtResource("2_kli8p")]
+
+[node name="UiCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
+offset_left = 96.0
+offset_right = 224.0
+offset_bottom = 24.0
+text = "DebugLabel"

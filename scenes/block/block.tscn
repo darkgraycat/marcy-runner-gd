@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb0sn77dx81m5"]
+
+[ext_resource type="Script" path="res://scenes/block/block.gd" id="1_0ubtx"]
+[ext_resource type="PackedScene" uid="uid://bxiyhj703ovk6" path="res://scenes/block/block_head.tscn" id="1_mrhpr"]
+[ext_resource type="PackedScene" uid="uid://lgf8kxrq3frx" path="res://scenes/block/block_decor.tscn" id="2_wmx5d"]
+[ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/block/block_segment.tscn" id="3_tomy5"]
+
+[node name="Block" type="Node2D"]
+script = ExtResource("1_0ubtx")
+
+[node name="BlockHead" parent="." instance=ExtResource("1_mrhpr")]
+
+[node name="BlockDecor" parent="." instance=ExtResource("2_wmx5d")]
+
+[node name="BlockSegment0" parent="." instance=ExtResource("3_tomy5")]
+
+[node name="BlockSegment1" parent="." instance=ExtResource("3_tomy5")]
+position = Vector2(0, 48)
+
+[node name="BlockSegment2" parent="." instance=ExtResource("3_tomy5")]
+position = Vector2(0, 80)
+
+[node name="BlockSegment3" parent="." instance=ExtResource("3_tomy5")]
+position = Vector2(0, 112)
