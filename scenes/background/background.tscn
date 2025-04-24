@@ -1,50 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs4vyf646u67e"]
+[gd_scene load_steps=4 format=3 uid="uid://c861uwi7ia6t6"]
 
-[ext_resource type="Script" path="res://scenes/background/background.gd" id="1_v83sv"]
-[ext_resource type="PackedScene" uid="uid://b27pjumg7wqrx" path="res://scenes/background/background_row.tscn" id="2_608wv"]
-[ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://assets/sprites/backgrounds_suns.png" id="2_lsm2l"]
+[ext_resource type="Script" path="res://scenes/background/background.gd" id="1_u3b2o"]
+[ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://assets/sprites/backgrounds_suns.png" id="2_jly7n"]
+[ext_resource type="PackedScene" uid="uid://c608hbdl2b2ef" path="res://scenes/background/background_row.tscn" id="3_s7lbb"]
 
 [node name="Background" type="Node2D"]
-script = ExtResource("1_v83sv")
+script = ExtResource("1_u3b2o")
 
 [node name="SkyCanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="SkyColorRect" type="ColorRect" parent="SkyCanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(0.926716, 0.793237, 0.491219, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.8, 0.8, 0.8, 1)
+color = Color(0.9, 0.9, 0.9, 1)
 
 [node name="SunSprite2D" type="Sprite2D" parent="SkyCanvasLayer"]
-position = Vector2(96, 48)
-texture = ExtResource("2_lsm2l")
+unique_name_in_owner = true
+modulate = Color(1, 0.77649, 0.270761, 1)
+position = Vector2(96, 55.8)
+texture = ExtResource("2_jly7n")
 vframes = 4
 frame = 2
 
-[node name="BackgroundRow0" parent="." instance=ExtResource("2_608wv")]
-modulate = Color(0.6, 0.6, 0.6, 1)
-position = Vector2(0, 48)
-scroll_scale = 0.1
+[node name="BackgroundRow0" parent="." instance=ExtResource("3_s7lbb")]
+unique_name_in_owner = true
+position = Vector2(0, 45)
+color = Color(0.800422, 0.835874, 0.942233, 1)
+speed = 0.1
 
-[node name="BackgroundRow1" parent="." instance=ExtResource("2_608wv")]
-modulate = Color(0.5, 0.5, 0.5, 1)
-position = Vector2(0, 72)
-scroll_scale = 0.2
+[node name="BackgroundRow1" parent="." instance=ExtResource("3_s7lbb")]
+unique_name_in_owner = true
+position = Vector2(0, 54)
+color = Color(0.642663, 0.687491, 0.821976, 1)
+speed = 0.2
 
-[node name="BackgroundRow2" parent="." instance=ExtResource("2_608wv")]
-modulate = Color(0.4, 0.4, 0.4, 1)
-position = Vector2(0, 96)
-scroll_scale = 0.3
+[node name="BackgroundRow2" parent="." instance=ExtResource("3_s7lbb")]
+unique_name_in_owner = true
+position = Vector2(0, 63)
+color = Color(0.498012, 0.568335, 0.779305, 1)
+frame = 2
+speed = 0.3
 
-[node name="BackgroundRow3" parent="." instance=ExtResource("2_608wv")]
-modulate = Color(0.3, 0.3, 0.3, 1)
-position = Vector2(0, 120)
-scroll_scale = 0.4
+[node name="BackgroundRow3" parent="." instance=ExtResource("3_s7lbb")]
+unique_name_in_owner = true
+position = Vector2(0, 81)
+color = Color(0.302419, 0.387697, 0.643532, 1)
+frame = 3
+speed = 0.4
 
-[node name="BackgroundRow4" parent="." instance=ExtResource("2_608wv")]
-modulate = Color(0.2, 0.2, 0.2, 1)
-position = Vector2(0, 144)
-scroll_scale = 0.5
+[node name="BackgroundRow4" parent="." instance=ExtResource("3_s7lbb")]
+unique_name_in_owner = true
+position = Vector2(0, 90)
+color = Color(0.200184, 0.281926, 0.527155, 1)
+frame = 3
+speed = 0.5

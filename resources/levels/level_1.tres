@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LevelParams" load_steps=2 format=3 uid="uid://ckd3l7vx2jtqs"]
+
+[ext_resource type="Script" path="res://scenes/level/level_params.gd" id="2_ad0h6"]
+
+[resource]
+script = ExtResource("2_ad0h6")
+name = &"cold morning"
+blocks_color = Color(0.811765, 0.341176, 0.235294, 1)

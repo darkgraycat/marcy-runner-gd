@@ -1,14 +1,8 @@
-[gd_resource type="Resource" script_class="LevelParams" load_steps=4 format=3 uid="uid://pxb3cmuu57yj"]
+[gd_resource type="Resource" script_class="LevelParams" load_steps=2 format=3 uid="uid://pxb3cmuu57yj"]
 
-[ext_resource type="Script" path="res://scenes/background/background_params.gd" id="1_cowum"]
 [ext_resource type="Script" path="res://scenes/level/level_params.gd" id="1_f3jfp"]
-
-[sub_resource type="Resource" id="Resource_5qbmc"]
-script = ExtResource("1_cowum")
-asset_path = "res://assets/data/background_0.txt"
 
 [resource]
 script = ExtResource("1_f3jfp")
 name = &"mountain sunset"
-background_params = SubResource("Resource_5qbmc")
 blocks_color = Color(0.811765, 0.341176, 0.235294, 1)

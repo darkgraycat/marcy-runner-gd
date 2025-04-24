@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://dqclhoa348sg6"]
+
+[ext_resource type="Script" path="res://scenes/background/background.config.gd" id="1_kvnmi"]
+
+[resource]
+resource_name = "Bridge"
+script = ExtResource("1_kvnmi")
+sky_color = Color(1, 0.741176, 0.639216, 1)
+sun_color = Color(1, 1, 1, 1)
+row0_color = Color(0.92549, 0.54902, 0.615686, 1)
+row1_color = Color(0.8, 0.415686, 0.552941, 1)
+row2_color = Color(0.560784, 0.286275, 0.415686, 1)
+row3_color = Color(0.309804, 0.266667, 0.364706, 1)
+row4_color = Color(0.207843, 0.192157, 0.247059, 1)
+sun_frame = 0
+row0_frame = 2
+row1_frame = 6
+row2_frame = 8
+row3_frame = 10
+row4_frame = 9
+sun_offset = 0.2
+row0_offset = 0.2
+row1_offset = 0.25
+row2_offset = 0.35
+row3_offset = 0.4
+row4_offset = 0.45

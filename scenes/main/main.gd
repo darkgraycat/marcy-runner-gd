@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	Util.notification.connect(_on_notification)
-	load_level(0)
+	load_level(1)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://cxtbcoxedq813"]
+
+[ext_resource type="Script" path="res://scenes/background/background.config.gd" id="1_ggnw0"]
+
+[resource]
+resource_name = "Old City Evening"
+script = ExtResource("1_ggnw0")
+sky_color = Color(0.941176, 0.501961, 0.313726, 1)
+sun_color = Color(1, 1, 1, 1)
+row0_color = Color(0.509804, 0.247059, 0.0862745, 1)
+row1_color = Color(0.333333, 0.211765, 0.105882, 1)
+row2_color = Color(0.184314, 0.188235, 0.121569, 1)
+row3_color = Color(0.152941, 0.160784, 0.113725, 1)
+row4_color = Color(0.133333, 0.141176, 0.0980392, 1)
+sun_frame = 0
+row0_frame = 3
+row1_frame = 4
+row2_frame = 2
+row3_frame = 5
+row4_frame = 2
+sun_offset = 0.2
+row0_offset = 0.25
+row1_offset = 0.3
+row2_offset = 0.4
+row3_offset = 0.45
+row4_offset = 0.5

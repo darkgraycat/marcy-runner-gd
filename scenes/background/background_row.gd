@@ -1,16 +1,26 @@
+@tool
 class_name BackgroundRow extends Node2D
 
-const TILE_SIZE: int = 32
+@export var color: Color = Color.WHITE: set = set_color
+@export var frame: int = 1: set = set_frame
+@export var speed: float = 0.0
 
-@export_range(0.0, 1.0, 0.1) var scroll_scale := 0.0
-
-@onready var parallax_2d: Parallax2D = $Parallax2D
-@onready var sprite_2d: Sprite2D = $Parallax2D/Sprite2D
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var parallax_2d: Parallax2D = %Parallax2D
 
 func _ready() -> void:
-	parallax_2d.scroll_scale.x = scroll_scale
+	_refresh()
 
-func from_params(params: BackgroundRowParams) -> void:
-	sprite_2d.region_rect.position.y = params.frame * TILE_SIZE
-	position.y = params.offset * Global.VIEWPORT_HEIGHT
-	modulate = params.color
+func set_frame(new_frame: int) -> void:
+	frame = new_frame
+	_refresh()
+
+func set_color(new_color: Color) -> void:
+	color = new_color
+	_refresh()
+
+func _refresh() -> void:
+	if not is_node_ready(): await ready
+	sprite_2d.modulate = color
+	sprite_2d.region_rect.position.y = frame  * 32
+	parallax_2d.scroll_scale.x = speed

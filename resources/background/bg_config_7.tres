@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://cyd48xogtsslo"]
+
+[ext_resource type="Script" path="res://scenes/background/background.config.gd" id="1_0hnpi"]
+
+[resource]
+resource_name = "Neon"
+script = ExtResource("1_0hnpi")
+sky_color = Color(0.0705882, 0.227451, 0.470588, 1)
+sun_color = Color(1, 1, 1, 1)
+row0_color = Color(0.317647, 0.231373, 0.447059, 1)
+row1_color = Color(0.462745, 0.231373, 0.435294, 1)
+row2_color = Color(0.372549, 0.188235, 0.262745, 1)
+row3_color = Color(0.262745, 0.156863, 0.235294, 1)
+row4_color = Color(0.133333, 0.113725, 0.145098, 1)
+sun_frame = 0
+row0_frame = 1
+row1_frame = 7
+row2_frame = 3
+row3_frame = 3
+row4_frame = 3
+sun_offset = 0.2
+row0_offset = 0.25
+row1_offset = 0.3
+row2_offset = 0.35
+row3_offset = 0.4
+row4_offset = 0.45

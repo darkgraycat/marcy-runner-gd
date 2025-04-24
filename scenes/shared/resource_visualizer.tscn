@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://nb7si673sijd"]
+
+[ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="1_fq58t"]
+
+[node name="ResourceVisualizer" type="Node"]
+script = ExtResource("1_fq58t")
+visualize_seconds = null
+method_name = null

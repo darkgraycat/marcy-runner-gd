@@ -8,6 +8,19 @@
 
 config_version=5
 
+[addons]
+
+resources_spreadsheet_view/array_color_tint=100.0
+resources_spreadsheet_view/color_rows=true
+resources_spreadsheet_view/array_min_width=128.0
+resources_spreadsheet_view/resource_preview_size=32.0
+resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/dupe_arrays=true
+resources_spreadsheet_view/context_menu_on_leftclick=false
+resources_spreadsheet_view/fold_docks=false
+resources_spreadsheet_view/resource_cell_label_mode=1
+resources_spreadsheet_view/freeze_first_column=true
+
 [application]
 
 config/name="marcy-runner"
@@ -29,11 +42,17 @@ gdscript/warnings/untyped_declaration=1
 
 window/size/viewport_width=320
 window/size/viewport_height=180
-window/size/mode=2
+window/size/initial_position_type=0
+window/size/initial_position=Vector2i(1600, 1280)
+window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
 
 [input]
 
@@ -61,7 +80,7 @@ quit={
 
 [physics]
 
-2d/default_gravity=600.0
+2d/default_gravity=500.0
 
 [rendering]
 
