@@ -1,24 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://yj24wt7sjxqu"]
+[gd_scene load_steps=3 format=3 uid="uid://yj24wt7sjxqu"]
 
 [ext_resource type="Script" path="res://scenes/level_chunk/level_chunk.gd" id="1_pkml1"]
-[ext_resource type="Resource" uid="uid://by8q7d4dvwibx" path="res://resources/level_chunks/level_chunk_0.tres" id="2_1h4mn"]
-[ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/block/block.tscn" id="2_p1uto"]
-[ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="4_unxyv"]
+[ext_resource type="Resource" uid="uid://c4uytgtlsyc2i" path="res://resources/level_chunks/level_chunk_0.tres" id="2_u35sr"]
 
 [node name="LevelChunk" type="Node2D"]
 script = ExtResource("1_pkml1")
-configuration = ExtResource("2_1h4mn")
-block_scene = ExtResource("2_p1uto")
+configuration = ExtResource("2_u35sr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="EditorHintRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ColorRect" type="ColorRect" parent="EditorHintRoot"]
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0, 0.666667, 1, 0.196078)
 
-[node name="BlocksRoot" type="Node2D" parent="."]
-unique_name_in_owner = true
+[node name="LeftLevel" type="ColorRect" parent="EditorHintRoot"]
+offset_left = -16.0
+offset_top = 96.0
+offset_right = 16.0
+offset_bottom = 104.0
+color = Color(1, 0, 1, 0.196078)
 
-[node name="ResourceVisualizer" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_unxyv")]
-target = NodePath("..")
-method_name = "set_configuration"
-resource = ExtResource("2_1h4mn")
+[node name="RightLevel" type="ColorRect" parent="EditorHintRoot"]
+offset_left = 304.0
+offset_top = 96.0
+offset_right = 336.0
+offset_bottom = 104.0
+color = Color(1, 0, 1, 0.196078)
+
+[node name="EntitiesRoot" type="Node2D" parent="."]
+unique_name_in_owner = true

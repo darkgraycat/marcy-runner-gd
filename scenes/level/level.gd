@@ -1,8 +1,7 @@
 class_name Level extends Node2D
 
 @onready var background: Background = %Background
-@onready var blocks_root: Node2D = %BlocksRoot
-@onready var block_generator: BlockGenerator = %BlockGenerator
+@onready var level_chunks_root: Node2D = %LevelChunksRoot
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 

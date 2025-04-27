@@ -29,7 +29,7 @@ func _update() -> void:
 		assert(target, "No target defined")
 		assert(target.has_method(method_name), "No method found")
 		assert(resource, "No resource defined")
-		prints("Visualize resource", resource, "for", target)
+		prints("%d - Visualize resource" % _visualize_seconds_left, resource, "for", target)
 		target.call(method_name, resource)
 
 	await get_tree().create_timer(INTERVAL).timeout

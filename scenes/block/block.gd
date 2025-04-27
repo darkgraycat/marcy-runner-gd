@@ -1,12 +1,8 @@
 @tool
 class_name Block extends Node2D
 
-# TODO: remove
-signal activated(block: Block)
-signal deactivated(block: Block)
-
 @export var configuration: BlockConfig: set = set_configuration
-@export var connection_level: int = -1
+@export var connection_level: int = -1: set = set_connection_level
 
 @onready var head: Sprite2D = %BlockHead
 @onready var decor: Sprite2D = %BlockDecor
@@ -15,6 +11,7 @@ signal deactivated(block: Block)
 
 func set_configuration(new_configuration: BlockConfig) -> void:
 	configuration = new_configuration
+	if not configuration: return printerr("No configuration")
 	if not is_node_ready(): await ready
 
 	head.visible = configuration.head_frame >= 0
@@ -24,7 +21,9 @@ func set_configuration(new_configuration: BlockConfig) -> void:
 	if decor.visible: decor.frame = configuration.decor_frame
 
 	connection.visible = configuration.connection_frame >= 0
-	if connection.visible: connection.frame = configuration.connection_frame
+	if connection.visible:
+		connection.frame = configuration.connection_frame
+		connection_level = configuration.connection_level
 
 	for segment_idx: int in segments_root.get_child_count():
 		var segment: Sprite2D = segments_root.get_child(segment_idx)
@@ -33,15 +32,6 @@ func set_configuration(new_configuration: BlockConfig) -> void:
 func set_connection_level(new_connection_level: int) -> void:
 	connection.position.y = new_connection_level * Global.TILE_SIZE
 
-# TODO: remove
-func connect_with_previous(previous_block: Block) -> void:
-	var offset: float = max(global_position.y - previous_block.global_position.y, 0)
-	connection.position.y = offset
-
-# TODO: remove
-func _on_screen_entered() -> void:
-	activated.emit(self)
-
-# TODO: remove
-func _on_screen_exited() -> void:
-	deactivated.emit(self)
+func spawn(spawner: BlockSpawner) -> void:
+	if spawner.configuration_variations.is_empty(): return
+	configuration = Util.pick_random_element(spawner.configuration_variations)

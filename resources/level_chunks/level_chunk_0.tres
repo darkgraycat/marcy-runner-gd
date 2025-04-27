@@ -1,57 +1,53 @@
-[gd_resource type="Resource" script_class="LevelChunkConfig" load_steps=10 format=3 uid="uid://by8q7d4dvwibx"]
+[gd_resource type="Resource" script_class="LevelChunkConfig" load_steps=11 format=3 uid="uid://c4uytgtlsyc2i"]
 
-[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_block_spawn.gd" id="1_rccn1"]
-[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="2_nb2rk"]
-[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_config.gd" id="3_tprjl"]
+[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_config.gd" id="1_14mrt"]
+[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_spawn_point.gd" id="2_draiq"]
+[ext_resource type="Resource" uid="uid://dqjg73qhxf0w" path="res://resources/spawners/block/block_spawner_city_main.tres" id="3_mucvl"]
 
-[sub_resource type="Resource" id="Resource_kfigg"]
-script = ExtResource("2_nb2rk")
-head_frame = 2
-decor_frame = 1
-connection_frame = -1
-segment0_frame = 3
-segment1_frame = 4
-segment2_frame = 4
-segment3_frame = 3
-segment4_frame = 3
+[sub_resource type="Resource" id="Resource_hygkb"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(0, 6)
+probability = 1.0
 
-[sub_resource type="Resource" id="Resource_fqspu"]
-script = ExtResource("1_rccn1")
-position = Vector2(10, 4)
-configuration = SubResource("Resource_kfigg")
+[sub_resource type="Resource" id="Resource_w56hq"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(3, 6)
+probability = 1.0
 
-[sub_resource type="Resource" id="Resource_1m4ei"]
-script = ExtResource("2_nb2rk")
-head_frame = 1
-decor_frame = -1
-connection_frame = -1
-segment0_frame = 0
-segment1_frame = 0
-segment2_frame = 0
-segment3_frame = 0
-segment4_frame = 0
+[sub_resource type="Resource" id="Resource_wso2d"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(6, 6)
+probability = 1.0
 
-[sub_resource type="Resource" id="Resource_fvb6a"]
-script = ExtResource("1_rccn1")
-position = Vector2(7, 4)
-configuration = SubResource("Resource_1m4ei")
+[sub_resource type="Resource" id="Resource_fe3s1"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(9, 6)
+probability = 1.0
 
-[sub_resource type="Resource" id="Resource_g5ti1"]
-script = ExtResource("2_nb2rk")
-head_frame = 2
-decor_frame = 4
-connection_frame = -1
-segment0_frame = 2
-segment1_frame = 2
-segment2_frame = 0
-segment3_frame = 0
-segment4_frame = 0
+[sub_resource type="Resource" id="Resource_sef23"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(12, 6)
+probability = 1.0
 
-[sub_resource type="Resource" id="Resource_qjldc"]
-script = ExtResource("1_rccn1")
-position = Vector2(5, 3)
-configuration = SubResource("Resource_g5ti1")
+[sub_resource type="Resource" id="Resource_472f5"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(15, 6)
+probability = 1.0
+
+[sub_resource type="Resource" id="Resource_4iymo"]
+script = ExtResource("2_draiq")
+spawner = ExtResource("3_mucvl")
+position = Vector2(18, 6)
+probability = 1.0
 
 [resource]
-script = ExtResource("3_tprjl")
-block_spawns = Array[ExtResource("1_rccn1")]([SubResource("Resource_fqspu"), SubResource("Resource_fvb6a"), SubResource("Resource_qjldc")])
+script = ExtResource("1_14mrt")
+left_level = 6.0
+right_level = 6.0
+spawn_points = Array[ExtResource("2_draiq")]([SubResource("Resource_hygkb"), SubResource("Resource_w56hq"), SubResource("Resource_wso2d"), SubResource("Resource_fe3s1"), SubResource("Resource_sef23"), SubResource("Resource_472f5"), SubResource("Resource_4iymo")])

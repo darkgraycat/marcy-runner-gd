@@ -1,35 +1,39 @@
 @tool
 class_name LevelChunk extends Node2D
 
-@export var configuration: LevelChunkConfig: set = set_configuration
+@export var configuration: LevelChunkConfig = LevelChunkConfig.new():
+	set = set_configuration
 
-# TODO: remove
-@export var block_scene: PackedScene
-# TODO: remove
-@onready var blocks_root: Node2D = %BlocksRoot
+@onready var entities_root: Node2D = %EntitiesRoot
+@onready var editor_hint_root: Node2D = %EditorHintRoot
+@onready var editor_hint_level_left: ColorRect = %EditorHintRoot/LeftLevel
+@onready var editor_hint_level_right: ColorRect = %EditorHintRoot/RightLevel
+
+func _ready() -> void:
+	editor_hint_root.visible = Engine.is_editor_hint()
 
 func set_configuration(new_configuration: LevelChunkConfig) -> void:
 	configuration = new_configuration
+	if not configuration: return printerr("%s: No configuration" % self)
 	if not is_node_ready(): await ready
 
+	if Engine.is_editor_hint(): _update_editor_hints()
+
 	_clear_entities()
-	# TODO: remove
-	configuration.block_spawns.map(_spawn_block)
+	configuration.spawn_points.map(_spawn_entity)
 
-func _spawn_entity(spawn: LevelChunkSpawn) -> void:
-	var entity: Node2D = spawn.scene.instantiate()
-	if entity.has_method("spawn"): entity.spawn()
-	entity.position = spawn.position * Global.TILE_SIZE
-	add_child(entity)
-
+func _spawn_entity(spawn_point: LevelChunkSpawnPoint) -> void:
+	if randf() > spawn_point.probability: return
+	var entity: Node2D = spawn_point.spawner.scene.instantiate()
+	if entity.has_method("spawn"):
+		entity.spawn(spawn_point.spawner)
+	entity.position = spawn_point.position * Global.TILE_SIZE
+	entities_root.add_child(entity)
 
 func _clear_entities() -> void:
-	for block: Block in blocks_root.get_children():
-		block.queue_free()
+	for node: Node2D in entities_root.get_children():
+		node.queue_free()
 
-# TODO: remove
-func _spawn_block(block_spawn: BlockSpawn) -> void:
-	var block: Block = block_scene.instantiate()
-	block.set_configuration(block_spawn.configuration)
-	block.position = block_spawn.position * Global.TILE_SIZE
-	blocks_root.add_child(block)
+func _update_editor_hints() -> void:
+	editor_hint_level_left.position.y = configuration.left_level * Global.TILE_SIZE
+	editor_hint_level_right.position.y = configuration.right_level * Global.TILE_SIZE

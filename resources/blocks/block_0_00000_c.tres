@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BlockConfig" load_steps=2 format=3 uid="uid://dqusekiayjrfx"]
+
+[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="1_plu1o"]
+
+[resource]
+script = ExtResource("1_plu1o")
+head_frame = 0
+decor_frame = -1
+connection_frame = 0
+connection_level = 0
+segment0_frame = 0
+segment1_frame = 0
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0

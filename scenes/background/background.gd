@@ -9,6 +9,7 @@ class_name Background extends Node2D
 
 func set_configuration(new_configuration: BackgroundConfig) -> void:
 	configuration = new_configuration
+	if not configuration: return printerr("No configuration")
 	if not is_node_ready(): await ready
 
 	sky.modulate = configuration.sky_color

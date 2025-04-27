@@ -1,27 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://bb0sn77dx81m5"]
 
 [ext_resource type="Script" path="res://scenes/block/block.gd" id="1_0ubtx"]
-[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="2_d1hnb"]
 [ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://assets/sprites/block-heads.png" id="2_r4v3w"]
+[ext_resource type="Resource" uid="uid://dqusekiayjrfx" path="res://resources/blocks/block_0_00000_c.tres" id="2_wcrd5"]
 [ext_resource type="Texture2D" uid="uid://cudk33qiccmto" path="res://assets/sprites/block-decors.png" id="3_djqvm"]
 [ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/block/block_segment.tscn" id="3_tomy5"]
 [ext_resource type="Texture2D" uid="uid://cs1xm7dei6hpf" path="res://assets/sprites/block-connections.png" id="5_xubix"]
-
-[sub_resource type="Resource" id="Resource_p3cqt"]
-script = ExtResource("2_d1hnb")
-head_frame = -1
-decor_frame = -1
-connection_frame = -1
-segment0_frame = 0
-segment1_frame = 0
-segment2_frame = 0
-segment3_frame = 0
-segment4_frame = 0
+[ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="7_agou5"]
 
 [node name="Block" type="Node2D"]
 modulate = Color(0.709479, 0.518602, 0.496049, 1)
 script = ExtResource("1_0ubtx")
-configuration = SubResource("Resource_p3cqt")
+configuration = ExtResource("2_wcrd5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(0, -32, 48, 192)
@@ -35,6 +25,7 @@ vframes = 4
 
 [node name="BlockDecor" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0.8, 0.8, 0.8, 1)
 texture = ExtResource("3_djqvm")
 centered = false
@@ -43,7 +34,7 @@ vframes = 5
 
 [node name="BlockConnection" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-48, 160)
+position = Vector2(-48, 0)
 texture = ExtResource("5_xubix")
 centered = false
 vframes = 2
@@ -64,6 +55,13 @@ position = Vector2(0, 96)
 
 [node name="BlockSegment4" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 128)
+
+[node name="ResourceVisualizer" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("7_agou5")
+visualize_seconds = 600.0
+target = NodePath("..")
+method_name = "set_configuration"
+resource = ExtResource("2_wcrd5")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BlockSpawner" load_steps=5 format=3 uid="uid://dqjg73qhxf0w"]
+
+[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="1_fjqck"]
+[ext_resource type="Script" path="res://scenes/block/block_spawner.gd" id="2_7uc2s"]
+[ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/block/block.tscn" id="2_neb7v"]
+
+[sub_resource type="Resource" id="Resource_4n7gr"]
+script = ExtResource("1_fjqck")
+head_frame = 1
+decor_frame = -1
+connection_frame = -1
+connection_level = -1
+segment0_frame = 0
+segment1_frame = 0
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0
+
+[resource]
+script = ExtResource("2_7uc2s")
+configuration_variations = Array[ExtResource("1_fjqck")]([SubResource("Resource_4n7gr")])
+scene = ExtResource("2_neb7v")
