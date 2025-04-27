@@ -37,13 +37,12 @@ Generator="*res://scripts/generator.gd"
 [debug]
 
 gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 
 [display]
 
 window/size/viewport_width=320
 window/size/viewport_height=180
-window/size/initial_position_type=0
-window/size/initial_position=Vector2i(1600, 1280)
 window/size/always_on_top=true
 window/size/window_width_override=1280
 window/size/window_height_override=720
@@ -87,4 +86,3 @@ quit={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/vram_compression/import_etc2_astc=true

@@ -7,10 +7,13 @@
 script = ExtResource("1_1ey13")
 
 [node name="Level" parent="." instance=ExtResource("2_kli8p")]
+unique_name_in_owner = true
 
 [node name="UiCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
+unique_name_in_owner = true
+visible = false
 offset_left = 96.0
 offset_right = 224.0
 offset_bottom = 24.0

@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="LevelChunkConfig" load_steps=10 format=3 uid="uid://by8q7d4dvwibx"]
+
+[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_block_spawn.gd" id="1_rccn1"]
+[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="2_nb2rk"]
+[ext_resource type="Script" path="res://scenes/level_chunk/level_chunk_config.gd" id="3_tprjl"]
+
+[sub_resource type="Resource" id="Resource_kfigg"]
+script = ExtResource("2_nb2rk")
+head_frame = 2
+decor_frame = 1
+connection_frame = -1
+segment0_frame = 3
+segment1_frame = 4
+segment2_frame = 4
+segment3_frame = 3
+segment4_frame = 3
+
+[sub_resource type="Resource" id="Resource_fqspu"]
+script = ExtResource("1_rccn1")
+position = Vector2(10, 4)
+configuration = SubResource("Resource_kfigg")
+
+[sub_resource type="Resource" id="Resource_1m4ei"]
+script = ExtResource("2_nb2rk")
+head_frame = 1
+decor_frame = -1
+connection_frame = -1
+segment0_frame = 0
+segment1_frame = 0
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0
+
+[sub_resource type="Resource" id="Resource_fvb6a"]
+script = ExtResource("1_rccn1")
+position = Vector2(7, 4)
+configuration = SubResource("Resource_1m4ei")
+
+[sub_resource type="Resource" id="Resource_g5ti1"]
+script = ExtResource("2_nb2rk")
+head_frame = 2
+decor_frame = 4
+connection_frame = -1
+segment0_frame = 2
+segment1_frame = 2
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0
+
+[sub_resource type="Resource" id="Resource_qjldc"]
+script = ExtResource("1_rccn1")
+position = Vector2(5, 3)
+configuration = SubResource("Resource_g5ti1")
+
+[resource]
+script = ExtResource("3_tprjl")
+block_spawns = Array[ExtResource("1_rccn1")]([SubResource("Resource_fqspu"), SubResource("Resource_fvb6a"), SubResource("Resource_qjldc")])

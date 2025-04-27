@@ -1,29 +1,47 @@
+@tool
 class_name Block extends Node2D
 
-const TILE_WIDTH = 48
-const TILE_HEIGHT = 32
+# TODO: remove
+signal activated(block: Block)
+signal deactivated(block: Block)
 
-@onready var head: Sprite2D = $Sprite2DHead
-@onready var decor: Sprite2D = $Sprite2DDecor
-@onready var segments: Array[Sprite2D] = [
-	$BlockSegment0,
-	$BlockSegment1,
-	$BlockSegment2,
-	$BlockSegment3,
-	$BlockSegment4,
-]
+@export var configuration: BlockConfig: set = set_configuration
+@export var connection_level: int = -1
 
-func _ready() -> void:
-	randomize()
+@onready var head: Sprite2D = %BlockHead
+@onready var decor: Sprite2D = %BlockDecor
+@onready var connection: Sprite2D = %BlockConnection
+@onready var segments_root: Node2D = %BlockSegmentsRoot
 
-func randomize() -> void:
-	head.frame = randi_range(0, 3)
-	decor.frame = randi_range(0, 2)
-	var segment_frame := randi_range(0, 5)
-	for segment in segments:
-		segment.frame = segment_frame
+func set_configuration(new_configuration: BlockConfig) -> void:
+	configuration = new_configuration
+	if not is_node_ready(): await ready
 
-func is_offscreen(camera_2d: Camera2D) -> bool:
-	var scroll_x := camera_2d.global_position.x - Global.VIEWPORT_WIDTH / 2.0
-	var right_x := global_position.x + TILE_WIDTH
-	return right_x >= scroll_x
+	head.visible = configuration.head_frame >= 0
+	if head.visible: head.frame = configuration.head_frame
+
+	decor.visible = configuration.decor_frame >= 0
+	if decor.visible: decor.frame = configuration.decor_frame
+
+	connection.visible = configuration.connection_frame >= 0
+	if connection.visible: connection.frame = configuration.connection_frame
+
+	for segment_idx: int in segments_root.get_child_count():
+		var segment: Sprite2D = segments_root.get_child(segment_idx)
+		segment.frame = configuration["segment%d_frame" % segment_idx]
+
+func set_connection_level(new_connection_level: int) -> void:
+	connection.position.y = new_connection_level * Global.TILE_SIZE
+
+# TODO: remove
+func connect_with_previous(previous_block: Block) -> void:
+	var offset: float = max(global_position.y - previous_block.global_position.y, 0)
+	connection.position.y = offset
+
+# TODO: remove
+func _on_screen_entered() -> void:
+	activated.emit(self)
+
+# TODO: remove
+func _on_screen_exited() -> void:
+	deactivated.emit(self)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://cfadp8fba63pd"]
 
-[ext_resource type="Script" path="res://scenes/background/background.config.gd" id="1_lhvj8"]
+[ext_resource type="Script" path="res://scenes/background/background_config.gd" id="1_lhvj8"]
 
 [resource]
 resource_name = "Default background"
@@ -22,5 +22,5 @@ sun_offset = 0.2
 row0_offset = 0.25
 row1_offset = 0.3
 row2_offset = 0.35
-row3_offset = 0.45
-row4_offset = 0.5
+row3_offset = 0.4
+row4_offset = 0.45

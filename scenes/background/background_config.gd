@@ -10,12 +10,12 @@ class_name BackgroundConfig extends Resource
 @export var row4_color: Color = Color.WHITE
 
 @export_group("Sprites")
-@export var sun_frame: int = 0
-@export var row0_frame: int = 0
-@export var row1_frame: int = 0
-@export var row2_frame: int = 0
-@export var row3_frame: int = 0
-@export var row4_frame: int = 0
+@export var sun_frame: int = 1
+@export var row0_frame: int = 1
+@export var row1_frame: int = 1
+@export var row2_frame: int = 1
+@export var row3_frame: int = 1
+@export var row4_frame: int = 1
 
 @export_group("Offsets")
 @export_range(0, 1.0, 0.01) var sun_offset: float = 0.0

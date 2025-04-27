@@ -1,49 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=12 format=3 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/block/block.tscn" id="3_grm78"]
+[ext_resource type="Resource" uid="uid://c5jviqlokvct6" path="res://resources/background/bg_config_8.tres" id="3_h8vqt"]
 [ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/background/background.tscn" id="3_mrkxi"]
+[ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="4_ewdwn"]
+[ext_resource type="Resource" uid="uid://dg44pce087m6c" path="res://resources/background/bg_config_6.tres" id="5_l32ol"]
+[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="6_acjn3"]
+[ext_resource type="PackedScene" uid="uid://hgbcrokjykor" path="res://scenes/block_generator/block_generator.tscn" id="8_x4sst"]
+[ext_resource type="PackedScene" uid="uid://yj24wt7sjxqu" path="res://scenes/level_chunk/level_chunk.tscn" id="10_rxucm"]
+
+[sub_resource type="Resource" id="Resource_6pka0"]
+script = ExtResource("6_acjn3")
+head_frame = -1
+decor_frame = -1
+connection_frame = -1
+segment0_frame = 0
+segment1_frame = 0
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_f7ki7")
 
+[node name="ResourceVisualizer" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ewdwn")]
+target = NodePath("../Background")
+method_name = "set_configuration"
+resource = ExtResource("3_h8vqt")
+
 [node name="Background" parent="." instance=ExtResource("3_mrkxi")]
 unique_name_in_owner = true
+configuration = ExtResource("5_l32ol")
 
-[node name="Blocks" type="Node2D" parent="."]
+[node name="BlocksRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Block0" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block0" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(24, 132)
 
-[node name="Block1" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block1" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(72, 132)
 
-[node name="Block2" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block2" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(120, 132)
 
-[node name="Block3" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block3" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(168, 132)
 
-[node name="Block4" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block4" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(216, 132)
 
-[node name="Block5" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block5" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(264, 132)
 
-[node name="Block6" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block6" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(312, 132)
 
-[node name="Block7" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block7" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(360, 132)
 
-[node name="Block8" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block8" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(408, 132)
+configuration = SubResource("Resource_6pka0")
 
-[node name="Block9" parent="Blocks" instance=ExtResource("3_grm78")]
+[node name="Block9" parent="BlocksRoot" instance=ExtResource("3_grm78")]
 position = Vector2(456, 132)
 
+[node name="BlockGenerator" parent="." node_paths=PackedStringArray("blocks_root") instance=ExtResource("8_x4sst")]
+unique_name_in_owner = true
+visible = false
+blocks_root = NodePath("../BlocksRoot")
+minimums = Vector2i(2, 0)
+maximums = Vector2i(4, 0)
+
+[node name="LevelChunk" parent="." instance=ExtResource("10_rxucm")]
+position = Vector2(240, 0)
+
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
+unique_name_in_owner = true
 position = Vector2(184, 96)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -51,4 +87,4 @@ offset = Vector2(128, 0)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 3.0

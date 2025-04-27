@@ -4,5 +4,3 @@
 
 [node name="ResourceVisualizer" type="Node"]
 script = ExtResource("1_fq58t")
-visualize_seconds = null
-method_name = null

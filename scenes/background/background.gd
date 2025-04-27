@@ -1,25 +1,23 @@
 @tool
 class_name Background extends Node2D
 
-@onready var sky_color_rect: ColorRect = %SkyColorRect
-@onready var sun_sprite_2d: Sprite2D = %SunSprite2D
-@onready var rows: Array[BackgroundRow] = [
-	%BackgroundRow0,
-	%BackgroundRow1,
-	%BackgroundRow2,
-	%BackgroundRow3,
-	%BackgroundRow4,
-]
+@export var configuration: BackgroundConfig: set = set_configuration
+
+@onready var sky: ColorRect = %Sky
+@onready var sun: Sprite2D = %Sun
+@onready var rows_root: Node2D = %BackgroundRowsRoot
 
 func set_configuration(new_configuration: BackgroundConfig) -> void:
-	sky_color_rect.modulate = new_configuration.sky_color
+	configuration = new_configuration
+	if not is_node_ready(): await ready
 
-	sun_sprite_2d.modulate = new_configuration.sun_color
-	sun_sprite_2d.frame = new_configuration.sun_frame
-	sun_sprite_2d.position.y = new_configuration.sun_offset * Global.VIEWPORT_HEIGHT
+	sky.modulate = configuration.sky_color
+	sun.modulate = configuration.sun_color
+	sun.frame = configuration.sun_frame
+	sun.position.y = configuration.sun_offset * Global.VIEWPORT_HEIGHT
 
-	for idx in rows.size():
-		var row: BackgroundRow = rows[idx]
-		row.color = new_configuration["row%d_color" % idx]
-		row.frame = new_configuration["row%d_frame" % idx]
-		row.position.y = new_configuration["row%d_offset" % idx] * Global.VIEWPORT_HEIGHT
+	for row_idx: int in rows_root.get_child_count():
+		var row: BackgroundRow = rows_root.get_child(row_idx)
+		row.color = configuration["row%d_color" % row_idx]
+		row.frame = configuration["row%d_frame" % row_idx]
+		row.position.y = configuration["row%d_offset" % row_idx] * Global.VIEWPORT_HEIGHT
