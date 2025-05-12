@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bb0sn77dx81m5"]
 
-[ext_resource type="Script" path="res://scenes/block/block.gd" id="1_0ubtx"]
+[ext_resource type="Script" path="res://scenes/entities/block/block.gd" id="1_0ubtx"]
 [ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://assets/sprites/block-heads.png" id="2_r4v3w"]
 [ext_resource type="Resource" uid="uid://dqusekiayjrfx" path="res://resources/blocks/block_0_00000_c.tres" id="2_wcrd5"]
 [ext_resource type="Texture2D" uid="uid://cudk33qiccmto" path="res://assets/sprites/block-decors.png" id="3_djqvm"]
-[ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/block/block_segment.tscn" id="3_tomy5"]
+[ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/entities/block/block_segment.tscn" id="3_tomy5"]
 [ext_resource type="Texture2D" uid="uid://cs1xm7dei6hpf" path="res://assets/sprites/block-connections.png" id="5_xubix"]
 [ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="7_agou5"]
 
@@ -34,7 +34,8 @@ vframes = 5
 
 [node name="BlockConnection" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-48, 0)
+visible = false
+position = Vector2(-48, -16)
 texture = ExtResource("5_xubix")
 centered = false
 vframes = 2

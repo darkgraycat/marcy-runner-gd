@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://iu2jwoplismj"]
+
+[ext_resource type="Script" path="res://scenes/debug/fps_heap_label.gd" id="1_gadnm"]
+
+[node name="FpsHeapLabel" type="Label"]
+texture_filter = 1
+offset_right = 188.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "FPS: %d\\nHeap: %.2f MB"
+script = ExtResource("1_gadnm")

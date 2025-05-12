@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=4 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/level/level.tscn" id="2_kli8p"]
+[ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
@@ -18,3 +19,5 @@ offset_left = 96.0
 offset_right = 224.0
 offset_bottom = 24.0
 text = "DebugLabel"
+
+[node name="FpsHeapLabel" parent="UiCanvasLayer" instance=ExtResource("3_uyqow")]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://sef4ulfshkqk"]
 
-[ext_resource type="Script" path="res://scenes/background/background_config.gd" id="1_ivryb"]
+[ext_resource type="Script" path="res://scenes/entities/background/background_config.gd" id="1_ivryb"]
 
 [resource]
 resource_name = "Morning"

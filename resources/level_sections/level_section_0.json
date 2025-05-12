@@ -1,0 +1,14 @@
+{
+	"left_side": 2.2,
+	"right_side": 3.4,
+	"spawners": [
+		1,
+		2,
+		5,
+		6
+	],
+	"texts": [
+		"Hello",
+		"World"
+	]
+}

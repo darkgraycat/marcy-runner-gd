@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BackgroundConfig" load_steps=2 format=3 uid="uid://bgsa3hf5w6byx"]
 
-[ext_resource type="Script" path="res://scenes/background/background_config.gd" id="1_3ni4o"]
+[ext_resource type="Script" path="res://scenes/entities/background/background_config.gd" id="1_3ni4o"]
 
 [resource]
 resource_name = "Sunset Pine"

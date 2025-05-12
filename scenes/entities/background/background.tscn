@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c861uwi7ia6t6"]
 
-[ext_resource type="Script" path="res://scenes/background/background.gd" id="1_u3b2o"]
+[ext_resource type="Script" path="res://scenes/entities/background/background.gd" id="1_u3b2o"]
 [ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://assets/sprites/backgrounds_suns.png" id="2_jly7n"]
 [ext_resource type="Resource" uid="uid://cfadp8fba63pd" path="res://resources/background/bg_config_0.tres" id="2_s6w7c"]
-[ext_resource type="PackedScene" uid="uid://c608hbdl2b2ef" path="res://scenes/background/background_row.tscn" id="3_s7lbb"]
+[ext_resource type="PackedScene" uid="uid://c608hbdl2b2ef" path="res://scenes/entities/background/background_row.tscn" id="3_s7lbb"]
 
 [node name="Background" type="Node2D"]
 script = ExtResource("1_u3b2o")

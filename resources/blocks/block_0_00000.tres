@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BlockConfig" load_steps=2 format=3 uid="uid://b5545igfi1a41"]
 
-[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="1_adisj"]
+[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="1_adisj"]
 
 [resource]
 script = ExtResource("1_adisj")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbyr0krn3rxy0"]
+
+[ext_resource type="Script" path="res://scenes/level_chunk_editor/level_chunk_editor.gd" id="1_h2fsc"]
+[ext_resource type="Script" path="res://scenes/level_chunk_editor/level_chunk_data.gd" id="2_el5ab"]
+[ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/entities/block/block.tscn" id="3_0wqx8"]
+[ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="3_q376a"]
+
+[sub_resource type="Resource" id="Resource_qvgyf"]
+script = ExtResource("2_el5ab")
+
+[node name="LevelChunkEditor" type="Node2D"]
+script = ExtResource("1_h2fsc")
+data = SubResource("Resource_qvgyf")
+
+[node name="ResourceVisualizer" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_q376a")]
+target = NodePath("..")
+
+[node name="Root" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Block" parent="Root" instance=ExtResource("3_0wqx8")]
+position = Vector2(40, 72)

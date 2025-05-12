@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BlockSpawner" load_steps=5 format=3 uid="uid://dqjg73qhxf0w"]
 
-[ext_resource type="Script" path="res://scenes/block/block_config.gd" id="1_fjqck"]
-[ext_resource type="Script" path="res://scenes/block/block_spawner.gd" id="2_7uc2s"]
-[ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/block/block.tscn" id="2_neb7v"]
+[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="1_fjqck"]
+[ext_resource type="Script" path="res://scenes/entities/block/block_spawner.gd" id="2_7uc2s"]
+[ext_resource type="PackedScene" uid="uid://bb0sn77dx81m5" path="res://scenes/entities/block/block.tscn" id="2_neb7v"]
 
 [sub_resource type="Resource" id="Resource_4n7gr"]
 script = ExtResource("1_fjqck")

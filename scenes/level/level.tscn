@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=9 format=3 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_f7ki7"]
-[ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/player/player.tscn" id="3_dlyvo"]
+[ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="Resource" uid="uid://c5jviqlokvct6" path="res://resources/background/bg_config_8.tres" id="3_h8vqt"]
-[ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/background/background.tscn" id="3_mrkxi"]
+[ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/entities/background/background.tscn" id="3_mrkxi"]
 [ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="4_ewdwn"]
-[ext_resource type="Resource" uid="uid://dg44pce087m6c" path="res://resources/background/bg_config_6.tres" id="5_l32ol"]
 [ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="6_4sn52"]
 [ext_resource type="Resource" uid="uid://bbykpbsij28it" path="res://resources/level_chunks/level_chunk_1.tres" id="7_s2equ"]
 [ext_resource type="PackedScene" uid="uid://yj24wt7sjxqu" path="res://scenes/level_chunk/level_chunk.tscn" id="10_rxucm"]
@@ -15,7 +14,7 @@ script = ExtResource("1_f7ki7")
 
 [node name="Background" parent="." instance=ExtResource("3_mrkxi")]
 unique_name_in_owner = true
-configuration = ExtResource("5_l32ol")
+configuration = ExtResource("3_h8vqt")
 
 [node name="ResourceVisualizer" parent="Background" node_paths=PackedStringArray("target") instance=ExtResource("4_ewdwn")]
 target = NodePath("..")

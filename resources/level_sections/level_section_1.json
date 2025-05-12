@@ -1,0 +1,30 @@
+{
+  "left_level": 8.0,
+  "right_level": 3.0,
+  "spawners": [
+	{
+	  "name": "BlockSpawner2",
+	  "position_x": 0,
+	  "position_y": 32,
+	  "script_path": "res://scenes/level_section/block_spawner.gd"
+	},
+	{
+	  "name": "BlockSpawner3",
+	  "position_x": 168,
+	  "position_y": 72,
+	  "script_path": "res://scenes/level_section/block_spawner.gd"
+	},
+	{
+	  "name": "BlockSpawner4",
+	  "position_x": 216,
+	  "position_y": 40,
+	  "script_path": "res://scenes/level_section/block_spawner.gd"
+	},
+	{
+	  "name": "BlockSpawner5",
+	  "position_x": 64,
+	  "position_y": 32,
+	  "script_path": "res://scenes/level_section/block_spawner.gd"
+	},
+  ]
+}
