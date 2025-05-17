@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelChunkConfig" load_steps=2 format=3 uid="uid://b7t7d1sxf8h7t"]
+
+[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_config.gd" id="1_grmpg"]
+
+[resource]
+script = ExtResource("1_grmpg")
+left_side_level = 7.0
+right_side_level = 4.0
+spawners_json = "[{\"config_path\":\"res://resources/spawners/block_spawner_0.tres\",\"position_x\":0,\"position_y\":120},{\"config_path\":\"res://resources/spawners/block_spawner_0.tres\",\"position_x\":128,\"position_y\":64},{\"config_path\":\"res://resources/spawners/block_spawner_0.tres\",\"position_x\":176,\"position_y\":64},{\"config_path\":\"res://resources/spawners/block_spawner_0_c.tres\",\"position_x\":96,\"position_y\":112},{\"config_path\":\"res://resources/spawners/block_spawner_0_c.tres\",\"position_x\":272,\"position_y\":64}]"

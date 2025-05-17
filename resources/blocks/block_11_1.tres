@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BlockConfig" load_steps=2 format=3 uid="uid://c128raia1tnuj"]
+
+[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="1_wdcd2"]
+
+[resource]
+script = ExtResource("1_wdcd2")
+head_frame = 1
+decor_frame = 1
+connection_frame = -1
+connection_level = -1
+segment0_frame = 1
+segment1_frame = 1
+segment2_frame = 1
+segment3_frame = 0
+segment4_frame = 0

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BlockConfig" load_steps=2 format=3 uid="uid://bine102xpoeye"]
+
+[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="1_bx88d"]
+
+[resource]
+script = ExtResource("1_bx88d")
+head_frame = -1
+decor_frame = 3
+connection_frame = 1
+connection_level = 0
+segment0_frame = 4
+segment1_frame = 5
+segment2_frame = 5
+segment3_frame = 3
+segment4_frame = 3

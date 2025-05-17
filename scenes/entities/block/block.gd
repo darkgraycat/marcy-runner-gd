@@ -9,6 +9,7 @@ class_name Block extends Node2D
 @onready var connection: Sprite2D = %BlockConnection
 @onready var segments_root: Node2D = %BlockSegmentsRoot
 
+
 func set_config(new_config: BlockConfig) -> void:
 	config = new_config
 	if not is_node_ready(): await ready
@@ -20,20 +21,25 @@ func set_config(new_config: BlockConfig) -> void:
 	for idx: int in segments_root.get_child_count():
 		set_segment(config["segment%d_frame" % idx], idx)
 
+
 func set_connection_level(new_connection_level: int) -> void:
 	connection.position.y = new_connection_level * Global.TILE_SIZE
+
 
 func set_head(frame: int) -> void:
 	head.visible = frame >= 0
 	if head.visible: head.frame = frame
 
+
 func set_decor(frame: int) -> void:
 	decor.visible = frame >= 0
 	if decor.visible: decor.frame = frame
 
+
 func set_connection(frame: int) -> void:
 	connection.visible = frame >= 0
 	if connection.visible: connection.frame = frame
+
 
 func set_segment(frame: int, idx: int) -> void:
 	var segment: Sprite2D = segments_root.get_child(idx)

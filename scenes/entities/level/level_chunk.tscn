@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpqp74j02xmp4"]
+
+[ext_resource type="Script" path="res://scenes/entities/level/level_chunk.gd" id="1_htlfu"]
+[ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="2_sv25r"]
+
+[node name="LevelChunk" type="Node2D"]
+script = ExtResource("1_htlfu")
+config = ExtResource("2_sv25r")
+
+[node name="EditorHintRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ColorRect" type="ColorRect" parent="EditorHintRoot"]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0.666667, 1, 0.196078)
+
+[node name="LeftLevel" type="ColorRect" parent="EditorHintRoot"]
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = 72.0
+color = Color(1, 0, 1, 0.196078)
+
+[node name="RightLevel" type="ColorRect" parent="EditorHintRoot"]
+offset_left = 304.0
+offset_top = 64.0
+offset_right = 336.0
+offset_bottom = 72.0
+color = Color(1, 0, 1, 0.196078)
+
+[node name="SpawnersRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
