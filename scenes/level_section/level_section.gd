@@ -3,6 +3,7 @@ class_name LevelSection extends Node2D
 
 @export var config: LevelSectionConfig = LevelSectionConfig.new():
 	set = set_config
+@export var save_config: bool = false
 
 @onready var spawners_root: Node2D = %SpawnersRoot
 @onready var editor_hint_root: Node2D = %EditorHintRoot
@@ -11,17 +12,6 @@ class_name LevelSection extends Node2D
 
 func _ready() -> void:
 	editor_hint_root.visible = Engine.is_editor_hint()
-	# assert(config, "No resource is provided")
-
-	# config.init()
-
-	# prints("left", config.left_side)
-	# prints("right", config.right_side)
-	# prints("spawners", config.spawners)
-
-	# prints(_save_children_to_json(spawners_root))
-
-	# _load_children_from_json(data, spawners_root)
 
 func set_config(new_config: LevelSectionConfig) -> void:
 	config = new_config
@@ -39,7 +29,7 @@ func set_config(new_config: LevelSectionConfig) -> void:
 		spawner.queue_free()
 
 	# Instantiate spawners
-	for item in config.spawners:
+	for item: Dictionary in config.spawners:
 		var spawner: LevelSectionSpawner = load(item.script_path).new()
 		spawner.name = item.name
 		spawner.position.x = item.position_x

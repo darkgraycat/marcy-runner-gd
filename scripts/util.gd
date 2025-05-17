@@ -14,6 +14,14 @@ func load_as_text(path: String) -> String:
 	file.close()
 	return content
 
+func load_as_json(path: String) -> Dictionary:
+	print("Loading json: %s" % path)
+	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	var json: JSON = JSON.new()
+	json.parse(file.get_as_text())
+	return json.data
+
 func save_as_text(path: String, data: String) -> void:
 	print("Saving text: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)

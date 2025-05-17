@@ -9,7 +9,3 @@ var TILE_SIZE: int = 16
 
 var MOVE_VELOCITY: float = 100.0
 var JUMP_VELOCITY: float = 250.0
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("quit"):
-		self.get_tree().quit()
