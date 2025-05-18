@@ -4,5 +4,6 @@
 
 .build/
 addons
-addons/
-addons/**
+
+.vscode
+.scripts
