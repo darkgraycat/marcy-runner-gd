@@ -30,14 +30,17 @@ unique_name_in_owner = true
 position = Vector2(0, 24)
 
 [node name="LevelChunk0" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
+unload_btn = null
 
 [node name="LevelChunk1" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
 position = Vector2(320, 0)
 config = ExtResource("7_oqfiu")
+unload_btn = null
 
 [node name="LevelChunk2" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
 position = Vector2(640, 0)
 config = ExtResource("6_8au2u")
+unload_btn = null
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true

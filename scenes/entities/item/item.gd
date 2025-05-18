@@ -1,3 +1,4 @@
+@tool
 class_name Item extends Area2D
 
 @export var config: ItemConfig = ItemConfig.new(): set = set_config
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 func set_config(new_config: ItemConfig) -> void:
 	config = new_config
+	if not is_node_ready(): await ready
 
 
 func collect(who: Node2D) -> void:

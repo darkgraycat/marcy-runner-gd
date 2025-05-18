@@ -39,7 +39,8 @@ func save_spawners() -> Array[Dictionary]:
 	var spawners: Array[Dictionary] = []
 	for spawner in spawners_root.get_children():
 		spawners.append({
-			"config_path": spawner.spawner_config.resource_path,
+			"name": spawner.name,
+			"resource_path": spawner.spawner_config.resource_path,
 			"position_x": spawner.position.x,
 			"position_y": spawner.position.y
 		})
@@ -49,11 +50,14 @@ func save_spawners() -> Array[Dictionary]:
 func load_spawners(spawners: Array) -> void:
 	for spawner_dict: Dictionary in spawners:
 		var inst: LevelChunkSpawner = LevelChunkSpawner.new()
-		inst.spawner_config = load(spawner_dict["config_path"]) as LevelChunkSpawnerConfig
+		inst.name = spawner_dict["name"]
+		inst.spawner_config = load(spawner_dict["resource_path"]) as LevelChunkSpawnerConfig
 		inst.position.x = spawner_dict["position_x"]
 		inst.position.y = spawner_dict["position_y"]
 		spawners_root.add_child(inst)
 		inst.spawn()
+		if Engine.is_editor_hint():
+			inst.owner = get_tree().edited_scene_root
 
 
 func clear_spawners() -> void:
