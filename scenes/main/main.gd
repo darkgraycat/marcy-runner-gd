@@ -12,4 +12,4 @@ func _on_notification(message: String, ch: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):
-		self.get_tree().quit()
+		get_tree().quit()

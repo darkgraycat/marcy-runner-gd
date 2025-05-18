@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemConfig" load_steps=2 format=3 uid="uid://bva25t5j54fem"]
+
+[ext_resource type="Script" path="res://scenes/entities/item/item_config.gd" id="1_dndge"]
+
+[resource]
+script = ExtResource("1_dndge")
+type = 1
+effect = 2
+effect_amount = 10.0

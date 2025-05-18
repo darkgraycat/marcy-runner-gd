@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemConfig" load_steps=2 format=3 uid="uid://ds2na0m0mr4mg"]
+
+[ext_resource type="Script" path="res://scenes/entities/item/item_config.gd" id="1_asdwc"]
+
+[resource]
+script = ExtResource("1_asdwc")
+type = 2
+effect = 3
+effect_amount = 1.0

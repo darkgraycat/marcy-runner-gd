@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=11 format=3 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
+[ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_bmo7b"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="Resource" uid="uid://c5jviqlokvct6" path="res://resources/background/bg_config_8.tres" id="3_h8vqt"]
 [ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/entities/background/background.tscn" id="3_mrkxi"]
+[ext_resource type="Resource" uid="uid://cxtbcoxedq813" path="res://resources/background/bg_config_3.tres" id="3_wsbse"]
 [ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="4_ewdwn"]
 [ext_resource type="PackedScene" uid="uid://bpqp74j02xmp4" path="res://scenes/entities/level/level_chunk.tscn" id="5_ownfe"]
 [ext_resource type="Resource" uid="uid://brl2qlh66l7wo" path="res://resources/levels/level_chunk_2.tres" id="6_8au2u"]
@@ -12,14 +14,16 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_f7ki7")
 
+[node name="StateManager" parent="." instance=ExtResource("2_bmo7b")]
+
+[node name="ResourceVisualizer" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ewdwn")]
+target = NodePath("../Background")
+method_name = "set_config"
+resource = ExtResource("3_h8vqt")
+
 [node name="Background" parent="." instance=ExtResource("3_mrkxi")]
 unique_name_in_owner = true
-configuration = ExtResource("3_h8vqt")
-
-[node name="ResourceVisualizer" parent="Background" node_paths=PackedStringArray("target") instance=ExtResource("4_ewdwn")]
-target = NodePath("..")
-method_name = "set_configuration"
-resource = ExtResource("3_h8vqt")
+config = ExtResource("3_wsbse")
 
 [node name="LevelChunksRoot" type="Node2D" parent="."]
 unique_name_in_owner = true

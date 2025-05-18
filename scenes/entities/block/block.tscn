@@ -32,7 +32,7 @@ texture = ExtResource("3_djqvm")
 centered = false
 offset = Vector2(0, -32)
 vframes = 5
-frame = 3
+frame = 1
 
 [node name="BlockConnection" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -40,22 +40,24 @@ position = Vector2(-48, 0)
 texture = ExtResource("5_xubix")
 centered = false
 vframes = 2
+frame = 1
 
 [node name="BlockSegmentsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="BlockSegment0" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
-frame = 1
+frame = 3
 
 [node name="BlockSegment1" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 32)
-frame = 1
+frame = 3
 
 [node name="BlockSegment2" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 64)
 
 [node name="BlockSegment3" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 96)
+frame = 2
 
 [node name="BlockSegment4" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 128)

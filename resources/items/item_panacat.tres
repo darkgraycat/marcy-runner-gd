@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemConfig" load_steps=2 format=3 uid="uid://cgncpgf7p7bfp"]
+
+[ext_resource type="Script" path="res://scenes/entities/item/item_config.gd" id="1_5f4il"]
+
+[resource]
+script = ExtResource("1_5f4il")
+type = 0
+effect = 1
+effect_amount = 1.0
