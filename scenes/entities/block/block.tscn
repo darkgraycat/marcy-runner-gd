@@ -1,28 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb0sn77dx81m5"]
+[gd_scene load_steps=9 format=3 uid="uid://bb0sn77dx81m5"]
 
 [ext_resource type="Script" path="res://scenes/entities/block/block.gd" id="1_0ubtx"]
-[ext_resource type="Resource" uid="uid://b56sgsvtgghfe" path="res://resources/blocks/block_1_11_c.tres" id="2_7pydr"]
 [ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://assets/sprites/block-heads.png" id="2_r4v3w"]
+[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="2_xyfs1"]
 [ext_resource type="Texture2D" uid="uid://cudk33qiccmto" path="res://assets/sprites/block-decors.png" id="3_djqvm"]
 [ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/entities/block/block_segment.tscn" id="3_tomy5"]
 [ext_resource type="Texture2D" uid="uid://cs1xm7dei6hpf" path="res://assets/sprites/block-connections.png" id="5_xubix"]
 [ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="7_agou5"]
 
+[sub_resource type="Resource" id="Resource_trei1"]
+script = ExtResource("2_xyfs1")
+head_frame = -1
+decor_frame = -1
+connection_frame = -1
+connection_level = -1
+segment0_frame = 0
+segment1_frame = 0
+segment2_frame = 0
+segment3_frame = 0
+segment4_frame = 0
+
 [node name="Block" type="Node2D"]
 modulate = Color(0.709479, 0.518602, 0.496049, 1)
 script = ExtResource("1_0ubtx")
-config = ExtResource("2_7pydr")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(0, -32, 48, 192)
+config = SubResource("Resource_trei1")
 
 [node name="BlockHead" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 texture = ExtResource("2_r4v3w")
 centered = false
 offset = Vector2(0, -16)
 vframes = 4
-frame = 1
+frame = 2
 
 [node name="BlockDecor" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -32,32 +42,29 @@ texture = ExtResource("3_djqvm")
 centered = false
 offset = Vector2(0, -32)
 vframes = 5
-frame = 1
+frame = 3
 
 [node name="BlockConnection" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-48, 0)
+visible = false
+position = Vector2(-48, -16)
 texture = ExtResource("5_xubix")
 centered = false
 vframes = 2
-frame = 1
 
 [node name="BlockSegmentsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="BlockSegment0" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
-frame = 3
 
 [node name="BlockSegment1" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 32)
-frame = 3
 
 [node name="BlockSegment2" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 64)
 
 [node name="BlockSegment3" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 96)
-frame = 2
 
 [node name="BlockSegment4" parent="BlockSegmentsRoot" instance=ExtResource("3_tomy5")]
 position = Vector2(0, 128)
@@ -67,6 +74,3 @@ script = ExtResource("7_agou5")
 visualize_seconds = 120.0
 target = NodePath("..")
 method_name = "set_config"
-
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

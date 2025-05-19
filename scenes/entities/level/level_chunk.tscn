@@ -1,89 +1,87 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpqp74j02xmp4"]
+[gd_scene load_steps=8 format=3 uid="uid://bpqp74j02xmp4"]
 
 [ext_resource type="Script" path="res://scenes/entities/level/level_chunk.gd" id="1_htlfu"]
-[ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="2_sv25r"]
-[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_spawner.gd" id="3_3dvds"]
-[ext_resource type="Resource" uid="uid://byd1tsyiwmv5h" path="res://resources/spawners/block_spawner_0.tres" id="4_0jn1s"]
-[ext_resource type="Resource" uid="uid://crpk0jhhq6lew" path="res://resources/spawners/item_spawner_panacat.tres" id="4_ull44"]
-[ext_resource type="Resource" uid="uid://d1pt1oc16te24" path="res://resources/spawners/block_spawner_0_c.tres" id="5_xgh84"]
+[ext_resource type="Resource" uid="uid://brl2qlh66l7wo" path="res://resources/levels/level_chunk_2.tres" id="2_4iglf"]
+[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_spawner.gd" id="3_k7uiv"]
+[ext_resource type="Resource" uid="uid://byd1tsyiwmv5h" path="res://resources/spawners/block_spawner_0.tres" id="4_kbwhp"]
+[ext_resource type="Resource" uid="uid://d1pt1oc16te24" path="res://resources/spawners/block_spawner_0_c.tres" id="5_t4cgh"]
+[ext_resource type="Resource" uid="uid://cyigu5e61lt5m" path="res://resources/spawners/item_spawner_bean_panacat.tres" id="6_0bpyv"]
+[ext_resource type="Resource" uid="uid://crpk0jhhq6lew" path="res://resources/spawners/item_spawner_panacat.tres" id="6_13s64"]
 
 [node name="LevelChunk" type="Node2D"]
 script = ExtResource("1_htlfu")
-config = ExtResource("2_sv25r")
+config = ExtResource("2_4iglf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
+rect = Rect2(0, 0, 336, 180)
 
 [node name="EditorHintRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="EditorHintRoot"]
-offset_right = 320.0
-offset_bottom = 180.0
-color = Color(0, 0.666667, 1, 0.196078)
-
 [node name="LeftLevel" type="ColorRect" parent="EditorHintRoot"]
 offset_left = -16.0
-offset_top = 64.0
+offset_top = 112.0
 offset_right = 16.0
-offset_bottom = 72.0
+offset_bottom = 120.0
 color = Color(1, 0, 1, 0.196078)
 
 [node name="RightLevel" type="ColorRect" parent="EditorHintRoot"]
 offset_left = 304.0
-offset_top = 64.0
+offset_top = 80.0
 offset_right = 336.0
-offset_bottom = 72.0
+offset_bottom = 88.0
 color = Color(1, 0, 1, 0.196078)
 
 [node name="SpawnersRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="LevelChunkSpawner0" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(0, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_0jn1s")
-
-[node name="LevelChunkSpawner1" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(48, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_0jn1s")
-
-[node name="LevelChunkSpawner2" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(96, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_0jn1s")
-
-[node name="LevelChunkSpawner3" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(192, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("5_xgh84")
-
-[node name="LevelChunkSpawner4" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(240, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_0jn1s")
-
-[node name="LevelChunkSpawner5" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(288, 72)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_0jn1s")
-
 [node name="LevelChunkSpawner6" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(168, 8)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_ull44")
+position = Vector2(0, 112)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("4_kbwhp")
 
-[node name="LevelChunkSpawner7" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(192, 16)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_ull44")
+[node name="LevelChunkSpawner9" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(48, 112)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("4_kbwhp")
 
-[node name="LevelChunkSpawner8" type="Node2D" parent="SpawnersRoot"]
-position = Vector2(144, 16)
-script = ExtResource("3_3dvds")
-spawner_config = ExtResource("4_ull44")
+[node name="LevelChunkSpawner10" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(96, 96)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("4_kbwhp")
 
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner6/Item" to="SpawnersRoot/LevelChunkSpawner6/Item" method="collect"]
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner6/@Area2D@25318" to="SpawnersRoot/LevelChunkSpawner6/@Area2D@25318" method="collect"]
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner7/Item" to="SpawnersRoot/LevelChunkSpawner7/Item" method="collect"]
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner7/@Area2D@25319" to="SpawnersRoot/LevelChunkSpawner7/@Area2D@25319" method="collect"]
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner8/Item" to="SpawnersRoot/LevelChunkSpawner8/Item" method="collect"]
-[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner8/@Area2D@25320" to="SpawnersRoot/LevelChunkSpawner8/@Area2D@25320" method="collect"]
+[node name="LevelChunkSpawner11" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(192, 120)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("5_t4cgh")
+
+[node name="LevelChunkSpawner12" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(240, 88)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("4_kbwhp")
+
+[node name="LevelChunkSpawner13" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(288, 88)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("4_kbwhp")
+
+[node name="LevelChunkSpawner14" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(192, 32)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("6_0bpyv")
+
+[node name="LevelChunkSpawner15" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(160, 40)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("6_13s64")
+
+[node name="LevelChunkSpawner16" type="Node2D" parent="SpawnersRoot"]
+position = Vector2(224, 40)
+script = ExtResource("3_k7uiv")
+spawner_config = ExtResource("6_13s64")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="on_screen_exited"]
+[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner14/Item" to="SpawnersRoot/LevelChunkSpawner14/Item" method="collect"]
+[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner15/Item" to="SpawnersRoot/LevelChunkSpawner15/Item" method="collect"]
+[connection signal="body_entered" from="SpawnersRoot/LevelChunkSpawner16/Item" to="SpawnersRoot/LevelChunkSpawner16/Item" method="collect"]

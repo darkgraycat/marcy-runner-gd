@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=10 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
+[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_config.gd" id="3_re3on"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
+[ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="4_eivkw"]
+[ext_resource type="Resource" uid="uid://b7t7d1sxf8h7t" path="res://resources/levels/level_chunk_1.tres" id="5_g0slv"]
+[ext_resource type="Resource" uid="uid://brl2qlh66l7wo" path="res://resources/levels/level_chunk_2.tres" id="6_ausua"]
+[ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
+
+[sub_resource type="Resource" id="Resource_1bamb"]
+script = ExtResource("7_kc3hx")
+level_chunk_variations = Array[ExtResource("3_re3on")]([ExtResource("4_eivkw"), ExtResource("5_g0slv"), ExtResource("6_ausua")])
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
 
 [node name="Level" parent="." instance=ExtResource("2_kli8p")]
 unique_name_in_owner = true
+config = SubResource("Resource_1bamb")
 
 [node name="UiCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
 unique_name_in_owner = true

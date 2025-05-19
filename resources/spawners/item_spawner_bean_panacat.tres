@@ -8,5 +8,5 @@
 
 [resource]
 script = ExtResource("4_chs7v")
-config_variations = Array[ExtResource("1_mkubm")]([ExtResource("2_4vmot"), ExtResource("3_uk2mu")])
+config_variations = Array[ExtResource("1_mkubm")]([ExtResource("2_4vmot"), ExtResource("2_4vmot"), ExtResource("3_uk2mu")])
 scene = ExtResource("4_rdd3k")

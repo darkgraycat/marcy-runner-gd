@@ -1,15 +1,15 @@
 @tool
 class_name LevelChunk extends Node2D
 
+signal screen_exited(level_chunk: LevelChunk)
+
 @export var config: LevelChunkConfig: set = set_config
-
-@export var upload_btn: bool = false:
+@export var save_spawners_btn: bool = false:
 	set(_v):
-		upload_btn = false
-		var spawners: Array[Dictionary] = save_spawners()
-		config.spawners_json = JSON.stringify(spawners)
-		set_config(config)
+		save_spawners_btn = false
+		save_spawners()
 
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = %VisibleOnScreenNotifier2D
 @onready var spawners_root: Node2D = %SpawnersRoot
 @onready var editor_hint_root: Node2D = %EditorHintRoot
 @onready var editor_hint_level_left: ColorRect = %EditorHintRoot/LeftLevel
@@ -29,13 +29,11 @@ func set_config(new_config: LevelChunkConfig) -> void:
 		editor_hint_level_right.position.y = config.right_side_level * Global.TILE_SIZE
 
 	if config.spawners_json:
-		clear_spawners()
-		var spawners: Array = JSON.parse_string(config.spawners_json)
-		load_spawners(spawners)
+		reset_spawners()
+		load_spawners()
 
-	spawn_entities()
 
-func save_spawners() -> Array[Dictionary]:
+func save_spawners() -> void:
 	var spawners: Array[Dictionary] = []
 	for spawner in spawners_root.get_children():
 		spawners.append({
@@ -44,33 +42,35 @@ func save_spawners() -> Array[Dictionary]:
 			"position_x": spawner.position.x,
 			"position_y": spawner.position.y
 		})
-	return spawners
+	config.spawners_json = JSON.stringify(spawners)
 
 
-func load_spawners(spawners: Array) -> void:
+func load_spawners() -> void:
+	var spawners: Array = JSON.parse_string(config.spawners_json)
 	for spawner_dict: Dictionary in spawners:
 		var inst: LevelChunkSpawner = LevelChunkSpawner.new()
-		inst.name = spawner_dict["name"]
 		inst.spawner_config = load(spawner_dict["resource_path"]) as LevelChunkSpawnerConfig
 		inst.position.x = spawner_dict["position_x"]
 		inst.position.y = spawner_dict["position_y"]
-		spawners_root.add_child(inst)
 		inst.spawn()
+		spawners_root.add_child(inst)
 		if Engine.is_editor_hint():
 			inst.owner = get_tree().edited_scene_root
+		inst.name = spawner_dict["name"]
 
 
-func clear_spawners() -> void:
+func reset_spawners() -> void:
 	for spawner: LevelChunkSpawner in spawners_root.get_children():
 		spawner.queue_free()
 
 
-func clear_entities() -> void:
-	for spawner: LevelChunkSpawner in spawners_root.get_children():
-		for entity: Node2D in spawner.get_children():
-			entity.queue_free()
+func get_left_x() -> float:
+	return global_position.x
 
 
-func spawn_entities() -> void:
-	for spawner: LevelChunkSpawner in spawners_root.get_children():
-		spawner.spawn()
+func get_right_x() -> float:
+	return global_position.x + Global.VIEWPORT_WIDTH
+
+
+func on_screen_exited() -> void:
+	screen_exited.emit(self)

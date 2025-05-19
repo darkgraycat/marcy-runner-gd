@@ -16,6 +16,8 @@ func set_config(new_config: ItemConfig) -> void:
 	config = new_config
 	if not is_node_ready(): await ready
 
+	animated_sprite_2d.play(get_animation_prefix() + "_idle")
+
 
 func collect(who: Node2D) -> void:
 	if not who.is_in_group(Global.GROUP_NAME_PLAYER):
