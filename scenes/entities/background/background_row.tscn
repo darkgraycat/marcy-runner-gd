@@ -9,7 +9,7 @@ script = ExtResource("1_xe0km")
 [node name="Parallax2D" type="Parallax2D" parent="."]
 unique_name_in_owner = true
 scroll_scale = Vector2(0, 0)
-repeat_size = Vector2(320, 0)
+repeat_size = Vector2(128, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 unique_name_in_owner = true

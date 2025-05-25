@@ -115,9 +115,9 @@ script = ExtResource("1_0v5uu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_lh8pf")
-animation = &"jump"
-autoplay = "idle"
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_mlylf")

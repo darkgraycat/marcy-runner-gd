@@ -43,4 +43,7 @@ func set_connection(frame: int) -> void:
 
 func set_segment(frame: int, idx: int) -> void:
 	var segment: Sprite2D = segments_root.get_child(idx)
-	segment.frame = frame
+	var segment_shape: CollisionShape2D = segment.get_child(0).get_child(0)
+	segment.visible = frame >= 0
+	segment_shape.disabled = frame < 0
+	if segment.visible: segment.frame = frame

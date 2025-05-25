@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=13 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
@@ -8,10 +8,17 @@
 [ext_resource type="Resource" uid="uid://b7t7d1sxf8h7t" path="res://resources/levels/level_chunk_1.tres" id="5_g0slv"]
 [ext_resource type="Resource" uid="uid://brl2qlh66l7wo" path="res://resources/levels/level_chunk_2.tres" id="6_ausua"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
+[ext_resource type="Resource" uid="uid://bsn3x2v6fqrm1" path="res://resources/levels/level_chunk_3.tres" id="7_vuai4"]
+[ext_resource type="Shader" path="res://shaders/screen_vectorize.gdshader" id="10_wf2ql"]
 
 [sub_resource type="Resource" id="Resource_1bamb"]
 script = ExtResource("7_kc3hx")
-level_chunk_variations = Array[ExtResource("3_re3on")]([ExtResource("4_eivkw"), ExtResource("5_g0slv"), ExtResource("6_ausua")])
+level_chunk_variations = Array[ExtResource("3_re3on")]([ExtResource("4_eivkw"), ExtResource("5_g0slv"), ExtResource("6_ausua"), ExtResource("7_vuai4")])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nss8"]
+shader = ExtResource("10_wf2ql")
+shader_parameter/THRESHOLD = 0.001
+shader_parameter/AA_SCALE = 11.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
@@ -21,7 +28,6 @@ unique_name_in_owner = true
 config = SubResource("Resource_1bamb")
 
 [node name="UiCanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
 unique_name_in_owner = true
@@ -32,3 +38,15 @@ offset_bottom = 24.0
 text = "DebugLabel"
 
 [node name="FpsHeapLabel" parent="UiCanvasLayer" instance=ExtResource("3_uyqow")]
+visible = false
+
+[node name="ShaderColorRect" type="ColorRect" parent="UiCanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_7nss8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2

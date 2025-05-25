@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=12 format=3 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_bmo7b"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bpqp74j02xmp4" path="res://scenes/entities/level/level_chunk.tscn" id="5_ownfe"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="8_7cr7m"]
-[ext_resource type="Resource" uid="uid://sef4ulfshkqk" path="res://resources/background/bg_config_4.tres" id="9_kbiuv"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
 script = ExtResource("6_rtkbc")
@@ -29,7 +28,7 @@ resource = ExtResource("3_h8vqt")
 
 [node name="Background" parent="." instance=ExtResource("3_mrkxi")]
 unique_name_in_owner = true
-config = ExtResource("9_kbiuv")
+config = ExtResource("3_h8vqt")
 
 [node name="LevelChunksRoot" type="Node2D" parent="."]
 unique_name_in_owner = true

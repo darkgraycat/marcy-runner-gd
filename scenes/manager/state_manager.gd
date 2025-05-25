@@ -10,8 +10,6 @@ func _ready() -> void:
 
 
 func _on_item_collected(item: Item) -> void:
-	prints("item", item)
-	# prints("item collected %s" % item.get_type())
 	match item.get_effect():
 		ItemConfig.ItemEffect.None: pass
 		ItemConfig.ItemEffect.Score: score += int(item.get_effect_amount())
