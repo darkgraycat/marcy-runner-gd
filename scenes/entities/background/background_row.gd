@@ -22,5 +22,6 @@ func set_color(new_color: Color) -> void:
 func _refresh() -> void:
 	if not is_node_ready(): await ready
 	sprite_2d.modulate = color
-	sprite_2d.region_rect.position.y = frame  * 32
+	sprite_2d.region_rect.position.y = frame * 32
+	sprite_2d.region_filter_clip_enabled = true
 	parallax_2d.scroll_scale.x = speed

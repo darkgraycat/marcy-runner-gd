@@ -7,11 +7,6 @@ class_name Item extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 
 
-func _ready() -> void:
-	animated_sprite_2d.play("panacat_idle")
-	pass
-
-
 func set_config(new_config: ItemConfig) -> void:
 	config = new_config
 	if not is_node_ready(): await ready

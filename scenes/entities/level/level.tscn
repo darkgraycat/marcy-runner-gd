@@ -49,6 +49,5 @@ position = Vector2(72, 64)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(96, 0)
 limit_bottom = 180
-limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
+position_smoothing_speed = 2.0
