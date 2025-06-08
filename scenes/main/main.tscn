@@ -1,15 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=9 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
+[ext_resource type="Shader" path="res://shaders/screen_vhs.gdshader" id="6_2gqlx"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
 
 [sub_resource type="Resource" id="Resource_1r563"]
 script = ExtResource("7_kc3hx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7nss8"]
+shader = ExtResource("6_2gqlx")
+shader_parameter/range = 0.01
+shader_parameter/noiseQuality = 100.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.01
+shader_parameter/colorOffsetIntensity = 0.5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
@@ -22,12 +29,14 @@ config = SubResource("Resource_1r563")
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
 unique_name_in_owner = true
+visible = false
 offset_right = 128.0
 offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("4_xryad")
 text = "DebugLabel"
 
 [node name="FpsHeapLabel" parent="UiCanvasLayer" instance=ExtResource("3_uyqow")]
+visible = false
 offset_top = 8.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("4_xryad")
