@@ -37,8 +37,7 @@ config = ExtResource("3_h8vqt")
 
 [node name="LevelChunksRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
-position = Vector2(704, 0)
+position = Vector2(470, 517)
 
 [node name="LevelChunk0" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
 

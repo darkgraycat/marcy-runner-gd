@@ -22,16 +22,18 @@ func _ready() -> void:
 
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
 
-	tmcm.apply_pattern(0, Vector2i(0, 0))
-	tmcm.apply_pattern(0, Vector2i(1, 0))
-	tmcm.apply_pattern(0, Vector2i(2, 0))
-	tmcm.apply_pattern(0, Vector2i(3, 0))
-	tmcm.apply_pattern(0, Vector2i(4, 0))
-	tmcm.apply_pattern(0, Vector2i(5, 0))
-	tmcm.apply_pattern(0, Vector2i(6, 0))
-	tmcm.apply_pattern(0, Vector2i(7, 0))
-	tmcm.apply_pattern(0, Vector2i(8, 0))
-	tmcm.apply_pattern(0, Vector2i(9, 0))
+	var last_idx := tmcm.get_chunks_total() - 1
+
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(0, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(1, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(2, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(3, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(4, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(5, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(6, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(7, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(8, 0))
+	tmcm.apply_pattern(randi_range(0, last_idx), Vector2i(9, 0))
 
 
 func _physics_process(_delta: float) -> void:

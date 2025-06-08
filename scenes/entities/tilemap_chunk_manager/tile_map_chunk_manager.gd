@@ -24,3 +24,9 @@ func apply_pattern(idx: int, pos: Vector2i) -> void:
 		var pattern: TileMapPattern = tilemap_patterns.get(layer.name)[idx]
 		var chunk_size := tile_map_chunk_grid.get_tilemap_layer_chunk_size(layer)
 		layer.set_pattern(pos * chunk_size, pattern)
+
+
+func get_chunks_total() -> int:
+	if tilemap_layers.is_empty():
+		return 0
+	return tilemap_patterns[tilemap_layers[0].name].size()
