@@ -140,7 +140,7 @@ config = SubResource("Resource_44tk4")
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_71m5g")
 animation = &"drone_idle"
-frame_progress = 0.466667
+frame_progress = 0.310992
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
