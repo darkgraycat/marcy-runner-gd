@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
 [ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
 [ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/item.panacat.tscn" id="9_bsnya"]
-[ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_manager.tscn" id="11_rw360"]
+[ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_root.tscn" id="11_rw360"]
 [ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_grid.tscn" id="14_ygypo"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
@@ -133,18 +133,18 @@ config = SubResource("Resource_jrewa")
 unique_name_in_owner = true
 config = ExtResource("3_h8vqt")
 
-[node name="TileMapChunkManager" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
+[node name="TileMapChunkRoot" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
 tile_map_chunk_grid = NodePath("TileMapChunkGrid")
 
-[node name="Blocks" type="TileMapLayer" parent="TileMapChunkManager"]
+[node name="Blocks" type="TileMapLayer" parent="TileMapChunkRoot"]
 tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAUAAAAAAAQAAAABAAUAAAAGAAQAAAAEAAUAAAAGAAQAAAACAAcAAAAJAAQAAAADAAcAAAAJAAQAAAAFAAUAAAAAAAQAAAAFAAQAAAAPAAAAAAAAAAQAAAAMAAIAAAADAAYAAAAMAAAAAAA=")
 tile_set = SubResource("TileSet_kdja1")
 
-[node name="Items" type="TileMapLayer" parent="TileMapChunkManager"]
+[node name="Items" type="TileMapLayer" parent="TileMapChunkRoot"]
 tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAgAIAAIAAAAAAAAAAgAJAAIAAAAAAAAAAgALAAMAAAAAAAAAAgAHAAcAAAAAAAAAAQAKAAcAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_ch102")
 
-[node name="TileMapChunkGrid" parent="TileMapChunkManager" instance=ExtResource("14_ygypo")]
+[node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
 pixels_per_tile = Vector2i(48, 16)
 tiles_per_chunk = Vector2i(6, 12)
 chunks_per_grid = Vector2i(1, 1)
