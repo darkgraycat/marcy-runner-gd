@@ -1,5 +1,5 @@
 @tool
-class_name TileMapChunkEditorHint extends Node2D
+class_name TileMapChunkGrid extends Node2D
 
 ## Size of each tile in pixels (width x height)
 @export var pixels_per_tile: Vector2i = Vector2i(16, 16): set = _set_pixels_per_tile

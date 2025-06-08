@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdw07s5fhwj2e"]
 
-[ext_resource type="Script" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_editor_hint.gd" id="1_4nyhj"]
+[ext_resource type="Script" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_grid.gd" id="1_4nyhj"]
 [ext_resource type="Shader" path="res://scenes/entities/tilemap_chunk_manager/chunk_grid.gdshader" id="1_w2otl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_de57r"]
@@ -15,9 +15,6 @@ shader_parameter/line_width = 1.0
 
 [node name="TileMapChunkEditorHint" type="Node2D"]
 script = ExtResource("1_4nyhj")
-pixels_per_tile = null
-tiles_per_chunk = null
-chunks_per_grid = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_de57r")
