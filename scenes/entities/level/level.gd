@@ -7,6 +7,8 @@ class_name Level extends Node2D
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 
+@onready var tmcm: TileMapChunkManager = $TileMapChunkManager
+
 var level_chunks: Array[LevelChunk] = []
 var next_chunk_x: float = 0.0
 
@@ -19,6 +21,11 @@ func _ready() -> void:
 		prints("next x", next_chunk_x)
 
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
+
+	tmcm.apply_pattern(4, Vector2i(0, 0))
+	tmcm.apply_pattern(3, Vector2i(0, 1))
+	tmcm.apply_pattern(0, Vector2i(1, 0))
+	tmcm.apply_pattern(2, Vector2i(2, 0))
 
 
 func _physics_process(_delta: float) -> void:

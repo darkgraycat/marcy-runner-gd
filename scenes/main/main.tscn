@@ -31,9 +31,7 @@ config = SubResource("Resource_1bamb")
 
 [node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
 unique_name_in_owner = true
-visible = false
-offset_left = 96.0
-offset_right = 224.0
+offset_right = 128.0
 offset_bottom = 24.0
 text = "DebugLabel"
 
