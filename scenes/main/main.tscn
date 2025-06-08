@@ -1,31 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=8 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
-[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_config.gd" id="3_re3on"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
-[ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="4_eivkw"]
-[ext_resource type="Resource" uid="uid://b7t7d1sxf8h7t" path="res://resources/levels/level_chunk_1.tres" id="5_g0slv"]
-[ext_resource type="Resource" uid="uid://brl2qlh66l7wo" path="res://resources/levels/level_chunk_2.tres" id="6_ausua"]
+[ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
-[ext_resource type="Resource" uid="uid://bsn3x2v6fqrm1" path="res://resources/levels/level_chunk_3.tres" id="7_vuai4"]
-[ext_resource type="Shader" path="res://shaders/screen_vectorize.gdshader" id="10_wf2ql"]
 
-[sub_resource type="Resource" id="Resource_1bamb"]
+[sub_resource type="Resource" id="Resource_1r563"]
 script = ExtResource("7_kc3hx")
-level_chunk_variations = Array[ExtResource("3_re3on")]([ExtResource("4_eivkw"), ExtResource("5_g0slv"), ExtResource("6_ausua"), ExtResource("7_vuai4")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7nss8"]
-shader = ExtResource("10_wf2ql")
-shader_parameter/THRESHOLD = 0.001
-shader_parameter/AA_SCALE = 11.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
 
 [node name="Level" parent="." instance=ExtResource("2_kli8p")]
 unique_name_in_owner = true
-config = SubResource("Resource_1bamb")
+config = SubResource("Resource_1r563")
 
 [node name="UiCanvasLayer" type="CanvasLayer" parent="."]
 
@@ -33,10 +24,14 @@ config = SubResource("Resource_1bamb")
 unique_name_in_owner = true
 offset_right = 128.0
 offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_xryad")
 text = "DebugLabel"
 
 [node name="FpsHeapLabel" parent="UiCanvasLayer" instance=ExtResource("3_uyqow")]
-visible = false
+offset_top = 8.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("4_xryad")
+theme_override_font_sizes/font_size = 16
 
 [node name="ShaderColorRect" type="ColorRect" parent="UiCanvasLayer"]
 visible = false

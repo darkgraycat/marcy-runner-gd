@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="LevelChunkConfig" load_steps=2 format=3 uid="uid://bsn3x2v6fqrm1"]
-
-[ext_resource type="Script" path="res://scenes/entities/level/level_chunk_config.gd" id="1_771rd"]
-
-[resource]
-script = ExtResource("1_771rd")
-left_side_level = 2.0
-right_side_level = 4.0
-spawners_json = "[{\"name\":\"LevelChunkSpawner0\",\"position_x\":0,\"position_y\":32,\"resource_path\":\"res://resources/spawners/block_spawner_0.tres\"},{\"name\":\"LevelChunkSpawner1\",\"position_x\":48,\"position_y\":32,\"resource_path\":\"res://resources/spawners/block_spawner_0.tres\"},{\"name\":\"LevelChunkSpawner4\",\"position_x\":96,\"position_y\":48,\"resource_path\":\"res://resources/spawners/block_spawner_0__.tres\"},{\"name\":\"LevelChunkSpawner5\",\"position_x\":288,\"position_y\":64,\"resource_path\":\"res://resources/spawners/block_spawner_0_c.tres\"},{\"name\":\"LevelChunkSpawner7\",\"position_x\":144,\"position_y\":32,\"resource_path\":\"res://resources/spawners/block_spawner_0.tres\"},{\"name\":\"LevelChunkSpawner8\",\"position_x\":192,\"position_y\":32,\"resource_path\":\"res://resources/spawners/block_spawner_0.tres\"},{\"name\":\"LevelChunkSpawner6\",\"position_x\":120,\"position_y\":96,\"resource_path\":\"res://resources/spawners/item_spawner_bean_life.tres\"},{\"name\":\"LevelChunkSpawner9\",\"position_x\":256,\"position_y\":24,\"resource_path\":\"res://resources/spawners/item_spawner_panacat.tres\"},{\"name\":\"LevelChunkSpawner10\",\"position_x\":288,\"position_y\":40,\"resource_path\":\"res://resources/spawners/item_spawner_panacat.tres\"}]"
