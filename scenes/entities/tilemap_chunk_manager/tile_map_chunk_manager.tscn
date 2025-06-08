@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctf3d4ixqnjgw"]
+
+[ext_resource type="Script" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_manager.gd" id="1_hijjb"]
+
+[node name="TileMapChunkManager" type="Node2D"]
+script = ExtResource("1_hijjb")

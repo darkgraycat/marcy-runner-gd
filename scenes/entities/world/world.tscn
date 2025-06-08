@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=4 uid="uid://dxq0uwi6kd42k"]
+
+[ext_resource type="Script" path="res://scenes/entities/world/world.gd" id="1_xny0e"]
+[ext_resource type="TileSet" uid="uid://b6kh7iqfwllr5" path="res://resources/tiles/city_tern_buildings.tres" id="2_41eb8"]
+[ext_resource type="TileSet" uid="uid://dtgtx2pf0m6gc" path="res://resources/tiles/city_tern_decor.tres" id="3_ipt12"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_xny0e")
+
+[node name="LevelTiles" type="Node2D" parent="."]
+
+[node name="TileMapLayerBlocks" type="TileMapLayer" parent="LevelTiles"]
+tile_set = ExtResource("2_41eb8")
+
+[node name="TileMapLayerDecorations" type="TileMapLayer" parent="LevelTiles"]
+tile_set = ExtResource("3_ipt12")
+
+[node name="EditorTiles" type="Node2D" parent="."]
+position = Vector2(0, 360)
+
+[node name="TileMapLayerBlocks" type="TileMapLayer" parent="EditorTiles"]
+tile_map_data = PackedByteArray("AAAAAAUABQAAAAAAAAAAAAQABQAAAAAAAAAAAAMABQAAAAAAAAAAAAIABQAAAAAAAAABAAIABQAAAAAAAAABAAMABQAAAAAAAAABAAQABQAAAAAAAAABAAUABQAAAAAAAAADAAUABQAAAAQAAAADAAQABQAAAAQAAAADAAMABQAAAAQAAAADAAIABQAAAAQAAAAEAAIABQAAAAQAAAAEAAMABQAAAAQAAAAEAAQABQAAAAQAAAAEAAUABQAAAAQAAAAGAAUABQAAAAgAAAAGAAQABQAAAAgAAAAGAAMABQAAAAgAAAAGAAIABQAAAAgAAAAHAAIABQAAAAgAAAAHAAMABQAAAAgAAAAHAAQABQAAAAgAAAAHAAUABQAAAAgAAAAAAAEABAAAAAAAAAABAAEABAAAAAAAAAADAAEABAAAAAIAAAAGAAEABAAAAAQAAAAHAAEABAAAAAQAAAAIAAIABQAAAAwAAAACAAIABQAAAAAAAAACAAMABQAAAAAAAAACAAQABQAAAAAAAAACAAUABQAAAAAAAAAFAAIABQAAAAQAAAAFAAMABQAAAAQAAAAFAAQABQAAAAQAAAAFAAUABQAAAAQAAAAIAAMABQAAAAwAAAAIAAQABQAAAAwAAAAIAAUABQAAAAwAAAAEAAEABAAAAAIAAAA=")
+tile_set = ExtResource("2_41eb8")
+
+[node name="TileMapLayerDecorations" type="TileMapLayer" parent="EditorTiles"]
+visible = false
+tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAAABAAEAAQAAAAIAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAQAAAAGAAEAAQAAAAQAAAACAAIAAAAAAAAAAAAFAAIAAAAAAAEAAAA=")
+tile_set = ExtResource("3_ipt12")

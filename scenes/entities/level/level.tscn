@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=17 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_bmo7b"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://bpqp74j02xmp4" path="res://scenes/entities/level/level_chunk.tscn" id="5_ownfe"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Resource" uid="uid://cfpb6ylo77a0h" path="res://resources/levels/level_chunk_0.tres" id="8_7cr7m"]
+[ext_resource type="PackedScene" uid="uid://dxq0uwi6kd42k" path="res://scenes/entities/world/world.tscn" id="11_nuq1u"]
+[ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_manager.tscn" id="11_rw360"]
+[ext_resource type="TileSet" uid="uid://b6kh7iqfwllr5" path="res://resources/tiles/city_tern_buildings.tres" id="12_5wh4j"]
+[ext_resource type="TileSet" uid="uid://dtgtx2pf0m6gc" path="res://resources/tiles/city_tern_decor.tres" id="13_4hps7"]
+[ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_grid.tscn" id="14_ygypo"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
 script = ExtResource("6_rtkbc")
@@ -32,7 +37,7 @@ config = ExtResource("3_h8vqt")
 
 [node name="LevelChunksRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 24)
+position = Vector2(470, 517)
 
 [node name="LevelChunk0" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
 
@@ -42,12 +47,34 @@ position = Vector2(320, 0)
 [node name="LevelChunk2" parent="LevelChunksRoot" instance=ExtResource("5_ownfe")]
 position = Vector2(640, 0)
 
+[node name="World" parent="." instance=ExtResource("11_nuq1u")]
+visible = false
+position = Vector2(-656, 40)
+
+[node name="TileMapChunkManager" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
+tile_map_chunk_grid = NodePath("TileMapChunkGrid")
+
+[node name="Blocks" type="TileMapLayer" parent="TileMapChunkManager"]
+tile_map_data = PackedByteArray("AAAAAAQABQAAAAAAAAAAAAMABQAAAAAAAAAAAAIABQAAAAAAAAABAAQABQAAAAAAAAABAAMABQAAAAQAAAABAAIABQAAAAAAAAACAAQABQAAAAAAAAACAAMABQAAAAAAAAACAAIABQAAAAQAAAADAAIABQAAAAAAAAADAAMABQAAAAAAAAADAAQABQAAAAAAAAAFAAQABQAAAAAAAAAGAAQABQAAAAAAAAAFAAMABQAAAAAAAAAFAAIABQAAAAAAAAAFAAEABQAAAAAAAAAGAAEABQAAAAAAAAAGAAIABQAAAAAAAAAGAAMABQAAAAAAAAAIAAQABQAAAAgAAAAIAAMABQAAAAwAAAAIAAIABQAAAAgAAAAIAAEABQAAAAgAAAALAAMABQAAAAgAAAALAAQABQAAAAwAAAAJAAMABQAAABAAAAAKAAMABQAAABAAAAALAAIABQAAAAwAAAALAAEABQAAAAwAAAAJAAEABQAAABAAAAAKAAEABQAAABAAAAAAAAEABAAAAAAAAAACAAEABAAAAAAAAAADAAEABAAAAAAAAAABAAEABAAAAAAAAAAFAAAABAAAAAoAAAAGAAAABAAAAAoAAAAJAAIABAAAAAgAAAAKAAIABAAAAAgAAAAJAAAABAAAAAAAAAAKAAAABAAAAAAAAAAIAAAABAAAAAYAAAALAAAABAAAAAYAAAAAAAYABAAAAAQAAAAAAAcABQAAABQAAAAAAAgABQAAABgAAAAAAAkABQAAABQAAAABAAYABAAAAAQAAAABAAcABQAAABQAAAABAAgABQAAABwAAAABAAkABQAAABQAAAACAAgABAAAAAIAAAACAAkABQAAAAgAAAADAAgABAAAAAIAAAADAAkABQAAAAgAAAAEAAkABAAAAAIAAAAFAAYABAAAAAYAAAAFAAcABQAAAAAAAAAFAAgABQAAAAQAAAAFAAkABQAAAAAAAAAGAAYABAAAAAYAAAAGAAcABQAAAAAAAAAGAAgABQAAAAAAAAAGAAkABQAAAAAAAAAHAAkABAAAAAIAAAAIAAcABAAAAAQAAAAIAAgABQAAABAAAAAIAAkABQAAAAgAAAAJAAcABAAAAAQAAAAJAAgABQAAABAAAAAJAAkABQAAAAwAAAALAAcABAAAAAAAAAALAAgABQAAAAgAAAALAAkABQAAAAwAAAAAAAoABQAAABQAAAABAAoABQAAABQAAAACAAoABQAAAAwAAAADAAoABQAAAAwAAAAEAAoABQAAAAQAAAAFAAoABQAAAAAAAAAGAAoABQAAAAAAAAAHAAoABQAAAAQAAAAIAAoABQAAAAwAAAAJAAoABQAAAAwAAAALAAoABQAAAAwAAAAAAAUABQAAAAAAAAABAAUABQAAAAAAAAACAAUABQAAAAAAAAADAAUABQAAAAAAAAAFAAUABQAAAAAAAAAGAAUABQAAAAAAAAAIAAUABQAAAAgAAAALAAUABQAAAAgAAAABAAsABQAAABgAAAAAAAsABQAAABgAAAACAAsABQAAABgAAAADAAsABQAAABgAAAAEAAsABQAAAAAAAAAFAAsABQAAAAQAAAAGAAsABQAAAAQAAAAHAAsABQAAAAAAAAAIAAsABQAAAAgAAAAJAAsABQAAABAAAAALAAsABQAAAAgAAAA=")
+tile_set = ExtResource("12_5wh4j")
+
+[node name="Decors" type="TileMapLayer" parent="TileMapChunkManager"]
+tile_map_data = PackedByteArray("AAAEAAMAAAAAAAAAAAAHAAMAAAAAAAEAAAAEAAQAAAAAAAEAAAAHAAQAAAAAAAAAAAAAAAEAAQAAAAAAAAACAAEAAQAAAAYAAAADAAEAAQAAAAIAAAAGAAAAAQAAAAQAAAALAAAAAQAAAAQAAAAIAAAAAQAAAAIAAAABAAEAAQAAAAYAAAAEAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAAAAYAAQAAAAAAAAABAAYAAQAAAAIAAAADAAgAAQAAAAAAAAAEAAkAAAAAAAEAAAAFAAYAAQAAAAAAAAAHAAkAAAAAAAEAAAAJAAcAAQAAAAIAAAAKAAkAAAAAAAAAAAALAAcAAQAAAAgAAAA=")
+tile_set = ExtResource("13_4hps7")
+
+[node name="TileMapChunkGrid" parent="TileMapChunkManager" instance=ExtResource("14_ygypo")]
+visible = false
+pixels_per_tile = Vector2i(48, 32)
+tiles_per_chunk = Vector2i(4, 6)
+chunks_per_grid = Vector2i(3, 2)
+
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true
-position = Vector2(72, 64)
+position = Vector2(72, 48)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(96, 0)
 limit_bottom = 180
+limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
