@@ -8,17 +8,7 @@ class_name Player extends CharacterBody2D
 var input_move: float = 0.0
 var input_jump: bool = false
 
-func __debug_controls() -> void:
-	var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	global_position += input * 5
-	var message := "%s || %s" % [global_position, (global_position / 16).floor()]
-	Util.notify(message, 1)
-	move_and_slide()
-
 func _physics_process(delta: float) -> void:
-	__debug_controls()
-	return
-
 	velocity.x = move_velocity * input_move
 	if input_move:
 		animated_sprite_2d.flip_h = input_move < 0
