@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=21 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_bmo7b"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_manager.tscn" id="11_rw360"]
 [ext_resource type="Texture2D" uid="uid://cemsqmclvyits" path="res://assets/sprites/block-segments.png" id="12_q7u8h"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="13_bys8t"]
+[ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk_manager/tile_map_chunk_editor_hint.tscn" id="14_ygypo"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
 script = ExtResource("6_rtkbc")
@@ -83,7 +84,8 @@ position = Vector2(640, 0)
 visible = false
 position = Vector2(-656, 40)
 
-[node name="TileMapChunkManager" parent="." instance=ExtResource("11_rw360")]
+[node name="TileMapChunkManager" parent="." node_paths=PackedStringArray("tile_map_chunk_editor_hint") instance=ExtResource("11_rw360")]
+tile_map_chunk_editor_hint = NodePath("TileMapChunkEditorHint")
 
 [node name="Blocks" type="TileMapLayer" parent="TileMapChunkManager"]
 tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAQAAAADAAEAAAAAAAQAAAADAAIAAAAAAAQAAAACAAEAAAAAAAQAAAABAAEAAAAAAAAAAAAEAAIAAAAAAAUAAAAEAAEAAAAAAAUAAAAFAAEAAAAAAAUAAAAFAAIAAAAAAAUAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAQAAAADAAMAAAAAAAQAAAAEAAMAAAAAAAUAAAAFAAMAAAAAAAUAAAAEAAUAAAAAAAcAAAAEAAYAAAAAAAcAAAAEAAcAAAAAAAcAAAAFAAcAAAAAAAcAAAAFAAYAAAAAAAcAAAAFAAUAAAAAAAcAAAADAAcAAAAAAAIAAAADAAYAAAAAAAIAAAADAAUAAAAAAAIAAAACAAUAAAAAAAIAAAACAAYAAAAAAAIAAAACAAcAAAAAAAIAAAAAAAUAAAAAAAEAAAABAAUAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAYAAAAAAAEAAAA=")
@@ -92,6 +94,11 @@ tile_set = SubResource("TileSet_cmgog")
 [node name="Items" type="TileMapLayer" parent="TileMapChunkManager"]
 tile_map_data = PackedByteArray("AAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAACAAEAAgAAAAAAAAAHAAMAAgAAAAIAAAAKAAMAAgAAAAIAAAAMAAEAAgAAAAEAAAANAAAAAgAAAAEAAAARAAEAAgAAAAEAAAAQAAAAAgAAAAEAAAACAAkAAgAAAAAAAAADAAkAAgAAAAAAAAACAAgAAgAAAAAAAAADAAgAAgAAAAAAAAAIAAkAAgAAAAEAAAAHAAgAAgAAAAEAAAAJAAkAAgAAAAEAAAAKAAgAAgAAAAEAAAAGAAkAAgAAAAEAAAALAAkAAgAAAAEAAAANAAsAAgAAAAIAAAAQAAsAAgAAAAIAAAANAA0AAgAAAAIAAAAQAA0AAgAAAAIAAAA=")
 tile_set = SubResource("TileSet_pmp43")
+
+[node name="TileMapChunkEditorHint" parent="TileMapChunkManager" instance=ExtResource("14_ygypo")]
+pixels_per_tile = Vector2i(48, 32)
+tiles_per_chunk = Vector2i(2, 4)
+chunks_per_grid = Vector2i(3, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true
