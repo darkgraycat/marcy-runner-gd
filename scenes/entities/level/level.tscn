@@ -145,7 +145,7 @@ config = ExtResource("5_pxpo6")
 
 [node name="TileMapChunkRoot" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
 modulate = Color(0.468966, 0.426806, 0.416008, 1)
-position = Vector2(0, -16)
+position = Vector2(0, -12)
 tile_map_chunk_grid = NodePath("TileMapChunkGrid")
 
 [node name="Blocks" type="TileMapLayer" parent="TileMapChunkRoot"]
