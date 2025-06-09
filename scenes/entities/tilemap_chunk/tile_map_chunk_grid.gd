@@ -38,8 +38,8 @@ func _ready() -> void:
 func get_tilemap_layer_patterns(layer: TileMapLayer) -> Array[TileMapPattern]:
 	var result: Array[TileMapPattern] = []
 	var chunk_size := get_tilemap_layer_chunk_size(layer)
-	for y: int in grid_size.y:
-		for x: int in grid_size.x:
+	for y in grid_size.y:
+		for x in grid_size.x:
 			var pos := Vector2i(x, y) * chunk_size
 			var coords := recti_to_points(Rect2i(pos, chunk_size))
 			result.append(layer.get_pattern(coords))
@@ -65,6 +65,7 @@ func _sync_dimensions() -> void:
 	shader.set_shader_parameter("tile_size", tile_size)
 	shader.set_shader_parameter("chunk_size", chunk_size)
 	shader.set_shader_parameter("rect_size", rect_size)
+
 
 func _sync_visuals() -> void:
 	shader.set_shader_parameter("primary_color", grid_color_odd)

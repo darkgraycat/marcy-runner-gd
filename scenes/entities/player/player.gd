@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += Global.GRAVITY * delta
 		rotation = 0
 	else:
-		rotation = get_floor_normal().angle() + (PI/2)
+		rotation = get_floor_normal().angle() + (PI / 2)
 
 	animated_sprite_2d.play(get_current_state())
 	move_and_slide()
