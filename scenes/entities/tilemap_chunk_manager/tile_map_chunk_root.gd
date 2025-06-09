@@ -1,5 +1,6 @@
 class_name TileMapChunkRoot extends Node2D
 
+## TileMapChunkGrid used to split tilemap into chunks
 @export var tile_map_chunk_grid: TileMapChunkGrid
 
 var tilemap_layers: Array[TileMapLayer] = []
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 	for layer: TileMapLayer in tilemap_layers:
 		tilemap_patterns[layer.name] = tile_map_chunk_grid.get_tilemap_layer_patterns(layer)
-		layer.clear()
+		layer.clear() # layers will be reused for placing patterns
 
 
 func apply_chunk_at(idx: int, pos: Vector2i) -> void:

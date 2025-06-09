@@ -53,3 +53,8 @@ func cast_array(target: Array, value: Array, type: int) -> void:
 func pick_random_element(array: Array) -> Variant:
 	if array.is_empty(): return null
 	return array[randi() % array.size()]
+
+
+func snap_angle(angle: float, step_deg: float) -> float:
+	var step_rad := deg_to_rad(step_deg)
+	return round(angle / step_rad) * step_rad

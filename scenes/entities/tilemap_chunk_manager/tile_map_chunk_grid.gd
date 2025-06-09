@@ -36,7 +36,7 @@ func get_tilemap_layer_patterns(layer: TileMapLayer) -> Array[TileMapPattern]:
 	for y: int in chunks_per_grid.y:
 		for x: int in chunks_per_grid.x:
 			var pos := Vector2i(x, y) * chunk_size
-			var coords := rect_to_coords_array(Rect2i(pos, chunk_size))
+			var coords := recti_to_points(Rect2i(pos, chunk_size))
 			result.append(layer.get_pattern(coords))
 	return result
 
@@ -45,7 +45,7 @@ func get_tilemap_layer_chunk_size(layer: TileMapLayer) -> Vector2i:
 	return (pixels_per_tile / layer.tile_set.tile_size) * tiles_per_chunk
 
 
-func rect_to_coords_array(rect: Rect2i) -> Array[Vector2i]:
+func recti_to_points(rect: Rect2i) -> Array[Vector2i]:
 	var coords: Array[Vector2i] = []
 	for x in rect.size.x:
 		for y in rect.size.y:

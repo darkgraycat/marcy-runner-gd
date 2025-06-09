@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=10 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
 [ext_resource type="Shader" path="res://shaders/screen_vhs.gdshader" id="6_2gqlx"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
+[ext_resource type="Theme" uid="uid://dd4dcad42nkd5" path="res://resources/ui/main_theme.tres" id="7_yc2vv"]
 
 [sub_resource type="Resource" id="Resource_1r563"]
 script = ExtResource("7_kc3hx")
@@ -25,24 +26,24 @@ script = ExtResource("1_1ey13")
 unique_name_in_owner = true
 config = SubResource("Resource_1r563")
 
-[node name="UiCanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="DebugLabel" type="Label" parent="UiCanvasLayer"]
-unique_name_in_owner = true
+[node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="DebugLabel" type="Label" parent="DebugCanvasLayer"]
+unique_name_in_owner = true
 offset_right = 128.0
 offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("4_xryad")
 text = "DebugLabel"
 
-[node name="FpsHeapLabel" parent="UiCanvasLayer" instance=ExtResource("3_uyqow")]
+[node name="FpsHeapLabel" parent="DebugCanvasLayer" instance=ExtResource("3_uyqow")]
 visible = false
 offset_top = 8.0
 offset_bottom = 31.0
 theme_override_fonts/font = ExtResource("4_xryad")
 theme_override_font_sizes/font_size = 16
 
-[node name="ShaderColorRect" type="ColorRect" parent="UiCanvasLayer"]
+[node name="ShaderColorRect" type="ColorRect" parent="DebugCanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_7nss8")
 anchors_preset = 15
@@ -52,3 +53,19 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
+
+[node name="UiCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="UiCanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("7_yc2vv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UiCanvasLayer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_yc2vv")
+
+[node name="Label" type="Label" parent="UiCanvasLayer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Panacats: 0"

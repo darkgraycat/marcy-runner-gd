@@ -105,19 +105,21 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlylf"]
-size = Vector2(10, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dj8"]
+size = Vector2(10, 13)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
+floor_snap_length = 4.0
 script = ExtResource("1_0v5uu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_lh8pf")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
-shape = SubResource("RectangleShape2D_mlylf")
+position = Vector2(-1, -6.5)
+shape = SubResource("RectangleShape2D_q2dj8")
