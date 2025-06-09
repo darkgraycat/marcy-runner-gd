@@ -68,6 +68,7 @@ func _sync_dimensions() -> void:
 
 
 func _sync_visuals() -> void:
+	if not is_node_ready(): await ready
 	shader.set_shader_parameter("primary_color", grid_color_odd)
 	shader.set_shader_parameter("secondary_color", grid_color_even)
 	shader.set_shader_parameter("line_color", grid_line_color)

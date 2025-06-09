@@ -15,9 +15,10 @@ shader_parameter/line_width = 1.0
 
 [node name="TileMapChunkGrid" type="Node2D"]
 script = ExtResource("1_4nyhj")
-tile_size = null
-chunk_size = null
-grid_size = null
+grid_color_odd = Color(0.501961, 0.501961, 0.0627451, 0.188235)
+grid_color_even = null
+grid_line_color = null
+grid_line_width = null
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_de57r")
