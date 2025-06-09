@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 /** Base tile size in pixels */
-uniform vec2 pixels_per_tile = vec2(16, 16);
+uniform vec2 tile_size = vec2(16, 16);
 /** Chunk size in base tiles */
-uniform vec2 tiles_per_chunk = vec2(8, 8);
+uniform vec2 chunk_size = vec2(8, 8);
 /** Size of the color rect */
 uniform vec2 rect_size = vec2(1024, 1024);
 /** Color used for visual grid */
@@ -15,7 +15,7 @@ uniform vec4 line_color : source_color = vec4(0.2, 0.2, 0.2, 0.5);
 uniform float line_width = 1.0;
 
 void fragment() {
-	vec2 chunk_px = pixels_per_tile * tiles_per_chunk;
+	vec2 chunk_px = tile_size * chunk_size;
 	vec2 local_pos = UV * rect_size;
 
 	int chunk_x = int(floor(local_pos.x / chunk_px.x));

@@ -157,9 +157,9 @@ tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAgAIAAIAAAAAAAAAAgAJAAIAAAAAAAA
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
-pixels_per_tile = Vector2i(48, 16)
-tiles_per_chunk = Vector2i(6, 12)
-chunks_per_grid = Vector2i(1, 1)
+tile_size = Vector2i(48, 16)
+chunk_size = Vector2i(6, 12)
+grid_size = Vector2i(4, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true
