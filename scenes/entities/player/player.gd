@@ -10,6 +10,7 @@ var input_jump: bool = false
 
 func _physics_process(delta: float) -> void:
 	velocity.x = move_velocity * input_move
+
 	if input_move:
 		animated_sprite_2d.flip_h = input_move < 0
 
@@ -21,6 +22,10 @@ func _physics_process(delta: float) -> void:
 
 	if !is_on_floor():
 		velocity.y += Global.GRAVITY * delta
+		rotation = 0
+	else:
+		var normal := get_floor_normal()
+		rotation = -normal.angle_to(Vector2.UP) * 0.5
 
 	animated_sprite_2d.play(get_current_state())
 	move_and_slide()

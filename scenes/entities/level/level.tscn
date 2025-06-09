@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_bmo7b"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
-[ext_resource type="Resource" uid="uid://c5jviqlokvct6" path="res://resources/background/bg_config_8.tres" id="3_h8vqt"]
 [ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/entities/background/background.tscn" id="3_mrkxi"]
+[ext_resource type="Resource" uid="uid://cyd48xogtsslo" path="res://resources/background/bg_config_7.tres" id="5_n8irq"]
 [ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
 [ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
@@ -80,35 +80,45 @@ texture = ExtResource("7_oejp8")
 12:0/size_in_atlas = Vector2i(3, 2)
 12:0/0 = 0
 12:0/0/texture_origin = Vector2i(0, -8)
-12:0/0/modulate = Color(0.9, 0.9, 0.9, 1)
+12:0/0/modulate = Color(0.8, 0.8, 0.8, 1)
 12:0/0/z_index = 1
 15:0/size_in_atlas = Vector2i(3, 2)
 15:0/0 = 0
 15:0/0/texture_origin = Vector2i(0, -8)
-15:0/0/modulate = Color(0.9, 0.9, 0.9, 1)
+15:0/0/modulate = Color(0.8, 0.8, 0.8, 1)
 15:0/0/z_index = 1
 12:2/size_in_atlas = Vector2i(3, 2)
 12:2/0 = 0
 12:2/0/texture_origin = Vector2i(0, -8)
-12:2/0/modulate = Color(0.9, 0.9, 0.9, 1)
+12:2/0/modulate = Color(0.8, 0.8, 0.8, 1)
 12:2/0/z_index = 1
 15:2/size_in_atlas = Vector2i(3, 2)
 15:2/0 = 0
 15:2/0/texture_origin = Vector2i(0, -8)
-15:2/0/modulate = Color(0.9, 0.9, 0.9, 1)
+15:2/0/modulate = Color(0.8, 0.8, 0.8, 1)
 15:2/0/z_index = 1
 6:5/size_in_atlas = Vector2i(3, 2)
 6:5/0 = 0
 6:5/0/texture_origin = Vector2i(0, 8)
+6:5/0/modulate = Color(0.8, 0.8, 0.8, 1)
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -16, -12, -24, 12, -24, 24, -16, 24, 8, -24, 8)
+6:5/0/physics_layer_0/polygon_0/one_way = true
 9:5/size_in_atlas = Vector2i(3, 2)
 9:5/0 = 0
 9:5/0/texture_origin = Vector2i(0, 8)
+9:5/0/modulate = Color(0.8, 0.8, 0.8, 1)
+9:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.2857, -17.1429, 10.2857, -17.1429, 10.2857, 8, -10.2857, 8)
+9:5/0/physics_layer_0/polygon_0/one_way = true
 12:5/size_in_atlas = Vector2i(3, 2)
 12:5/0 = 0
 12:5/0/texture_origin = Vector2i(0, 8)
+12:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, 8, 24, -24, 24, 8)
+12:5/0/physics_layer_0/polygon_0/one_way = true
 15:5/size_in_atlas = Vector2i(3, 2)
 15:5/0 = 0
 15:5/0/texture_origin = Vector2i(0, 8)
+15:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -8, 24, 8, -24, 8)
+15:5/0/physics_layer_0/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_kdja1"]
 tile_size = Vector2i(48, 16)
@@ -131,23 +141,26 @@ config = SubResource("Resource_jrewa")
 
 [node name="Background" parent="." instance=ExtResource("3_mrkxi")]
 unique_name_in_owner = true
-config = ExtResource("3_h8vqt")
+config = ExtResource("5_n8irq")
 
 [node name="TileMapChunkRoot" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
+modulate = Color(0.444393, 0.476797, 0.480604, 1)
+position = Vector2(0, 4)
 tile_map_chunk_grid = NodePath("TileMapChunkGrid")
 
 [node name="Blocks" type="TileMapLayer" parent="TileMapChunkRoot"]
-tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAUAAAAAAAQAAAABAAUAAAAGAAQAAAAEAAUAAAAGAAQAAAACAAcAAAAJAAQAAAADAAcAAAAJAAQAAAAFAAUAAAAAAAQAAAAFAAQAAAAPAAAAAAAAAAQAAAAMAAIAAAADAAYAAAAMAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAUAAAAAAAQAAAABAAUAAAAGAAQAAAAEAAUAAAAGAAQAAAACAAcAAAAJAAQAAAADAAcAAAAJAAQAAAAFAAUAAAAAAAQAAAAFAAQAAAAPAAAAAAAAAAQAAAAMAAIAAAADAAYAAAAMAAAAAAAHAAkAAAAGAAIAAAAHAAUAAAAJAAIAAAAHAAcAAAAJAAIAAAAHAAsAAAAGAAIAAAAIAAsAAAAGAAIAAAAIAAkAAAAGAAIAAAAIAAcAAAAJAAIAAAAIAAUAAAAJAAIAAAAKAAsAAAAAAAIAAAALAAsAAAAAAAIAAAAKAAkAAAADAAIAAAALAAkAAAAAAAIAAAAKAAcAAAAAAAIAAAALAAcAAAADAAIAAAAHAAMAAAAJAAUAAAAIAAMAAAAJAAUAAAAKAAUAAAADAAQAAAALAAUAAAADAAQAAAAKAAQAAAAMAAIAAAALAAQAAAAPAAAAAAAJAAYAAAADAAYAAAAJAAoAAAAAAAYAAAAMAAsAAAAGAAAAAAANAAoAAAAGAAAAAAAMAAkAAAAGAAAAAAANAAgAAAAGAAAAAAAMAAcAAAAGAAAAAAANAAYAAAAJAAAAAAAOAAYAAAAJAAAAAAAOAAgAAAAGAAAAAAAOAAoAAAAGAAAAAAAQAAsAAAAAAAIAAAAQAAkAAAAAAAIAAAARAAoAAAAAAAIAAAARAAgAAAADAAIAAAARAAYAAAAJAAIAAAAMAAUAAAAJAAQAAAARAAQAAAAGAAUAAAAQAAUAAAADAAQAAAAQAAcAAAADAAIAAAAOAAQAAAAAAAQAAAANAAQAAAAAAAQAAAANAAMAAAAMAAIAAAAOAAMAAAAPAAAAAAAMAAQAAAAMAAAAAAAQAAQAAAAPAAAAAAAPAAYAAAAAAAYAAAAPAAcAAAAAAAUAAAAPAAkAAAADAAUAAAASAAsAAAAAAAIAAAATAAsAAAAAAAIAAAASAAkAAAADAAIAAAATAAkAAAADAAIAAAASAAcAAAAMAAUAAAATAAcAAAAAAAIAAAATAAUAAAADAAQAAAATAAQAAAAPAAIAAAAUAAQAAAAAAAYAAAAUAAUAAAADAAUAAAAVAAYAAAAGAAAAAAAVAAMAAAAPAAIAAAAVAAQAAAAMAAQAAAAWAAYAAAAPAAUAAAAXAAcAAAAPAAUAAAAWAAgAAAAJAAAAAAAVAAgAAAAJAAAAAAAXAAkAAAAGAAAAAAAXAAsAAAAGAAAAAAAVAAoAAAAGAAAAAAAWAAoAAAAGAAAAAAAUAAgAAAADAAYAAAA=")
 tile_set = SubResource("TileSet_kdja1")
 
 [node name="Items" type="TileMapLayer" parent="TileMapChunkRoot"]
-tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAgAIAAIAAAAAAAAAAgAJAAIAAAAAAAAAAgALAAMAAAAAAAAAAgAHAAcAAAAAAAAAAQAKAAcAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAGAAMAAAAAAAAAAgAIAAIAAAAAAAAAAgAJAAIAAAAAAAAAAgALAAMAAAAAAAAAAgAHAAcAAAAAAAAAAQAKAAcAAAAAAAAAAQAcAAEAAAAAAAAAAgAeAAEAAAAAAAAAAgAgAAIAAAAAAAAAAgAWAAcAAAAAAAAAAQAZAAcAAAAAAAAAAQAwAAUAAAAAAAAAAQAxAAUAAAAAAAAAAQAyAAUAAAAAAAAAAQAoAAMAAAAAAAAAAgAqAAMAAAAAAAAAAgBDAAUAAAAAAAAAAgBGAAYAAAAAAAAAAgA9AAIAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
+visible = false
 pixels_per_tile = Vector2i(48, 16)
 tiles_per_chunk = Vector2i(6, 12)
-chunks_per_grid = Vector2i(1, 1)
+chunks_per_grid = Vector2i(4, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true
