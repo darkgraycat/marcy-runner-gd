@@ -29,8 +29,9 @@ func _physics_process(delta: float) -> void:
 	animated_sprite_2d.play(get_current_state())
 	move_and_slide()
 
+
 func get_current_state() -> StringName:
 	return (
 		"jump" if not is_on_floor() else
-		"walk" if input_move else "idle"
+		"walk" if velocity.x else "idle"
 	)

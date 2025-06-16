@@ -32,7 +32,6 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global.gd"
 Util="*res://scripts/util.gd"
-Generator="*res://scripts/generator.gd"
 Events="*res://scripts/events.gd"
 
 [debug]

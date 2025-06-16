@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=11 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1ey13"]
+[ext_resource type="PackedScene" uid="uid://b8nhy0l2gn7jd" path="res://scenes/manager/state_manager.tscn" id="2_6r8pl"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
@@ -21,6 +22,8 @@ shader_parameter/colorOffsetIntensity = 0.5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
+
+[node name="StateManager" parent="." instance=ExtResource("2_6r8pl")]
 
 [node name="Level" parent="." instance=ExtResource("2_kli8p")]
 unique_name_in_owner = true
@@ -70,3 +73,5 @@ theme = ExtResource("7_yc2vv")
 [node name="Label" type="Label" parent="UiCanvasLayer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 text = "Panacats: 0"
+
+[connection signal="state_updated" from="StateManager" to="." method="_on_state_manager_state_updated"]
