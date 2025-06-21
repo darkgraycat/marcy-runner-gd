@@ -7,20 +7,18 @@ class_name Player extends CharacterBody2D
 
 var input_move: float = 0.0
 var input_jump: bool = false
-
 var jump_in_progress: bool = false
 var current_state: String = "idle"
 
 func _physics_process(delta: float) -> void:
 	_handle_moving()
 	_handle_jumping()
+	_handle_gravity(delta)
 	_handle_animation()
 	move_and_slide()
-	if !is_on_floor():
-		velocity.y += Global.GRAVITY * delta
 
 
-func get_current_state() -> StringName:
+func get_current_state() -> String:
 	return (
 		"jump" if not is_on_floor() else
 		"walk" if velocity.x else "idle"
@@ -41,6 +39,10 @@ func _handle_jumping() -> void:
 		jump_in_progress = false
 		if velocity.y < 0:
 			velocity.y /= 2
+
+func _handle_gravity(delta: float) -> void:
+	if !is_on_floor():
+		velocity.y += Global.GRAVITY * delta
 
 
 func _handle_animation() -> void:
