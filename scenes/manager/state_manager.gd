@@ -1,6 +1,6 @@
 class_name StateManager extends Node
 
-signal state_updated(state: Dictionary)
+signal state_updated(state_manager: StateManager)
 
 var state: Dictionary = {
 	score = 0,

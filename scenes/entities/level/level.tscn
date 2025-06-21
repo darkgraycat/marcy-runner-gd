@@ -139,6 +139,7 @@ script = ExtResource("1_f7ki7")
 config = SubResource("Resource_jrewa")
 
 [node name="StateManager" parent="." instance=ExtResource("3_atcqg")]
+unique_name_in_owner = true
 
 [node name="LevelUiCanvasLayer" parent="." node_paths=PackedStringArray("state_manager") instance=ExtResource("4_83tuq")]
 state_manager = NodePath("../StateManager")
@@ -173,5 +174,3 @@ position = Vector2(72, 48)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
-
-[connection signal="state_updated" from="StateManager" to="." method="_on_state_manager_state_updated"]

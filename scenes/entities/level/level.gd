@@ -2,15 +2,15 @@ class_name Level extends Node2D
 
 @export var config: LevelConfig: set = set_config
 
+@onready var state_manager: StateManager = %StateManager
 @onready var background: Background = %Background
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 
 @onready var tmcr: TileMapChunkRoot = $TileMapChunkRoot
 
-var next_chunk_x: float = 0.0
-
 func _ready() -> void:
+	state_manager.state_updated.connect(_on_state_updated)
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
 
 	var last_idx := tmcr.get_total_chunks() - 1
@@ -30,5 +30,15 @@ func set_config(new_config: LevelConfig) -> void:
 	if not is_node_ready(): await ready
 
 
-func _on_state_manager_state_updated(state: Dictionary) -> void:
-	pass # Replace with function body.
+func _on_state_updated(m: StateManager) -> void:
+	var bonus_speed: float = m.get_value("bonus_speed")
+	if bonus_speed > 0: m.set_value("bonus_speed", bonus_speed - 1)
+
+func _on_item_collected(item: Item) -> void:
+	var effect_amount := item.get_effect_amount()
+	match item.get_effect():
+		# ItemConfig.ItemEffect.None: pass
+		# ItemConfig.ItemEffect.Score: set_value("score", state.score + int(effect_amount))
+		# ItemConfig.ItemEffect.BonusSpeed: set_value("bonus_speed", state.bonus_speed + effect_amount)
+		# ItemConfig.ItemEffect.AdditionalLife: set_value("lifes", state.lifes + int(effect_amount))
+		_: push_warning("unknown item effect %s" % item.get_effect())
