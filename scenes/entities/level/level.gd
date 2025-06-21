@@ -14,7 +14,7 @@ func _ready() -> void:
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
 
 	var last_idx := tmcr.get_total_chunks() - 1
-	for x in 10:
+	for x in 20:
 		tmcr.apply_chunk_at(randi_range(0, last_idx), Vector2i(x, 0))
 
 func _physics_process(_delta: float) -> void:
@@ -28,3 +28,7 @@ func _physics_process(_delta: float) -> void:
 func set_config(new_config: LevelConfig) -> void:
 	config = new_config
 	if not is_node_ready(): await ready
+
+
+func _on_state_manager_state_updated(state: Dictionary) -> void:
+	pass # Replace with function body.

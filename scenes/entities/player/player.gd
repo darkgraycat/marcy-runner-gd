@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 
 var input_move: float = 0.0
 var input_jump: bool = false
+var current_state: String = "idle"
 
 func _physics_process(delta: float) -> void:
 	velocity.x = move_velocity * input_move
@@ -22,11 +23,12 @@ func _physics_process(delta: float) -> void:
 
 	if !is_on_floor():
 		velocity.y += Global.GRAVITY * delta
-		rotation = 0
-	else:
-		rotation = get_floor_normal().angle() + (PI / 2)
 
-	animated_sprite_2d.play(get_current_state())
+	var new_state := get_current_state()
+	if current_state != new_state:
+		current_state = new_state
+		animated_sprite_2d.play(new_state)
+
 	move_and_slide()
 
 

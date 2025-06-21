@@ -23,10 +23,6 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("1_ag6t7")
 region = Rect2(144, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c573s"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(112, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwxey"]
 atlas = ExtResource("1_ag6t7")
 region = Rect2(160, 0, 16, 16)
@@ -38,6 +34,10 @@ region = Rect2(128, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7atci"]
 atlas = ExtResource("1_ag6t7")
 region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c573s"]
+atlas = ExtResource("1_ag6t7")
+region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v5hqu"]
 atlas = ExtResource("1_ag6t7")
@@ -68,13 +68,10 @@ animations = [{
 }, {
 "duration": 8.0,
 "texture": SubResource("AtlasTexture_hs0fb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c573s")
 }],
 "loop": false,
 "name": &"jump",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 2.0,
@@ -88,7 +85,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 2.0,
@@ -102,24 +99,25 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2dj8"]
-size = Vector2(10, 13)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sm7i6"]
+radius = 7.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-floor_snap_length = 3.0
+floor_stop_on_slope = false
+floor_snap_length = 5.0
 script = ExtResource("1_0v5uu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_lh8pf")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -6.5)
-shape = SubResource("RectangleShape2D_q2dj8")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_sm7i6")
