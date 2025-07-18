@@ -15,10 +15,6 @@ shader_parameter/vignette_intensity = 0.3
 shader_parameter/grille_amount = 0.0
 shader_parameter/brightness_boost = 1.321
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7sx4"]
-atlas = ExtResource("2_liwlu")
-region = Rect2(16, 0, 8, 8)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0cb43"]
 atlas = ExtResource("2_liwlu")
 region = Rect2(24, 0, 8, 8)
@@ -26,6 +22,10 @@ region = Rect2(24, 0, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrkbq"]
 atlas = ExtResource("2_liwlu")
 region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7sx4"]
+atlas = ExtResource("2_liwlu")
+region = Rect2(0, 0, 8, 8)
 
 [node name="LevelUiCanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_6626q")
@@ -40,6 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -47,53 +48,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_kahbu")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="TopHBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 32
 
-[node name="LifesHBoxContainer" type="HBoxContainer" parent="MarginContainer/TopHBoxContainer"]
+[node name="ScoreHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TopHBoxContainer/LifesHBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_x7sx4")
-stretch_mode = 3
-
-[node name="LifesLabel" type="Label" parent="MarginContainer/TopHBoxContainer/LifesHBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ScoreHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0000"
+text = "Score: 0000"
 
-[node name="ScoreHBoxContainer" type="HBoxContainer" parent="MarginContainer/TopHBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TopHBoxContainer/ScoreHBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ScoreHBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0cb43")
 stretch_mode = 3
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/TopHBoxContainer/ScoreHBoxContainer"]
+[node name="EffectsHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="EffectsLabel" type="Label" parent="MarginContainer/VBoxContainer/EffectsHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0000"
+text = "Effects: 0"
 
-[node name="EffectsHBoxContainer" type="HBoxContainer" parent="MarginContainer/TopHBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TopHBoxContainer/EffectsHBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/EffectsHBoxContainer"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_nrkbq")
 stretch_mode = 3
 
-[node name="EffectsLabel" type="Label" parent="MarginContainer/TopHBoxContainer/EffectsHBoxContainer"]
+[node name="LifesHBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/LifesHBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_x7sx4")
+stretch_mode = 3
+
+[node name="LifesLabel" type="Label" parent="MarginContainer/LifesHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0000"
+text = "x3"

@@ -58,3 +58,8 @@ func pick_random_element(array: Array) -> Variant:
 func snap_angle(angle: float, step_deg: float) -> float:
 	var step_rad := deg_to_rad(step_deg)
 	return round(angle / step_rad) * step_rad
+
+
+func log(msg: String) -> void:
+	var time := Time.get_datetime_string_from_system()
+	print("[%s] %s" % [time, msg])

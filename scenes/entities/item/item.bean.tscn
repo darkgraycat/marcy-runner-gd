@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://wfda77ljag5t"]
 
 [ext_resource type="Script" path="res://scenes/entities/item/item.gd" id="1_j0lnf"]
-[ext_resource type="Resource" uid="uid://bva25t5j54fem" path="res://resources/items/item_bean.tres" id="2_c4xmp"]
+[ext_resource type="Resource" uid="uid://mgm1klu80tmj" path="res://resources/effects/bean.effect.tres" id="2_230qg"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="3_yh337"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]
@@ -128,9 +128,9 @@ radius = 6.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_j0lnf")
-config = ExtResource("2_c4xmp")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 collision_shape_2d = NodePath("CollisionShape2D")
+effect = ExtResource("2_230qg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
