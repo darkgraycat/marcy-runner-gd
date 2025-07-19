@@ -11,10 +11,12 @@ var input_jump: bool = false
 var jump_in_progress: bool = false
 var current_state: String = "idle"
 
+func _ready() -> void:
+	effect_reciever.effect_applied.connect(apply_effects)
+	effect_reciever.effect_destroyed.connect(apply_effects)
+
 
 func _physics_process(delta: float) -> void:
-	apply_effects()
-
 	velocity.x = move_velocity * input_move
 
 	if input_jump and !jump_in_progress:
@@ -48,9 +50,9 @@ func get_current_state() -> String:
 	)
 
 
-func apply_effects() -> void:
-	move_velocity = Global.MOVE_VELOCITY
-	var bean_effects: Array[EffectResource] = effect_reciever.get_effects("Bean")
-	if bean_effects.size():
-		var bean_multiplier: float = bean_effects[0].value
-		move_velocity += bean_effects.size() * bean_multiplier
+func apply_effects(effect: EffectResource) -> void:
+	if effect.type == EffectResource.EffectType.Speed:
+		move_velocity = Global.MOVE_VELOCITY + \
+		effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
+
+	Events.emit_effects_updated(effect_reciever)

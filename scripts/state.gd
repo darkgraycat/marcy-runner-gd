@@ -24,9 +24,5 @@ func get_state(key: StateKey) -> Variant:
 	return _state.get(key, null)
 
 
-func incr_state(key: StateKey, amount: float) -> void:
-	set_state(key, float(get_state(key)) + amount)
-
-
-func decr_state(key: StateKey, amount: float) -> void:
+func mod_state(key: StateKey, amount: float) -> void:
 	set_state(key, float(get_state(key)) + amount)

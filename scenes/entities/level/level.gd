@@ -6,6 +6,7 @@ class_name Level extends Node2D
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 
+@onready var level_ui_canvas_layer: LevelUiCanvasLayer = %LevelUiCanvasLayer
 @onready var tmcr: TileMapChunkRoot = $TileMapChunkRoot
 
 func _ready() -> void:

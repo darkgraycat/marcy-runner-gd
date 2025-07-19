@@ -152,6 +152,8 @@ animations = [{
 radius = 6.0
 
 [node name="Item" type="Area2D" node_paths=PackedStringArray("animated_sprite_2d", "collision_shape_2d")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_ir57s")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 collision_shape_2d = NodePath("CollisionShape2D")
@@ -160,9 +162,7 @@ effect = ExtResource("2_okel6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_py7dy")
-animation = &"die"
-frame = 3
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

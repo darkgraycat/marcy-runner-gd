@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_c6gd8")
-type = 0
-duration_sec = 5.0
+duration_sec = 10.0
 name = "Bean"
 description = "Adds +10 to max speed for 5 seconds"
 value = 25.0
+type = 2
