@@ -12,8 +12,12 @@ func _ready() -> void:
 
 
 func update_labels() -> void:
-	lifes_label.text = str(State.get_state(State.StateKey.Lifes))
-	score_label.text = str(State.get_state(State.StateKey.Score))
+	var lifes: Variant = State.get_state(State.StateKey.Lifes)
+	var score: Variant = State.get_state(State.StateKey.Score)
+	lifes_label.text = str(int(lifes) if lifes != null else 0)
+	score_label.text = str(int(score) if score != null else 0)
+	#lifes_label.text = str(State.get_state(State.StateKey.Lifes) or 0)
+	#score_label.text = str(State.get_state(State.StateKey.Score) or 0)
 
 func update_effects(effect_reciever: EffectReciever) -> void:
 	if not effect_reciever:
@@ -21,4 +25,4 @@ func update_effects(effect_reciever: EffectReciever) -> void:
 		return
 
 	var speed_buff: float = effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
-	effects_label.text = str(speed_buff)
+	effects_label.text = str(int(speed_buff))

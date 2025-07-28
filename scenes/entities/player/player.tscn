@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://7i1o65gxgnqa"]
 
-[ext_resource type="Script" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
+[ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
-[ext_resource type="Script" path="res://scenes/components/effect/effect_reciever.gd" id="2_h8dl3"]
+[ext_resource type="Script" uid="uid://doww1kif70wp5" path="res://scenes/components/effect/effect_reciever.gd" id="2_h8dl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kretj"]
 atlas = ExtResource("1_ag6t7")
@@ -112,10 +112,6 @@ floor_stop_on_slope = false
 floor_snap_length = 5.0
 script = ExtResource("1_0v5uu")
 
-[node name="EffectReciever" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_h8dl3")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -8)
@@ -126,3 +122,7 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -6.5)
 shape = SubResource("RectangleShape2D_6nkbq")
+
+[node name="EffectReciever" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_h8dl3")

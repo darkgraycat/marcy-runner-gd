@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://iu2jwoplismj"]
 
-[ext_resource type="Script" path="res://scenes/debug/fps_heap_label.gd" id="1_gadnm"]
+[ext_resource type="Script" uid="uid://cv7dmhq6qvlgc" path="res://scenes/debug/fps_heap_label.gd" id="1_gadnm"]
 
 [node name="FpsHeapLabel" type="Label"]
 texture_filter = 1

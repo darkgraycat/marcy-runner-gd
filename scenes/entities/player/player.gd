@@ -50,9 +50,18 @@ func get_current_state() -> String:
 	)
 
 
+func die() -> void:
+	prints("DIE")
+
+
 func apply_effects(effect: EffectResource) -> void:
-	if effect.type == EffectResource.EffectType.Speed:
-		move_velocity = Global.MOVE_VELOCITY + \
-		effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
+	match effect.type:
+		EffectResource.EffectType.Speed:
+			move_velocity = Global.MOVE_VELOCITY + \
+			effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
+		EffectResource.EffectType.Lifes:
+			if effect.value < 0:
+				die()
+		_: pass
 
 	Events.emit_effects_updated(effect_reciever)

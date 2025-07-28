@@ -13,12 +13,8 @@ func _ready() -> void:
 
 
 func collect(who: Node2D) -> void:
-	if not who.is_in_group(Global.GROUP_NAME_PLAYER):
-		return
-
-	if not who.effect_reciever is EffectReciever:
-		return
-
+	if not who.is_in_group(Global.GROUP_NAME_PLAYER): return
+	if not who.effect_reciever is EffectReciever: return
 	who.effect_reciever.apply_effect(effect)
 	call_deferred("die")
 

@@ -13,8 +13,8 @@ enum EffectType {
 @export var value: float = 0
 @export var type: EffectType
 
-func _on_apply(_target: EffectReciever) -> void:
+func _on_apply(_effect_reciever: EffectReciever) -> void:
 	pass
 
-func _on_destroy(_target: EffectReciever) -> void:
+func _on_destroy(_effect_reciever: EffectReciever) -> void:
 	pass

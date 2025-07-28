@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c861uwi7ia6t6"]
 
-[ext_resource type="Script" path="res://scenes/entities/background/background.gd" id="1_u3b2o"]
+[ext_resource type="Script" uid="uid://buvpxpn6yy2m1" path="res://scenes/entities/background/background.gd" id="1_u3b2o"]
 [ext_resource type="Texture2D" uid="uid://cywlveyb1ve0x" path="res://assets/sprites/backgrounds_suns.png" id="2_jly7n"]
 [ext_resource type="PackedScene" uid="uid://c608hbdl2b2ef" path="res://scenes/entities/background/background_row.tscn" id="3_s7lbb"]
 

@@ -1,13 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://bb0sn77dx81m5"]
 
-[ext_resource type="Script" path="res://scenes/entities/block/block.gd" id="1_0ubtx"]
+[ext_resource type="Script" uid="uid://i4tg842v547g" path="res://scenes/entities/block/block.gd" id="1_0ubtx"]
 [ext_resource type="Texture2D" uid="uid://dnflnlgitpp67" path="res://assets/sprites/block-heads.png" id="2_r4v3w"]
-[ext_resource type="Script" path="res://scenes/entities/block/block_config.gd" id="2_xyfs1"]
+[ext_resource type="Script" uid="uid://c0resqh8usv6" path="res://scenes/entities/block/block_config.gd" id="2_xyfs1"]
 [ext_resource type="Texture2D" uid="uid://cudk33qiccmto" path="res://assets/sprites/block-decors.png" id="3_djqvm"]
 [ext_resource type="PackedScene" uid="uid://dfiuc5ml05flq" path="res://scenes/entities/block/block_segment.tscn" id="3_tomy5"]
 [ext_resource type="Texture2D" uid="uid://cs1xm7dei6hpf" path="res://assets/sprites/block-connections.png" id="5_xubix"]
-[ext_resource type="Script" path="res://scenes/shared/resource_visualiser.gd" id="7_agou5"]
-[ext_resource type="Resource" uid="uid://bp0y12offmagl" path="res://resources/blocks/block_1_2__.tres" id="8_kuemt"]
+[ext_resource type="Script" uid="uid://dcp3io07cpn03" path="res://scenes/shared/resource_visualiser.gd" id="7_agou5"]
 
 [sub_resource type="Resource" id="Resource_ema5x"]
 script = ExtResource("2_xyfs1")
@@ -20,6 +19,9 @@ segment1_frame = 0
 segment2_frame = 0
 segment3_frame = 0
 segment4_frame = 0
+
+[sub_resource type="Resource" id="Resource_rutlo"]
+metadata/__load_path__ = "res://resources/blocks/block_1_2__.tres"
 
 [node name="Block" type="Node2D"]
 modulate = Color(0.709479, 0.518602, 0.496049, 1)
@@ -74,4 +76,4 @@ script = ExtResource("7_agou5")
 visualize_seconds = 120.0
 target = NodePath("..")
 method_name = "set_config"
-resource = ExtResource("8_kuemt")
+resource = SubResource("Resource_rutlo")

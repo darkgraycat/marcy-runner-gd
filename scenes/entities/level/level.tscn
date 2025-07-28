@@ -1,16 +1,18 @@
-[gd_scene load_steps=18 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=20 format=4 uid="uid://dmy71hjfr481k"]
 
-[ext_resource type="Script" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
+[ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/entities/background/background.tscn" id="3_mrkxi"]
 [ext_resource type="PackedScene" uid="uid://difgvseqsh0oi" path="res://scenes/ui/level_ui_canvas_layer.tscn" id="4_83tuq"]
 [ext_resource type="Resource" uid="uid://bgsa3hf5w6byx" path="res://resources/background/bg_config_1.tres" id="6_b5b4g"]
-[ext_resource type="Script" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
+[ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
 [ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
 [ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/item.panacat.tscn" id="9_bsnya"]
 [ext_resource type="PackedScene" uid="uid://w38bax1rog4r" path="res://scenes/entities/item/item.life.tscn" id="10_sddit"]
+[ext_resource type="PackedScene" uid="uid://din6bnv7nrd2n" path="res://scenes/entities/enemy/enemy.drone.tscn" id="11_l1ony"]
 [ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk/tile_map_chunk_root.tscn" id="11_rw360"]
+[ext_resource type="PackedScene" uid="uid://esk118apvowd" path="res://scenes/entities/enemy/enemy.station.tscn" id="12_22udv"]
 [ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk/tile_map_chunk_grid.tscn" id="14_ygypo"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
@@ -131,6 +133,8 @@ sources/0 = SubResource("TileSetAtlasSource_lt40b")
 scenes/1/scene = ExtResource("8_772od")
 scenes/2/scene = ExtResource("9_bsnya")
 scenes/3/scene = ExtResource("10_sddit")
+scenes/5/scene = ExtResource("11_l1ony")
+scenes/6/scene = ExtResource("12_22udv")
 
 [sub_resource type="TileSet" id="TileSet_ch102"]
 sources/0 = SubResource("TileSetScenesCollectionSource_hq6hr")
@@ -155,8 +159,9 @@ modulate = Color(0.914108, 0.6562, 0.628386, 1)
 tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAYAAAAGAAQAAAAAAAYAAAAAAAQAAAAAAAUAAAAMAAIAAAADAAcAAAAMAAAAAAACAAgAAAAJAAQAAAADAAgAAAAJAAQAAAAFAAUAAAAPAAAAAAAEAAYAAAAGAAQAAAAFAAYAAAAAAAQAAAAGAAsAAAAJAAAAAAAGAAkAAAAGAAAAAAAHAAkAAAAGAAAAAAAHAAsAAAAJAAAAAAAGAAcAAAAJAAAAAAAHAAcAAAAPAAUAAAAGAAYAAAADAAQAAAAGAAUAAAAMAAAAAAAJAAsAAAAGAAIAAAAKAAsAAAAGAAIAAAAJAAkAAAAJAAIAAAAKAAkAAAAJAAIAAAAJAAcAAAAGAAIAAAAKAAcAAAAGAAIAAAAJAAUAAAAJAAIAAAAKAAUAAAAJAAIAAAAJAAQAAAAMAAQAAAAKAAQAAAAMAAQAAAAJAAMAAAAMAAIAAAALAAsAAAAAAAYAAAALAAcAAAADAAYAAAAIAAkAAAADAAUAAAAIAAsAAAAAAAUAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAMAAkAAAADAAIAAAAOAAkAAAADAAIAAAAMAAcAAAAAAAIAAAAOAAcAAAAAAAIAAAAMAAUAAAADAAIAAAAOAAUAAAADAAIAAAAMAAMAAAAAAAIAAAAOAAMAAAAAAAIAAAANAAcAAAAAAAIAAAANAAMAAAAAAAIAAAANAAoAAAAMAAQAAAANAAYAAAAMAAQAAAAMAAIAAAADAAQAAAANAAIAAAAGAAQAAAAOAAIAAAADAAQAAAANAAkAAAADAAUAAAANAAUAAAADAAUAAAAMAAEAAAAMAAIAAAANAAEAAAAPAAAAAAAQAAsAAAAAAAIAAAAPAAoAAAAMAAUAAAAQAAkAAAAMAAUAAAARAAkAAAADAAIAAAARAAsAAAAAAAIAAAARAAgAAAAAAAQAAAARAAcAAAAPAAIAAAASAAsAAAAAAAAAAAASAAkAAAAAAAAAAAASAAcAAAADAAAAAAASAAUAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAWAAUAAAAJAAIAAAAUAAUAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAkAAAADAAAAAAAUAAsAAAAAAAAAAAATAAsAAAADAAAAAAATAAkAAAAAAAAAAAATAAcAAAAAAAAAAAATAAUAAAADAAAAAAAWAAcAAAAJAAIAAAAWAAkAAAAGAAIAAAAWAAsAAAAGAAIAAAAWAAMAAAAJAAUAAAAVAAcAAAADAAYAAAATAAEAAAAGAAUAAAASAAIAAAAJAAQAAAAUAAIAAAAJAAQAAAASAAEAAAAMAAIAAAAUAAEAAAAPAAAAAAAWAAQAAAAPAAQAAAAXAAkAAAADAAYAAAAXAAgAAAADAAUAAAAVAAUAAAAAAAYAAAA=")
 tile_set = SubResource("TileSet_kdja1")
 
-[node name="Items" type="TileMapLayer" parent="TileMapChunkRoot"]
-tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAAAAgALAAQAAAAAAAAAAgAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgAZAAcAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAYAAAAAAAAAAQAoAAoAAAAAAAAAAwA=")
+[node name="Objects" type="TileMapLayer" parent="TileMapChunkRoot"]
+rotation = 0.000207715
+tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAAAAgALAAQAAAAAAAAAAgAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgAZAAcAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAYAAAAAAAAAAQAoAAoAAAAAAAAAAwAoAAAAAAAAAAAAAwAeAAQAAAAAAAAABgAeAAIAAAAAAAAABQA=")
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]

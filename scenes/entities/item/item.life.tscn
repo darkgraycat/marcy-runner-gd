@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://w38bax1rog4r"]
 
-[ext_resource type="Script" path="res://scenes/entities/item/item.gd" id="1_ir57s"]
+[ext_resource type="Script" uid="uid://bf5154hgh1d68" path="res://scenes/entities/item/item.gd" id="1_ir57s"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="2_mnvat"]
 [ext_resource type="Resource" uid="uid://bqdau4vme1h41" path="res://resources/effects/life.effect.tres" id="2_okel6"]
 

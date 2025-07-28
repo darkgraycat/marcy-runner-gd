@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="EffectScoreMod" load_steps=2 format=3 uid="uid://bqdau4vme1h41"]
+[gd_resource type="Resource" script_class="EffectStateMod" load_steps=2 format=3 uid="uid://bqdau4vme1h41"]
 
-[ext_resource type="Script" path="res://scenes/components/effect/collection/effect_state_mod.gd" id="1_xpba1"]
+[ext_resource type="Script" uid="uid://beicx40ffta7e" path="res://scenes/components/effect/collection/effect_state_mod.gd" id="1_xpba1"]
 
 [resource]
 script = ExtResource("1_xpba1")
-type = 1
 name = "Life"
 description = "Adds +1 to amount of Lifes"
 value = 1.0
+type = 1
