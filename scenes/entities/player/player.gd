@@ -1,7 +1,5 @@
 class_name Player extends CharacterBody2D
 
-## deprecated
-@export var move_velocity: float = Global.MOVE_VELOCITY
 ## TODO: maybe we could use jumping component
 @export var jump_velocity: float = Global.JUMP_VELOCITY
 
