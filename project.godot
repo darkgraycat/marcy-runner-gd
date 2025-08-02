@@ -64,6 +64,7 @@ folder_colors={
 "res://assets/": "pink",
 "res://resources/": "teal",
 "res://scenes/": "orange",
+"res://scenes/components/": "gray",
 "res://scenes/entities/": "red",
 "res://scripts/": "blue",
 "res://shaders/": "purple"

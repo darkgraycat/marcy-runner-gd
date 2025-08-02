@@ -9,6 +9,7 @@ var TILE_SIZE: int = 16
 
 var MOVE_VELOCITY: float = 100.0
 var JUMP_VELOCITY: float = 250.0
+var ACCELERATION: float = 10.0
 
 var GROUP_NAME_PLAYER: StringName = "Player"
 var GROUP_NAME_ITEMS: StringName = "Items"
