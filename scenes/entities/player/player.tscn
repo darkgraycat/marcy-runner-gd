@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=18 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
 [ext_resource type="Script" uid="uid://doww1kif70wp5" path="res://scenes/components/effect/effect_reciever.gd" id="2_h8dl3"]
 [ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://scenes/components/movement/movement.gd" id="4_nh4ur"]
+[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kretj"]
 atlas = ExtResource("1_ag6t7")
@@ -131,6 +132,6 @@ script = ExtResource("2_h8dl3")
 [node name="Movement" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_nh4ur")
-target_speed = 100.0
-acceleration = 10.0
-apply_gravity = true
+
+[node name="DebugLabel" parent="." instance=ExtResource("5_bjvvg")]
+channel = 1

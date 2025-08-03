@@ -14,3 +14,5 @@ var ACCELERATION: float = 10.0
 var GROUP_NAME_PLAYER: StringName = "Player"
 var GROUP_NAME_ITEMS: StringName = "Items"
 var GROUP_NAME_ENEMIES: StringName = "Enemies"
+
+var DEBUG: bool = false

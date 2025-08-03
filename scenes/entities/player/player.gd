@@ -10,8 +10,10 @@ var jump_in_progress: bool = false
 var current_state: String = "idle"
 
 func _ready() -> void:
-	movement.target_speed = Global.MOVE_VELOCITY
-	movement.acceleration = Global.ACCELERATION
+	movement.target_speed = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
+	movement.acceleration = Vector2(Global.ACCELERATION, 0)
+	movement.gravity = Vector2(0, Global.GRAVITY)
+
 	effect_reciever.effect_applied.connect(apply_effects)
 	effect_reciever.effect_destroyed.connect(apply_effects)
 
@@ -37,6 +39,8 @@ func _physics_process(_delta: float) -> void:
 		current_state = next_state
 		animated_sprite_2d.play(next_state)
 
+	Events.emit_debug_message("%v" % velocity, 1)
+
 
 func get_current_state() -> String:
 	return (
@@ -52,7 +56,7 @@ func die() -> void:
 func apply_effects(effect: EffectResource) -> void:
 	match effect.type:
 		EffectResource.EffectType.Speed:
-			movement.target_speed = Global.MOVE_VELOCITY + \
+			movement.target_speed.x = Global.MOVE_VELOCITY + \
 			effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
 		EffectResource.EffectType.Lifes:
 			if effect.value < 0:

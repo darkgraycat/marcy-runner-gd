@@ -81,7 +81,8 @@ effect = ExtResource("2_xouic")
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("3_y7108")
 direction = Vector2(-1, 0)
-acceleration = 0.3
+target_speed = Vector2(50, 0)
+acceleration = Vector2(0.3, 0)
 metadata/_custom_type_script = "uid://dog1hf54j6bcp"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
