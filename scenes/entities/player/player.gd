@@ -4,6 +4,7 @@ class_name Player extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var movement: Movement = $Movement
 @onready var effect_reciever: EffectReciever = $EffectReciever
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var input_move: float = 0.0
 var input_jump: bool = false
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	movement.direction.x = input_move
+	#movement.direction.x = input_move
 
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true
@@ -51,7 +52,11 @@ func get_current_state() -> String:
 
 
 func die() -> void:
-	prints("DIE")
+	movement.set_physics_process(false)
+	collision_shape_2d.disabled = true
+	animation_player.play("die")
+	await animation_player.animation_finished
+	queue_free()
 
 
 func apply_effects(effect: EffectResource) -> void:
@@ -61,7 +66,7 @@ func apply_effects(effect: EffectResource) -> void:
 			effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
 		EffectResource.EffectType.Lifes:
 			if effect.value < 0:
-				die()
+				call_deferred("die")
 		_: pass
 
 	Events.emit_effects_updated(effect_reciever)

@@ -20,11 +20,12 @@ func _ready() -> void:
 		tmcr.apply_chunk_at(randi_range(0, last_idx), Vector2i(x, 0))
 
 func _physics_process(_delta: float) -> void:
-	player.input_move = Input.get_axis("move_left", "move_right")
-	player.input_jump = Input.is_action_pressed("jump")
+	if (player):
+		player.input_move = Input.get_axis("move_left", "move_right")
+		player.input_jump = Input.is_action_pressed("jump")
 
-	if player.global_position.y > Global.VIEWPORT_HEIGHT + Global.TILE_SIZE:
-		player.global_position.y = 0
+		if player.global_position.y > Global.VIEWPORT_HEIGHT + Global.TILE_SIZE:
+			player.global_position.y = 0
 
 
 func set_config(new_config: LevelConfig) -> void:
