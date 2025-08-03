@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=13 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
@@ -6,104 +6,100 @@
 [ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://scenes/components/movement/movement.gd" id="4_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kretj"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_bjvvg"]
+resource_name = "idle"
+length = 1.00001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 3, 4, 3]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5id4m"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_8akj5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqv58"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_bj7e2"]
+resource_name = "run"
+length = 0.333342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 8]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_06kar"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(64, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_1murt"]
+resource_name = "walk"
+length = 0.333342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 5]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hs0fb"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(144, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_5sj0x"]
+resource_name = "jump"
+length = 0.666675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 6, 9]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kwxey"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2s8u8"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(128, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7atci"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c573s"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v5hqu"]
-atlas = ExtResource("1_ag6t7")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lh8pf"]
-animations = [{
-"frames": [{
-"duration": 8.0,
-"texture": SubResource("AtlasTexture_kretj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5id4m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqv58")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5id4m")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_06kar")
-}, {
-"duration": 8.0,
-"texture": SubResource("AtlasTexture_hs0fb")
-}],
-"loop": false,
-"name": &"jump",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_hs0fb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kwxey")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2s8u8")
-}],
-"loop": true,
-"name": &"run",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_7atci")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c573s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v5hqu")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 12.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bj7e2"]
+_data = {
+&"RESET": SubResource("Animation_8akj5"),
+&"idle": SubResource("Animation_bjvvg"),
+&"jump": SubResource("Animation_5sj0x"),
+&"run": SubResource("Animation_bj7e2"),
+&"walk": SubResource("Animation_1murt")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nkbq"]
 size = Vector2(10, 13)
@@ -114,24 +110,26 @@ floor_stop_on_slope = false
 floor_snap_length = 5.0
 script = ExtResource("1_0v5uu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("4_nh4ur")
+
+[node name="EffectReciever" type="Node" parent="."]
+script = ExtResource("2_h8dl3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-sprite_frames = SubResource("SpriteFrames_lh8pf")
-animation = &"idle"
+texture = ExtResource("1_ag6t7")
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bj7e2")
+}
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -6.5)
 shape = SubResource("RectangleShape2D_6nkbq")
-
-[node name="EffectReciever" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_h8dl3")
-
-[node name="Movement" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_nh4ur")
 
 [node name="DebugLabel" parent="." instance=ExtResource("5_bjvvg")]
 channel = 1

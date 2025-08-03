@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody2D
 
-@onready var effect_reciever: EffectReciever = %EffectReciever
-@onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
-@onready var movement: Movement = %Movement
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var movement: Movement = $Movement
+@onready var effect_reciever: EffectReciever = $EffectReciever
 
 var input_move: float = 0.0
 var input_jump: bool = false
@@ -32,12 +33,12 @@ func _physics_process(_delta: float) -> void:
 			velocity.y /= 2
 
 	if input_move:
-		animated_sprite_2d.flip_h = input_move < 0
+		sprite_2d.flip_h = input_move < 0
 
 	var next_state := get_current_state()
 	if current_state != next_state:
 		current_state = next_state
-		animated_sprite_2d.play(next_state)
+		animation_player.play(next_state)
 
 	Events.emit_debug_message("%v" % velocity, 1)
 
