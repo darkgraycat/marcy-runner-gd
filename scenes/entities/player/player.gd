@@ -1,8 +1,5 @@
 class_name Player extends CharacterBody2D
 
-## TODO: maybe we could use jumping component
-@export var jump_velocity: float = Global.JUMP_VELOCITY
-
 @onready var effect_reciever: EffectReciever = %EffectReciever
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 @onready var movement: Movement = %Movement
@@ -25,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true
 		if is_on_floor():
-			velocity.y = -jump_velocity
+			velocity.y = -Global.JUMP_VELOCITY
 
 	if !input_jump:
 		jump_in_progress = false
