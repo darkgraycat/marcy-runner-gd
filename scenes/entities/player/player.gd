@@ -66,7 +66,7 @@ func apply_effects(effect: EffectResource) -> void:
 			effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
 		EffectResource.EffectType.Lifes:
 			if effect.value < 0:
-				call_deferred("die")
+				die.call_deferred()
 		_: pass
 
 	Events.emit_effects_updated(effect_reciever)

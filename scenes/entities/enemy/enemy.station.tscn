@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://esk118apvowd"]
+[gd_scene load_steps=11 format=3 uid="uid://esk118apvowd"]
 
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_h4mso"]
 [ext_resource type="Resource" uid="uid://bh14j7l0d4ky" path="res://resources/effects/slow_station.effect.tres" id="2_cc8sq"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="2_qb5fb"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="3_cc8sq"]
 
 [sub_resource type="Animation" id="Animation_y7108"]
 length = 0.001
@@ -75,7 +76,7 @@ collision_shape_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
-effect = ExtResource("2_cc8sq")
+effects = Array[ExtResource("3_cc8sq")]([ExtResource("2_cc8sq")])
 metadata/_custom_type_script = "uid://ci1vbr35wldyi"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

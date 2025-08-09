@@ -2,7 +2,7 @@ class_name Item extends Area2D
 
 @export var animated_sprite_2d: AnimatedSprite2D
 @export var collision_shape_2d: CollisionShape2D
-@export var effect: EffectResource
+@export var effects: Array[EffectResource] = []
 
 
 func _ready() -> void:
@@ -15,8 +15,11 @@ func _ready() -> void:
 func collect(who: Node2D) -> void:
 	if not who.is_in_group(Global.GROUP_NAME_PLAYER): return
 	if not who.effect_reciever is EffectReciever: return
-	who.effect_reciever.apply_effect(effect)
-	call_deferred("die")
+	for effect: EffectResource in effects:
+		who.effect_reciever.apply_effect(effect)
+
+	#who.effect_reciever.apply_effect(effect)
+	die.call_deferred()
 
 
 func die() -> void:
@@ -26,5 +29,5 @@ func die() -> void:
 	queue_free()
 
 
-func get_effect() -> EffectResource:
-	return effect
+func get_effects() -> Array[EffectResource]:
+	return effects

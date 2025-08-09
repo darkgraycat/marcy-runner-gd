@@ -4,7 +4,7 @@ class_name Enemy extends CharacterBody2D
 @export var sprite_2d: Sprite2D
 @export var animation_player: AnimationPlayer
 @export var hurbox_area_2d: Area2D
-@export var effect: EffectResource
+@export var effects: Array[EffectResource] = []
 
 func _ready() -> void:
 	if not sprite_2d: return push_error("Sprite2D is not defined")
@@ -24,6 +24,7 @@ func die() -> void:
 func damage(who: Node2D) -> void:
 	if not who.is_in_group(Global.GROUP_NAME_PLAYER): return
 	if not who.effect_reciever is EffectReciever: return
-	who.effect_reciever.apply_effect(effect)
+	for effect: EffectResource in effects:
+		who.effect_reciever.apply_effect(effect)
 	prints(self, "DAMAGE", who)
-	call_deferred("die")
+	die.call_deferred()

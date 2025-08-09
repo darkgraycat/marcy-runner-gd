@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://din6bnv7nrd2n"]
+[gd_scene load_steps=12 format=3 uid="uid://din6bnv7nrd2n"]
 
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_jsorr"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Resource" uid="uid://dyml2auwiqu2p" path="res://resources/effects/lose_life.effect.tres" id="2_xouic"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="3_goa2j"]
 [ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://scenes/components/movement/movement.gd" id="3_y7108"]
 
 [sub_resource type="Animation" id="Animation_goa2j"]
@@ -76,7 +77,7 @@ collision_shape_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
-effect = ExtResource("2_xouic")
+effects = Array[ExtResource("3_goa2j")]([ExtResource("2_xouic")])
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("3_y7108")

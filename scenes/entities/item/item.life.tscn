@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://w38bax1rog4r"]
+[gd_scene load_steps=25 format=3 uid="uid://w38bax1rog4r"]
 
 [ext_resource type="Script" uid="uid://bf5154hgh1d68" path="res://scenes/entities/item/item.gd" id="1_ir57s"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="2_8avwn"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="2_mnvat"]
 [ext_resource type="Resource" uid="uid://bqdau4vme1h41" path="res://resources/effects/life.effect.tres" id="2_okel6"]
 
@@ -157,7 +158,7 @@ collision_mask = 2
 script = ExtResource("1_ir57s")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 collision_shape_2d = NodePath("CollisionShape2D")
-effect = ExtResource("2_okel6")
+effects = Array[ExtResource("2_8avwn")]([ExtResource("2_okel6")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
