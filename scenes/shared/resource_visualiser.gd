@@ -37,4 +37,4 @@ func _update() -> void:
 	_update()
 
 func _exit_tree() -> void:
-	visualize = false	
+	visualize = false

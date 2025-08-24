@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#movement.direction.x = input_move
+	movement.direction.x = input_move
 
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true

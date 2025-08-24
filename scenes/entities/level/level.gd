@@ -2,7 +2,6 @@ class_name Level extends Node2D
 
 @export var config: LevelConfig: set = set_config
 
-@onready var background: Background = %Background
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 
@@ -18,6 +17,7 @@ func _ready() -> void:
 	var last_idx := tmcr.get_total_chunks() - 1
 	for x in 20:
 		tmcr.apply_chunk_at(randi_range(0, last_idx), Vector2i(x, 0))
+
 
 func _physics_process(_delta: float) -> void:
 	if (player):

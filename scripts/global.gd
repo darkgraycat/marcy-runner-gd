@@ -16,3 +16,8 @@ var GROUP_NAME_ITEMS: StringName = "Items"
 var GROUP_NAME_ENEMIES: StringName = "Enemies"
 
 var DEBUG: bool = false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not Engine.is_editor_hint():
+		if event.is_action_pressed("quit"):
+			get_tree().quit()

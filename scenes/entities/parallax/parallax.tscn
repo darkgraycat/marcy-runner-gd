@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu5doia18e8jp"]
+
+[ext_resource type="Script" uid="uid://7n16ucte10d8" path="res://scenes/entities/parallax/parallax.gd" id="1_fy7sa"]
+
+[node name="Parallax" type="Node2D"]
+script = ExtResource("1_fy7sa")
+
+[node name="SourceParallax2D" type="Parallax2D" parent="."]
+visible = false
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SourceParallax2D"]
+texture_repeat = 2
+centered = false
+region_enabled = true
+region_filter_clip_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="SourceParallax2D/Sprite2D"]
+
+[node name="RowsRoot" type="Node2D" parent="."]
