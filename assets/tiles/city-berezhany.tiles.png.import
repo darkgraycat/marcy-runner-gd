@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7p6xa3bweur1"
-path="res://.godot/imported/city-ternopil.tiles.png-e39cab3be9cfc3e521a96f178331f423.ctex"
+uid="uid://ddttx14ol068l"
+path="res://.godot/imported/city-berezhany.tiles.png-18d158f5f274208a1b114494e70e8f32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/city-ternopil.tiles.png"
-dest_files=["res://.godot/imported/city-ternopil.tiles.png-e39cab3be9cfc3e521a96f178331f423.ctex"]
+source_file="res://assets/tiles/city-berezhany.tiles.png"
+dest_files=["res://.godot/imported/city-berezhany.tiles.png-18d158f5f274208a1b114494e70e8f32.ctex"]
 
 [params]
 
