@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_p18dp")
-total_rows = 5
-colors = Array[Color]([Color(0.647059, 0.188235, 0.188235, 1), Color(0.458824, 0.141176, 0.219608, 1), Color(0.25098, 0.152941, 0.317647, 1), Color(0.117647, 0.113725, 0.223529, 1), Color(0.141176, 0.0823529, 0.152941, 1)])
-frames = Array[int]([1, 1, 2, 5, 5])
-offsets = Array[float]([0.2, 0.25, 0.3, 0.4, 0.45])
+total_rows = 6
+colors = Array[Color]([Color(0.811765, 0.341176, 0.235294, 1), Color(0.647059, 0.188235, 0.188235, 1), Color(0.458824, 0.141176, 0.219608, 1), Color(0.25098, 0.152941, 0.317647, 1), Color(0.117647, 0.113725, 0.223529, 1), Color(0.141176, 0.0823529, 0.152941, 1)])
+frames = Array[int]([0, 1, 1, 2, 5, 5])
+offsets = Array[float]([0.0, 0.2, 0.25, 0.3, 0.4, 0.45])
 metadata/_custom_type_script = "uid://cjfo4g5qkn56m"

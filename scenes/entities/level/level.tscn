@@ -1,10 +1,8 @@
-[gd_scene load_steps=26 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=24 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
-[ext_resource type="PackedScene" uid="uid://c861uwi7ia6t6" path="res://scenes/entities/background/background.tscn" id="3_mrkxi"]
 [ext_resource type="PackedScene" uid="uid://difgvseqsh0oi" path="res://scenes/ui/level_ui_canvas_layer.tscn" id="4_83tuq"]
-[ext_resource type="Resource" uid="uid://bgsa3hf5w6byx" path="res://resources/background/bg_config_1.tres" id="6_b5b4g"]
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
@@ -202,11 +200,6 @@ config = SubResource("Resource_jrewa")
 
 [node name="LevelUiCanvasLayer" parent="." instance=ExtResource("4_83tuq")]
 unique_name_in_owner = true
-
-[node name="Background" parent="." instance=ExtResource("3_mrkxi")]
-unique_name_in_owner = true
-visible = false
-config = ExtResource("6_b5b4g")
 
 [node name="Parallax" parent="." node_paths=PackedStringArray("source_sprite_2d") instance=ExtResource("16_xwduj")]
 screen_size = Vector2i(320, 180)

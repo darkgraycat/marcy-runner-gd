@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="ParallaxResource" load_steps=2 format=3 uid="uid://dsd768lgiywd4"]
+
+[ext_resource type="Script" uid="uid://cjfo4g5qkn56m" path="res://scenes/entities/parallax/parallax.resource.gd" id="1_p18dp"]
+
+[resource]
+script = ExtResource("1_p18dp")
+total_rows = 6
+colors = Array[Color]([
+	Color(0.12549, 0.654902, 0.952941, 1),
+	Color(0.196078, 0.537255, 0.623529, 1),
+	Color(0.0941176, 0.384314, 0.403922, 1),
+	Color(0.0862745, 0.27451, 0.188235, 1),
+	Color(0.0627451, 0.219608, 0.117647, 1),
+	Color(0.14902, 0.443137, 0.670588, 1)
+])
+frames = Array[int]([
+	0,
+	3,
+	3,
+	8,
+	10,
+	0
+])
+offsets = Array[float]([
+	0.0,
+	0.3,
+	0.35,
+	0.45,
+	0.5,
+	0.7
+])
+metadata/_custom_type_script = "uid://cjfo4g5qkn56m"
