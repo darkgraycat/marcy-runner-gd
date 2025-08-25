@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=25 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="PackedScene" uid="uid://difgvseqsh0oi" path="res://scenes/ui/level_ui_canvas_layer.tscn" id="4_83tuq"]
+[ext_resource type="Resource" uid="uid://drqrmpbo6wpm0" path="res://resources/parallax/forest.parallax.tres" id="5_ra12g"]
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
@@ -130,40 +131,94 @@ texture = ExtResource("7_oejp8")
 texture = ExtResource("8_se1kp")
 0:0/size_in_atlas = Vector2i(3, 2)
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
 3:0/size_in_atlas = Vector2i(3, 2)
 3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+3:0/0/physics_layer_0/polygon_0/one_way = true
 6:0/size_in_atlas = Vector2i(3, 2)
 6:0/0 = 0
+6:0/0/texture_origin = Vector2i(0, 8)
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+6:0/0/physics_layer_0/polygon_0/one_way = true
 9:0/size_in_atlas = Vector2i(3, 2)
 9:0/0 = 0
+9:0/0/texture_origin = Vector2i(0, 8)
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+9:0/0/physics_layer_0/polygon_0/one_way = true
 12:0/size_in_atlas = Vector2i(3, 2)
 12:0/0 = 0
+12:0/0/texture_origin = Vector2i(0, 8)
+12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+12:0/0/physics_layer_0/polygon_0/one_way = true
 15:0/size_in_atlas = Vector2i(3, 2)
 15:0/0 = 0
+15:0/0/texture_origin = Vector2i(0, 8)
+15:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -4, 24, -4, 24, 8, -24, 8)
+15:0/0/physics_layer_0/polygon_0/one_way = true
 0:2/size_in_atlas = Vector2i(3, 2)
 0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 8)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+0:2/0/physics_layer_0/polygon_0/one_way = true
 3:2/size_in_atlas = Vector2i(3, 2)
 3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 8)
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+3:2/0/physics_layer_0/polygon_0/one_way = true
 6:2/size_in_atlas = Vector2i(3, 2)
 6:2/0 = 0
+6:2/0/texture_origin = Vector2i(0, 8)
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+6:2/0/physics_layer_0/polygon_0/one_way = true
 9:2/size_in_atlas = Vector2i(3, 2)
 9:2/0 = 0
+9:2/0/texture_origin = Vector2i(0, 8)
+9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 8, -24, 8)
+9:2/0/physics_layer_0/polygon_0/one_way = true
 12:2/size_in_atlas = Vector2i(3, 2)
 12:2/0 = 0
+12:2/0/texture_origin = Vector2i(0, 8)
+12:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -16, -12, -24, 24, -24, 24, 8, -24, 8)
+12:2/0/physics_layer_0/polygon_0/one_way = true
 15:2/size_in_atlas = Vector2i(3, 2)
 15:2/0 = 0
+15:2/0/texture_origin = Vector2i(0, 8)
+15:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -12, 24, -12, 24, 8, -24, 8)
+15:2/0/physics_layer_0/polygon_0/one_way = true
 0:4/size_in_atlas = Vector2i(3, 2)
 0:4/0 = 0
+0:4/0/texture_origin = Vector2i(0, 8)
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, 8, 24, -24, 24, 8, -24, 8)
+0:4/0/physics_layer_0/polygon_0/one_way = true
 3:4/size_in_atlas = Vector2i(3, 2)
 3:4/0 = 0
+3:4/0/texture_origin = Vector2i(0, 8)
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, 8, 24, 8, -24, 8)
+3:4/0/physics_layer_0/polygon_0/one_way = true
 6:4/size_in_atlas = Vector2i(3, 2)
 6:4/0 = 0
+6:4/0/texture_origin = Vector2i(0, 8)
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 24, -24, 24, 8, -24, 8)
+6:4/0/physics_layer_0/polygon_0/one_way = true
 9:4/size_in_atlas = Vector2i(3, 2)
 9:4/0 = 0
+9:4/0/texture_origin = Vector2i(0, 8)
+9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 0, -16, 24, 8, -24, 8)
+9:4/0/physics_layer_0/polygon_0/one_way = true
 12:4/size_in_atlas = Vector2i(3, 2)
 12:4/0 = 0
+12:4/0/texture_origin = Vector2i(0, 8)
+12:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -12, 0, -24, 24, -24, 24, 8, -24, 8)
+12:4/0/physics_layer_0/polygon_0/one_way = true
 15:4/size_in_atlas = Vector2i(3, 2)
 15:4/0 = 0
+15:4/0/texture_origin = Vector2i(0, 8)
+15:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 0, -24, 0, -8, 24, 8, -24, 8)
+15:4/0/physics_layer_0/polygon_0/one_way = true
 0:6/size_in_atlas = Vector2i(3, 1)
 0:6/0 = 0
 3:6/size_in_atlas = Vector2i(3, 1)
@@ -204,7 +259,7 @@ unique_name_in_owner = true
 [node name="Parallax" parent="." node_paths=PackedStringArray("source_sprite_2d") instance=ExtResource("16_xwduj")]
 screen_size = Vector2i(320, 180)
 source_sprite_2d = NodePath("Sprite2D")
-configuration = ExtResource("9_0f74w")
+configuration = ExtResource("5_ra12g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax"]
 visible = false
@@ -223,7 +278,7 @@ tile_map_chunk_grid = NodePath("TileMapChunkGrid")
 
 [node name="Blocks" type="TileMapLayer" parent="TileMapChunkRoot"]
 modulate = Color(0.914108, 0.6562, 0.628386, 1)
-tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAYAAAAGAAQAAAAAAAYAAAAAAAQAAAAAAAUAAAAMAAIAAAADAAcAAAAMAAAAAAACAAgAAAAJAAQAAAADAAgAAAAJAAQAAAAFAAUAAAAPAAAAAAAEAAYAAAAGAAQAAAAFAAYAAAAAAAQAAAAGAAsAAAAJAAAAAAAGAAkAAAAGAAAAAAAHAAkAAAAGAAAAAAAHAAsAAAAJAAAAAAAGAAcAAAAJAAAAAAAHAAcAAAAPAAUAAAAGAAYAAAADAAQAAAAGAAUAAAAMAAAAAAAJAAsAAAAGAAIAAAAKAAsAAAAGAAIAAAAJAAkAAAAJAAIAAAAKAAkAAAAJAAIAAAAJAAcAAAAGAAIAAAAKAAcAAAAGAAIAAAAJAAUAAAAJAAIAAAAKAAUAAAAJAAIAAAAJAAQAAAAMAAQAAAAKAAQAAAAMAAQAAAAJAAMAAAAMAAIAAAALAAsAAAAAAAYAAAALAAcAAAADAAYAAAAIAAkAAAADAAUAAAAIAAsAAAAAAAUAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAMAAkAAAADAAIAAAAOAAkAAAADAAIAAAAMAAcAAAAAAAIAAAAOAAcAAAAAAAIAAAAMAAUAAAADAAIAAAAOAAUAAAADAAIAAAAMAAMAAAAAAAIAAAAOAAMAAAAAAAIAAAANAAcAAAAAAAIAAAANAAMAAAAAAAIAAAANAAoAAAAMAAQAAAANAAYAAAAMAAQAAAAMAAIAAAADAAQAAAANAAIAAAAGAAQAAAAOAAIAAAADAAQAAAANAAkAAAADAAUAAAANAAUAAAADAAUAAAAMAAEAAAAMAAIAAAANAAEAAAAPAAAAAAAQAAsAAAAAAAIAAAAPAAoAAAAMAAUAAAAQAAkAAAAMAAUAAAARAAkAAAADAAIAAAARAAsAAAAAAAIAAAARAAgAAAAAAAQAAAARAAcAAAAPAAIAAAASAAsAAAAAAAAAAAASAAkAAAAAAAAAAAASAAcAAAADAAAAAAASAAUAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAWAAUAAAAJAAIAAAAUAAUAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAkAAAADAAAAAAAUAAsAAAAAAAAAAAATAAsAAAADAAAAAAATAAkAAAAAAAAAAAATAAcAAAAAAAAAAAATAAUAAAADAAAAAAAWAAcAAAAJAAIAAAAWAAkAAAAGAAIAAAAWAAsAAAAGAAIAAAAWAAMAAAAJAAUAAAAVAAcAAAADAAYAAAATAAEAAAAGAAUAAAASAAIAAAAJAAQAAAAUAAIAAAAJAAQAAAASAAEAAAAMAAIAAAAUAAEAAAAPAAAAAAAWAAQAAAAPAAQAAAAXAAkAAAADAAYAAAAXAAgAAAADAAUAAAAVAAUAAAAAAAYAAAA=")
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAEAAcAAAAAAAAAAAABAAcAAAAAAAAAAAAAAAcAAAAAAAAAAAABAAYAAAAGAAQAAAAAAAYAAAAAAAQAAAAAAAUAAAAMAAIAAAADAAcAAAAMAAAAAAACAAgAAAAJAAQAAAADAAgAAAAJAAQAAAAFAAUAAAAPAAAAAAAEAAYAAAAGAAQAAAAFAAYAAAAAAAQAAAAGAAsAAAAJAAAAAAAGAAkAAAAGAAAAAAAHAAkAAAAGAAAAAAAHAAsAAAAJAAAAAAAGAAcAAAAJAAAAAAAHAAcAAAAPAAUAAAAGAAYAAAADAAQAAAAGAAUAAAAMAAAAAAAJAAsAAAAGAAIAAAAKAAsAAAAGAAIAAAAJAAkAAAAJAAIAAAAKAAkAAAAJAAIAAAAJAAcAAAAGAAIAAAAKAAcAAAAGAAIAAAAJAAUAAAAJAAIAAAAKAAUAAAAJAAIAAAAJAAQAAAAMAAQAAAAKAAQAAAAMAAQAAAAJAAMAAAAMAAIAAAALAAsAAAAAAAYAAAALAAcAAAADAAYAAAAIAAkAAAADAAUAAAAIAAsAAAAAAAUAAAAMAAsAAAAAAAIAAAANAAsAAAAAAAIAAAAOAAsAAAAAAAIAAAAMAAkAAAADAAIAAAAOAAkAAAADAAIAAAAMAAcAAAAAAAIAAAAOAAcAAAAAAAIAAAAMAAUAAAADAAIAAAAOAAUAAAADAAIAAAAMAAMAAAAAAAIAAAAOAAMAAAAAAAIAAAANAAcAAAAAAAIAAAANAAMAAAAAAAIAAAANAAoAAAAMAAQAAAANAAYAAAAMAAQAAAAMAAIAAAADAAQAAAANAAIAAAAGAAQAAAAOAAIAAAADAAQAAAANAAkAAAADAAUAAAANAAUAAAADAAUAAAAMAAEAAAAMAAIAAAANAAEAAAAPAAAAAAAQAAsAAAAAAAIAAAAPAAoAAAAMAAUAAAAQAAkAAAAMAAUAAAARAAkAAAADAAIAAAARAAsAAAAAAAIAAAARAAgAAAAAAAQAAAARAAcAAAAPAAIAAAASAAsAAAAAAAAAAAASAAkAAAAAAAAAAAASAAcAAAADAAAAAAASAAUAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAWAAUAAAAJAAIAAAAUAAUAAAAAAAAAAAAUAAcAAAAAAAAAAAAUAAkAAAADAAAAAAAUAAsAAAAAAAAAAAATAAsAAAADAAAAAAATAAkAAAAAAAAAAAATAAcAAAAAAAAAAAATAAUAAAADAAAAAAAWAAcAAAAJAAIAAAAWAAkAAAAGAAIAAAAWAAsAAAAGAAIAAAAWAAMAAAAJAAUAAAAVAAcAAAADAAYAAAATAAEAAAAGAAUAAAASAAIAAAAJAAQAAAAUAAIAAAAJAAQAAAASAAEAAAAMAAIAAAAUAAEAAAAPAAAAAAAWAAQAAAAPAAQAAAAXAAkAAAADAAYAAAAXAAgAAAADAAUAAAAVAAUAAAAAAAYAAAAAABcAAQAJAAIAAAABABcAAQAJAAAAAAACABcAAQAMAAAAAAAAABUAAQAGAAQAAAACABUAAQAPAAQAAAABABUAAQAGAAIAAAADABcAAQAPAAIAAAAEABcAAQAPAAIAAAAGABcAAQAAAAAAAAAHABcAAQADAAAAAAAIABcAAQADAAAAAAAGABUAAQAAAAYAAAAHABUAAQADAAYAAAAIABUAAQAGAAYAAAAFABcAAQAPAAIAAAAJABcAAQAMAAAAAAAKABcAAQAPAAAAAAALABcAAQAPAAAAAAAMABcAAQAJAAIAAAANABcAAQAJAAIAAAAMABUAAQAAAAQAAAANABUAAQADAAQAAAAPABcAAQAMAAIAAAAQABcAAQAGAAIAAAARABcAAQAMAAAAAAAPABUAAQAMAAQAAAAQABUAAQAGAAIAAAARABUAAQAJAAQAAAASABcAAQAPAAIAAAATABcAAQAGAAAAAAATABUAAQADAAIAAAATABMAAQAJAAYAAAAUABcAAQAMAAAAAAAUABUAAQADAAIAAAAUABMAAQAPAAYAAAAVABcAAQAPAAAAAAAWABcAAQAPAAAAAAAXABcAAQAPAAAAAAA=")
 tile_set = SubResource("TileSet_kdja1")
 
 [node name="Objects" type="TileMapLayer" parent="TileMapChunkRoot"]
@@ -234,7 +289,7 @@ tile_set = SubResource("TileSet_ch102")
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
 tile_size = Vector2i(48, 16)
 chunk_size = Vector2i(6, 12)
-grid_size = Vector2i(4, 1)
+grid_size = Vector2i(4, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true

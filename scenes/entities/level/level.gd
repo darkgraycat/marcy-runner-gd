@@ -16,7 +16,7 @@ func _ready() -> void:
 
 	var last_idx := tmcr.get_total_chunks() - 1
 	for x in 20:
-		tmcr.apply_chunk_at(randi_range(0, last_idx), Vector2i(x, 0))
+		tmcr.apply_chunk_at(randi_range(0, last_idx - 4), Vector2i(x, 0))
 
 
 func _physics_process(_delta: float) -> void:
