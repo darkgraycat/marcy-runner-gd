@@ -52,6 +52,7 @@ func get_current_state() -> String:
 
 
 func die() -> void:
+	print("PLAYER DIE")
 	movement.set_physics_process(false)
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
