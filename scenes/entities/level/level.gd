@@ -36,4 +36,4 @@ func set_config(new_config: LevelConfig) -> void:
 
 
 func _on_player_died() -> void:
-	player.respawn(player.global_position + Vector2(0, -16))
+	player.respawn(Vector2(player.global_position.x, 0))
