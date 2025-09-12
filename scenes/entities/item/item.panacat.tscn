@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bf5154hgh1d68" path="res://scenes/entities/item/item.gd" id="1_w2wwg"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="2_8i1ps"]
-[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="3_70ifd"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://components/effect/effect.resource.gd" id="3_70ifd"]
 [ext_resource type="Resource" uid="uid://cojgo4f0erygi" path="res://resources/effects/panacat.effect.tres" id="3_1343n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]

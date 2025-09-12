@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_h4mso"]
 [ext_resource type="Resource" uid="uid://bh14j7l0d4ky" path="res://resources/effects/slow_station.effect.tres" id="2_cc8sq"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="2_qb5fb"]
-[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="3_cc8sq"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://components/effect/effect.resource.gd" id="3_cc8sq"]
 
 [sub_resource type="Animation" id="Animation_y7108"]
 length = 0.001

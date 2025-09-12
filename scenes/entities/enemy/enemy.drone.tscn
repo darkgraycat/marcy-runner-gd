@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_jsorr"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Resource" uid="uid://dyml2auwiqu2p" path="res://resources/effects/lose_life.effect.tres" id="2_xouic"]
-[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://scenes/components/effect/effect.resource.gd" id="3_goa2j"]
-[ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://scenes/components/movement/movement.gd" id="3_y7108"]
+[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://components/effect/effect.resource.gd" id="3_goa2j"]
+[ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://components/movement/movement.gd" id="3_y7108"]
 
 [sub_resource type="Animation" id="Animation_goa2j"]
 length = 0.001

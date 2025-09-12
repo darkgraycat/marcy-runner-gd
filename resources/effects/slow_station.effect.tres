@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EffectTimedBoost" load_steps=2 format=3 uid="uid://bh14j7l0d4ky"]
 
-[ext_resource type="Script" uid="uid://dhqrgtuqwlgd2" path="res://scenes/components/effect/collection/effect_timed_boost.gd" id="1_xkdbt"]
+[ext_resource type="Script" uid="uid://dhqrgtuqwlgd2" path="res://components/effect/collection/effect_timed_boost.gd" id="1_xkdbt"]
 
 [resource]
 script = ExtResource("1_xkdbt")

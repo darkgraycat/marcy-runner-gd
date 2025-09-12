@@ -24,17 +24,17 @@ resources_spreadsheet_view/freeze_first_column=true
 [application]
 
 config/name="marcy-runner"
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://autoload/main.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
-Util="*res://scripts/util.gd"
-Events="*res://scripts/events.gd"
-Strings="*res://scripts/strings.gd"
-State="*res://scripts/state.gd"
+Global="*res://autoload/global.gd"
+Util="*res://autoload/util.gd"
+Events="*res://autoload/events.gd"
+Strings="*res://autoload/strings.gd"
+State="*res://autoload/state.gd"
 
 [debug]
 
@@ -61,13 +61,12 @@ enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
 
 folder_colors={
 "res://addons/": "gray",
-"res://assets/": "pink",
+"res://assets/": "gray",
+"res://autoload/": "red",
+"res://components/": "teal",
 "res://resources/": "teal",
 "res://scenes/": "orange",
-"res://scenes/components/": "gray",
-"res://scenes/entities/": "red",
-"res://scripts/": "blue",
-"res://shaders/": "purple"
+"res://shared/": "purple"
 }
 
 [global_group]

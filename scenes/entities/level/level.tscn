@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
 [ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
-[ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="8_ra12g"]
+[ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://shared/resource_visualizer.tscn" id="8_ra12g"]
 [ext_resource type="Texture2D" uid="uid://ddttx14ol068l" path="res://assets/tiles/city-berezhany.tiles.png" id="8_se1kp"]
 [ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/item.panacat.tscn" id="9_bsnya"]
 [ext_resource type="PackedScene" uid="uid://w38bax1rog4r" path="res://scenes/entities/item/item.life.tscn" id="10_sddit"]

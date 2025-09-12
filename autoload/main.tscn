@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dd62wfbj7lava"]
 
-[ext_resource type="Script" uid="uid://dnogfp8u2h38e" path="res://scenes/main/main.gd" id="1_1ey13"]
+[ext_resource type="Script" uid="uid://dnogfp8u2h38e" path="res://autoload/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
-[ext_resource type="Shader" uid="uid://1mtdvgwtv3pc" path="res://shaders/screen_сrt_light.gdshader" id="4_ow5a4"]
+[ext_resource type="Shader" uid="uid://1mtdvgwtv3pc" path="res://shared/shaders/screen_сrt_light.gdshader" id="4_ow5a4"]
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
 
