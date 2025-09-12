@@ -1,13 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd62wfbj7lava"]
+[gd_scene load_steps=9 format=3 uid="uid://dd62wfbj7lava"]
 
 [ext_resource type="Script" uid="uid://dnogfp8u2h38e" path="res://scenes/main/main.gd" id="1_1ey13"]
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://scenes/entities/level/level.tscn" id="2_kli8p"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://scenes/debug/fps_heap_label.tscn" id="3_uyqow"]
+[ext_resource type="Shader" uid="uid://1mtdvgwtv3pc" path="res://shaders/screen_сrt_light.gdshader" id="4_ow5a4"]
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="7_kc3hx"]
 
 [sub_resource type="Resource" id="Resource_1r563"]
 script = ExtResource("7_kc3hx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hujxm"]
+shader = ExtResource("4_ow5a4")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.1
+shader_parameter/warp_amount = 0.0
+shader_parameter/vignette_amount = 0.0
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/grille_amount = 0.0
+shader_parameter/brightness_boost = 1.25
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ey13")
@@ -17,6 +28,11 @@ unique_name_in_owner = true
 config = SubResource("Resource_1r563")
 
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="DebugCanvasLayer"]
+material = SubResource("ShaderMaterial_hujxm")
+offset_right = 320.0
+offset_bottom = 180.0
 
 [node name="DebugLabel" type="Label" parent="DebugCanvasLayer"]
 unique_name_in_owner = true

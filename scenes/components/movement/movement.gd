@@ -8,16 +8,11 @@ class_name Movement extends Node
 @onready var parent: CharacterBody2D = get_parent()
 
 func _physics_process(delta: float) -> void:
-	parent.velocity.x = lerp(
-		parent.velocity.x,
-		direction.x * target_speed.x,
-		acceleration.x * delta,
-	) + gravity.x * delta
+	var target_velocity := direction * target_speed
+	var fx := 1.0 - exp(-acceleration.x * delta)
+	var fy := 1.0 - exp(-acceleration.y * delta)
 
-	parent.velocity.y = lerp(
-		parent.velocity.y,
-		direction.y * target_speed.y,
-		acceleration.y * delta,
-	) + gravity.y * delta
-
+	parent.velocity.x = lerp(parent.velocity.x, target_velocity.x, fx)
+	parent.velocity.y = lerp(parent.velocity.y, target_velocity.y, fy)
+	parent.velocity += gravity * delta
 	parent.move_and_slide()

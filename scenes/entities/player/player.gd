@@ -16,8 +16,8 @@ func _ready() -> void:
 	movement.acceleration = Vector2(Global.ACCELERATION, 0)
 	movement.gravity = Vector2(0, Global.GRAVITY)
 
-	effect_reciever.effect_applied.connect(apply_effects)
-	effect_reciever.effect_destroyed.connect(apply_effects)
+	effect_reciever.effect_applied.connect(_on_effects_updated)
+	effect_reciever.effect_destroyed.connect(_on_effects_updated)
 
 
 func _physics_process(_delta: float) -> void:
@@ -59,7 +59,7 @@ func die() -> void:
 	queue_free()
 
 
-func apply_effects(effect: EffectResource) -> void:
+func _on_effects_updated(effect: EffectResource) -> void:
 	match effect.type:
 		EffectResource.EffectType.Speed:
 			movement.target_speed.x = Global.MOVE_VELOCITY + \

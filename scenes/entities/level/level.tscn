@@ -3,14 +3,13 @@
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
 [ext_resource type="PackedScene" uid="uid://difgvseqsh0oi" path="res://scenes/ui/level_ui_canvas_layer.tscn" id="4_83tuq"]
-[ext_resource type="Resource" uid="uid://drqrmpbo6wpm0" path="res://resources/parallax/forest.parallax.tres" id="5_ra12g"]
+[ext_resource type="Script" uid="uid://cjfo4g5qkn56m" path="res://scenes/entities/parallax/parallax.resource.gd" id="5_k6plm"]
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
 [ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
 [ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://scenes/shared/resource_visualizer.tscn" id="8_ra12g"]
 [ext_resource type="Texture2D" uid="uid://ddttx14ol068l" path="res://assets/tiles/city-berezhany.tiles.png" id="8_se1kp"]
-[ext_resource type="Resource" uid="uid://c1jtghnx2uynx" path="res://resources/parallax/sunset_pine.parallax.tres" id="9_0f74w"]
 [ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/item.panacat.tscn" id="9_bsnya"]
 [ext_resource type="PackedScene" uid="uid://w38bax1rog4r" path="res://scenes/entities/item/item.life.tscn" id="10_sddit"]
 [ext_resource type="PackedScene" uid="uid://din6bnv7nrd2n" path="res://scenes/entities/enemy/enemy.drone.tscn" id="11_l1ony"]
@@ -21,6 +20,14 @@
 
 [sub_resource type="Resource" id="Resource_jrewa"]
 script = ExtResource("6_rtkbc")
+
+[sub_resource type="Resource" id="Resource_ra12g"]
+script = ExtResource("5_k6plm")
+total_rows = 6
+colors = Array[Color]([Color(0.988235, 0.231373, 0.0980392, 1), Color(0.847059, 0.113725, 0.141176, 1), Color(0.576471, 0.105882, 0.243137, 1), Color(0.482353, 0.101961, 0.223529, 1), Color(0.360784, 0.0823529, 0.203922, 1), Color(0.254902, 0.0588235, 0.160784, 1)])
+frames = Array[int]([0, 1, 2, 6, 5, 3])
+offsets = Array[float]([0.0, 0.2, 0.25, 0.3, 0.4, 0.5])
+metadata/_custom_type_script = "uid://cjfo4g5qkn56m"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lt40b"]
 texture = ExtResource("7_oejp8")
@@ -259,7 +266,7 @@ unique_name_in_owner = true
 [node name="Parallax" parent="." node_paths=PackedStringArray("source_sprite_2d") instance=ExtResource("16_xwduj")]
 screen_size = Vector2i(320, 180)
 source_sprite_2d = NodePath("Sprite2D")
-configuration = ExtResource("5_ra12g")
+configuration = SubResource("Resource_ra12g")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax"]
 visible = false
@@ -270,7 +277,7 @@ vframes = 11
 [node name="ResourceVisualizer" parent="Parallax" node_paths=PackedStringArray("target") instance=ExtResource("8_ra12g")]
 target = NodePath("..")
 method_name = "_set_configuration"
-resource = ExtResource("9_0f74w")
+resource = SubResource("Resource_ra12g")
 
 [node name="TileMapChunkRoot" parent="." node_paths=PackedStringArray("tile_map_chunk_grid") instance=ExtResource("11_rw360")]
 position = Vector2(0, -12)
@@ -287,6 +294,7 @@ tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAA
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
+visible = false
 tile_size = Vector2i(48, 16)
 chunk_size = Vector2i(6, 12)
 grid_size = Vector2i(4, 2)
