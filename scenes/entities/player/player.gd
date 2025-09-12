@@ -15,9 +15,8 @@ func _ready() -> void:
 	movement.target_speed = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
 	movement.acceleration = Vector2(Global.ACCELERATION, 0)
 	movement.gravity = Vector2(0, Global.GRAVITY)
-
-	effect_reciever.effect_applied.connect(_on_effects_updated)
-	effect_reciever.effect_destroyed.connect(_on_effects_updated)
+	effect_reciever.effect_applied.connect(_on_effects_updated.bind(true))
+	effect_reciever.effect_destroyed.connect(_on_effects_updated.bind(false))
 
 
 func _physics_process(_delta: float) -> void:
@@ -52,20 +51,31 @@ func get_current_state() -> String:
 
 
 func die() -> void:
-	print("PLAYER DIE")
+	set_physics_process(false)
 	movement.set_physics_process(false)
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
-	queue_free()
+	Events.emit_player_died()
 
 
-func _on_effects_updated(effect: EffectResource) -> void:
+func respawn(spawn_point: Vector2) -> void:
+	global_position = spawn_point
+	set_physics_process(true)
+	movement.set_physics_process(true)
+	collision_shape_2d.disabled = false
+	velocity = Vector2.ZERO
+	animation_player.play("RESET")
+	Events.emit_player_spawned(spawn_point)
+
+
+func _on_effects_updated(effect: EffectResource, is_applied: bool) -> void:
 	match effect.type:
 		EffectResource.EffectType.Speed:
 			movement.target_speed.x = Global.MOVE_VELOCITY + \
 			effect_reciever.get_effects_sum(EffectResource.EffectType.Speed)
 		EffectResource.EffectType.Lifes:
+			if not is_applied: return
 			if effect.value < 0:
 				die.call_deferred()
 		_: pass

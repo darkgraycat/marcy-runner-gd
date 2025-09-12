@@ -12,6 +12,8 @@ func _ready() -> void:
 	State.set_state(State.StateKey.Score, 0)
 	State.set_state(State.StateKey.Lifes, 0)
 
+	Events.player_died.connect(_on_player_died)
+
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
 
 	var last_idx := tmcr.get_total_chunks() - 1
@@ -25,9 +27,13 @@ func _physics_process(_delta: float) -> void:
 		player.input_jump = Input.is_action_pressed("jump")
 
 		if player.global_position.y > Global.VIEWPORT_HEIGHT + Global.TILE_SIZE:
-			player.global_position.y = 0
+			player.die()
 
 
 func set_config(new_config: LevelConfig) -> void:
 	config = new_config
 	if not is_node_ready(): await ready
+
+
+func _on_player_died() -> void:
+	player.respawn(player.global_position + Vector2(0, -16))
