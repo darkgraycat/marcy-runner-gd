@@ -1,3 +1,4 @@
+@abstract
 class_name EffectResource extends Resource
 
 enum EffectType {
@@ -6,6 +7,8 @@ enum EffectType {
 	Speed,
 	JumpHeight,
 	JumpAmount,
+	JumpBounce,
+	Invulnerability,
 }
 
 @export var name: String = "BaseEffect"
@@ -13,8 +16,8 @@ enum EffectType {
 @export var value: float = 0
 @export var type: EffectType
 
-func _on_apply(_effect_reciever: EffectReciever) -> void:
-	pass
+@abstract
+func _on_apply(_effect_reciever: EffectReciever) -> void
 
-func _on_destroy(_effect_reciever: EffectReciever) -> void:
-	pass
+@abstract
+func _on_destroy(_effect_reciever: EffectReciever) -> void

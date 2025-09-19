@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VariableModEffect" load_steps=2 format=3 uid="uid://bqww007lqelnw"]
+
+[ext_resource type="Script" uid="uid://beicx40ffta7e" path="res://components/effect/collection/variable_mod.effect.gd" id="1_rrfbd"]
+
+[resource]
+script = ExtResource("1_rrfbd")
+name = "Panacat+"
+description = "Adds +100 to overall score"
+value = 100.0
+type = 0

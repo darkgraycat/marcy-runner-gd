@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EffectStateMod" load_steps=2 format=3 uid="uid://dyml2auwiqu2p"]
 
-[ext_resource type="Script" uid="uid://beicx40ffta7e" path="res://components/effect/collection/effect_state_mod.gd" id="1_jpjhi"]
+[ext_resource type="Script" uid="uid://beicx40ffta7e" path="res://components/effect/collection/variable_mod.effect.gd" id="1_jpjhi"]
 
 [resource]
 script = ExtResource("1_jpjhi")

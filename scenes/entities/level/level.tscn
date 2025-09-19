@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=27 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
@@ -8,15 +8,16 @@
 [ext_resource type="Script" uid="uid://chy4q3tgrnnh4" path="res://scenes/entities/level/level_config.gd" id="6_rtkbc"]
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Texture2D" uid="uid://bdd1kh0uojejd" path="res://assets/tiles/city.ternopil.tiles.png" id="7_oejp8"]
-[ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/item.bean.tscn" id="8_772od"]
+[ext_resource type="PackedScene" uid="uid://wfda77ljag5t" path="res://scenes/entities/item/bean.item.tscn" id="8_772od"]
 [ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://shared/resource_visualizer.tscn" id="8_ra12g"]
 [ext_resource type="Texture2D" uid="uid://ddttx14ol068l" path="res://assets/tiles/city-berezhany.tiles.png" id="8_se1kp"]
-[ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/item.panacat.tscn" id="9_bsnya"]
-[ext_resource type="PackedScene" uid="uid://w38bax1rog4r" path="res://scenes/entities/item/item.life.tscn" id="10_sddit"]
+[ext_resource type="PackedScene" uid="uid://1lj6ml8gqjii" path="res://scenes/entities/item/panacat.item.tscn" id="9_bsnya"]
+[ext_resource type="PackedScene" uid="uid://w38bax1rog4r" path="res://scenes/entities/item/life.item.tscn" id="10_sddit"]
 [ext_resource type="PackedScene" uid="uid://din6bnv7nrd2n" path="res://scenes/entities/enemy/enemy.drone.tscn" id="11_l1ony"]
 [ext_resource type="PackedScene" uid="uid://ctf3d4ixqnjgw" path="res://scenes/entities/tilemap_chunk/tile_map_chunk_root.tscn" id="11_rw360"]
 [ext_resource type="PackedScene" uid="uid://esk118apvowd" path="res://scenes/entities/enemy/enemy.station.tscn" id="12_22udv"]
 [ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk/tile_map_chunk_grid.tscn" id="14_ygypo"]
+[ext_resource type="PackedScene" uid="uid://cir2e880om1ix" path="res://scenes/entities/item/super_panacat.item.tscn" id="15_0f74w"]
 [ext_resource type="PackedScene" uid="uid://cu5doia18e8jp" path="res://scenes/entities/parallax/parallax.tscn" id="16_xwduj"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
@@ -251,6 +252,7 @@ sources/1 = SubResource("TileSetAtlasSource_xwduj")
 scenes/1/scene = ExtResource("8_772od")
 scenes/2/scene = ExtResource("9_bsnya")
 scenes/3/scene = ExtResource("10_sddit")
+scenes/4/scene = ExtResource("15_0f74w")
 scenes/5/scene = ExtResource("11_l1ony")
 scenes/6/scene = ExtResource("12_22udv")
 
@@ -291,7 +293,7 @@ tile_set = SubResource("TileSet_kdja1")
 
 [node name="Objects" type="TileMapLayer" parent="TileMapChunkRoot"]
 rotation = 0.000207715
-tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAAAAgALAAQAAAAAAAAAAgAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgAZAAcAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAYAAAAAAAAAAQAoAAoAAAAAAAAAAwAoAAAAAAAAAAAAAwAeAAQAAAAAAAAABgAeAAIAAAAAAAAABQA1AAEAAAAAAAAABQBCAAIAAAAAAAAABQBHAAAAAAAAAAAABQA=")
+tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAAAAgALAAQAAAAAAAAAAgAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgAZAAcAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAYAAAAAAAAAAQAoAAoAAAAAAAAAAwAoAAAAAAAAAAAAAwAeAAQAAAAAAAAABgAeAAIAAAAAAAAABQA1AAEAAAAAAAAABQBCAAIAAAAAAAAABQBHAAAAAAAAAAAABQAxAAAAAAAAAAAABAA=")
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]
@@ -304,7 +306,8 @@ unique_name_in_owner = true
 position = Vector2(72, 48)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(96, 0)
+offset = Vector2(128, 0)
 limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0

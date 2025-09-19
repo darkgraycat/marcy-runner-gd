@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbb7fhahhc1"]
+
+[ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="1_5bw2j"]
+
+[resource]
+shader = ExtResource("1_5bw2j")
+shader_parameter/strength = 0.5
+shader_parameter/speed = 2.0
+shader_parameter/angle = 15.0

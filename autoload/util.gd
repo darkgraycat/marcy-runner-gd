@@ -70,3 +70,5 @@ func snap_angle(angle: float, step_deg: float) -> float:
 func log(msg: String) -> void:
 	var time := Time.get_datetime_string_from_system()
 	print("[%s] %s" % [time, msg])
+
+

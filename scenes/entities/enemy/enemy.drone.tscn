@@ -64,10 +64,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eklmr"]
-size = Vector2(22, 2)
+size = Vector2(23, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7108"]
-size = Vector2(24, 6)
+size = Vector2(24, 5)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape_2d", "sprite_2d", "animation_player", "hurbox_area_2d") groups=["Enemies"]]
 collision_layer = 9
@@ -81,9 +81,9 @@ effects = Array[ExtResource("3_goa2j")]([ExtResource("2_xouic")])
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("3_y7108")
-direction = Vector2(-1, 0)
-target_speed = Vector2(50, 0)
-acceleration = Vector2(0.3, 0)
+velocity = Vector2(-1, 0)
+max_velocity = Vector2(75, 0)
+acceleration = Vector2(0.2, 0)
 metadata/_custom_type_script = "uid://dog1hf54j6bcp"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -100,7 +100,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -6)
+position = Vector2(-2.5, -6)
 shape = SubResource("RectangleShape2D_eklmr")
 one_way_collision = true
 
@@ -110,4 +110,5 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, -0.5)
 shape = SubResource("RectangleShape2D_y7108")

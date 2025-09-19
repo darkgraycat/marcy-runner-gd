@@ -25,7 +25,7 @@ resources_spreadsheet_view/freeze_first_column=true
 
 config/name="marcy-runner"
 run/main_scene="res://autoload/main.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -34,7 +34,7 @@ Global="*res://autoload/global.gd"
 Util="*res://autoload/util.gd"
 Events="*res://autoload/events.gd"
 Strings="*res://autoload/strings.gd"
-State="*res://autoload/state.gd"
+Variables="*res://autoload/variables.gd"
 
 [debug]
 
@@ -64,7 +64,7 @@ folder_colors={
 "res://assets/": "gray",
 "res://autoload/": "red",
 "res://components/": "teal",
-"res://resources/": "teal",
+"res://resources/": "yellow",
 "res://scenes/": "orange",
 "res://shared/": "purple"
 }

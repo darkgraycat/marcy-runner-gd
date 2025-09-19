@@ -1,4 +1,4 @@
-class_name EffectExecFn extends EffectResource
+class_name CallFuncEffect extends EffectResource
 
 @export var fn_name: StringName
 @export var fn_args: Array
