@@ -63,9 +63,10 @@ folder_colors={
 "res://addons/": "gray",
 "res://assets/": "gray",
 "res://autoload/": "red",
-"res://components/": "teal",
+"res://components/": "blue",
 "res://resources/": "yellow",
 "res://scenes/": "orange",
+"res://scenes/entities/": "pink",
 "res://shared/": "purple"
 }
 

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SpeedTimedStatusEffect" load_steps=2 format=3 uid="uid://v6vyyu75qn3d"]
+
+[ext_resource type="Script" uid="uid://cr30jau74cb5x" path="res://components/status_effect/collection/speed_timed.status_effect.gd" id="1_l55lh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_l55lh")
+metadata/_custom_type_script = "uid://cr30jau74cb5x"

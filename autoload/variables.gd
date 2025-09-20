@@ -11,8 +11,8 @@ enum VariableKey {
 }
 
 func _ready() -> void:
-	for key: int in VariableKey.values():
-		_state[key] = null
+	for key: float in VariableKey.values():
+		_state[key] = 0.0
 
 
 func set_state(key: VariableKey, value: Variant) -> void:
@@ -20,9 +20,9 @@ func set_state(key: VariableKey, value: Variant) -> void:
 	updated.emit()
 
 
-func get_state(key: VariableKey) -> Variant:
-	return _state.get(key, null)
+func get_state(key: VariableKey) -> float:
+	return _state.get(key, 0.0)
 
 
 func mod_state(key: VariableKey, amount: float) -> void:
-	set_state(key, float(get_state(key)) + amount)
+	set_state(key, get_state(key) + amount)

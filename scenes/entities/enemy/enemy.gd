@@ -23,7 +23,8 @@ func die() -> void:
 
 func damage(who: Node2D) -> void:
 	if not who.is_in_group(Global.GROUP_NAME_PLAYER): return
-	if not who.effect_reciever is EffectReciever: return
+	if not who.get("effect_reciever") is EffectReciever: return
+	# if not who.effect_reciever is EffectReciever: return
 	for effect: EffectResource in effects:
 		who.effect_reciever.apply_effect(effect)
 	prints(self, "DAMAGE", who)

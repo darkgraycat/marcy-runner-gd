@@ -1,10 +1,12 @@
 class_name Player extends CharacterBody2D
-
+# variables #-------------------------------------------------------------------
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var movement: Movement = $Movement
-@onready var effect_reciever: EffectReciever = $EffectReciever
+@onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+# @onready var effect_reciever: EffectReciever = $EffectReciever
 
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
 enum State {Idle, Move, Jump, Die, Oiia}
@@ -15,14 +17,15 @@ var jump_in_progress: bool = false
 var current_state: String = "idle"
 var state: State = State.Idle: set = set_state
 
+# builtin #---------------------------------------------------------------------
 func _ready() -> void:
 	movement.max_velocity = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
 	movement.acceleration = Vector2(Global.ACCELERATION, 0)
 	movement.gravity = Vector2(0, Global.GRAVITY)
-	effect_reciever.effect_applied.connect(_on_effects_updated.bind(true))
-	effect_reciever.effect_destroyed.connect(_on_effects_updated.bind(false))
+	# effect_reciever.effect_applied.connect(_on_effects_updated.bind(true))
+	# effect_reciever.effect_destroyed.connect(_on_effects_updated.bind(false))
 
-
+# builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
 	movement.direction.x = input_move
 
@@ -46,10 +49,9 @@ func _physics_process(_delta: float) -> void:
 	# 	current_state = next_state
 	# 	animation_player.play(next_state)
 
-	# Events.emit_debug_message("%v" % velocity, 1)
-	Events.emit_debug_message("%s - %s" % [int(velocity.x), int(movement.max_velocity.x)], 1)
+	Events.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement.max_velocity.x)], 1)
 
-
+# method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
 	if state == new_state: return
 	state = new_state
@@ -58,7 +60,7 @@ func set_state(new_state: State) -> void:
 		State.Move: animation_player.play(&"walk")
 		State.Jump: animation_player.play(&"jump")
 
-
+#[ method ]#--------------------------------------------------------------------
 func next_state() -> State:
 	if !is_on_floor():
 		return State.Jump
@@ -67,14 +69,14 @@ func next_state() -> State:
 	else:
 		return State.Idle
 
-
+# method #----------------------------------------------------------------------
 func get_current_state() -> String:
 	return (
 		"jump" if not is_on_floor() else
 		"walk" if abs(velocity.x) > Global.ACCELERATION else "idle"
 	)
 
-
+# method #----------------------------------------------------------------------
 func die() -> void:
 	set_physics_process(false)
 	movement.set_physics_process(false)
@@ -83,7 +85,7 @@ func die() -> void:
 	await animation_player.animation_finished
 	Events.emit_player_died()
 
-
+# method #----------------------------------------------------------------------
 func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
@@ -93,14 +95,15 @@ func respawn(spawn_point: Vector2) -> void:
 	animation_player.play("RESET")
 	Events.emit_player_spawned(spawn_point)
 
-
+# callback #--------------------------------------------------------------------
 func _on_effects_updated(effect: EffectResource, is_applied: bool) -> void:
+	print("_on_effects_updated called")
 	var speed_bonus := 0.0
 
 	match [effect.type, is_applied]:
 		[EffectResource.EffectType.Speed, _]:
 			prints("Speed bonus before", speed_bonus)
-			speed_bonus = effect_reciever.sum_effects(EffectResource.EffectType.Speed)
+			#speed_bonus = effect_reciever.sum_effects(EffectResource.EffectType.Speed)
 			prints("Speed bonus after", speed_bonus)
 		[EffectResource.EffectType.Lifes, true]:
 			if effect.value < 0:
@@ -109,9 +112,9 @@ func _on_effects_updated(effect: EffectResource, is_applied: bool) -> void:
 
 	movement.max_velocity.x = Global.MOVE_VELOCITY + speed_bonus
 
-	Events.emit_effects_updated(effect_reciever)
+	#Events.emit_effects_updated(effect_reciever)
 
-
+# callback #--------------------------------------------------------------------
 func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 	match state_name:
 		"idle": prints("In idle state")

@@ -67,8 +67,8 @@ func snap_angle(angle: float, step_deg: float) -> float:
 	return round(angle / step_rad) * step_rad
 
 
-func log(msg: String) -> void:
+func log(msg: String, ...rest: Array) -> void:
 	var time := Time.get_datetime_string_from_system()
-	print("[%s] %s" % [time, msg])
+	prints("[%s] %s" % [time, msg], rest)
 
 

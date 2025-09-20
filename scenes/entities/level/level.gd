@@ -1,10 +1,12 @@
 class_name Level extends Node2D
 
-@export var config: LevelConfig: set = set_config
+## TODO: remove
+signal effect_applied(effect: EffectResource)
+signal effect_destroyed(effect: EffectResource)
 
+@export var config: LevelConfig: set = set_config
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
-
 @onready var level_ui_canvas_layer: LevelUiCanvasLayer = %LevelUiCanvasLayer
 @onready var tilemap_chunk_root: TileMapChunkRoot = $TileMapChunkRoot
 
@@ -18,9 +20,9 @@ func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
-	tilemap_chunk_idxs.assign([0, 2])
-	# tilemap_chunk_idxs.assign(range(
-	# 	0, tilemap_chunk_root.get_total_chunks() - 1 - 4))
+	# tilemap_chunk_idxs.assign([0,])# 2])
+	tilemap_chunk_idxs.assign(range(
+		0, tilemap_chunk_root.get_total_chunks() - 1 - 4))
 
 
 func _physics_process(_delta: float) -> void:
@@ -34,6 +36,9 @@ func _physics_process(_delta: float) -> void:
 		if player.global_position.x > (tilemap_chunk_next.x - 1) * 288:
 			next_tilemap_chunk()
 
+
+func _do_stuff() -> void:
+	pass
 
 
 func set_config(new_config: LevelConfig) -> void:

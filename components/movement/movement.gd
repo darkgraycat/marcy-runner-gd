@@ -1,12 +1,11 @@
-class_name Movement extends Node
-
+class_name Movement extends Component
+# variables #-------------------------------------------------------------------
 @export var direction: Vector2 = Vector2.ZERO
 @export var max_velocity: Vector2 = Vector2.ZERO
 @export var acceleration: Vector2 = Vector2.ZERO
 @export var gravity: Vector2 = Vector2.ZERO
 
-@onready var parent: CharacterBody2D = get_parent()
-
+# builtin #---------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
 	var target_velocity := direction * max_velocity
 	var fx := 1.0 - exp(-acceleration.x * delta)
@@ -16,3 +15,7 @@ func _physics_process(delta: float) -> void:
 	parent.velocity.y = lerp(parent.velocity.y, target_velocity.y, fy)
 	parent.velocity += gravity * delta
 	parent.move_and_slide()
+
+# method #----------------------------------------------------------------------
+
+# callback #--------------------------------------------------------------------

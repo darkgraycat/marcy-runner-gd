@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=29 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://scenes/entities/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://scenes/entities/player/player.tscn" id="3_dlyvo"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://bdw07s5fhwj2e" path="res://scenes/entities/tilemap_chunk/tile_map_chunk_grid.tscn" id="14_ygypo"]
 [ext_resource type="PackedScene" uid="uid://cir2e880om1ix" path="res://scenes/entities/item/super_panacat.item.tscn" id="15_0f74w"]
 [ext_resource type="PackedScene" uid="uid://cu5doia18e8jp" path="res://scenes/entities/parallax/parallax.tscn" id="16_xwduj"]
+[ext_resource type="PackedScene" uid="uid://cusa4cpmqiqdn" path="res://scenes/entities/collectable/bean.collectable.tscn" id="18_jpfpk"]
+[ext_resource type="PackedScene" uid="uid://dclf27yij27b2" path="res://scenes/entities/collectable/panacat.collectable.tscn" id="19_eqy4y"]
 
 [sub_resource type="Resource" id="Resource_jrewa"]
 script = ExtResource("6_rtkbc")
@@ -255,6 +257,8 @@ scenes/3/scene = ExtResource("10_sddit")
 scenes/4/scene = ExtResource("15_0f74w")
 scenes/5/scene = ExtResource("11_l1ony")
 scenes/6/scene = ExtResource("12_22udv")
+scenes/7/scene = ExtResource("18_jpfpk")
+scenes/8/scene = ExtResource("19_eqy4y")
 
 [sub_resource type="TileSet" id="TileSet_ch102"]
 sources/0 = SubResource("TileSetScenesCollectionSource_hq6hr")
@@ -293,7 +297,7 @@ tile_set = SubResource("TileSet_kdja1")
 
 [node name="Objects" type="TileMapLayer" parent="TileMapChunkRoot"]
 rotation = 0.000207715
-tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAgAJAAMAAAAAAAAAAgAGAAQAAAAAAAAAAgALAAQAAAAAAAAAAgAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgAZAAcAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAYAAAAAAAAAAQAoAAoAAAAAAAAAAwAoAAAAAAAAAAAAAwAeAAQAAAAAAAAABgAeAAIAAAAAAAAABQA1AAEAAAAAAAAABQBCAAIAAAAAAAAABQBHAAAAAAAAAAAABQAxAAAAAAAAAAAABAA=")
+tile_map_data = PackedByteArray("AAAlAAEAAAAAAAAAAgArAAEAAAAAAAAAAgA5AAAAAAAAAAAAAgA6AAAAAAAAAAAAAgA7AAAAAAAAAAAAAgBDAAIAAAAAAAAAAQAoAAoAAAAAAAAAAwAoAAAAAAAAAAAAAwAeAAQAAAAAAAAABgAeAAIAAAAAAAAABQA1AAEAAAAAAAAABQBCAAIAAAAAAAAABQBHAAAAAAAAAAAABQAxAAAAAAAAAAAABAAoAAYAAAAAAAAABwAGAAQAAAAAAAAACAALAAQAAAAAAAAACAAIAAMAAAAAAAAACAAJAAMAAAAAAAAACAAEAAYAAAAAAAAABwANAAYAAAAAAAAABwA=")
 tile_set = SubResource("TileSet_ch102")
 
 [node name="TileMapChunkGrid" parent="TileMapChunkRoot" instance=ExtResource("14_ygypo")]

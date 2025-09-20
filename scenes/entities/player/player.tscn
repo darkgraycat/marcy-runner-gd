@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
-[ext_resource type="Script" uid="uid://doww1kif70wp5" path="res://components/effect/effect_reciever.gd" id="2_h8dl3"]
+[ext_resource type="Script" uid="uid://d1lxjscjl0323" path="res://components/status_effect/status_effect.component.gd" id="3_bjvvg"]
 [ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://components/movement/movement.gd" id="4_nh4ur"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 
@@ -170,11 +170,15 @@ floor_stop_on_slope = false
 floor_snap_length = 5.0
 script = ExtResource("1_0v5uu")
 
-[node name="Movement" type="Node" parent="."]
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("4_nh4ur")
+parent = NodePath("..")
 
-[node name="EffectReciever" type="Node" parent="."]
-script = ExtResource("2_h8dl3")
+[node name="StatusEffectComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "parent")]
+script = ExtResource("3_bjvvg")
+movement_component = NodePath("../Movement")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://d1lxjscjl0323"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
