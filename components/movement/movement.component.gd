@@ -17,7 +17,6 @@ func _physics_process(delta: float) -> void:
 	parent.velocity += gravity * delta
 	parent.move_and_slide()
 
-func do_some() -> void:
-	print("HELLO from movement")
+# method #----------------------------------------------------------------------
 
 # callback #--------------------------------------------------------------------

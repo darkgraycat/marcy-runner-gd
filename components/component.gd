@@ -2,7 +2,7 @@ class_name Component extends Node
 
 # variables #-------------------------------------------------------------------
 @export var parent: CharacterBody2D = get_parent()
-@export var enable_processing: bool = true: set = set_enable_processing
+@export var auto_handle: bool = true: set = set_auto_handle
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -16,8 +16,10 @@ static func find_in_node(node: Node, property: String, type_class: Variant) -> C
 	return null
 
 # method #----------------------------------------------------------------------
-func set_enable_processing(value: bool) -> void:
-	enable_processing = value
+func set_auto_handle(value: bool) -> void:
+	auto_handle = value
+	await ready
 	set_physics_process(value)
+	set_process(value)
 
 # callback #--------------------------------------------------------------------

@@ -8,8 +8,8 @@ class_name HealthModStatusEffect extends StatusEffectResource
 # builtin #---------------------------------------------------------------------
 
 # method #----------------------------------------------------------------------
-func on_apply(sec: StatusEffectComponent) -> void:
-	var health_component: HealthComponent = sec.get_component(HealthComponent)
+func on_apply(status_effect_component: StatusEffectComponent) -> void:
+	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
 	if !health_component: return
 	if amount < 0: health_component.damage(-amount)
 	else: health_component.heal(amount)
