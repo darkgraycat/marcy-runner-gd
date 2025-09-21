@@ -1,15 +1,19 @@
-class_name VariableModStatusEffect extends StatusEffectResource
+class_name HealthModStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var variable: Variables.VarName
-@export var amount: float
+@export var amount: float = 1
+# TODO: is not used
+@export var damage_type: Global.HealthModType = Global.HealthModType.GENERIC
 
 # builtin #---------------------------------------------------------------------
+func _ready() -> void:
+	pass
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	Variables.mod_state(variable, amount)
-	status_effect_component.destroy_status_effect(self)
+	if !status_effect_component.health_component: return
+	if amount < 0: status_effect_component.health_component.damage(-amount)
+	else: status_effect_component.health_component.heal(amount)
 
 # method #----------------------------------------------------------------------
 func on_destroy(_status_effect_component: StatusEffectComponent) -> void:

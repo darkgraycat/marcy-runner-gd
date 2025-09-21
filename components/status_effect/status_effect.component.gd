@@ -4,12 +4,16 @@ signal status_effect_destroyed(status_effect: StatusEffectResource)
 
 # variables #-------------------------------------------------------------------
 @export var movement_component: MovementComponent
+@export var health_component: HealthComponent
 
 var _status_effects: Array[StatusEffectResource]
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	pass
+	if !movement_component: return push_warning(parent, "MovementComponent is not defined")
+	if !health_component: return  push_warning(parent, "HealthComponent is not defined")
+	await get_tree().create_timer(1).timeout
+	prints("INIT SEC", health_component.health)
 
 # builtin #---------------------------------------------------------------------
 func _process(delta: float) -> void:
@@ -28,6 +32,11 @@ func apply_status_effect(status_effect: StatusEffectResource) -> void:
 	_status_effects.append(status_effect)
 	status_effect.on_apply(self)
 	status_effect_applied.emit(status_effect)
+
+# method #----------------------------------------------------------------------
+func apply_status_effects(status_effects: Array[StatusEffectResource]) -> void:
+	for effect: StatusEffectResource in status_effects:
+		apply_status_effect(effect)
 
 # method #----------------------------------------------------------------------
 func destroy_status_effect(status_effect: StatusEffectResource) -> void:

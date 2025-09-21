@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="VariableModStatusEffect" load_steps=2 format=3 uid="uid://b11nyvehdjlky"]
-
-[ext_resource type="Script" uid="uid://o8coneb5d7bj" path="res://components/status_effect/collection/variable_mod.status_effect.gd" id="1_bdo2a"]
-
-[resource]
-script = ExtResource("1_bdo2a")
-variable = 1
-amount = -1.0
-metadata/_custom_type_script = "uid://o8coneb5d7bj"

@@ -4,30 +4,35 @@ signal health_changed(health: float)
 
 # variables #-------------------------------------------------------------------
 @export var max_health: float = 10
-@export var damage_interval: float = 1
-var current_health: float
-var _damage_timer: SceneTreeTimer
+@export var damage_interval_sec: float = 1
+var health: float: set = set_current_health
+var _last_damaged_msec: float = 0
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	current_health = max_health
-	_damage_timer = get_tree().create_timer(damage_interval)
+	health = max_health
 
 # method #----------------------------------------------------------------------
-func damage(amount: float) -> void:
-	if _damage_timer.time_left > 0:
-		Util.log("No damage - cooldown")
-		return
-	current_health = max(current_health - amount, 0)
-	health_changed.emit()
-	Util.log("Damage - restart")
-	_damage_timer.time_left = damage_interval
-	if current_health <= 0:
+func set_current_health(value: float) -> void:
+	health = value
+	health_changed.emit(health)
+	if health <= 0:
 		died.emit()
 
 # method #----------------------------------------------------------------------
-func heal(amount: float) -> void:
-	current_health = min(current_health + amount, max_health)
+func damage(amount: float) -> void:
+	if is_on_damage_cooldown(): return
+	health = max(health - amount, 0)
+	_last_damaged_msec = Time.get_unix_time_from_system()
+	Util.log("Damage - restart")
 
+# method #----------------------------------------------------------------------
+func heal(amount: float) -> void:
+	Util.log("Healing", amount)
+	health = min(health + amount, max_health)
+
+# method #----------------------------------------------------------------------
+func is_on_damage_cooldown() -> bool:
+	return _last_damaged_msec + damage_interval_sec > Time.get_unix_time_from_system()
 
 # callback #--------------------------------------------------------------------

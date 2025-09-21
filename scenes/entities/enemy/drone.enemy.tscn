@@ -1,10 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://din6bnv7nrd2n"]
+[gd_scene load_steps=13 format=3 uid="uid://din6bnv7nrd2n"]
 
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_jsorr"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
-[ext_resource type="Resource" uid="uid://dyml2auwiqu2p" path="res://resources/effects/lose_life.effect.tres" id="2_xouic"]
-[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://components/effect/effect.resource.gd" id="3_goa2j"]
+[ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_goa2j"]
+[ext_resource type="Script" uid="uid://dbs3r07tmmat7" path="res://components/status_effect/collection/health_mod.status_effect.gd" id="3_hj7f3"]
 [ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://components/movement/movement.component.gd" id="3_y7108"]
+
+[sub_resource type="Resource" id="Resource_3ieed"]
+script = ExtResource("3_hj7f3")
+amount = -1.0
+metadata/_custom_type_script = "uid://dbs3r07tmmat7"
 
 [sub_resource type="Animation" id="Animation_goa2j"]
 length = 0.001
@@ -67,7 +72,7 @@ _data = {
 size = Vector2(23, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7108"]
-size = Vector2(24, 5)
+size = Vector2(13, 5)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape_2d", "sprite_2d", "animation_player", "hurbox_area_2d") groups=["Enemies"]]
 collision_layer = 9
@@ -77,13 +82,13 @@ collision_shape_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
-effects = Array[ExtResource("3_goa2j")]([ExtResource("2_xouic")])
+status_effects = Array[ExtResource("2_goa2j")]([SubResource("Resource_3ieed")])
 
 [node name="Movement" type="Node" parent="."]
 script = ExtResource("3_y7108")
-velocity = Vector2(-1, 0)
+direction = Vector2(-1, 0)
 max_velocity = Vector2(75, 0)
-acceleration = Vector2(0.2, 0)
+acceleration = Vector2(0.3, 0)
 metadata/_custom_type_script = "uid://dog1hf54j6bcp"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -110,5 +115,5 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(2, -0.5)
+position = Vector2(-3.5, -0.5)
 shape = SubResource("RectangleShape2D_y7108")

@@ -2,6 +2,8 @@
 extends Node
 
 # variables #-------------------------------------------------------------------
+enum HealthModType {GENERIC}
+
 var GRAVITY: float = ProjectSettings.get_setting("physics/2d/default_gravity", 500)
 var VIEWPORT_WIDTH: int = ProjectSettings.get_setting("display/window/size/viewport_width", 320)
 var VIEWPORT_HEIGHT: int = ProjectSettings.get_setting("display/window/size/viewport_height", 180)

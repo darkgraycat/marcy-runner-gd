@@ -3,9 +3,10 @@ class_name Player extends CharacterBody2D
 # variables #-------------------------------------------------------------------
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var health_component: HealthComponent = $HealthComponent
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -21,8 +22,9 @@ func _ready() -> void:
 	movement_component.max_velocity = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
 	movement_component.acceleration = Vector2(Global.ACCELERATION, 0)
 	movement_component.gravity = Vector2(0, Global.GRAVITY)
-	# effect_reciever.effect_applied.connect(_on_effects_updated.bind(true))
-	# effect_reciever.effect_destroyed.connect(_on_effects_updated.bind(false))
+	health_component.health = Variables.get_state(Variables.VarName.Lifes)
+	health_component.health_changed.connect(_on_health_component_health_changed)
+	health_component.died.connect(_on_health_component_died)
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
@@ -95,28 +97,18 @@ func respawn(spawn_point: Vector2) -> void:
 	Events.emit_player_spawned(spawn_point)
 
 # callback #--------------------------------------------------------------------
-func _on_effects_updated(effect: EffectResource, is_applied: bool) -> void:
-	print("_on_effects_updated called")
-	var speed_bonus := 0.0
-
-	match [effect.type, is_applied]:
-		[EffectResource.EffectType.Speed, _]:
-			prints("Speed bonus before", speed_bonus)
-			#speed_bonus = effect_reciever.sum_effects(EffectResource.EffectType.Speed)
-			prints("Speed bonus after", speed_bonus)
-		[EffectResource.EffectType.Lifes, true]:
-			if effect.value < 0:
-				die.call_deferred()
-		_: pass
-
-	movement_component.max_velocity.x = Global.MOVE_VELOCITY + speed_bonus
-
-	#Events.emit_effects_updated(effect_reciever)
-
-# callback #--------------------------------------------------------------------
 func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 	match state_name:
 		"idle": prints("In idle state")
 		"walk": prints("In walk state")
 		"jump": prints("In jump state")
 	pass # Replace with function body.
+
+# callback #--------------------------------------------------------------------
+func _on_health_component_health_changed(health: float) -> void:
+	# TODO: add visuals thats depends on + or - amount
+	Variables.set_state(Variables.VarName.Lifes, health)
+
+# callback #--------------------------------------------------------------------
+func _on_health_component_died() -> void:
+	die.call_deferred()

@@ -12,8 +12,8 @@ func _ready() -> void:
 
 
 func _on_variables_updated() -> void:
-	var lifes: Variant = Variables.get_state(Variables.VariableKey.Lifes)
-	var score: Variant = Variables.get_state(Variables.VariableKey.Score)
+	var lifes: Variant = Variables.get_state(Variables.VarName.Lifes)
+	var score: Variant = Variables.get_state(Variables.VarName.Score)
 	lifes_label.text = _make_int_label(lifes, Strings.INGAME_UI_LIFES)
 	score_label.text = _make_int_label(score, Strings.INGAME_UI_SCORE)
 

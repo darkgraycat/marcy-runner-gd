@@ -24,11 +24,14 @@ func die() -> void:
 func get_effects() -> Array[StatusEffectResource]:
 	return status_effects
 
-# callback #--------------------------------------------------------------------
-func _on_body_entered(who: Node2D) -> void:
-	if not who.is_in_group(Global.GROUP_NAME_PLAYER): return
-	var sec := StatusEffectComponent.get_from(who)
-	if !sec: return
-	for effect: StatusEffectResource in status_effects:
-		sec.apply_status_effect(effect)
+# method #----------------------------------------------------------------------
+func collect(target: Node2D) -> void:
+	if !target.is_in_group(Global.GROUP_NAME_PLAYER): return
+	var sec := StatusEffectComponent.get_from(target)
+	if !sec: return # effect target is not found - do nothing
+	sec.apply_status_effects(status_effects)
 	die.call_deferred()
+
+# callback #--------------------------------------------------------------------
+func _on_body_entered(body: Node2D) -> void:
+	collect(body)

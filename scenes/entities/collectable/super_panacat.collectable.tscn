@@ -1,66 +1,64 @@
-[gd_scene load_steps=24 format=3 uid="uid://cir2e880om1ix"]
+[gd_scene load_steps=22 format=3 uid="uid://cir2e880om1ix"]
 
-[ext_resource type="Script" uid="uid://bf5154hgh1d68" path="res://scenes/entities/item/item.gd" id="1_iq3bl"]
-[ext_resource type="Script" uid="uid://ddygr7ruwvj3u" path="res://components/effect/effect.resource.gd" id="2_bgnyh"]
-[ext_resource type="Resource" uid="uid://bqww007lqelnw" path="res://resources/effects/panacat_100.effect.tres" id="3_cceru"]
-[ext_resource type="Resource" uid="uid://cewfkjehbsvsr" path="res://resources/effects/speed_50_10.effect.tres" id="4_ajs1w"]
-[ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="4_bgnyh"]
-[ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="4_pu3us"]
-[ext_resource type="Resource" uid="uid://nmmoli3ue5f6" path="res://resources/effects/jump_bounce_10.tres" id="5_hgxs2"]
-[ext_resource type="Resource" uid="uid://c6gryap4opn61" path="res://resources/effects/invulnerability_10.tres" id="6_25itp"]
+[ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/collectable/collectable.gd" id="1_kggky"]
+[ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_8fcl2"]
+[ext_resource type="Resource" uid="uid://v6vyyu75qn3d" path="res://resources/status_effects/speed_25_10.status_effect.tres" id="3_ghsj1"]
+[ext_resource type="Resource" uid="uid://g358lxep5nwp" path="res://resources/status_effects/score_10.status_effect.tres" id="4_2xgr6"]
+[ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="5_3yt7t"]
+[ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="6_0skrx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_53yl8"]
-shader = ExtResource("4_bgnyh")
+shader = ExtResource("5_3yt7t")
 shader_parameter/strength = 0.8
 shader_parameter/speed = 1.0
 shader_parameter/angle = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqmrg"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6rkl"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnjh2"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abrg3"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4ttf"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ruxkp"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dslnr"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ul866"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yiyep"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7y4vn"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqjrq"]
-atlas = ExtResource("4_pu3us")
+atlas = ExtResource("6_0skrx")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x2uk8"]
@@ -138,13 +136,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0s2ui"]
 radius = 6.0
 
-[node name="Item" type="Area2D" node_paths=PackedStringArray("animated_sprite_2d", "collision_shape_2d")]
+[node name="Collectable" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_iq3bl")
-animated_sprite_2d = NodePath("AnimatedSprite2D")
-collision_shape_2d = NodePath("CollisionShape2D")
-effects = Array[ExtResource("2_bgnyh")]([ExtResource("3_cceru"), ExtResource("4_ajs1w"), ExtResource("5_hgxs2"), ExtResource("6_25itp")])
+script = ExtResource("1_kggky")
+status_effects = Array[ExtResource("2_8fcl2")]([ExtResource("3_ghsj1"), ExtResource("4_2xgr6")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_53yl8")

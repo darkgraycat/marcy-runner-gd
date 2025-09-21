@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HealthModStatusEffect" load_steps=2 format=3 uid="uid://cqnbgd12id5gi"]
+
+[ext_resource type="Script" uid="uid://dbs3r07tmmat7" path="res://components/status_effect/collection/health_mod.status_effect.gd" id="1_4xrfj"]
+
+[resource]
+script = ExtResource("1_4xrfj")
+amount = -1.0
+metadata/_custom_type_script = "uid://dbs3r07tmmat7"
