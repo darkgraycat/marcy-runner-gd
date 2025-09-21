@@ -1,14 +1,14 @@
 class_name VariableModStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var variable: Variables.VarName
+@export var variable: V.VarName
 @export var amount: float
 
 # builtin #---------------------------------------------------------------------
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	Variables.mod_state(variable, amount)
+	V.mod_state(variable, amount)
 	status_effect_component.destroy_status_effect(self)
 
 # method #----------------------------------------------------------------------

@@ -31,10 +31,10 @@ config = SubResource("Resource_1r563")
 [node name="DebugCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DebugLabel" parent="DebugCanvasLayer" instance=ExtResource("4_3k5nu")]
-offset_left = 152.0
-offset_top = 3.0
-offset_right = 218.0
-offset_bottom = 26.0
+offset_left = 92.0
+offset_top = 2.0
+offset_right = 158.0
+offset_bottom = 25.0
 channel = 2
 
 [node name="ColorRect" type="ColorRect" parent="DebugCanvasLayer"]

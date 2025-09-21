@@ -19,10 +19,10 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.max_velocity = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
-	movement_component.acceleration = Vector2(Global.ACCELERATION, 0)
-	movement_component.gravity = Vector2(0, Global.GRAVITY)
-	health_component.health = Variables.get_state(Variables.VarName.Lifes)
+	movement_component.max_velocity = Vector2(G.MOVE_VELOCITY, G.JUMP_VELOCITY)
+	movement_component.acceleration = Vector2(G.ACCELERATION, 0)
+	movement_component.gravity = Vector2(0, G.GRAVITY)
+	health_component.health = V.get_state(V.VarName.Lifes)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
 
@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true
 		if is_on_floor():
-			velocity.y = -Global.JUMP_VELOCITY
+			velocity.y = -G.JUMP_VELOCITY
 
 	if !input_jump:
 		jump_in_progress = false
@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	# 	current_state = next_state
 	# 	animation_player.play(next_state)
 
-	Events.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.max_velocity.x)], 1)
+	E.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.max_velocity.x)], 1)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
@@ -74,7 +74,7 @@ func next_state() -> State:
 func get_current_state() -> String:
 	return (
 		"jump" if not is_on_floor() else
-		"walk" if abs(velocity.x) > Global.ACCELERATION else "idle"
+		"walk" if abs(velocity.x) > G.ACCELERATION else "idle"
 	)
 
 # method #----------------------------------------------------------------------
@@ -84,7 +84,7 @@ func die() -> void:
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
-	Events.emit_player_died()
+	E.emit_player_died()
 
 # method #----------------------------------------------------------------------
 func respawn(spawn_point: Vector2) -> void:
@@ -94,7 +94,7 @@ func respawn(spawn_point: Vector2) -> void:
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
 	animation_player.play("RESET")
-	Events.emit_player_spawned(spawn_point)
+	E.emit_player_spawned(spawn_point)
 
 # callback #--------------------------------------------------------------------
 func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
@@ -107,7 +107,7 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 # callback #--------------------------------------------------------------------
 func _on_health_component_health_changed(health: float) -> void:
 	# TODO: add visuals thats depends on + or - amount
-	Variables.set_state(Variables.VarName.Lifes, health)
+	V.set_state(V.VarName.Lifes, health)
 
 # callback #--------------------------------------------------------------------
 func _on_health_component_died() -> void:

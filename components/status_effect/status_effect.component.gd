@@ -6,16 +6,13 @@ signal status_effect_destroyed(status_effect: StatusEffectResource)
 @export var movement_component: MovementComponent
 @export var health_component: HealthComponent
 
+@export var components: Array[Component] = []: set = set_components
+var _components_dict: Dictionary = {}
 var _status_effects: Array[StatusEffectResource]
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	Util.validate_error_pairs(parent,
-		[!movement_component, "MovementComponent is not defined"],
-		[!health_component, "HealthComponent is not defined"],
-	)
-	if !movement_component: return push_warning(parent, "MovementComponent is not defined")
-	if !health_component: return  push_warning(parent, "HealthComponent is not defined")
+	pass
 
 # builtin #---------------------------------------------------------------------
 func _process(delta: float) -> void:
@@ -27,7 +24,19 @@ static func get_from(
 	from: Node,
 	property: String = "status_effect_component"
 ) -> StatusEffectComponent:
-	return Component.get_component(from, property, StatusEffectComponent)
+	return Component.find_in_node(from, property, StatusEffectComponent)
+
+# method #----------------------------------------------------------------------
+func set_components(value: Array[Component]) -> void:
+	components = value
+	for component in value:
+		var key: Variant = component.get_script()
+		if !_components_dict.has(key): _components_dict.set(key, component)
+		else: push_warning(self, "%s component alredy assigned" % key)
+
+# method #----------------------------------------------------------------------
+func get_component(type: Variant) -> Component:
+	return _components_dict.get(type, null)
 
 # method #----------------------------------------------------------------------
 func apply_status_effect(status_effect: StatusEffectResource) -> void:

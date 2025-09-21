@@ -23,7 +23,7 @@ func set_config(new_config: BlockConfig) -> void:
 
 
 func set_connection_level(new_connection_level: int) -> void:
-	connection.position.y = new_connection_level * Global.TILE_SIZE
+	connection.position.y = new_connection_level * G.TILE_SIZE
 
 
 func set_head(frame: int) -> void:

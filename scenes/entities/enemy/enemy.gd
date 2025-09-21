@@ -24,7 +24,7 @@ func die() -> void:
 
 # method #----------------------------------------------------------------------
 func damage(target: Node2D) -> void:
-	if !target.is_in_group(Global.GROUP_NAME_PLAYER): return
+	if !target.is_in_group(G.GROUP_NAME_PLAYER): return
 	var sec := StatusEffectComponent.get_from(target)
 	if !sec: return # effect target is not found - do nothing
 	sec.apply_status_effects(status_effects)

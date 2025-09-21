@@ -13,13 +13,13 @@ var tilemap_chunk_next: Vector2i = Vector2i(0, 0)
 # builtin #---------------------------------------------------------------------
 func _init() -> void:
 	# moved into _init because Level.ready fired last
-	Variables.set_state(Variables.VarName.Score, 0)
-	Variables.set_state(Variables.VarName.Lifes, 9)
+	V.set_state(V.VarName.Score, 0)
+	V.set_state(V.VarName.Lifes, 9)
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	Events.player_died.connect(_on_player_died)
-	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
+	E.player_died.connect(_on_player_died)
+	player_camera.limit_bottom = G.VIEWPORT_HEIGHT
 	tilemap_chunk_idxs.assign(range(
 		0, tilemap_chunk_root.get_total_chunks() - 4))
 	prints("Loaded chunk ids", tilemap_chunk_idxs)
@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 		player.input_move = Input.get_axis("move_left", "move_right")
 		player.input_jump = Input.is_action_pressed("jump")
 
-		if player.global_position.y > Global.VIEWPORT_HEIGHT + Global.TILE_SIZE:
+		if player.global_position.y > G.VIEWPORT_HEIGHT + G.TILE_SIZE:
 			player.die()
 
 		if player.global_position.x > (tilemap_chunk_next.x - 1) * 288:

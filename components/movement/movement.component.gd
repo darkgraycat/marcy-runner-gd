@@ -17,11 +17,7 @@ func _physics_process(delta: float) -> void:
 	parent.velocity += gravity * delta
 	parent.move_and_slide()
 
-# method #----------------------------------------------------------------------
-static func get_from(
-	from: Node,
-	property: String = "movement_component"
-) -> MovementComponent:
-	return Component.get_component(from, property, MovementComponent)
+func do_some() -> void:
+	print("HELLO from movement")
 
 # callback #--------------------------------------------------------------------

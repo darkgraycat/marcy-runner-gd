@@ -24,11 +24,11 @@ func damage(amount: float) -> void:
 	if is_on_damage_cooldown(): return
 	health = max(health - amount, 0)
 	_last_damaged_msec = Time.get_unix_time_from_system()
-	Util.log("Damage - restart")
+	U.log("Damage - restart")
 
 # method #----------------------------------------------------------------------
 func heal(amount: float) -> void:
-	Util.log("Healing", amount)
+	U.log("Healing", amount)
 	health = min(health + amount, max_health)
 
 # method #----------------------------------------------------------------------

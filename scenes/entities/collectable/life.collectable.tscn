@@ -159,10 +159,12 @@ script = ExtResource("1_20w3d")
 status_effects = Array[ExtResource("2_hdq1u")]([ExtResource("3_hdq1u")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.9803614, 0, 0.124969326, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_py7dy")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_oo2em")

@@ -30,11 +30,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://autoload/global.gd"
-Util="*res://autoload/util.gd"
-Events="*res://autoload/events.gd"
-Strings="*res://autoload/strings.gd"
-Variables="*res://autoload/variables.gd"
+G="*res://autoload/global.gd"
+U="*res://autoload/util.gd"
+E="*res://autoload/events.gd"
+S="*res://autoload/strings.gd"
+V="*res://autoload/variables.gd"
 
 [debug]
 
