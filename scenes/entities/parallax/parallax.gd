@@ -1,4 +1,3 @@
-@tool
 class_name Parallax extends Node2D
 
 @export var screen_size: Vector2i = Vector2.ZERO
@@ -10,8 +9,8 @@ class_name Parallax extends Node2D
 
 func set_configuration(value: ParallaxResource) -> void:
 	configuration = value
-	if not is_node_ready(): await ready
-	if not source_sprite_2d: return push_error("Source Sprite2D is not defined")
+	if !is_node_ready(): await ready
+	if !source_sprite_2d: return push_error(self, "Source Sprite2D is not defined")
 
 	var source_frame_count := Vector2i(source_sprite_2d.hframes, source_sprite_2d.vframes)
 	var source_frame_size := Vector2i(source_sprite_2d.texture.get_size()) / source_frame_count
@@ -59,3 +58,4 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if not source_sprite_2d:
 		return ["Source Sprite2D is not defined"]
 	return []
+

@@ -1,8 +1,9 @@
 class_name StatusEffectComponent extends Component
 signal status_effect_applied(status_effect: StatusEffectResource)
 signal status_effect_destroyed(status_effect: StatusEffectResource)
+
 # variables #-------------------------------------------------------------------
-@export var movement_component: Movement
+@export var movement_component: MovementComponent
 
 var _status_effects: Array[StatusEffectResource]
 
@@ -14,6 +15,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for status_effect in _status_effects:
 		status_effect.on_update(delta, self)
+
+# method #----------------------------------------------------------------------
+static func get_from(
+	from: Node,
+	property: String = "status_effect_component"
+) -> StatusEffectComponent:
+	return Component.get_component(from, property, StatusEffectComponent)
 
 # method #----------------------------------------------------------------------
 func apply_status_effect(status_effect: StatusEffectResource) -> void:

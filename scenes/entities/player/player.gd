@@ -1,15 +1,14 @@
 class_name Player extends CharacterBody2D
+
 # variables #-------------------------------------------------------------------
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var movement: Movement = $Movement
+@onready var movement_component: MovementComponent = $MovementComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-# @onready var effect_reciever: EffectReciever = $EffectReciever
-
-const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
 enum State {Idle, Move, Jump, Die, Oiia}
+const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
 
 var input_move: float = 0.0
 var input_jump: bool = false
@@ -19,15 +18,15 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement.max_velocity = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
-	movement.acceleration = Vector2(Global.ACCELERATION, 0)
-	movement.gravity = Vector2(0, Global.GRAVITY)
+	movement_component.max_velocity = Vector2(Global.MOVE_VELOCITY, Global.JUMP_VELOCITY)
+	movement_component.acceleration = Vector2(Global.ACCELERATION, 0)
+	movement_component.gravity = Vector2(0, Global.GRAVITY)
 	# effect_reciever.effect_applied.connect(_on_effects_updated.bind(true))
 	# effect_reciever.effect_destroyed.connect(_on_effects_updated.bind(false))
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
-	movement.direction.x = input_move
+	movement_component.direction.x = input_move
 
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true
@@ -49,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 	# 	current_state = next_state
 	# 	animation_player.play(next_state)
 
-	Events.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement.max_velocity.x)], 1)
+	Events.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.max_velocity.x)], 1)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
@@ -60,7 +59,7 @@ func set_state(new_state: State) -> void:
 		State.Move: animation_player.play(&"walk")
 		State.Jump: animation_player.play(&"jump")
 
-#[ method ]#--------------------------------------------------------------------
+# method #----------------------------------------------------------------------
 func next_state() -> State:
 	if !is_on_floor():
 		return State.Jump
@@ -79,7 +78,7 @@ func get_current_state() -> String:
 # method #----------------------------------------------------------------------
 func die() -> void:
 	set_physics_process(false)
-	movement.set_physics_process(false)
+	movement_component.set_physics_process(false)
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
@@ -89,7 +88,7 @@ func die() -> void:
 func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
-	movement.set_physics_process(true)
+	movement_component.set_physics_process(true)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
 	animation_player.play("RESET")
@@ -110,7 +109,7 @@ func _on_effects_updated(effect: EffectResource, is_applied: bool) -> void:
 				die.call_deferred()
 		_: pass
 
-	movement.max_velocity.x = Global.MOVE_VELOCITY + speed_bonus
+	movement_component.max_velocity.x = Global.MOVE_VELOCITY + speed_bonus
 
 	#Events.emit_effects_updated(effect_reciever)
 

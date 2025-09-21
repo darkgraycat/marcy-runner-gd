@@ -1,17 +1,13 @@
-class_name Component extends Node
+# meta-name: DarkGrayCat styled class
+# meta-description: Class with specific style
+class_name _CLASS_ extends _BASE_
 
 # variables #-------------------------------------------------------------------
-@onready var parent: CharacterBody2D = get_parent()
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
 	pass
 
 # method #----------------------------------------------------------------------
-static func get_component(from: Node, property: String, type_class: Variant) -> Component:
-	var component: Component = from.get(property)
-	if component && is_instance_of(component, type_class):
-		return component
-	return null
 
 # callback #--------------------------------------------------------------------

@@ -1,4 +1,5 @@
-class_name Movement extends Component
+class_name MovementComponent extends Component
+
 # variables #-------------------------------------------------------------------
 @export var direction: Vector2 = Vector2.ZERO
 @export var max_velocity: Vector2 = Vector2.ZERO
@@ -17,5 +18,10 @@ func _physics_process(delta: float) -> void:
 	parent.move_and_slide()
 
 # method #----------------------------------------------------------------------
+static func get_from(
+	from: Node,
+	property: String = "movement_component"
+) -> MovementComponent:
+	return Component.get_component(from, property, MovementComponent)
 
 # callback #--------------------------------------------------------------------

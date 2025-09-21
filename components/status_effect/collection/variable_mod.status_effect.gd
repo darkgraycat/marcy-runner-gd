@@ -1,4 +1,5 @@
 class_name VariableModStatusEffect extends StatusEffectResource
+
 # variables #-------------------------------------------------------------------
 @export var variable: Variables.VariableKey
 @export var amount: float

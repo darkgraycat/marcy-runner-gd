@@ -1,12 +1,12 @@
 @tool
 extends Node
-
 signal notification(message: String, channel: int)
 
+# method #----------------------------------------------------------------------
 func notify(message: String, channel: int = 0) -> void:
 	notification.emit(message, channel)
 
-
+# method #----------------------------------------------------------------------
 func load_as_text(path: String) -> String:
 	print("Loading text: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
@@ -15,7 +15,7 @@ func load_as_text(path: String) -> String:
 	file.close()
 	return content
 
-
+# method #----------------------------------------------------------------------
 func load_as_json(path: String) -> Dictionary:
 	print("Loading json: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
@@ -24,7 +24,7 @@ func load_as_json(path: String) -> Dictionary:
 	json.parse(file.get_as_text())
 	return json.data
 
-
+# method #----------------------------------------------------------------------
 func save_as_text(path: String, data: String) -> void:
 	print("Saving text: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
@@ -32,14 +32,14 @@ func save_as_text(path: String, data: String) -> void:
 	file.store_string(data)
 	file.close()
 
-
+# method #----------------------------------------------------------------------
 func load_resource(path: String) -> Resource:
 	print("Loading resource: %s" % path)
 	assert(ResourceLoader.exists(path), "Resource is not exist: %s" % path)
 	var resource: Resource = load(path)
 	return resource
 
-
+# method #----------------------------------------------------------------------
 func cast_type(value: Variant, type: int) -> Variant:
 	match type:
 		TYPE_INT: return int(value)
@@ -49,26 +49,24 @@ func cast_type(value: Variant, type: int) -> Variant:
 		TYPE_VECTOR3: return Vector3(value)
 		_: return value
 
-
+# method #----------------------------------------------------------------------
 func cast_array(target: Array, value: Array, type: int) -> void:
 	for i: int in value.size():
 		var v: Variant = cast_type(value[i], type)
 		if i < target.size(): target[i] = v
 		else: target.append(v)
 
-
+# method #----------------------------------------------------------------------
 func pick_random_element(array: Array) -> Variant:
 	if array.is_empty(): return null
 	return array[randi() % array.size()]
 
-
+# method #----------------------------------------------------------------------
 func snap_angle(angle: float, step_deg: float) -> float:
 	var step_rad := deg_to_rad(step_deg)
 	return round(angle / step_rad) * step_rad
 
-
+# method #----------------------------------------------------------------------
 func log(msg: String, ...rest: Array) -> void:
 	var time := Time.get_datetime_string_from_system()
 	prints("[%s] %s" % [time, msg], rest)
-
-

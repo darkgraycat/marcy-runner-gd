@@ -1,4 +1,5 @@
 class_name SpeedTimedStatusEffect extends StatusEffectResource
+
 # variables #-------------------------------------------------------------------
 @export var duration_sec: float = 10
 @export var amount: float = 25
@@ -7,6 +8,7 @@ class_name SpeedTimedStatusEffect extends StatusEffectResource
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
+	if !status_effect_component.movement_component: return
 	status_effect_component.movement_component.max_velocity.x += amount
 	var timer := status_effect_component.get_tree().create_timer(duration_sec)
 	await timer.timeout
@@ -16,6 +18,7 @@ func on_apply(status_effect_component: StatusEffectComponent) -> void:
 
 # method #----------------------------------------------------------------------
 func on_destroy(status_effect_component: StatusEffectComponent) -> void:
+	if !status_effect_component.movement_component: return
 	status_effect_component.movement_component.max_velocity.x -= amount
 
 # method #----------------------------------------------------------------------

@@ -1,3 +1,4 @@
+## !deprecated
 class_name Item extends Area2D
 
 @export var animated_sprite_2d: AnimatedSprite2D
@@ -6,8 +7,8 @@ class_name Item extends Area2D
 
 
 func _ready() -> void:
-	if not animated_sprite_2d: return push_error("AnimatedSprite2D is not defined")
-	if not collision_shape_2d: return push_error("CollisionShape2D is not defined")
+	if !animated_sprite_2d: return push_error(self, "AnimatedSprite2D is not defined")
+	if !collision_shape_2d: return push_error(self, "CollisionShape2D is not defined")
 	body_entered.connect(collect)
 	animated_sprite_2d.play("idle")
 

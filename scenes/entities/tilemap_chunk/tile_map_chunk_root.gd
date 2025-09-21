@@ -7,7 +7,7 @@ var tilemap_layers: Array[TileMapLayer] = []
 var tilemap_patterns: Dictionary = {}
 
 func _ready() -> void:
-	if not tile_map_chunk_grid: return push_error("TileMapChunkGrid is not defined")
+	if not tile_map_chunk_grid: return push_error(self, "TileMapChunkGrid is not defined")
 
 	for node: Node2D in get_children():
 		if not node is TileMapLayer: continue
