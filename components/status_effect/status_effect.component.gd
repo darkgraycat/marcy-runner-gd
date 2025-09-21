@@ -10,10 +10,12 @@ var _status_effects: Array[StatusEffectResource]
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
+	Util.validate_error_pairs(parent,
+		[!movement_component, "MovementComponent is not defined"],
+		[!health_component, "HealthComponent is not defined"],
+	)
 	if !movement_component: return push_warning(parent, "MovementComponent is not defined")
 	if !health_component: return  push_warning(parent, "HealthComponent is not defined")
-	await get_tree().create_timer(1).timeout
-	prints("INIT SEC", health_component.health)
 
 # builtin #---------------------------------------------------------------------
 func _process(delta: float) -> void:

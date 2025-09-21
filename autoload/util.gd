@@ -70,3 +70,35 @@ func snap_angle(angle: float, step_deg: float) -> float:
 func log(msg: String, ...rest: Array) -> void:
 	var time := Time.get_datetime_string_from_system()
 	prints("[%s] %s" % [time, msg], rest)
+
+# method #----------------------------------------------------------------------
+func generate_configuration_warnings(...bool_message_pairs: Array) -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	for pair: Array in bool_message_pairs:
+		if pair[0]: warnings.append(pair[1])
+	return warnings
+
+# method #----------------------------------------------------------------------
+func validate_error_pairs(node: Node, ...bool_string_pairs: Array) -> bool:
+	return bool_string_pairs.all(
+		func(pair: Array) -> bool:
+			if pair[0]: push_error(node, pair[1])
+			return !pair[0]
+	)
+
+# method #----------------------------------------------------------------------
+## Validator utility for fluent condition checking on a Node. <br>
+## Example: Util.validate(self).check(!parent, "Parent missing").check(x < 0, "x negative")
+func validate(caused_by: Node) -> Validator:
+	return Validator.new(caused_by)
+
+# inner #-----------------------------------------------------------------------
+class Validator:
+	var caused_by: Node
+	var is_valid := true
+	func _init(node: Node) -> void: caused_by = node
+	func check(cond: bool, error: String) -> Validator:
+		if cond:
+			is_valid = false
+			push_error(caused_by, error)
+		return self
