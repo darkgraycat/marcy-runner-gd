@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_goa2j"]
 [ext_resource type="Script" uid="uid://dbs3r07tmmat7" path="res://components/status_effect/collection/health_mod.status_effect.gd" id="3_hj7f3"]
-[ext_resource type="Script" uid="uid://dog1hf54j6bcp" path="res://components/movement/old_movement.component.gd" id="3_y7108"]
+[ext_resource type="Script" uid="uid://blmljr7pkk6pb" path="res://components/movement/movement.component.gd" id="3_y7108"]
 
 [sub_resource type="Resource" id="Resource_3ieed"]
 script = ExtResource("3_hj7f3")
@@ -84,12 +84,13 @@ animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
 status_effects = Array[ExtResource("2_goa2j")]([SubResource("Resource_3ieed")])
 
-[node name="Movement" type="Node" parent="."]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("3_y7108")
-direction = Vector2(-1, 0)
-max_velocity = Vector2(75, 0)
-acceleration = Vector2(0.3, 0)
-metadata/_custom_type_script = "uid://dog1hf54j6bcp"
+direction = -1.0
+target_speed = 20.0
+acceleration = 1.0
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://blmljr7pkk6pb"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

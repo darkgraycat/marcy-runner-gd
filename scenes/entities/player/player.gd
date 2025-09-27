@@ -4,9 +4,10 @@ class_name Player extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var movement_component: MovementComponent = $Components/MovementComponent
-@onready var health_component: HealthComponent = $Components/HealthComponent
-@onready var status_effect_component: StatusEffectComponent = $Components/StatusEffectComponent
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var jumping_component: JumpingComponent = $JumpingComponent
+@onready var movement_component: MovementComponent = $MovementComponent
+@onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -21,6 +22,7 @@ var state: State = State.Idle: set = set_state
 func _ready() -> void:
 	movement_component.target_speed = G.MOVE_VELOCITY
 	movement_component.acceleration = G.ACCELERATION
+	jumping_component.target_force = G.JUMP_VELOCITY
 	health_component.health = V.get_state(V.VarName.Lifes)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
@@ -28,16 +30,7 @@ func _ready() -> void:
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
 	movement_component.direction = input_move
-
-	if input_jump and !jump_in_progress:
-		jump_in_progress = true
-		if is_on_floor():
-			velocity.y = -G.JUMP_VELOCITY
-
-	if !input_jump:
-		jump_in_progress = false
-		if velocity.y < 0:
-			velocity.y /= 2
+	jumping_component.jumping = input_jump
 
 	if input_move:
 		sprite_2d.flip_h = input_move < 0
