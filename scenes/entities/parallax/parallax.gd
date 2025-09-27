@@ -1,3 +1,4 @@
+@tool
 class_name Parallax extends Node2D
 
 @export var screen_size: Vector2i = Vector2.ZERO
@@ -58,4 +59,3 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if not source_sprite_2d:
 		return ["Source Sprite2D is not defined"]
 	return []
-

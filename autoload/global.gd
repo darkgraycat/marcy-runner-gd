@@ -12,13 +12,13 @@ const TILE_SIZE: int = 16
 
 const MOVE_VELOCITY: float = 100.0
 const JUMP_VELOCITY: float = 250.0
-const ACCELERATION: float = 10.0
+const ACCELERATION: float = 5.0
 
 const GROUP_NAME_PLAYER: StringName = "Player"
 const GROUP_NAME_ITEMS: StringName = "Items"
 const GROUP_NAME_ENEMIES: StringName = "Enemies"
 
-var DEBUG: bool = true
+var DEBUG: bool = false
 
 # builtin #---------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:

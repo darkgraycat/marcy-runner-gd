@@ -4,9 +4,9 @@ class_name Player extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var movement_component: MovementComponent = $MovementComponent
-@onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
-@onready var health_component: HealthComponent = $HealthComponent
+@onready var movement_component: MovementComponent = $Components/MovementComponent
+@onready var health_component: HealthComponent = $Components/HealthComponent
+@onready var status_effect_component: StatusEffectComponent = $Components/StatusEffectComponent
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -19,16 +19,15 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.max_velocity = Vector2(G.MOVE_VELOCITY, G.JUMP_VELOCITY)
-	movement_component.acceleration = Vector2(G.ACCELERATION, 0)
-	movement_component.gravity = Vector2(0, G.GRAVITY)
+	movement_component.target_speed = G.MOVE_VELOCITY
+	movement_component.acceleration = G.ACCELERATION
 	health_component.health = V.get_state(V.VarName.Lifes)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
-	movement_component.direction.x = input_move
+	movement_component.direction = input_move
 
 	if input_jump and !jump_in_progress:
 		jump_in_progress = true
@@ -50,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 	# 	current_state = next_state
 	# 	animation_player.play(next_state)
 
-	E.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.max_velocity.x)], 1)
+	E.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.target_speed)], 1)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:

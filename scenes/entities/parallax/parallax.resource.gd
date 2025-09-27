@@ -2,16 +2,16 @@
 class_name ParallaxResource extends Resource
 
 # variables #-------------------------------------------------------------------
-@export_range(0, 24) var total_rows: int = 0 : set = _set_total_rows
+@export_range(0, 24) var total_rows: int = 0: set = set_total_rows
 @export_group("Rows configuration")
 @export var colors: Array[Color] = []
 @export var frames: Array[int] = []
-@export_range(0.0, 1.0, 0.05) var offsets: Array[float] = []
+@export_range(0.0, 1.0, 0.01) var offsets: Array[float] = []
 
 # builtin #---------------------------------------------------------------------
 
 # method #----------------------------------------------------------------------
-func _set_total_rows(value: int) -> void:
+func set_total_rows(value: int) -> void:
 	total_rows = value
 	colors.resize(value)
 	frames.resize(value)
@@ -19,3 +19,4 @@ func _set_total_rows(value: int) -> void:
 	notify_property_list_changed()
 
 # callback #--------------------------------------------------------------------
+

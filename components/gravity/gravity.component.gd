@@ -6,12 +6,8 @@ var is_falling: bool = false
 var _force: float = 0.0
 
 # builtin #---------------------------------------------------------------------
-func _ready() -> void:
-	pass
-
-# builtin #---------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	handle_gravity(get_parent(), delta)
+	handle_gravity(parent, delta)
 
 # method #----------------------------------------------------------------------
 func handle_gravity(body: CharacterBody2D, delta: float) -> void:

@@ -3,9 +3,6 @@ signal status_effect_applied(status_effect: StatusEffectResource)
 signal status_effect_destroyed(status_effect: StatusEffectResource)
 
 # variables #-------------------------------------------------------------------
-@export var movement_component: MovementComponent
-@export var health_component: HealthComponent
-
 @export var components: Array[Component] = []: set = set_components
 var _components_dict: Dictionary = {}
 var _status_effects: Array[StatusEffectResource]

@@ -1,22 +1,25 @@
 class_name MovementComponent extends Component
 
 # variables #-------------------------------------------------------------------
-@export var direction: Vector2 = Vector2.ZERO
-@export var max_velocity: Vector2 = Vector2.ZERO
-@export var acceleration: Vector2 = Vector2.ZERO
-@export var gravity: Vector2 = Vector2.ZERO
+@export var direction: float = 0.0
+@export var target_speed: float = 50.0
+@export var acceleration: float = 10.0
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	var target_velocity := direction * max_velocity
-	var fx := 1.0 - exp(-acceleration.x * delta)
-	var fy := 1.0 - exp(-acceleration.y * delta)
+	handle_movement(direction, delta)
 
-	parent.velocity.x = lerp(parent.velocity.x, target_velocity.x, fx)
-	parent.velocity.y = lerp(parent.velocity.y, target_velocity.y, fy)
-	parent.velocity += gravity * delta
+# method #----------------------------------------------------------------------
+func handle_movement(new_direction: float, delta: float) -> void:
+	parent.velocity.x = lerp(
+		parent.velocity.x,
+		new_direction * target_speed,
+		1.0 - exp(-acceleration * delta)
+	)
 	parent.move_and_slide()
 
 # method #----------------------------------------------------------------------
+func set_direction(new_direction: float) -> void:
+	direction = new_direction
 
 # callback #--------------------------------------------------------------------
