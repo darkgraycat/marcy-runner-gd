@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_orrml")
 amount = 10.0
+name = &"Score+10"
 metadata/_custom_type_script = "uid://o8coneb5d7bj"

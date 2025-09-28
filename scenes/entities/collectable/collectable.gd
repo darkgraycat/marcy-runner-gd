@@ -1,4 +1,5 @@
 class_name Collectable extends Area2D
+signal item_collected(item: Collectable)
 
 # variables #-------------------------------------------------------------------
 @export var status_effects: Array[StatusEffectResource] = []
@@ -27,9 +28,10 @@ func get_effects() -> Array[StatusEffectResource]:
 # method #----------------------------------------------------------------------
 func collect(target: Node2D) -> void:
 	if !target.is_in_group(G.GROUP_NAME_PLAYER): return
-	var sec := StatusEffectComponent.get_from(target)
+	var sec := StatusEffectComponent.find_status_effect_component(target)
 	if !sec: return # effect target is not found - do nothing
 	sec.apply_status_effects(status_effects)
+	item_collected.emit(self)
 	die.call_deferred()
 
 # callback #--------------------------------------------------------------------

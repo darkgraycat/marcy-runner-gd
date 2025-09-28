@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InvincibilityStatusEffect" load_steps=2 format=3 uid="uid://drhgvwx5a1ms0"]
+
+[ext_resource type="Script" uid="uid://bj35ucinwqnva" path="res://components/status_effect/collection/invincibility.status_effect.gd" id="1_ty5sw"]
+
+[resource]
+script = ExtResource("1_ty5sw")
+duration_sec = 10.0
+name = &"Invincibility"

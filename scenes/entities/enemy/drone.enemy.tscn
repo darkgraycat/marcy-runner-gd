@@ -1,15 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://din6bnv7nrd2n"]
+[gd_scene load_steps=16 format=3 uid="uid://din6bnv7nrd2n"]
 
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_jsorr"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_goa2j"]
 [ext_resource type="Script" uid="uid://dbs3r07tmmat7" path="res://components/status_effect/collection/health_mod.status_effect.gd" id="3_hj7f3"]
 [ext_resource type="Script" uid="uid://blmljr7pkk6pb" path="res://components/movement/movement.component.gd" id="3_y7108"]
+[ext_resource type="Script" uid="uid://bow30cxumeo27" path="res://components/status_effect/collection/knockback.status_effect.gd" id="4_ip72x"]
+[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="6_5pdap"]
 
 [sub_resource type="Resource" id="Resource_3ieed"]
 script = ExtResource("3_hj7f3")
 amount = -1.0
 metadata/_custom_type_script = "uid://dbs3r07tmmat7"
+
+[sub_resource type="Resource" id="Resource_xceml"]
+script = ExtResource("4_ip72x")
+knockback_force = Vector2(-300, -200)
+metadata/_custom_type_script = "uid://bow30cxumeo27"
 
 [sub_resource type="Animation" id="Animation_goa2j"]
 length = 0.001
@@ -69,10 +76,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eklmr"]
-size = Vector2(23, 2)
+size = Vector2(22, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7108"]
-size = Vector2(13, 5)
+size = Vector2(22, 5)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape_2d", "sprite_2d", "animation_player", "hurbox_area_2d") groups=["Enemies"]]
 collision_layer = 9
@@ -82,13 +89,13 @@ collision_shape_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
-status_effects = Array[ExtResource("2_goa2j")]([SubResource("Resource_3ieed")])
+status_effects = Array[ExtResource("2_goa2j")]([SubResource("Resource_3ieed"), SubResource("Resource_xceml")])
 
 [node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("3_y7108")
 direction = -1.0
-target_speed = 20.0
-acceleration = 1.0
+target_speed = 40.0
+acceleration = 2.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://blmljr7pkk6pb"
 
@@ -106,7 +113,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -6)
+position = Vector2(-2, -6)
 shape = SubResource("RectangleShape2D_eklmr")
 one_way_collision = true
 
@@ -116,5 +123,8 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-3.5, -0.5)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_y7108")
+
+[node name="DebugLabel" parent="." instance=ExtResource("6_5pdap")]
+channel = 13

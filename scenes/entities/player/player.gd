@@ -26,6 +26,11 @@ func _ready() -> void:
 	health_component.health = V.get_state(V.VarName.Lifes)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
+	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
+	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
+
+func _on_item_collected(item: Collectable) -> void:
+	print("COLLECTED!", item)
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
@@ -36,13 +41,6 @@ func _physics_process(_delta: float) -> void:
 		sprite_2d.flip_h = input_move < 0
 
 	state = next_state()
-
-	# var next_state := get_current_state()
-	# if current_state != next_state:
-	# 	current_state = next_state
-	# 	animation_player.play(next_state)
-
-	E.emit_debug_message("PVel: %s - %s" % [int(velocity.x), int(movement_component.target_speed)], 1)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
@@ -104,3 +102,9 @@ func _on_health_component_health_changed(health: float) -> void:
 # callback #--------------------------------------------------------------------
 func _on_health_component_died() -> void:
 	die.call_deferred()
+
+# callback #--------------------------------------------------------------------
+func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:
+	prints("Player says -------- ", status_effect.name, is_applied)
+	E.emit_effects_updated(status_effect_component)
+

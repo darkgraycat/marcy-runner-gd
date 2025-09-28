@@ -1,12 +1,21 @@
 @tool
 extends Node
-#class_name Util extends Node
 signal notification(message: String, channel: int)
+var time: float:
+	get: return Time.get_unix_time_from_system()
 
+
+## DEBUG #######################################################################
 # method #----------------------------------------------------------------------
 func notify(message: String, channel: int = 0) -> void:
 	notification.emit(message, channel)
 
+# method #----------------------------------------------------------------------
+func log(msg: String, ...rest: Array) -> void:
+	var time := Time.get_datetime_string_from_system()
+	prints("[%s] %s" % [time, msg], rest)
+
+## FILE MANAGEMENT #############################################################
 # method #----------------------------------------------------------------------
 func load_as_text(path: String) -> String:
 	print("Loading text: %s" % path)
@@ -40,6 +49,8 @@ func load_resource(path: String) -> Resource:
 	var resource: Resource = load(path)
 	return resource
 
+
+## UTILS FOR NODES #############################################################
 # method #----------------------------------------------------------------------
 func cast_type(value: Variant, type: int) -> Variant:
 	match type:
@@ -68,10 +79,14 @@ func snap_angle(angle: float, step_deg: float) -> float:
 	return round(angle / step_rad) * step_rad
 
 # method #----------------------------------------------------------------------
-func log(msg: String, ...rest: Array) -> void:
-	var time := Time.get_datetime_string_from_system()
-	prints("[%s] %s" % [time, msg], rest)
+func find_of_type(node: Node, type: Variant) -> Array[Variant]:
+	return node.get_children().filter(
+		func(n: Node) -> bool:
+			return is_instance_of(n, type)
+	)
 
+
+## VALIDATION AND ERROR HANDLING ###############################################
 # method #----------------------------------------------------------------------
 func generate_configuration_warnings(...bool_message_pairs: Array) -> PackedStringArray:
 	var warnings: PackedStringArray = []

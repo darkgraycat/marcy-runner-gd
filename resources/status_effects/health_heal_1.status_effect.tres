@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_ttl2p")
+name = &"HealthHeal"
 metadata/_custom_type_script = "uid://dbs3r07tmmat7"

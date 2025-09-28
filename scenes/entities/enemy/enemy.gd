@@ -6,6 +6,7 @@ class_name Enemy extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var hurbox_area_2d: Area2D
 @export var status_effects: Array[StatusEffectResource] = []
+var is_dying: bool = false
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -17,20 +18,31 @@ func _ready() -> void:
 
 # method #----------------------------------------------------------------------
 func die() -> void:
+	set_physics_process(false)
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
 	queue_free()
 
 # method #----------------------------------------------------------------------
-func damage(target: Node2D) -> void:
-	if !target.is_in_group(G.GROUP_NAME_PLAYER): return
-	var sec := StatusEffectComponent.get_from(target)
-	if !sec: return # effect target is not found - do nothing
+func damage(body: CharacterBody2D) -> void:
+	if is_dying: return
+	is_dying = true
+	if !body.is_in_group(G.GROUP_NAME_PLAYER): return
+
+	var sec := StatusEffectComponent.find_status_effect_component(body)
+	if !sec:
+		die.call_deferred() # effect target is not found - do nothing
+		return
+
+	var health_component: HealthComponent = sec.get_component(HealthComponent)
+	if health_component && health_component.is_invincible():
+		die.call_deferred() # invincible
+		return
+
 	sec.apply_status_effects(status_effects)
 	die.call_deferred()
 
 # callback #--------------------------------------------------------------------
 func _on_hurbox_area_2d_body_entered(body: Node2D) -> void:
-	prints("Body entered")
 	damage(body)

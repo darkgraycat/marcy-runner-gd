@@ -1,9 +1,8 @@
-class_name HealthModStatusEffect extends StatusEffectResource
+class_name MaterialStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var amount: float = 1
-# TODO: is not used
-@export var damage_type: G.HealthModType = G.HealthModType.GENERIC
+@export var duration_sec: float = 10
+@export var material: Material
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -11,17 +10,20 @@ func _ready() -> void:
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
-	if !health_component: return
-	if amount < 0: health_component.damage(-amount)
-	else: health_component.heal(amount)
-
-# method #----------------------------------------------------------------------
-func on_destroy(_status_effect_component: StatusEffectComponent) -> void:
 	pass
 
 # method #----------------------------------------------------------------------
-func on_update(_delta: float, _status_effect_component: StatusEffectComponent) -> void:
+func on_destroy(status_effect_component: StatusEffectComponent) -> void:
 	pass
+
+# method #----------------------------------------------------------------------
+func on_update(delta: float, status_effect_component: StatusEffectComponent) -> void:
+	pass
+
+# method #----------------------------------------------------------------------
+func _find_visuals(body: CharacterBody2D) -> void:
+	for node in body.get_children():
+		if node is Sprite2D:
+			pass
 
 # callback #--------------------------------------------------------------------

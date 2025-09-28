@@ -1,6 +1,9 @@
 @abstract
 class_name StatusEffectResource extends Resource
 
+# variables #-------------------------------------------------------------------
+@export var name: StringName
+
 # builtin #---------------------------------------------------------------------
 func _init() -> void:
 	resource_local_to_scene = true

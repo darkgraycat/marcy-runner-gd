@@ -67,7 +67,6 @@ folder_colors={
 "res://components/": "blue",
 "res://resources/": "yellow",
 "res://scenes/": "orange",
-"res://scenes/entities/": "pink",
 "res://shared/": "purple"
 }
 

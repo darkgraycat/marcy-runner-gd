@@ -1,20 +1,15 @@
-class_name HealthModStatusEffect extends StatusEffectResource
+class_name InvincibilityStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var amount: float = 1
-# TODO: is not used
-@export var damage_type: G.HealthModType = G.HealthModType.GENERIC
+@export var duration_sec: float = 30
 
 # builtin #---------------------------------------------------------------------
-func _ready() -> void:
-	pass
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
 	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
 	if !health_component: return
-	if amount < 0: health_component.damage(-amount)
-	else: health_component.heal(amount)
+	health_component.set_invincibility_time_sec(duration_sec)
 
 # method #----------------------------------------------------------------------
 func on_destroy(_status_effect_component: StatusEffectComponent) -> void:

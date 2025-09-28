@@ -17,19 +17,16 @@ func _process(delta: float) -> void:
 		status_effect.on_update(delta, self)
 
 # method #----------------------------------------------------------------------
-static func get_from(
-	from: Node,
-	property: String = "status_effect_component"
-) -> StatusEffectComponent:
-	return Component.find_in_node(from, property, StatusEffectComponent)
+static func find_status_effect_component(node: Node) -> StatusEffectComponent:
+	return U.find_of_type(node, StatusEffectComponent)[0]
 
 # method #----------------------------------------------------------------------
 func set_components(value: Array[Component]) -> void:
 	components = value
 	for component in value:
-		var key: Variant = component.get_script()
-		if !_components_dict.has(key): _components_dict.set(key, component)
-		else: push_warning(self, "%s component alredy assigned" % key)
+		var script_key: Variant = component.get_script()
+		if !_components_dict.has(script_key): _components_dict.set(script_key, component)
+		else: push_warning(self, "%s component alredy assigned" % script_key)
 
 # method #----------------------------------------------------------------------
 func get_component(type: Variant) -> Component:
@@ -51,5 +48,13 @@ func destroy_status_effect(status_effect: StatusEffectResource) -> void:
 	_status_effects.erase(status_effect)
 	status_effect.on_destroy(self)
 	status_effect_destroyed.emit(status_effect)
+
+
+# method #----------------------------------------------------------------------
+func get_status_effects(type: Variant) -> Array[StatusEffectResource]:
+	return _status_effects.filter(
+		func(effect: StatusEffectResource) -> bool:
+			return is_instance_of(effect, type)
+	)
 
 # callback #--------------------------------------------------------------------

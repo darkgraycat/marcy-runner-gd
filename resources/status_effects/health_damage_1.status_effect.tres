@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_4xrfj")
 amount = -1.0
+name = &"HealthDamage"
 metadata/_custom_type_script = "uid://dbs3r07tmmat7"

@@ -9,11 +9,8 @@ func _ready() -> void:
 	if !parent: parent = get_parent()
 
 # method #----------------------------------------------------------------------
-static func find_in_node(node: Node, property: String, type_class: Variant) -> Component:
-	var component: Component = node.get(property)
-	if component && is_instance_of(component, type_class):
-		return component
-	return null
+static func find_component(node: Node, type: Variant) -> Component:
+	return U.find_of_type(node, type)[0]
 
 # method #----------------------------------------------------------------------
 func set_processing(value: bool) -> void:

@@ -1,9 +1,7 @@
-class_name HealthModStatusEffect extends StatusEffectResource
+class_name KnockbackStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var amount: float = 1
-# TODO: is not used
-@export var damage_type: G.HealthModType = G.HealthModType.GENERIC
+@export var knockback_force: Vector2 = Vector2.ZERO
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -11,10 +9,7 @@ func _ready() -> void:
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
-	if !health_component: return
-	if amount < 0: health_component.damage(-amount)
-	else: health_component.heal(amount)
+	status_effect_component.parent.velocity += knockback_force
 
 # method #----------------------------------------------------------------------
 func on_destroy(_status_effect_component: StatusEffectComponent) -> void:

@@ -35,7 +35,7 @@ offset_left = 92.0
 offset_top = 2.0
 offset_right = 158.0
 offset_bottom = 25.0
-channel = 2
+channel = 999
 
 [node name="ShaderColorRect" type="ColorRect" parent="DebugCanvasLayer"]
 visible = false

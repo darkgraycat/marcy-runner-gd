@@ -18,13 +18,16 @@ func _on_variables_updated() -> void:
 	score_label.text = _make_int_label(score, S.INGAME_UI_SCORE)
 
 
-func _on_effects_updated(effect_reciever: EffectReciever) -> void:
-	if not effect_reciever:
+func _on_effects_updated(status_effect_component: StatusEffectComponent) -> void:
+	if !status_effect_component:
 		effects_label.text = _make_int_label(0, S.INGAME_UI_BOOST)
 		return
 
-	var speed_buff: float = effect_reciever.sum_effects(EffectResource.EffectType.Speed)
-	effects_label.text = _make_int_label(speed_buff, S.INGAME_UI_BOOST)
+	var amount: float = 0.0
+	for effect in status_effect_component.get_status_effects(SpeedTimedStatusEffect):
+		amount += (effect as SpeedTimedStatusEffect).amount
+
+	effects_label.text = _make_int_label(amount, S.INGAME_UI_BOOST)
 
 
 func _make_int_label(value: Variant, pattern: String, default: int = 0) -> String:
