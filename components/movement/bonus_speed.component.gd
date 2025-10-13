@@ -20,3 +20,10 @@ func set_bonus_speed(new_bonus_speed: float) -> void:
 	U.log("SET BS %s, TS %s" % [bonus_speed, movement_component.target_speed])
 
 # callback #--------------------------------------------------------------------
+
+# NOTE: Bug # ------------------------------------------------------------------
+# collect many beans in very short period
+# then collect anything with dispel effect
+# Reason:
+# bonus speed cap = 150. dispel calls on_destroy and it substracts, but substracts from 150
+# and we cant limit to decrease to 0, because of slow effects

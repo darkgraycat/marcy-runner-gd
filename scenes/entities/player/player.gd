@@ -29,11 +29,9 @@ func _ready() -> void:
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
 	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
 
-func _on_item_collected(item: Collectable) -> void:
-	print("COLLECTED!", item)
-
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
+	input_move = 1 # NOTE: make player always run
 	movement_component.direction = input_move
 	jumping_component.jumping = input_jump
 

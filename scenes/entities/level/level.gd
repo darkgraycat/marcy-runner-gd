@@ -7,8 +7,9 @@ class_name Level extends Node2D
 @onready var level_ui_canvas_layer: LevelUiCanvasLayer = %LevelUiCanvasLayer
 @onready var tilemap_chunk_root: TileMapChunkRoot = $TileMapChunkRoot
 
-var tilemap_chunk_idxs: Array[int] = [0]
-var tilemap_chunk_next: Vector2i = Vector2i(0, 0)
+var _tilemap_chunk_idxs: Array[int] = [0]
+var _tilemap_chunk_next: Vector2i = Vector2i(0, 0)
+var _tilemap_prev_chunk_idx: int = -1
 
 # builtin #---------------------------------------------------------------------
 func _init() -> void:
@@ -20,9 +21,8 @@ func _init() -> void:
 func _ready() -> void:
 	E.player_died.connect(_on_player_died)
 	player_camera.limit_bottom = G.VIEWPORT_HEIGHT
-	tilemap_chunk_idxs.assign(range(
-		0, tilemap_chunk_root.get_total_chunks() - 4))
-	prints("Loaded chunk ids", tilemap_chunk_idxs)
+	_tilemap_chunk_idxs.assign(range(0, tilemap_chunk_root.get_total_chunks()))
+	U.log("Loaded chunk ids", _tilemap_chunk_idxs)
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 		if player.global_position.y > G.VIEWPORT_HEIGHT + G.TILE_SIZE:
 			player.die()
 
-		if player.global_position.x > (tilemap_chunk_next.x - 1) * 288:
+		if player.global_position.x > (_tilemap_chunk_next.x - 1) * 288:
 			next_tilemap_chunk()
 
 # method #----------------------------------------------------------------------
@@ -43,10 +43,13 @@ func set_config(new_config: LevelConfig) -> void:
 
 # method #----------------------------------------------------------------------
 func next_tilemap_chunk() -> void:
-	prints("gen chunk at", int(player.global_position.x), tilemap_chunk_next.x * 288)
-	var chunk_idx: int = tilemap_chunk_idxs.pick_random()
-	tilemap_chunk_root.apply_chunk_at(chunk_idx, tilemap_chunk_next)
-	tilemap_chunk_next.x += 1
+	U.log("gen chunk at", int(player.global_position.x), _tilemap_chunk_next.x * 288)
+	var chunk_idx: int = _tilemap_chunk_idxs.pick_random()
+	if chunk_idx == _tilemap_prev_chunk_idx:
+		chunk_idx = _tilemap_chunk_idxs.pick_random()
+
+	tilemap_chunk_root.apply_chunk_at(chunk_idx, _tilemap_chunk_next)
+	_tilemap_chunk_next.x += 1
 
 # method #----------------------------------------------------------------------
 func _do_stuff() -> void:

@@ -217,6 +217,7 @@ metadata/_custom_type_script = "uid://hlc5ax0yoigb"
 [node name="BonusSpeedComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "parent")]
 script = ExtResource("5_5sj0x")
 movement_component = NodePath("../MovementComponent")
+max_bonus_speed = 150.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://c034ueyvbfqir"
 

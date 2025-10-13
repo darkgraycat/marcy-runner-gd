@@ -17,8 +17,7 @@ metadata/_custom_type_script = "uid://bj35ucinwqnva"
 
 [sub_resource type="Resource" id="Resource_0v8w3"]
 script = ExtResource("4_7nfa8")
-amount = 100.0
-mode = 1
+amount = 125.0
 metadata/_custom_type_script = "uid://cr30jau74cb5x"
 
 [sub_resource type="Resource" id="Resource_vhywp"]
