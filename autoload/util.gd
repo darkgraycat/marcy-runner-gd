@@ -12,8 +12,8 @@ func notify(message: String, channel: int = 0) -> void:
 
 # method #----------------------------------------------------------------------
 func log(msg: String, ...rest: Array) -> void:
-	var time := Time.get_datetime_string_from_system()
-	prints("[%s] %s" % [time, msg], rest)
+	var time := float(Time.get_ticks_msec())
+	prints("[%010.3f] %s" % [time / 1000, msg], rest)
 
 ## FILE MANAGEMENT #############################################################
 # method #----------------------------------------------------------------------
@@ -84,6 +84,10 @@ func find_of_type(node: Node, type: Variant) -> Array[Variant]:
 		func(n: Node) -> bool:
 			return is_instance_of(n, type)
 	)
+
+# method #----------------------------------------------------------------------
+func sleep(delay: float) -> void:
+	await get_tree().create_timer(delay).timeout
 
 
 ## VALIDATION AND ERROR HANDLING ###############################################

@@ -1,18 +1,15 @@
-class_name InvincibilityStatusEffect extends StatusEffectResource
+class_name DispelEffectsStatusEffect extends StatusEffectResource
 
 # variables #-------------------------------------------------------------------
-@export var duration_sec: float = 30
+@export var status_effect_type: Script
 
 # builtin #---------------------------------------------------------------------
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
-	if !health_component: return
-	health_component.set_invincibility_time_sec(duration_sec)
-	await U.sleep(duration_sec)
-	if is_instance_valid(status_effect_component):
-		status_effect_component.destroy_status_effect(self)
+	var status_effects := status_effect_component.get_status_effects(status_effect_type)
+	for status_effect in status_effects:
+		status_effect_component.destroy_status_effect(status_effect)
 
 # method #----------------------------------------------------------------------
 func on_destroy(_status_effect_component: StatusEffectComponent) -> void:

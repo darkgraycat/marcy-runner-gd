@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="SpeedTimedStatusEffect" load_steps=2 format=3 uid="uid://v6vyyu75qn3d"]
 
-[ext_resource type="Script" uid="uid://cr30jau74cb5x" path="res://components/status_effect/collection/speed_timed.status_effect.gd" id="1_l55lh"]
+[ext_resource type="Script" uid="uid://cr30jau74cb5x" path="res://components/status_effect/collection/speed_timed.status_effect.gd" id="1_620ms"]
 
 [resource]
-script = ExtResource("1_l55lh")
+script = ExtResource("1_620ms")
+duration_sec = 5.0
 name = &"Speed"
 metadata/_custom_type_script = "uid://cr30jau74cb5x"

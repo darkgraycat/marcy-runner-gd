@@ -12,7 +12,6 @@ func emit_update_ui() -> void:
 
 # method #----------------------------------------------------------------------
 func emit_effects_updated(status_effect_component: StatusEffectComponent) -> void:
-	prints("Effects updated")
 	effects_updated.emit(status_effect_component)
 
 # method #----------------------------------------------------------------------

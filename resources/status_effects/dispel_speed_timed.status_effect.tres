@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DispelEffectsStatusEffect" load_steps=3 format=3 uid="uid://bvukyg7q2cjwg"]
+
+[ext_resource type="Script" uid="uid://d0xdrjv3giho6" path="res://components/status_effect/collection/dispel_effects.status_effect.gd" id="1_pcxky"]
+[ext_resource type="Script" uid="uid://cr30jau74cb5x" path="res://components/status_effect/collection/speed_timed.status_effect.gd" id="2_q1161"]
+
+[resource]
+script = ExtResource("1_pcxky")
+status_effect_type = ExtResource("2_q1161")
+metadata/_custom_type_script = "uid://d0xdrjv3giho6"

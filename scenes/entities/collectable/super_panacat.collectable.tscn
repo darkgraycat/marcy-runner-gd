@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/collectable/collectable.gd" id="1_kggky"]
 [ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_8fcl2"]
-[ext_resource type="Resource" uid="uid://v6vyyu75qn3d" path="res://resources/status_effects/speed_25_10.status_effect.tres" id="3_ghsj1"]
+[ext_resource type="Resource" uid="uid://v6vyyu75qn3d" path="res://resources/status_effects/speed_25_5s.status_effect.tres" id="3_ghsj1"]
 [ext_resource type="Resource" uid="uid://g358lxep5nwp" path="res://resources/status_effects/score_10.status_effect.tres" id="4_2xgr6"]
 [ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="5_3yt7t"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="6_0skrx"]

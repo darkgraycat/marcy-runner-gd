@@ -4,8 +4,9 @@ signal status_effect_destroyed(status_effect: StatusEffectResource)
 
 # variables #-------------------------------------------------------------------
 @export var components: Array[Component] = []: set = set_components
-var _components_dict: Dictionary = {}
+var _components: Dictionary[Object, Component] = {}
 var _status_effects: Array[StatusEffectResource]
+var _status_effect_flags: Dictionary[String, bool]
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -25,12 +26,15 @@ func set_components(value: Array[Component]) -> void:
 	components = value
 	for component in value:
 		var script_key: Variant = component.get_script()
-		if !_components_dict.has(script_key): _components_dict.set(script_key, component)
-		else: push_warning(self, "%s component alredy assigned" % script_key)
+		if !_components.has(script_key):
+			_components.set(script_key, component)
+			U.log("Component added %s" % component)
+		else:
+			push_warning(self, "%s component alredy assigned" % script_key)
 
 # method #----------------------------------------------------------------------
 func get_component(type: Variant) -> Component:
-	return _components_dict.get(type, null)
+	return _components.get(type, null)
 
 # method #----------------------------------------------------------------------
 func apply_status_effect(status_effect: StatusEffectResource) -> void:
@@ -51,10 +55,18 @@ func destroy_status_effect(status_effect: StatusEffectResource) -> void:
 
 
 # method #----------------------------------------------------------------------
-func get_status_effects(type: Variant) -> Array[StatusEffectResource]:
+func get_status_effects(type: Script) -> Array[StatusEffectResource]:
 	return _status_effects.filter(
 		func(effect: StatusEffectResource) -> bool:
-			return is_instance_of(effect, type)
+			return effect.get_script() == type
 	)
+
+# method #----------------------------------------------------------------------
+func get_status_effect_flag(flag_name: String) -> bool:
+	return _status_effect_flags.get(flag_name, false)
+
+# method #----------------------------------------------------------------------
+func set_status_effect_flag(flag_name: String, _value: bool) -> void:
+	_status_effect_flags.set(flag_name, false)
 
 # callback #--------------------------------------------------------------------

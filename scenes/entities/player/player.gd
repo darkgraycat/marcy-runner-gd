@@ -41,18 +41,23 @@ func _physics_process(_delta: float) -> void:
 		sprite_2d.flip_h = input_move < 0
 
 	state = next_state()
+	E.emit_debug_message("Xvel %.1f" % velocity.x)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
 	if state == new_state: return
 	state = new_state
+	sprite_2d.modulate = Color.WHITE
 	match state:
 		State.Idle: animation_player.play(&"idle")
 		State.Move: animation_player.play(&"walk")
 		State.Jump: animation_player.play(&"jump")
+		State.Oiia: animation_player.play(&"oiia")
 
 # method #----------------------------------------------------------------------
 func next_state() -> State:
+	if state == State.Oiia:
+		return State.Oiia
 	if !is_on_floor():
 		return State.Jump
 	elif abs(input_move) > 0.01:
@@ -105,6 +110,6 @@ func _on_health_component_died() -> void:
 
 # callback #--------------------------------------------------------------------
 func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:
-	prints("Player says -------- ", status_effect.name, is_applied)
+	match status_effect.name:
+		"Oiia": state = State.Oiia if is_applied else State.Idle
 	E.emit_effects_updated(status_effect_component)
-

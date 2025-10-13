@@ -8,20 +8,21 @@ class_name SpeedTimedStatusEffect extends StatusEffectResource
 
 # method #----------------------------------------------------------------------
 func on_apply(status_effect_component: StatusEffectComponent) -> void:
-	var movement_component := status_effect_component.get_component(MovementComponent)
-	if !movement_component: return
-	movement_component.target_speed += amount
-	var timer := status_effect_component.get_tree().create_timer(duration_sec)
-	await timer.timeout
+	var bonus_speed_component: BonusSpeedComponent = status_effect_component.get_component(BonusSpeedComponent)
+	if !bonus_speed_component: return
+	# bonus_speed_component.inc_bonus_speed(amount)
+	bonus_speed_component.bonus_speed += amount
+
+	await U.sleep(duration_sec)
 	if is_instance_valid(status_effect_component):
-		timer.free.call_deferred()
 		status_effect_component.destroy_status_effect(self)
 
 # method #----------------------------------------------------------------------
 func on_destroy(status_effect_component: StatusEffectComponent) -> void:
-	var movement_component := status_effect_component.get_component(MovementComponent)
-	if !movement_component: return
-	movement_component.target_speed -= amount
+	var bonus_speed_component: BonusSpeedComponent = status_effect_component.get_component(BonusSpeedComponent)
+	if !bonus_speed_component: return
+	# bonus_speed_component.dec_bonus_speed(amount)
+	bonus_speed_component.bonus_speed -= amount
 
 # method #----------------------------------------------------------------------
 func on_update(_delta: float, _status_effect_component: StatusEffectComponent) -> void:
