@@ -86,6 +86,8 @@ func respawn(spawn_point: Vector2) -> void:
 	movement_component.set_physics_process(true)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
+	state = State.Idle
+	status_effect_component.destroy_all_status_effects()
 	animation_player.play("RESET")
 	E.emit_player_spawned(spawn_point)
 

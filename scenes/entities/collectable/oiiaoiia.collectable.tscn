@@ -11,12 +11,13 @@
 
 [sub_resource type="Resource" id="Resource_8p0rv"]
 script = ExtResource("3_i1uql")
-duration_sec = 10.0
+duration_sec = 5.0
 name = &"Oiia"
 metadata/_custom_type_script = "uid://bj35ucinwqnva"
 
 [sub_resource type="Resource" id="Resource_0v8w3"]
 script = ExtResource("4_7nfa8")
+duration_sec = 5.0
 amount = 125.0
 metadata/_custom_type_script = "uid://cr30jau74cb5x"
 

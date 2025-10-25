@@ -53,6 +53,12 @@ func destroy_status_effect(status_effect: StatusEffectResource) -> void:
 	status_effect.on_destroy(self)
 	status_effect_destroyed.emit(status_effect)
 
+# method #----------------------------------------------------------------------
+func destroy_all_status_effects() -> void:
+	for status_effect: StatusEffectResource in _status_effects:
+		_status_effects.erase(status_effect)
+		status_effect.on_destroy(self)
+		status_effect_destroyed.emit(status_effect)
 
 # method #----------------------------------------------------------------------
 func get_status_effects(type: Script) -> Array[StatusEffectResource]:

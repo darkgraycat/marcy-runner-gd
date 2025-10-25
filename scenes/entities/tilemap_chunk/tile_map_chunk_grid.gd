@@ -1,6 +1,7 @@
 @tool
 class_name TileMapChunkGrid extends Node2D
 
+# variables #-------------------------------------------------------------------
 @export_group("Dimensions")
 ## Size of each tile in pixels (width x height)
 @export var tile_size: Vector2i = Vector2i(16, 16):
@@ -29,12 +30,13 @@ class_name TileMapChunkGrid extends Node2D
 @onready var color_rect: ColorRect = $ColorRect
 @onready var shader: ShaderMaterial = color_rect.material
 
+# builtin #---------------------------------------------------------------------
 func _ready() -> void:
 	if not Engine.is_editor_hint(): hide()
 	_sync_dimensions()
 	_sync_visuals()
 
-
+# method #----------------------------------------------------------------------
 func get_tilemap_layer_patterns(layer: TileMapLayer) -> Array[TileMapPattern]:
 	var result: Array[TileMapPattern] = []
 	var chunk_size := get_tilemap_layer_chunk_size(layer)
@@ -45,11 +47,11 @@ func get_tilemap_layer_patterns(layer: TileMapLayer) -> Array[TileMapPattern]:
 			result.append(layer.get_pattern(coords))
 	return result
 
-
+# method #----------------------------------------------------------------------
 func get_tilemap_layer_chunk_size(layer: TileMapLayer) -> Vector2i:
 	return (tile_size / layer.tile_set.tile_size) * chunk_size
 
-
+# method #----------------------------------------------------------------------
 func recti_to_points(rect: Rect2i) -> Array[Vector2i]:
 	var coords: Array[Vector2i] = []
 	for x in rect.size.x:
@@ -58,6 +60,7 @@ func recti_to_points(rect: Rect2i) -> Array[Vector2i]:
 	return coords
 
 
+# callback #--------------------------------------------------------------------
 func _sync_dimensions() -> void:
 	if not is_node_ready(): await ready
 	var rect_size := grid_size * chunk_size * tile_size
@@ -66,7 +69,7 @@ func _sync_dimensions() -> void:
 	shader.set_shader_parameter("chunk_size", chunk_size)
 	shader.set_shader_parameter("rect_size", rect_size)
 
-
+# callback #--------------------------------------------------------------------
 func _sync_visuals() -> void:
 	if not is_node_ready(): await ready
 	shader.set_shader_parameter("primary_color", grid_color_odd)

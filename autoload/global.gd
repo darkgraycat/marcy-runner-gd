@@ -18,7 +18,7 @@ const GROUP_NAME_PLAYER: StringName = "Player"
 const GROUP_NAME_ITEMS: StringName = "Items"
 const GROUP_NAME_ENEMIES: StringName = "Enemies"
 
-var DEBUG: bool = true
+var DEBUG: bool = false
 
 # builtin #---------------------------------------------------------------------
 func _unhandled_input(event: InputEvent) -> void:
