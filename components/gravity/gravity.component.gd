@@ -19,5 +19,3 @@ func handle_gravity(body: CharacterBody2D, delta: float) -> void:
 func set_weight(value: float) -> void:
 	weight = value
 	_force = value * Globals.GRAVITY
-
-# callback #--------------------------------------------------------------------

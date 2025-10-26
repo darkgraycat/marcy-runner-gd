@@ -21,5 +21,3 @@ func handle_movement(new_direction: float, delta: float) -> void:
 # method #----------------------------------------------------------------------
 func set_direction(new_direction: float) -> void:
 	direction = new_direction
-
-# callback #--------------------------------------------------------------------

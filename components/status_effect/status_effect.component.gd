@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 # method #----------------------------------------------------------------------
 static func find_status_effect_component(node: Node) -> StatusEffectComponent:
-	return Utils.find_of_type(node, StatusEffectComponent)[0]
+	return Utils.find_nodes_of_type(node, StatusEffectComponent)[0]
 
 # method #----------------------------------------------------------------------
 func set_components(value: Array[Component]) -> void:

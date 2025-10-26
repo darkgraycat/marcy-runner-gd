@@ -15,7 +15,8 @@ func _ready() -> void:
 	_last_hit_timestamp = Utils.time
 	_original_modulate = parent.modulate
 
-func _process(delta: float) -> void:
+# builtin #---------------------------------------------------------------------
+func _process(_delta: float) -> void:
 	Events.emit_debug_message("INV_TIME: %s" % ceil(get_invincibility_time_sec()), 999)
 
 # method #----------------------------------------------------------------------
@@ -51,5 +52,3 @@ func set_invincibility_time_sec(seconds: float) -> void:
 # method #----------------------------------------------------------------------
 func get_invincibility_time_sec() -> float:
 	return max(0, _last_hit_timestamp + damage_interval_sec - Utils.time)
-
-# callback #--------------------------------------------------------------------

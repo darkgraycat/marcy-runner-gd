@@ -13,7 +13,7 @@ func notify(message: String, channel: int = 0) -> void:
 # method #----------------------------------------------------------------------
 func log(msg: String, ...rest: Array) -> void:
 	var time := float(Time.get_ticks_msec())
-	prints("[%010.3f] %s" % [time / 1000, msg], rest)
+	prints("%08.3f│%s" % [time / 1000, msg], rest)
 
 ## FILE MANAGEMENT #############################################################
 # method #----------------------------------------------------------------------
@@ -79,7 +79,7 @@ func snap_angle(angle: float, step_deg: float) -> float:
 	return round(angle / step_rad) * step_rad
 
 # method #----------------------------------------------------------------------
-func find_of_type(node: Node, type: Variant) -> Array[Variant]:
+func find_nodes_of_type(node: Node, type: Variant) -> Array[Variant]:
 	return node.get_children().filter(
 		func(n: Node) -> bool:
 			return is_instance_of(n, type)

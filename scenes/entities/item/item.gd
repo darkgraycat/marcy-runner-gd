@@ -1,4 +1,4 @@
-class_name Collectable extends Area2D
+class_name Item extends Area2D
 
 # variables #-------------------------------------------------------------------
 @export var status_effects: Array[StatusEffectResource] = []
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # method #----------------------------------------------------------------------
 func die() -> void:
-	Utils.log("Collectable died")
+	Utils.log("Item died")
 	collision_shape_2d.disabled = true
 	animated_sprite_2d.play("die")
 	await animated_sprite_2d.animation_finished

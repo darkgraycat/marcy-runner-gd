@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ParallaxResource" load_steps=2 format=3 uid="uid://d32vhuvt7e74y"]
 
-[ext_resource type="Script" uid="uid://cjfo4g5qkn56m" path="res://scenes/entities/parallax/parallax.resource.gd" id="1_cos6r"]
+[ext_resource type="Script" uid="uid://cjfo4g5qkn56m" path="res://scenes/parallax/parallax.resource.gd" id="1_cos6r"]
 
 [resource]
 script = ExtResource("1_cos6r")
