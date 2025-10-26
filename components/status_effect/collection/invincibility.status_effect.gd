@@ -10,7 +10,7 @@ func on_apply(status_effect_component: StatusEffectComponent) -> void:
 	var health_component: HealthComponent = status_effect_component.get_component(HealthComponent)
 	if !health_component: return
 	health_component.set_invincibility_time_sec(duration_sec)
-	await U.sleep(duration_sec)
+	await Utils.sleep(duration_sec)
 	if is_instance_valid(status_effect_component):
 		status_effect_component.destroy_status_effect(self)
 

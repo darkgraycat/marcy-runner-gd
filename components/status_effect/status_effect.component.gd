@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 # method #----------------------------------------------------------------------
 static func find_status_effect_component(node: Node) -> StatusEffectComponent:
-	return U.find_of_type(node, StatusEffectComponent)[0]
+	return Utils.find_of_type(node, StatusEffectComponent)[0]
 
 # method #----------------------------------------------------------------------
 func set_components(value: Array[Component]) -> void:
@@ -28,7 +28,7 @@ func set_components(value: Array[Component]) -> void:
 		var script_key: Variant = component.get_script()
 		if !_components.has(script_key):
 			_components.set(script_key, component)
-			U.log("Component added %s" % component)
+			Utils.log("Component added %s" % component)
 		else:
 			push_warning(self, "%s component alredy assigned" % script_key)
 

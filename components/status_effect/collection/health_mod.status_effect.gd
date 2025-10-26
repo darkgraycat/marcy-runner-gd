@@ -3,7 +3,7 @@ class_name HealthModStatusEffect extends StatusEffectResource
 # variables #-------------------------------------------------------------------
 @export var amount: float = 1
 # TODO: is not used
-@export var damage_type: G.HealthModType = G.HealthModType.GENERIC
+@export var damage_type: Globals.HealthModType = Globals.HealthModType.GENERIC
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:

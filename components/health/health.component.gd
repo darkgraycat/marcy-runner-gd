@@ -12,11 +12,11 @@ var _original_modulate: Color = Color.WHITE
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
 	health = max_health
-	_last_hit_timestamp = U.time
+	_last_hit_timestamp = Utils.time
 	_original_modulate = parent.modulate
 
 func _process(delta: float) -> void:
-	E.emit_debug_message("INV_TIME: %s" % ceil(get_invincibility_time_sec()), 999)
+	Events.emit_debug_message("INV_TIME: %s" % ceil(get_invincibility_time_sec()), 999)
 
 # method #----------------------------------------------------------------------
 func set_health(value: float) -> void:
@@ -29,7 +29,7 @@ func set_health(value: float) -> void:
 func damage(amount: float) -> void:
 	if is_invincible() && amount > 0: return
 	health = max(health - amount, 0)
-	_last_hit_timestamp = U.time
+	_last_hit_timestamp = Utils.time
 	var inv_left := get_invincibility_time_sec()
 	var tween := parent.create_tween()
 	tween.set_loops(int(inv_left * 3))
@@ -42,14 +42,14 @@ func heal(amount: float) -> void:
 
 # method #----------------------------------------------------------------------
 func is_invincible() -> bool:
-	return _last_hit_timestamp + damage_interval_sec > U.time
+	return _last_hit_timestamp + damage_interval_sec > Utils.time
 
 # method #----------------------------------------------------------------------
 func set_invincibility_time_sec(seconds: float) -> void:
-	_last_hit_timestamp = U.time + seconds
+	_last_hit_timestamp = Utils.time + seconds
 
 # method #----------------------------------------------------------------------
 func get_invincibility_time_sec() -> float:
-	return max(0, _last_hit_timestamp + damage_interval_sec - U.time)
+	return max(0, _last_hit_timestamp + damage_interval_sec - Utils.time)
 
 # callback #--------------------------------------------------------------------

@@ -28,7 +28,7 @@ func die() -> void:
 func damage(body: CharacterBody2D) -> void:
 	if is_dying: return
 	is_dying = true
-	if !body.is_in_group(G.GROUP_NAME_PLAYER): return
+	if !body.is_in_group(Globals.GROUP_NAME_PLAYER): return
 
 	var sec := StatusEffectComponent.find_status_effect_component(body)
 	if !sec:

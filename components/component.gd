@@ -1,3 +1,4 @@
+@abstract
 class_name Component extends Node
 
 # variables #-------------------------------------------------------------------
@@ -10,7 +11,7 @@ func _ready() -> void:
 
 # method #----------------------------------------------------------------------
 static func find_component(node: Node, type: Variant) -> Component:
-	return U.find_of_type(node, type)[0]
+	return Utils.find_of_type(node, type)[0]
 
 # method #----------------------------------------------------------------------
 func set_processing(value: bool) -> void:

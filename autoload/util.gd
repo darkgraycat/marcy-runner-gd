@@ -108,7 +108,7 @@ func validate_error_pairs(node: Node, ...bool_string_pairs: Array) -> bool:
 
 # method #----------------------------------------------------------------------
 ## Validator utility for fluent condition checking on a Node. <br>
-## Example: U.validate(self).check(!parent, "Parent missing").check(x < 0, "x negative")
+## Example: Utils.validate(self).check(!parent, "Parent missing").check(x < 0, "x negative")
 func validate(caused_by: Node) -> Validator:
 	return Validator.new(caused_by)
 

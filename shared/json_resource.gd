@@ -10,11 +10,11 @@ func init() -> JsonResource:
 
 func parse(prop_name: StringName, value: Variant, type: int) -> void:
 	var current: Variant = self[prop_name]
-	if current is Array and value is Array: U.cast_array(current, value, type)
-	else: self[prop_name] = U.cast_type(value, type)
+	if current is Array and value is Array: Utils.cast_array(current, value, type)
+	else: self[prop_name] = Utils.cast_type(value, type)
 
 func save(data: Dictionary) -> void:
-	U.save_as_text(json.resource_path, JSON.stringify(data))
+	Utils.save_as_text(json.resource_path, JSON.stringify(data))
 
 func _build(_data: Dictionary) -> void:
 	assert(false, "_build() must be overridden by subclass")

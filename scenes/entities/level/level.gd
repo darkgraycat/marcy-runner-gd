@@ -17,17 +17,17 @@ var _parallax_idx: int = -1
 # builtin #---------------------------------------------------------------------
 func _init() -> void:
 	# moved into _init because Level.ready fired last
-	V.set_state(V.VarName.Score, 0)
-	V.set_state(V.VarName.Lifes, 9)
+	Variables.set_state(Variables.VarName.Score, 0)
+	Variables.set_state(Variables.VarName.Lifes, 9)
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	E.player_died.connect(_on_player_died)
-	player_camera.limit_bottom = G.VIEWPORT_HEIGHT
+	Events.player_died.connect(_on_player_died)
+	player_camera.limit_bottom = Globals.VIEWPORT_HEIGHT
 	_tilemap_chunk_idxs.assign(range(0, tilemap_chunk_root.get_total_chunks()))
 
-	U.log("Loaded chunk ids", _tilemap_chunk_idxs)
-	U.log("Px", config.parallax_resources)
+	Utils.log("Loaded chunk ids", _tilemap_chunk_idxs)
+	Utils.log("Px", config.parallax_resources)
 
 # builtin #---------------------------------------------------------------------
 func _physics_process(_delta: float) -> void:
@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 		player.input_move = Input.get_axis("move_left", "move_right")
 		player.input_jump = Input.is_action_pressed("jump")
 
-		if player.global_position.y > G.VIEWPORT_HEIGHT + G.TILE_SIZE:
+		if player.global_position.y > Globals.VIEWPORT_HEIGHT + Globals.TILE_SIZE:
 			player.die()
 
 		if player.global_position.x > (_tilemap_chunk_next.x - 1) * 288:
@@ -54,7 +54,7 @@ func next_tilemap_chunk() -> void:
 		chunk_idx = _tilemap_chunk_idxs.pick_random()
 
 	_tilemap_prev_chunk_idx = chunk_idx;
-	U.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tilemap_chunk_next.x * 288)
+	Utils.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tilemap_chunk_next.x * 288)
 	tilemap_chunk_root.apply_chunk_at(chunk_idx, _tilemap_chunk_next)
 	_tilemap_chunk_next.x += 1
 
@@ -65,7 +65,7 @@ func next_demo_tilemap_chunk() -> void:
 		chunk_idx = 0;
 
 	_tilemap_prev_chunk_idx = chunk_idx;
-	U.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tilemap_chunk_next.x * 288)
+	Utils.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tilemap_chunk_next.x * 288)
 	tilemap_chunk_root.apply_chunk_at(chunk_idx, _tilemap_chunk_next)
 	_tilemap_chunk_next.x += 1
 

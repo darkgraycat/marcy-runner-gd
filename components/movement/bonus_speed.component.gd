@@ -11,13 +11,13 @@ var parent_target_speed: float = 0.0
 func _ready() -> void:
 	await parent.ready
 	parent_target_speed = movement_component.target_speed
-	U.log("PARENT TS", parent_target_speed)
+	Utils.log("PARENT TS", parent_target_speed)
 
 # method #----------------------------------------------------------------------
 func set_bonus_speed(new_bonus_speed: float) -> void:
 	bonus_speed = min(new_bonus_speed, max_bonus_speed)
 	movement_component.target_speed = parent_target_speed + bonus_speed
-	U.log("SET BS %s, TS %s" % [bonus_speed, movement_component.target_speed])
+	Utils.log("SET BS %s, TS %s" % [bonus_speed, movement_component.target_speed])
 
 # callback #--------------------------------------------------------------------
 

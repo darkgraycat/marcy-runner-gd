@@ -20,10 +20,10 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.target_speed = G.MOVE_VELOCITY
-	movement_component.acceleration = G.ACCELERATION
-	jumping_component.target_force = G.JUMP_VELOCITY
-	health_component.health = V.get_state(V.VarName.Lifes)
+	movement_component.target_speed = Globals.MOVE_VELOCITY
+	movement_component.acceleration = Globals.ACCELERATION
+	jumping_component.target_force = Globals.JUMP_VELOCITY
+	health_component.health = Variables.get_state(Variables.VarName.Lifes)
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
@@ -39,7 +39,7 @@ func _physics_process(_delta: float) -> void:
 		sprite_2d.flip_h = input_move < 0
 
 	state = next_state()
-	E.emit_debug_message("Xvel %.1f" % velocity.x)
+	Events.emit_debug_message("Xvel %.1f" % velocity.x)
 
 # method #----------------------------------------------------------------------
 func set_state(new_state: State) -> void:
@@ -67,7 +67,7 @@ func next_state() -> State:
 func get_current_state() -> String:
 	return (
 		"jump" if not is_on_floor() else
-		"walk" if abs(velocity.x) > G.ACCELERATION else "idle"
+		"walk" if abs(velocity.x) > Globals.ACCELERATION else "idle"
 	)
 
 # method #----------------------------------------------------------------------
@@ -77,7 +77,7 @@ func die() -> void:
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
-	E.emit_player_died()
+	Events.emit_player_died()
 
 # method #----------------------------------------------------------------------
 func respawn(spawn_point: Vector2) -> void:
@@ -89,7 +89,7 @@ func respawn(spawn_point: Vector2) -> void:
 	state = State.Idle
 	status_effect_component.destroy_all_status_effects()
 	animation_player.play("RESET")
-	E.emit_player_spawned(spawn_point)
+	Events.emit_player_spawned(spawn_point)
 
 # callback #--------------------------------------------------------------------
 func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
@@ -102,7 +102,7 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 # callback #--------------------------------------------------------------------
 func _on_health_component_health_changed(health: float) -> void:
 	# TODO: add visuals thats depends on + or - amount
-	V.set_state(V.VarName.Lifes, health)
+	Variables.set_state(Variables.VarName.Lifes, health)
 
 # callback #--------------------------------------------------------------------
 func _on_health_component_died() -> void:
@@ -112,4 +112,4 @@ func _on_health_component_died() -> void:
 func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:
 	match status_effect.name:
 		"Oiia": state = State.Oiia if is_applied else State.Idle
-	E.emit_effects_updated(status_effect_component)
+	Events.emit_effects_updated(status_effect_component)

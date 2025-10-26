@@ -30,11 +30,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-G="*res://autoload/global.gd"
-U="*res://autoload/util.gd"
-E="*res://autoload/events.gd"
-S="*res://autoload/strings.gd"
-V="*res://autoload/variables.gd"
+Globals="*res://autoload/global.gd"
+Utils="*res://autoload/util.gd"
+Events="*res://autoload/events.gd"
+Strings="*res://autoload/strings.gd"
+Variables="*res://autoload/variables.gd"
 
 [debug]
 
@@ -57,18 +57,6 @@ window/stretch/scale_mode="integer"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
-
-[file_customization]
-
-folder_colors={
-"res://addons/": "gray",
-"res://assets/": "gray",
-"res://autoload/": "red",
-"res://components/": "blue",
-"res://resources/": "yellow",
-"res://scenes/": "orange",
-"res://shared/": "purple"
-}
 
 [global_group]
 

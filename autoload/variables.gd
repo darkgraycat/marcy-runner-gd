@@ -17,7 +17,7 @@ func _init() -> void:
 
 # method #----------------------------------------------------------------------
 func set_state(vname: VarName, value: float) -> void:
-	U.log("Set state ", get_state(vname), " -> ", value)
+	Utils.log("Set state ", get_state(vname), " -> ", value)
 	_state[vname] = value
 	updated.emit()
 
