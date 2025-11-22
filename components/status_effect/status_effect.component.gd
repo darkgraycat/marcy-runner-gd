@@ -29,7 +29,7 @@ func set_components(value: Array[Component]) -> void:
 			_components.set(script_key, component)
 			Utils.log("Component added %s" % component)
 		else:
-			push_warning(self, "%s component alredy assigned" % script_key)
+			push_warning(self, "%s component already assigned" % script_key)
 
 # method #----------------------------------------------------------------------
 func get_component(type: Variant) -> Component:

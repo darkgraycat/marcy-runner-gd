@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj2kxo8h6pjyr"]
+
+[ext_resource type="Script" uid="uid://chixoddgcdr7j" path="res://scenes/tile_map_grid/tile_map_grid.gd" id="1_ho87i"]
+[ext_resource type="Shader" uid="uid://defsinfpv5qny" path="res://scenes/tile_map_grid/tile_map_grid.gdshader" id="2_hpybf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhud0"]
+shader = ExtResource("2_hpybf")
+shader_parameter/rect_size = Vector2(512, 512)
+shader_parameter/cell_size = Vector2(128, 128)
+shader_parameter/line_color = Color(0.8, 0.6, 0.4, 0.5)
+shader_parameter/line_width = 1.0
+
+[node name="TileMapGrid" type="Node2D"]
+script = ExtResource("1_ho87i")
+grid_size = Vector2i(3, 2)
+cell_size = Vector2i(144, 96)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_hhud0")
+offset_right = 432.0
+offset_bottom = 192.0
