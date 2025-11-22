@@ -15,10 +15,10 @@ func on_apply(status_effect_component: StatusEffectComponent) -> void
 
 # method #----------------------------------------------------------------------
 ## Should be called only from `StatusEffectComponent`
-@abstract 
+@abstract
 func on_destroy(status_effect_component: StatusEffectComponent) -> void
 
 # method #----------------------------------------------------------------------
 ## Should be called only from `StatusEffectComponent`
-@abstract 
+@abstract
 func on_update(delta: float, status_effect_component: StatusEffectComponent) -> void

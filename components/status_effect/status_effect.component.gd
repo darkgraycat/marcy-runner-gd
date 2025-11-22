@@ -6,7 +6,6 @@ signal status_effect_destroyed(status_effect: StatusEffectResource)
 @export var components: Array[Component] = []: set = set_components
 var _components: Dictionary[Object, Component] = {}
 var _status_effects: Array[StatusEffectResource]
-var _status_effect_flags: Dictionary[String, bool]
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
@@ -66,13 +65,3 @@ func get_status_effects(type: Script) -> Array[StatusEffectResource]:
 		func(effect: StatusEffectResource) -> bool:
 			return effect.get_script() == type
 	)
-
-# method #----------------------------------------------------------------------
-func get_status_effect_flag(flag_name: String) -> bool:
-	return _status_effect_flags.get(flag_name, false)
-
-# method #----------------------------------------------------------------------
-func set_status_effect_flag(flag_name: String, _value: bool) -> void:
-	_status_effect_flags.set(flag_name, false)
-
-# callback #--------------------------------------------------------------------

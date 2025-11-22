@@ -1,9 +1,11 @@
 @tool
 extends Node
+
 signal notification(message: String, channel: int)
+
+# variables #-------------------------------------------------------------------
 var time: float:
 	get: return Time.get_unix_time_from_system()
-
 
 ## DEBUG #######################################################################
 # method #----------------------------------------------------------------------

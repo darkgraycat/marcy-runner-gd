@@ -1,0 +1,43 @@
+classDiagram
+	Component <|-- StatusEffectComponent
+	Component <|-- BonusSpeedComponent
+	Component <|-- MovementComponent
+
+	class Component{
+		+Node parent
+		+bool processing
+		+find_component()
+	}
+
+	class StatusEffectComponent{
+		+Array<Component> components
+		-Map<Object, Component> _components
+		-Array<StatusEffectResource> _status_effects
+		+set_components(cmps: Array<Component>)
+		+get_component(type: Object)
+		+apply_status_effect(status_effect: StatusEffectResource)
+		+destroy_status_effect(status_effect: StatusEffectResource)
+		+get_status_effects(type: Object)
+	}
+
+	class StatusEffectResource{
+		+String name
+		+on_apply(status_effect_component: StatusEffectComponent)
+		+on_destroy(status_effect_component: StatusEffectComponent)
+	}
+
+	class MovementComponent{
+		+float direction
+		+float target_speed
+		+float acceleration
+		+set_direction(new_direction: float)
+		+handle_movement(new_direction: float, delta: float)
+	}
+
+	class BonusSpeedComponent{
+		+MovementComponent movement_component
+		+float max_bonus_speed
+		+float bonus_speed
+		+set_bonus_speed(new_bonus_speed: float)
+	}
+
