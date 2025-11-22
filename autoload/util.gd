@@ -51,6 +51,14 @@ func load_resource(path: String) -> Resource:
 	var resource: Resource = load(path)
 	return resource
 
+## CALCULATIONS ################################################################
+# method #----------------------------------------------------------------------
+func get_recti_coords(rect: Rect2i) -> Array[Vector2i]:
+	var coords: Array[Vector2i] = []
+	for x in rect.size.x:
+		for y in rect.size.y:
+			coords.append(Vector2i(rect.position.x + x, rect.position.y + y))
+	return coords
 
 ## UTILS FOR NODES #############################################################
 # method #----------------------------------------------------------------------
@@ -71,11 +79,6 @@ func cast_array(target: Array, value: Array, type: int) -> void:
 		else: target.append(v)
 
 # method #----------------------------------------------------------------------
-func pick_random_element(array: Array) -> Variant:
-	if array.is_empty(): return null
-	return array[randi() % array.size()]
-
-# method #----------------------------------------------------------------------
 func snap_angle(angle: float, step_deg: float) -> float:
 	var step_rad := deg_to_rad(step_deg)
 	return round(angle / step_rad) * step_rad
@@ -85,6 +88,12 @@ func find_nodes_of_type(node: Node, type: Variant) -> Array[Variant]:
 	return node.get_children().filter(
 		func(n: Node) -> bool:
 			return is_instance_of(n, type)
+	)
+
+# method #----------------------------------------------------------------------
+func filter_nodes(nodes: Array[Node], type: Variant) -> Array[Variant]:
+	return nodes.filter(
+		func(n: Node) -> bool: return is_instance_of(n, type)
 	)
 
 # method #----------------------------------------------------------------------
