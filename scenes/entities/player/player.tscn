@@ -1,18 +1,17 @@
-[gd_scene load_steps=22 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=21 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
 [ext_resource type="Script" uid="uid://dduj1p81g57l7" path="res://components/gravity/gravity.component.gd" id="2_1murt"]
 [ext_resource type="Script" uid="uid://d1lxjscjl0323" path="res://components/status_effect/status_effect.component.gd" id="3_bjvvg"]
 [ext_resource type="Script" uid="uid://b34u6dd7dmw05" path="res://components/health/health.component.gd" id="4_8akj5"]
-[ext_resource type="Script" uid="uid://blmljr7pkk6pb" path="res://components/movement/movement.component.gd" id="4_nh4ur"]
-[ext_resource type="Script" uid="uid://c034ueyvbfqir" path="res://components/movement/bonus_speed.component.gd" id="5_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://hlc5ax0yoigb" path="res://components/jumping/jumping.component.gd" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c1ylr1hjdc3j" path="res://components/stats/stats.component.gd" id="8_7wli1"]
 [ext_resource type="Script" uid="uid://c37x7uitxl307" path="res://components/stats/collection/player.stats.resource.gd" id="9_7wli1"]
+[ext_resource type="Script" uid="uid://bsxydl4pvw7va" path="res://components/movement.gd" id="10_j0oqr"]
 
-[sub_resource type="Resource" id="Resource_7wli1"]
+[sub_resource type="Resource" id="Resource_xy2vv"]
 script = ExtResource("9_7wli1")
 metadata/_custom_type_script = "uid://c37x7uitxl307"
 
@@ -206,26 +205,14 @@ script = ExtResource("1_0v5uu")
 
 [node name="StatusEffectComponent" type="Node" parent="." node_paths=PackedStringArray("components", "parent")]
 script = ExtResource("3_bjvvg")
-components = [NodePath("../MovementComponent"), NodePath("../HealthComponent"), NodePath("../JumpingComponent"), NodePath("../BonusSpeedComponent")]
+components = [NodePath("../HealthComponent"), NodePath("../JumpingComponent")]
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://d1lxjscjl0323"
-
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("4_nh4ur")
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://blmljr7pkk6pb"
 
 [node name="JumpingComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("6_1murt")
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://hlc5ax0yoigb"
-
-[node name="BonusSpeedComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "parent")]
-script = ExtResource("5_5sj0x")
-movement_component = NodePath("../MovementComponent")
-max_bonus_speed = 150.0
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://c034ueyvbfqir"
 
 [node name="GravityComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("2_1murt")
@@ -242,8 +229,12 @@ metadata/_custom_type_script = "uid://b34u6dd7dmw05"
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("8_7wli1")
-stats = SubResource("Resource_7wli1")
+stats = SubResource("Resource_xy2vv")
 metadata/_custom_type_script = "uid://c1ylr1hjdc3j"
+
+[node name="Movement" type="Node" parent="."]
+script = ExtResource("10_j0oqr")
+metadata/_custom_type_script = "uid://bsxydl4pvw7va"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

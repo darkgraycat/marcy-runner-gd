@@ -6,9 +6,10 @@ class_name Player extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var jumping_component: JumpingComponent = $JumpingComponent
-@onready var movement_component: MovementComponent = $MovementComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 @onready var stats_component: StatsComponent = $StatsComponent
+
+@onready var movement: Movement = $Movement
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -21,12 +22,14 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
-	movement_component.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
+	movement.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
+	movement.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
+
 	jumping_component.target_force = stats_component.getv(PlayerStatsResource.Key.JumpVelocity)
 	health_component.health = stats_component.getv(PlayerStatsResource.Key.Health)
 
-	health_component.died.connect(func() -> void: die.call_deferred())
+	health_component.died.connect(func() -> void:
+		die.call_deferred())
 	health_component.health_changed.connect(func(health: float) -> void:
 		stats_component.setv(PlayerStatsResource.Key.Health, health)
 		Events.emit_player_attr_updated(PlayerStatsResource.Key.Health, health))
@@ -34,17 +37,16 @@ func _ready() -> void:
 	stats_component.changed.connect(Events.emit_player_attr_updated)
 
 
-	#health_component.health_changed.connect(_on_health_component_health_changed)
-	#health_component.died.connect(_on_health_component_died)
-
 	# to deprecate
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
 	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
 
 # builtin #---------------------------------------------------------------------
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	input_move = 1 # NOTE: make player always run
-	movement_component.direction = input_move
+	# movement_component.direction = input_move
+	# movement.direction = input_move
+	movement.accelerate(input_move, delta).move()
 	jumping_component.jumping = input_jump
 
 	if input_move:
@@ -85,7 +87,9 @@ func get_current_state() -> String:
 # method #----------------------------------------------------------------------
 func die() -> void:
 	set_physics_process(false)
-	movement_component.set_physics_process(false)
+	# movement_component.set_physics_process(false)
+	movement.set_physics_process(false)
+
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
@@ -95,7 +99,8 @@ func die() -> void:
 func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
-	movement_component.set_physics_process(true)
+	# movement_component.set_physics_process(true)
+	movement.set_physics_process(true)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
 	state = State.Idle
@@ -111,15 +116,6 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 		"jump": prints("In jump state")
 	pass # Replace with function body.
 
-# callback #--------------------------------------------------------------------
-func _on_health_component_health_changed(health: float) -> void:
-	stats_component.setv(PlayerStatsResource.Key.Health, health)
-	# TODO: add visuals thats depends on + or - amount
-	Variables.set_state(Variables.VarName.Lifes, health)
-
-# callback #--------------------------------------------------------------------
-func _on_health_component_died() -> void:
-	die.call_deferred()
 
 # callback #--------------------------------------------------------------------
 func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:

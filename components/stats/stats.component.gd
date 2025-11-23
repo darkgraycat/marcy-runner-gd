@@ -5,7 +5,7 @@ signal changed(key: String, value: float)
 @export var stats: StatsResource
 
 func _ready() -> void:
-	if !stats: return push_error(self, "StatsResource is not defined")
+	assert(stats, "StatsResource is not defined")
 	stats._init()
 
 func getv(key: String) -> float:
