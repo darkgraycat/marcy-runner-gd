@@ -14,13 +14,6 @@
 
 [sub_resource type="Resource" id="Resource_7wli1"]
 script = ExtResource("9_7wli1")
-attributes = Dictionary[String, float]({
-"Acceleration": 5.0,
-"Health": 4.0,
-"Invincible": 1.0,
-"JumpVelocity": 400.0,
-"MoveVelocity": 100.0
-})
 metadata/_custom_type_script = "uid://c37x7uitxl307"
 
 [sub_resource type="Animation" id="Animation_8akj5"]

@@ -8,7 +8,7 @@ class_name Player extends CharacterBody2D
 @onready var jumping_component: JumpingComponent = $JumpingComponent
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
-@onready var stats: StatsComponent = $StatsComponent
+@onready var stats_component: StatsComponent = $StatsComponent
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -21,13 +21,23 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.target_speed = stats.getv(PlayerStatsResource.Key.MoveVelocity)
-	movement_component.acceleration = stats.getv(PlayerStatsResource.Key.Acceleration)
-	jumping_component.target_force = stats.getv(PlayerStatsResource.Key.JumpVelocity)
-	health_component.health = stats.getv(PlayerStatsResource.Key.Health)
+	movement_component.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
+	movement_component.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
+	jumping_component.target_force = stats_component.getv(PlayerStatsResource.Key.JumpVelocity)
+	health_component.health = stats_component.getv(PlayerStatsResource.Key.Health)
 
-	health_component.health_changed.connect(_on_health_component_health_changed)
-	health_component.died.connect(_on_health_component_died)
+	health_component.died.connect(func() -> void: die.call_deferred())
+	health_component.health_changed.connect(func(health: float) -> void:
+		stats_component.setv(PlayerStatsResource.Key.Health, health)
+		Events.emit_player_attr_updated(PlayerStatsResource.Key.Health, health))
+
+	stats_component.changed.connect(Events.emit_player_attr_updated)
+
+
+	#health_component.health_changed.connect(_on_health_component_health_changed)
+	#health_component.died.connect(_on_health_component_died)
+
+	# to deprecate
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
 	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
 
@@ -103,7 +113,7 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 
 # callback #--------------------------------------------------------------------
 func _on_health_component_health_changed(health: float) -> void:
-	stats.setv(PlayerStatsResource.Key.Health, health)
+	stats_component.setv(PlayerStatsResource.Key.Health, health)
 	# TODO: add visuals thats depends on + or - amount
 	Variables.set_state(Variables.VarName.Lifes, health)
 

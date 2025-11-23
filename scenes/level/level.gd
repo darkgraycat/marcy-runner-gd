@@ -16,10 +16,10 @@ var _tile_map_prev_idx: int = -1
 var _parallax_idx: int = -1
 
 # builtin #---------------------------------------------------------------------
-func _init() -> void:
+# func _init() -> void:
 	# moved into _init because Level.ready fired last
-	Variables.set_state(Variables.VarName.Score, 0)
-	Variables.set_state(Variables.VarName.Lifes, 9)
+	# Variables.set_state(Variables.VarName.Score, 0)
+	# Variables.set_state(Variables.VarName.Lifes, 9)
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
