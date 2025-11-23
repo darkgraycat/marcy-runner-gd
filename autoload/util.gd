@@ -8,14 +8,15 @@ var time: float:
 	get: return Time.get_unix_time_from_system()
 
 ## DEBUG #######################################################################
-# method #----------------------------------------------------------------------
-func notify(message: String, channel: int = 0) -> void:
-	notification.emit(message, channel)
 
 # method #----------------------------------------------------------------------
 func log(msg: String, ...rest: Array) -> void:
 	var time := float(Time.get_ticks_msec())
-	prints("%08.3f│%s" % [time / 1000, msg], rest)
+	prints("%8.3f│%s" % [time / 1000, msg], rest)
+
+# method #----------------------------------------------------------------------
+func notify(message: String, channel: int = 0) -> void:
+	notification.emit(message, channel)
 
 ## FILE MANAGEMENT #############################################################
 # method #----------------------------------------------------------------------

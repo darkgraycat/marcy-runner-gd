@@ -8,6 +8,7 @@ class_name Player extends CharacterBody2D
 @onready var jumping_component: JumpingComponent = $JumpingComponent
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
+@onready var stats: StatsComponent = $StatsComponent
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -20,10 +21,11 @@ var state: State = State.Idle: set = set_state
 
 # builtin #---------------------------------------------------------------------
 func _ready() -> void:
-	movement_component.target_speed = Globals.MOVE_VELOCITY
-	movement_component.acceleration = Globals.ACCELERATION
-	jumping_component.target_force = Globals.JUMP_VELOCITY
-	health_component.health = Variables.get_state(Variables.VarName.Lifes)
+	movement_component.target_speed = stats.getv(PlayerStatsResource.Key.MoveVelocity)
+	movement_component.acceleration = stats.getv(PlayerStatsResource.Key.Acceleration)
+	jumping_component.target_force = stats.getv(PlayerStatsResource.Key.JumpVelocity)
+	health_component.health = stats.getv(PlayerStatsResource.Key.Health)
+
 	health_component.health_changed.connect(_on_health_component_health_changed)
 	health_component.died.connect(_on_health_component_died)
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
@@ -101,6 +103,7 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 
 # callback #--------------------------------------------------------------------
 func _on_health_component_health_changed(health: float) -> void:
+	stats.setv(PlayerStatsResource.Key.Health, health)
 	# TODO: add visuals thats depends on + or - amount
 	Variables.set_state(Variables.VarName.Lifes, health)
 
