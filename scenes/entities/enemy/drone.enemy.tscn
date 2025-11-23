@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_goa2j"]
 [ext_resource type="Script" uid="uid://dbs3r07tmmat7" path="res://components/status_effect/collection/health_mod.status_effect.gd" id="3_hj7f3"]
 [ext_resource type="Script" uid="uid://bow30cxumeo27" path="res://components/status_effect/collection/knockback.status_effect.gd" id="4_ip72x"]
+[ext_resource type="Script" uid="uid://xypka0y55jpc" path="res://components/c_velocity.gd" id="5_ip72x"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="6_5pdap"]
-[ext_resource type="Script" uid="uid://bsxydl4pvw7va" path="res://components/movement.gd" id="7_ip72x"]
 
 [sub_resource type="Resource" id="Resource_3ieed"]
 script = ExtResource("3_hj7f3")
@@ -85,6 +85,7 @@ size = Vector2(22, 5)
 collision_layer = 9
 collision_mask = 2
 script = ExtResource("1_jsorr")
+movement_direction = -1.0
 collision_shape_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 animation_player = NodePath("AnimationPlayer")
@@ -93,13 +94,9 @@ status_effects = Array[ExtResource("2_goa2j")]([SubResource("Resource_3ieed"), S
 
 [node name="Components" type="Node" parent="."]
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]
-script = ExtResource("7_ip72x")
+[node name="CVelocity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("5_ip72x")
 body = NodePath("../..")
-target_speed = 40.0
-acceleration = 100.0
-direction = -1.0
-metadata/_custom_type_script = "uid://bsxydl4pvw7va"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

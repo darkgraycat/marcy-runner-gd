@@ -1,12 +1,14 @@
 class_name Enemy extends CharacterBody2D
 
+@export var movement_direction := 0.0
+
 @export var collision_shape_2d: CollisionShape2D
 @export var sprite_2d: Sprite2D
 @export var animation_player: AnimationPlayer
 @export var hurbox_area_2d: Area2D
 @export var status_effects: Array[StatusEffectResource] = []
 
-@onready var movement: Movement = $Components/Movement
+@onready var c_velocity: CVelocity = $Components/CVelocity
 
 var is_dying: bool = false
 
@@ -17,8 +19,11 @@ func _ready() -> void:
 	hurbox_area_2d.body_entered.connect(_on_hurbox_area_2d_body_entered)
 	animation_player.play("idle")
 
-func _physics_process(delta: float) -> void:
-	if movement: movement.accelerate(-1, delta).move()
+	if c_velocity: c_velocity.move(movement_direction)
+
+
+func _physics_process(_delta: float) -> void:
+	move_and_slide()
 
 
 func die() -> void:

@@ -1,15 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=22 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
+[ext_resource type="Script" uid="uid://xypka0y55jpc" path="res://components/c_velocity.gd" id="2_7wli1"]
 [ext_resource type="Script" uid="uid://d1lxjscjl0323" path="res://components/status_effect/status_effect.component.gd" id="3_bjvvg"]
+[ext_resource type="Script" uid="uid://dy6qhmjt4pmha" path="res://components/jumping.gd" id="4_7wli1"]
 [ext_resource type="Script" uid="uid://b34u6dd7dmw05" path="res://components/health/health.component.gd" id="4_8akj5"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://hlc5ax0yoigb" path="res://components/jumping/jumping.component.gd" id="6_1murt"]
 [ext_resource type="Script" uid="uid://c1ylr1hjdc3j" path="res://components/stats/stats.component.gd" id="8_7wli1"]
 [ext_resource type="Script" uid="uid://2ijufwrafa3" path="res://components/gravity.gd" id="8_ovg4i"]
 [ext_resource type="Script" uid="uid://c37x7uitxl307" path="res://components/stats/collection/player.stats.resource.gd" id="9_7wli1"]
-[ext_resource type="Script" uid="uid://bsxydl4pvw7va" path="res://components/movement.gd" id="10_j0oqr"]
 
 [sub_resource type="Resource" id="Resource_xy2vv"]
 script = ExtResource("9_7wli1")
@@ -205,10 +206,14 @@ script = ExtResource("1_0v5uu")
 
 [node name="Components" type="Node" parent="."]
 
-[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]
-script = ExtResource("10_j0oqr")
+[node name="CVelocity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("2_7wli1")
 body = NodePath("../..")
-metadata/_custom_type_script = "uid://bsxydl4pvw7va"
+
+[node name="Jumping" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("4_7wli1")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://dy6qhmjt4pmha"
 
 [node name="Gravity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("8_ovg4i")

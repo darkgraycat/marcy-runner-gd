@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+@export var controller: Controller
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -8,7 +10,8 @@ class_name Player extends CharacterBody2D
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 @onready var stats_component: StatsComponent = $StatsComponent
 
-@onready var movement: Movement = $Components/Movement
+@onready var c_velocity: CVelocity = $Components/CVelocity
+@onready var jumping: Jumping = $Components/Jumping
 @onready var gravity: Gravity = $Components/Gravity
 
 enum State {Idle, Move, Jump, Die, Oiia}
@@ -22,8 +25,8 @@ var state: State = State.Idle: set = set_state
 
 
 func _ready() -> void:
-	movement.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
-	movement.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
+	c_velocity.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
+	c_velocity.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
 
 	jumping_component.target_force = stats_component.getv(PlayerStatsResource.Key.JumpVelocity)
 	health_component.health = stats_component.getv(PlayerStatsResource.Key.Health)
@@ -36,6 +39,12 @@ func _ready() -> void:
 
 	stats_component.changed.connect(Events.emit_player_attr_updated)
 
+	controller.jump_pressed.connect(jumping.jump_start)
+	controller.jump_released.connect(jumping.jump_release)
+
+	controller.move_pressed.connect(c_velocity.move)
+	controller.move_released.connect(c_velocity.stop)
+
 
 	# to deprecate
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
@@ -43,12 +52,15 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	input_move = 1 # NOTE: make player always run
+	# input_move = 1 # NOTE: make player always run
 	# movement_component.direction = input_move
 	# movement.direction = input_move
-	movement.accelerate(input_move, delta).move()
+	# movement.accelerate(input_move, delta).move()
 	gravity.apply_gravity(delta)
+
 	jumping_component.jumping = input_jump
+
+	move_and_slide()
 
 	if input_move:
 		sprite_2d.flip_h = input_move < 0
@@ -89,7 +101,7 @@ func get_current_state() -> String:
 func die() -> void:
 	set_physics_process(false)
 	# movement_component.set_physics_process(false)
-	movement.set_physics_process(false)
+	c_velocity.set_physics_process(false)
 
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
@@ -101,7 +113,7 @@ func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
 	# movement_component.set_physics_process(true)
-	movement.set_physics_process(true)
+	c_velocity.set_physics_process(true)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
 	state = State.Idle
