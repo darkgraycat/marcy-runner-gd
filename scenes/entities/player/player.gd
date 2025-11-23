@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody2D
 
-# variables #-------------------------------------------------------------------
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -9,7 +8,8 @@ class_name Player extends CharacterBody2D
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 @onready var stats_component: StatsComponent = $StatsComponent
 
-@onready var movement: Movement = $Movement
+@onready var movement: Movement = $Components/Movement
+@onready var gravity: Gravity = $Components/Gravity
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -20,7 +20,7 @@ var jump_in_progress: bool = false
 var current_state: String = "idle"
 var state: State = State.Idle: set = set_state
 
-# builtin #---------------------------------------------------------------------
+
 func _ready() -> void:
 	movement.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
 	movement.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
@@ -41,12 +41,13 @@ func _ready() -> void:
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
 	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
 
-# builtin #---------------------------------------------------------------------
+
 func _physics_process(delta: float) -> void:
 	input_move = 1 # NOTE: make player always run
 	# movement_component.direction = input_move
 	# movement.direction = input_move
 	movement.accelerate(input_move, delta).move()
+	gravity.apply_gravity(delta)
 	jumping_component.jumping = input_jump
 
 	if input_move:
@@ -55,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	state = next_state()
 	Events.emit_debug_message("Xvel %.1f" % velocity.x)
 
-# method #----------------------------------------------------------------------
+
 func set_state(new_state: State) -> void:
 	if state == new_state: return
 	state = new_state
@@ -66,7 +67,7 @@ func set_state(new_state: State) -> void:
 		State.Jump: animation_player.play(&"jump")
 		State.Oiia: animation_player.play(&"oiia")
 
-# method #----------------------------------------------------------------------
+
 func next_state() -> State:
 	if state == State.Oiia:
 		return State.Oiia
@@ -77,14 +78,14 @@ func next_state() -> State:
 	else:
 		return State.Idle
 
-# method #----------------------------------------------------------------------
+
 func get_current_state() -> String:
 	return (
 		"jump" if not is_on_floor() else
 		"walk" if abs(velocity.x) > Globals.ACCELERATION else "idle"
 	)
 
-# method #----------------------------------------------------------------------
+
 func die() -> void:
 	set_physics_process(false)
 	# movement_component.set_physics_process(false)
@@ -95,7 +96,7 @@ func die() -> void:
 	await animation_player.animation_finished
 	Events.emit_player_died()
 
-# method #----------------------------------------------------------------------
+
 func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
@@ -108,7 +109,7 @@ func respawn(spawn_point: Vector2) -> void:
 	animation_player.play("RESET")
 	Events.emit_player_spawned(spawn_point)
 
-# callback #--------------------------------------------------------------------
+
 func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 	match state_name:
 		"idle": prints("In idle state")
@@ -117,7 +118,6 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 	pass # Replace with function body.
 
 
-# callback #--------------------------------------------------------------------
 func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:
 	match status_effect.name:
 		"Oiia": state = State.Oiia if is_applied else State.Idle

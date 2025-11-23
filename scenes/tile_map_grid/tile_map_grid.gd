@@ -1,7 +1,7 @@
 @tool
 class_name TileMapGrid extends Node2D
 
-# variables #-------------------------------------------------------------------
+
 @export var grid_size: Vector2i = Vector2i(4, 4):
 	set(v): grid_size = v; _hint_update()
 @export var cell_size: Vector2i = Vector2i(128, 128):
@@ -11,7 +11,7 @@ class_name TileMapGrid extends Node2D
 var _tile_map_layers: Array[TileMapLayer] = []
 var _tile_map_patterns: Dictionary[String, Array] = {}
 
-# builtin #---------------------------------------------------------------------
+
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 
@@ -25,7 +25,7 @@ func _ready() -> void:
 		_tile_map_patterns[layer.name] = _extract_layer_patterns(layer)
 		layer.clear()
 
-# method #----------------------------------------------------------------------
+
 func apply_pattern_at(idx: int, pos: Vector2i) -> void:
 	for tile_map in _tile_map_layers:
 		var chunk_size := cell_size / tile_map.tile_set.tile_size
@@ -33,12 +33,12 @@ func apply_pattern_at(idx: int, pos: Vector2i) -> void:
 		if !pattern: continue
 		tile_map.set_pattern(pos * chunk_size, pattern)
 
-# method #----------------------------------------------------------------------
+
 func get_patterns_amount() -> int:
 	return (0 if _tile_map_layers.is_empty()
 		else _tile_map_patterns[_tile_map_layers[0].name].size())
 
-# method #----------------------------------------------------------------------
+
 func _extract_layer_patterns(tile_map: TileMapLayer) -> Array[TileMapPattern]:
 	var patterns: Array[TileMapPattern] = []
 	var chunk_size := cell_size / tile_map.tile_set.tile_size
@@ -49,7 +49,7 @@ func _extract_layer_patterns(tile_map: TileMapLayer) -> Array[TileMapPattern]:
 			patterns.append(tile_map.get_pattern(coords))
 	return patterns
 
-# callback #--------------------------------------------------------------------
+
 func _hint_update() -> void:
 	if not is_node_ready(): await ready
 	var shader: ShaderMaterial = color_rect.material

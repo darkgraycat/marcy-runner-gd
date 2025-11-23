@@ -1,11 +1,10 @@
 class_name LevelUiCanvasLayer extends CanvasLayer
 
-# variables #-------------------------------------------------------------------
 @onready var lifes_label: Label = %LifesLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var effects_label: Label = %EffectsLabel
 
-# builtin #---------------------------------------------------------------------
+
 func _ready() -> void:
 	Variables.updated.connect(_on_variables_updated)
 	Events.effects_updated.connect(_on_effects_updated)
@@ -15,24 +14,24 @@ func _ready() -> void:
 	_on_variables_updated()
 	_on_effects_updated(null)
 
-# method #----------------------------------------------------------------------
+
 func set_lifes_value(value: Variant) -> void:
 	lifes_label.text = _make_int_label(value, Strings.INGAME_UI_LIFES)
 
-# method #----------------------------------------------------------------------
+
 func set_score_value(value: Variant) -> void:
 	score_label.text = _make_int_label(value, Strings.INGAME_UI_SCORE)
 
-# method #----------------------------------------------------------------------
+
 func set_effects_value(value: Variant) -> void:
 	effects_label.text = _make_int_label(value, Strings.INGAME_UI_BOOST)
 
-# method #----------------------------------------------------------------------
+
 func _make_int_label(value: Variant, pattern: String, default: int = 0) -> String:
 	var label_value := str(int(value) if value != null else default)
 	return pattern % [label_value]
 
-# callback #--------------------------------------------------------------------
+
 func _on_variables_updated() -> void:
 	#set_lifes_value(Variables.get_state(Variables.VarName.Lifes))
 	set_score_value(Variables.get_state(Variables.VarName.Score))

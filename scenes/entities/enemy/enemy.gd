@@ -6,7 +6,7 @@ class_name Enemy extends CharacterBody2D
 @export var hurbox_area_2d: Area2D
 @export var status_effects: Array[StatusEffectResource] = []
 
-@onready var movement: Movement = $Movement
+@onready var movement: Movement = $Components/Movement
 
 var is_dying: bool = false
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if movement: movement.accelerate(-1, delta).move()
 
-# method #----------------------------------------------------------------------
+
 func die() -> void:
 	set_physics_process(false)
 	collision_shape_2d.disabled = true
@@ -28,7 +28,7 @@ func die() -> void:
 	await animation_player.animation_finished
 	queue_free()
 
-# method #----------------------------------------------------------------------
+
 func damage(body: CharacterBody2D) -> void:
 	if is_dying: return
 	is_dying = true
@@ -47,6 +47,6 @@ func damage(body: CharacterBody2D) -> void:
 	sec.apply_status_effects(status_effects)
 	die.call_deferred()
 
-# callback #--------------------------------------------------------------------
+
 func _on_hurbox_area_2d_body_entered(body: Node2D) -> void:
 	damage(body)

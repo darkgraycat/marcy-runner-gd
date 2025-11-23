@@ -8,6 +8,7 @@ class_name Parallax extends Node2D
 @onready var rows_root: Node2D = $RowsRoot
 @onready var source_parallax_2d: Parallax2D = $SourceParallax2D
 
+
 func set_configuration(value: ParallaxResource) -> void:
 	configuration = value
 	if !is_node_ready(): await ready

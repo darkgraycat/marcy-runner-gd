@@ -1,7 +1,7 @@
 @tool
 extends Node
 
-# variables #-------------------------------------------------------------------
+
 enum HealthModType {GENERIC}
 
 var GRAVITY: float = ProjectSettings.get_setting("physics/2d/default_gravity", 500)
@@ -20,7 +20,7 @@ const GROUP_NAME_ENEMIES: StringName = "Enemies"
 
 var DEBUG: bool = false
 
-# builtin #---------------------------------------------------------------------
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not Engine.is_editor_hint():
 		if event.is_action_pressed("quit"):

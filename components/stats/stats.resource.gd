@@ -2,6 +2,7 @@
 
 var _attrs: Dictionary[String, float]
 
+
 @abstract
 func get_attributes() -> Dictionary[String, float]
 

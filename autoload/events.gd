@@ -34,6 +34,6 @@ func emit_update_ui() -> void: update_ui.emit()
 # TODO: deprecate
 signal effects_updated(status_effect_component: StatusEffectComponent)
 # TODO: deprecate
-# method #----------------------------------------------------------------------
+
 func emit_effects_updated(status_effect_component: StatusEffectComponent) -> void:
 	effects_updated.emit(status_effect_component)

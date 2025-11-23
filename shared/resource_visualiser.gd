@@ -13,11 +13,13 @@ const INTERVAL: float = 0.5
 
 var _visualize_seconds_left: float = visualize_seconds
 
+
 func set_visualize(new_visualize: bool) -> void:
 	visualize = new_visualize
 	if visualize:
 		_visualize_seconds_left = visualize_seconds
 		_update()
+
 
 func _update() -> void:
 	if not visualize: return
@@ -35,6 +37,7 @@ func _update() -> void:
 	await get_tree().create_timer(INTERVAL).timeout
 	_visualize_seconds_left -= INTERVAL
 	_update()
+
 
 func _exit_tree() -> void:
 	visualize = false
