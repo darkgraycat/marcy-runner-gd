@@ -13,7 +13,6 @@ func _ready() -> void:
 
 
 func die() -> void:
-	Utils.log("Item died")
 	collision_shape_2d.disabled = true
 	animated_sprite_2d.play("die")
 	await animated_sprite_2d.animation_finished

@@ -7,7 +7,6 @@ class_name CVelocity extends Node
 var _target_velocity := 0.0
 var _is_running := false
 
-
 func _ready() -> void:
 	assert(body, "CharacterBody2D is not defined")
 
@@ -29,5 +28,4 @@ func _update_velocity() -> void:
 		await get_tree().physics_frame
 
 	body.velocity.x = _target_velocity
-
 	_is_running = false

@@ -21,9 +21,6 @@ func _ready() -> void:
 	player_camera.limit_bottom = Globals.VIEWPORT_HEIGHT
 	_tile_map_idxs.assign(range(0, tile_map_grid.get_patterns_amount()))
 
-	Utils.log("Loaded chunk ids", _tile_map_idxs)
-	Utils.log("Px", config.parallax_resources)
-
 
 func _physics_process(_delta: float) -> void:
 	if (player):
@@ -49,7 +46,6 @@ func next_tilemap_chunk() -> void:
 		chunk_idx = _tile_map_idxs.pick_random()
 
 	_tile_map_prev_idx = chunk_idx;
-	Utils.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tile_map_next.x * 288)
 	tile_map_grid.apply_pattern_at(chunk_idx, _tile_map_next)
 	_tile_map_next.x += 1
 
@@ -60,7 +56,6 @@ func next_demo_tilemap_chunk() -> void:
 		chunk_idx = 0;
 
 	_tile_map_prev_idx = chunk_idx;
-	Utils.log("gen chunk %s at" % chunk_idx, int(player.global_position.x), _tile_map_next.x * 288)
 	tile_map_grid.apply_pattern_at(chunk_idx, _tile_map_next)
 	_tile_map_next.x += 1
 

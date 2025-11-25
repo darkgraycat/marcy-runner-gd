@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var controller: Controller
+@export var c_controller: CController
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -11,8 +11,8 @@ class_name Player extends CharacterBody2D
 @onready var stats_component: StatsComponent = $StatsComponent
 
 @onready var c_velocity: CVelocity = $Components/CVelocity
-@onready var jumping: Jumping = $Components/Jumping
-@onready var gravity: Gravity = $Components/Gravity
+@onready var c_jumping: CJumping = $Components/CJumping
+@onready var c_gravity: CGravity = $Components/CGravity
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -39,12 +39,11 @@ func _ready() -> void:
 
 	stats_component.changed.connect(Events.emit_player_attr_updated)
 
-	controller.jump_pressed.connect(jumping.jump_start)
-	controller.jump_released.connect(jumping.jump_release)
+	c_controller.jump_pressed.connect(c_jumping.jump_start)
+	c_controller.jump_released.connect(c_jumping.jump_release)
 
-	controller.move_pressed.connect(c_velocity.move)
-	controller.move_released.connect(c_velocity.stop)
-
+	c_controller.move_pressed.connect(c_velocity.move)
+	c_controller.move_released.connect(c_velocity.stop)
 
 	# to deprecate
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
@@ -56,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	# movement_component.direction = input_move
 	# movement.direction = input_move
 	# movement.accelerate(input_move, delta).move()
-	gravity.apply_gravity(delta)
+	c_gravity.apply_gravity(delta)
 
 	jumping_component.jumping = input_jump
 
@@ -85,7 +84,7 @@ func next_state() -> State:
 		return State.Oiia
 	if !is_on_floor():
 		return State.Jump
-	elif abs(input_move) > 0.01:
+	elif abs(c_velocity._target_velocity) > 0.5:
 		return State.Move
 	else:
 		return State.Idle

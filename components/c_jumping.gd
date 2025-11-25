@@ -1,4 +1,4 @@
-class_name Jumping extends Node
+class_name CJumping extends Node
 
 @export var body: CharacterBody2D
 @export var jumps_max: int = 1
@@ -11,9 +11,6 @@ func _ready() -> void:
 	assert(body, "CharacterBody2D is not defined")
 	jumps_left = jumps_max
 
-# func jump_start(delta: float) -> void:
-# 	pass
-
 func jump_start() -> bool:
 	if is_jumping || jumps_left <= 0: return false
 	body.velocity.y = -jump_force
@@ -23,4 +20,3 @@ func jump_start() -> bool:
 
 func jump_release() -> void:
 	pass
-

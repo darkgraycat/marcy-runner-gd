@@ -1,4 +1,4 @@
-class_name Gravity extends Node
+class_name CGravity extends Node
 
 @export var body: CharacterBody2D
 @export var weight: float = 1.0:

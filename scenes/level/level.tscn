@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://esk118apvowd" path="res://scenes/entities/enemy/slow_station.enemy.tscn" id="12_22udv"]
 [ext_resource type="PackedScene" uid="uid://dwvy3iglky6ea" path="res://scenes/entities/item/life.item.tscn" id="16_ra12g"]
 [ext_resource type="PackedScene" uid="uid://cu5doia18e8jp" path="res://scenes/parallax/parallax.tscn" id="16_xwduj"]
-[ext_resource type="Script" uid="uid://d1cmpfkt8ri1" path="res://components/controller.gd" id="17_ivku7"]
+[ext_resource type="Script" uid="uid://d1cmpfkt8ri1" path="res://components/c_controller.gd" id="17_ivku7"]
 [ext_resource type="PackedScene" uid="uid://cusa4cpmqiqdn" path="res://scenes/entities/item/bean.item.tscn" id="18_jpfpk"]
 [ext_resource type="PackedScene" uid="uid://cj2kxo8h6pjyr" path="res://scenes/tile_map_grid/tile_map_grid.tscn" id="18_ss4b2"]
 [ext_resource type="PackedScene" uid="uid://dclf27yij27b2" path="res://scenes/entities/item/panacat.item.tscn" id="19_eqy4y"]
@@ -58,6 +58,7 @@ method_name = "set_configuration"
 resource = ExtResource("8_0f74w")
 
 [node name="TileMapGrid" parent="." instance=ExtResource("18_ss4b2")]
+position = Vector2(0, -8)
 grid_size = Vector2i(4, 3)
 cell_size = Vector2i(336, 192)
 
@@ -71,10 +72,10 @@ rotation = 0.000207715
 tile_map_data = PackedByteArray("AAAcAAsAAAAAAAAABwAfAAoAAAAAAAAABwAiAAkAAAAAAAAABwBHAAYAAAAAAAAABwAWAAAAAAAAAAAACABDAAIAAAAAAAAACAA0AAoAAAAAAAAACQAxAAUAAAAAAAAACAAzAAMAAAAAAAAACAA2AAIAAAAAAAAACAAJAAMAAAAAAAAACAALAAMAAAAAAAAACAAMAAQAAAAAAAAACAAKAAQAAAAAAAAACAAIAAQAAAAAAAAACAAXAAAAAAAAAAAACAAYAAAAAAAAAAAACAAZAAAAAAAAAAAACAAnAAIAAQAAAAAAAQAkAAQAAQAAAAAAAQA+AAMAAQAAAAAAAQBSAAIAAQAAAAAAAQAuAAYAAQAAAAAAAgAlAAcAAAAAAAAAAQBIAAYAAAAAAAAABwAgAB0AAAAAAAAAAQAEAB4AAAAAAAAACAAFAB0AAAAAAAAACAAGAB4AAAAAAAAACAAlAB8AAAAAAAAACAAmAB4AAAAAAAAACAAnAB4AAAAAAAAACAAoAB8AAAAAAAAACAA/AB4AAAAAAAAACABBAB0AAAAAAAAACAA3ACEAAAAAAAAABwA6ACEAAAAAAAAABwBHAB8AAAAAAAAACQAGABMAAAAAAAAABwAHABIAAAAAAAAABwAIABIAAAAAAAAABwALABMAAAAAAAAABwAKABIAAAAAAAAABwAJABIAAAAAAAAABwAuABMAAAAAAAAACQAhABEAAAAAAAAACAAiABAAAAAAAAAACAAjABEAAAAAAAAACAA5ABAAAAAAAAAACAA6AA8AAAAAAAAACAA7ABAAAAAAAAAACABLAA8AAAAAAAAACABMAA4AAAAAAAAACABNAA8AAAAAAAAACABKAA4AAAAAAAAACABOAA4AAAAAAAAACAAUAA4AAQAAAAAAAQApAA8AAQAAAAAAAQBTAA0AAQAAAAAAAQBIABAAAQAAAAAAAgAuAB0AAQAAAAAAAgA5AB0AAQAAAAAAAQA7ABwAAQAAAAAAAQA9ABsAAQAAAAAAAQBLABwAAQAAAAAAAQBQABwAAQAAAAAAAQA=")
 tile_set = SubResource("TileSet_ch102")
 
-[node name="Player" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("3_dlyvo")]
+[node name="Player" parent="." node_paths=PackedStringArray("c_controller") instance=ExtResource("3_dlyvo")]
 unique_name_in_owner = true
 position = Vector2(72, 48)
-controller = NodePath("Controller")
+c_controller = NodePath("CController")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(128, 0)
@@ -82,15 +83,15 @@ limit_bottom = 180
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Controller" type="Control" parent="Player"]
+[node name="CController" type="Control" parent="Player"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("17_ivku7")
-scheme = Dictionary[String, StringName]({
-"jump": &"jump",
-"left": &"move_left",
-"right": &"move_right"
+scheme = Dictionary[int, StringName]({
+0: &"move_left",
+1: &"move_right",
+2: &"jump"
 })
 metadata/_custom_type_script = "uid://d1cmpfkt8ri1"
