@@ -3,18 +3,26 @@
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
 [ext_resource type="Script" uid="uid://xypka0y55jpc" path="res://components/c_velocity.gd" id="2_7wli1"]
+[ext_resource type="Script" uid="uid://h2mdqe3frm8p" path="res://components/c_attributes.resource/attr.player.resource.gd" id="3_7wli1"]
 [ext_resource type="Script" uid="uid://d1lxjscjl0323" path="res://components/status_effect/status_effect.component.gd" id="3_bjvvg"]
 [ext_resource type="Script" uid="uid://dy6qhmjt4pmha" path="res://components/c_jumping.gd" id="4_7wli1"]
 [ext_resource type="Script" uid="uid://b34u6dd7dmw05" path="res://components/health/health.component.gd" id="4_8akj5"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://hlc5ax0yoigb" path="res://components/jumping/jumping.component.gd" id="6_1murt"]
-[ext_resource type="Script" uid="uid://c1ylr1hjdc3j" path="res://components/stats/stats.component.gd" id="8_7wli1"]
+[ext_resource type="Script" uid="uid://c1ylr1hjdc3j" path="res://components/c_attributes.gd" id="8_7wli1"]
 [ext_resource type="Script" uid="uid://2ijufwrafa3" path="res://components/c_gravity.gd" id="8_ovg4i"]
-[ext_resource type="Script" uid="uid://c37x7uitxl307" path="res://components/stats/collection/player.stats.resource.gd" id="9_7wli1"]
 
-[sub_resource type="Resource" id="Resource_xy2vv"]
-script = ExtResource("9_7wli1")
-metadata/_custom_type_script = "uid://c37x7uitxl307"
+[sub_resource type="Resource" id="Resource_j0oqr"]
+script = ExtResource("3_7wli1")
+attributes = Dictionary[String, float]({
+"Acceleration": 5.0,
+"Health": 5.0,
+"Invincible": 1.0,
+"JumpVelocity": 250.0,
+"JumpsAmount": 1.0,
+"MoveVelocity": 150.0
+})
+metadata/_custom_type_script = "uid://h2mdqe3frm8p"
 
 [sub_resource type="Animation" id="Animation_8akj5"]
 length = 0.001
@@ -206,6 +214,11 @@ script = ExtResource("1_0v5uu")
 
 [node name="Components" type="Node" parent="."]
 
+[node name="CAttributes" type="Node" parent="Components"]
+script = ExtResource("8_7wli1")
+data = SubResource("Resource_j0oqr")
+metadata/_custom_type_script = "uid://c1ylr1hjdc3j"
+
 [node name="CVelocity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("2_7wli1")
 body = NodePath("../..")
@@ -237,11 +250,6 @@ max_health = 9.0
 damage_interval_sec = 3.0
 parent = NodePath("..")
 metadata/_custom_type_script = "uid://b34u6dd7dmw05"
-
-[node name="StatsComponent" type="Node" parent="."]
-script = ExtResource("8_7wli1")
-stats = SubResource("Resource_xy2vv")
-metadata/_custom_type_script = "uid://c1ylr1hjdc3j"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

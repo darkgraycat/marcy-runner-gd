@@ -11,12 +11,12 @@ func _ready() -> void:
 	assert(body, "CharacterBody2D is not defined")
 	jumps_left = jumps_max
 
-func jump_start() -> bool:
+func jump() -> bool:
 	if is_jumping || jumps_left <= 0: return false
 	body.velocity.y = -jump_force
 	jumps_left -= 1
 	is_jumping = true
 	return is_jumping
 
-func jump_release() -> void:
+func stop() -> void:
 	pass

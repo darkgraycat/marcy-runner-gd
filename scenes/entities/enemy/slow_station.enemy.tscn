@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://esk118apvowd"]
+[gd_scene load_steps=13 format=3 uid="uid://esk118apvowd"]
 
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://scenes/entities/enemy/enemy.gd" id="1_h4mso"]
 [ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_cc8sq"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="2_qb5fb"]
 [ext_resource type="Resource" uid="uid://bvukyg7q2cjwg" path="res://resources/status_effects/dispel_speed_timed.status_effect.tres" id="3_2gisq"]
 [ext_resource type="Resource" uid="uid://bam4wp1arw58h" path="res://resources/status_effects/slow_25_5s.status_effect.tres" id="4_nm7ey"]
+[ext_resource type="Script" uid="uid://2ijufwrafa3" path="res://components/c_gravity.gd" id="5_nm7ey"]
 
 [sub_resource type="Animation" id="Animation_y7108"]
 length = 0.001
@@ -79,6 +80,13 @@ animation_player = NodePath("AnimationPlayer")
 hurbox_area_2d = NodePath("Area2D")
 status_effects = Array[ExtResource("2_cc8sq")]([ExtResource("3_2gisq"), ExtResource("4_nm7ey")])
 metadata/_custom_type_script = "uid://ci1vbr35wldyi"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CGravity" type="Node" parent="Node" node_paths=PackedStringArray("body")]
+script = ExtResource("5_nm7ey")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://2ijufwrafa3"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -2)

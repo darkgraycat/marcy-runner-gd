@@ -1,9 +1,9 @@
 class_name CController extends Control
 
-signal move_pressed(axis: float)
-signal move_released()
-signal jump_pressed()
-signal jump_released()
+signal move_started(axis: float)
+signal move_stopped()
+signal jump_started()
+signal jump_stopped()
 
 enum Key { Left, Right, Jump }
 
@@ -19,10 +19,10 @@ func _input(event: InputEvent) -> void:
 	or event.is_action_pressed(scheme[Key.Right]) \
 	or event.is_action_released(scheme[Key.Right]):
 		var axis := Input.get_axis(scheme[Key.Left], scheme[Key.Right])
-		if axis: move_pressed.emit(axis)
-		else: move_released.emit()
+		if axis: move_started.emit(axis)
+		else: move_stopped.emit()
 
 	if event.is_action_pressed(scheme[Key.Jump]):
-		jump_pressed.emit()
+		jump_started.emit()
 	if event.is_action_released(scheme[Key.Jump]):
-		jump_released.emit()
+		jump_stopped.emit()

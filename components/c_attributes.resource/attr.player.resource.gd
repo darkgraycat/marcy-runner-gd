@@ -1,4 +1,4 @@
-class_name PlayerStatsResource extends StatsResource
+class_name AttrPlayer extends CAttributesResource
 
 const Key = {
 	Health = "Health",
@@ -6,6 +6,7 @@ const Key = {
 	Acceleration = "Acceleration",
 	MoveVelocity = "MoveVelocity",
 	JumpVelocity = "JumpVelocity",
+	JumpsAmount = "JumpsAmount"
 }
 
 @export var attributes: Dictionary[String, float] = {
@@ -13,6 +14,7 @@ const Key = {
 	Key.Acceleration: 5.0,
 	Key.MoveVelocity: 100.0,
 	Key.JumpVelocity: 250.0,
+	Key.JumpsAmount: 1,
 	Key.Invincible: 1
 }
 

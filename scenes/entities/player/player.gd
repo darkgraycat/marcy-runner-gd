@@ -8,8 +8,8 @@ class_name Player extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var jumping_component: JumpingComponent = $JumpingComponent
 @onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
-@onready var stats_component: StatsComponent = $StatsComponent
 
+@onready var c_attributes: CAttributes = $Components/CAttributes
 @onready var c_velocity: CVelocity = $Components/CVelocity
 @onready var c_jumping: CJumping = $Components/CJumping
 @onready var c_gravity: CGravity = $Components/CGravity
@@ -25,25 +25,27 @@ var state: State = State.Idle: set = set_state
 
 
 func _ready() -> void:
-	c_velocity.target_speed = stats_component.getv(PlayerStatsResource.Key.MoveVelocity)
-	c_velocity.acceleration = stats_component.getv(PlayerStatsResource.Key.Acceleration)
+	c_velocity.target_speed = c_attributes.getv(AttrPlayer.Key.MoveVelocity)
+	c_velocity.acceleration = c_attributes.getv(AttrPlayer.Key.Acceleration)
+	c_jumping.jump_force = c_attributes.getv(AttrPlayer.Key.JumpVelocity)
+	c_jumping.jumps_max = c_attributes.geti(AttrPlayer.Key.JumpsAmount)
 
-	jumping_component.target_force = stats_component.getv(PlayerStatsResource.Key.JumpVelocity)
-	health_component.health = stats_component.getv(PlayerStatsResource.Key.Health)
+	jumping_component.target_force = c_attributes.getv(AttrPlayer.Key.JumpVelocity)
+
+	health_component.health = c_attributes.getv(AttrPlayer.Key.Health)
 
 	health_component.died.connect(func() -> void:
 		die.call_deferred())
 	health_component.health_changed.connect(func(health: float) -> void:
-		stats_component.setv(PlayerStatsResource.Key.Health, health)
-		Events.emit_player_attr_updated(PlayerStatsResource.Key.Health, health))
+		c_attributes.setv(AttrPlayer.Key.Health, health)
+		Events.emit_player_attr_updated(AttrPlayer.Key.Health, health))
 
-	stats_component.changed.connect(Events.emit_player_attr_updated)
+	c_attributes.changed.connect(Events.emit_player_attr_updated)
 
-	c_controller.jump_pressed.connect(c_jumping.jump_start)
-	c_controller.jump_released.connect(c_jumping.jump_release)
-
-	c_controller.move_pressed.connect(c_velocity.move)
-	c_controller.move_released.connect(c_velocity.stop)
+	c_controller.jump_started.connect(c_jumping.jump)
+	c_controller.jump_stopped.connect(c_jumping.stop)
+	c_controller.move_started.connect(c_velocity.move)
+	c_controller.move_stopped.connect(c_velocity.stop)
 
 	# to deprecate
 	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
