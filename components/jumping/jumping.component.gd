@@ -22,6 +22,3 @@ func handle_jumping(new_jumping: bool, _delta: float) -> void:
 		jump_in_progress = false
 		if parent.velocity.y < 0:
 			parent.velocity.y /= 2
-
-
-

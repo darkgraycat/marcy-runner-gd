@@ -1,25 +1,24 @@
-[gd_scene load_steps=22 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=20 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
-[ext_resource type="Script" uid="uid://xypka0y55jpc" path="res://components/c_velocity.gd" id="2_7wli1"]
-[ext_resource type="Script" uid="uid://h2mdqe3frm8p" path="res://components/c_attributes.resource/attr.player.resource.gd" id="3_7wli1"]
-[ext_resource type="Script" uid="uid://d1lxjscjl0323" path="res://components/status_effect/status_effect.component.gd" id="3_bjvvg"]
-[ext_resource type="Script" uid="uid://dy6qhmjt4pmha" path="res://components/c_jumping.gd" id="4_7wli1"]
-[ext_resource type="Script" uid="uid://b34u6dd7dmw05" path="res://components/health/health.component.gd" id="4_8akj5"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
-[ext_resource type="Script" uid="uid://hlc5ax0yoigb" path="res://components/jumping/jumping.component.gd" id="6_1murt"]
-[ext_resource type="Script" uid="uid://c1ylr1hjdc3j" path="res://components/c_attributes.gd" id="8_7wli1"]
-[ext_resource type="Script" uid="uid://2ijufwrafa3" path="res://components/c_gravity.gd" id="8_ovg4i"]
+[ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://components/gravity.gd" id="6_7wli1"]
+[ext_resource type="Script" uid="uid://bv604fxhqw8o1" path="res://components/attributes.gd" id="6_ovg4i"]
+[ext_resource type="Script" uid="uid://h2mdqe3frm8p" path="res://components/c_attributes.resource/attr.player.resource.gd" id="7_7wli1"]
+[ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://components/movement.gd" id="7_j0oqr"]
+[ext_resource type="Script" uid="uid://nkvpec60fwby" path="res://components/health.gd" id="7_xy2vv"]
+[ext_resource type="Script" uid="uid://bm1h5vp83em0t" path="res://components/jumping.gd" id="8_xy2vv"]
 
 [sub_resource type="Resource" id="Resource_j0oqr"]
-script = ExtResource("3_7wli1")
+script = ExtResource("7_7wli1")
 attributes = Dictionary[String, float]({
 "Acceleration": 5.0,
-"Health": 5.0,
-"Invincible": 1.0,
+"BodyWeight": 1.25,
+"Health": 9.0,
+"Invincible": 0.0,
 "JumpVelocity": 250.0,
-"JumpsAmount": 1.0,
+"JumpsAmount": 2.0,
 "MoveVelocity": 150.0
 })
 metadata/_custom_type_script = "uid://h2mdqe3frm8p"
@@ -214,42 +213,26 @@ script = ExtResource("1_0v5uu")
 
 [node name="Components" type="Node" parent="."]
 
-[node name="CAttributes" type="Node" parent="Components"]
-script = ExtResource("8_7wli1")
-data = SubResource("Resource_j0oqr")
-metadata/_custom_type_script = "uid://c1ylr1hjdc3j"
+[node name="Attributes" type="Node" parent="Components"]
+script = ExtResource("6_ovg4i")
+attributes = SubResource("Resource_j0oqr")
+metadata/_custom_type_script = "uid://bv604fxhqw8o1"
 
-[node name="CVelocity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
-script = ExtResource("2_7wli1")
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("7_j0oqr")
 body = NodePath("../..")
 
-[node name="CJumping" type="Node" parent="Components" node_paths=PackedStringArray("body")]
-script = ExtResource("4_7wli1")
+[node name="Jumping" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("8_xy2vv")
 body = NodePath("../..")
-metadata/_custom_type_script = "uid://dy6qhmjt4pmha"
+metadata/_custom_type_script = "uid://bm1h5vp83em0t"
 
-[node name="CGravity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
-script = ExtResource("8_ovg4i")
+[node name="Gravity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("6_7wli1")
 body = NodePath("../..")
-weight = 1.25
 
-[node name="StatusEffectComponent" type="Node" parent="." node_paths=PackedStringArray("components", "parent")]
-script = ExtResource("3_bjvvg")
-components = [NodePath("../HealthComponent"), NodePath("../JumpingComponent")]
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://d1lxjscjl0323"
-
-[node name="JumpingComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("6_1murt")
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://hlc5ax0yoigb"
-
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("4_8akj5")
-max_health = 9.0
-damage_interval_sec = 3.0
-parent = NodePath("..")
-metadata/_custom_type_script = "uid://b34u6dd7dmw05"
+[node name="Health" type="Node" parent="Components"]
+script = ExtResource("7_xy2vv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -270,4 +253,4 @@ shape = SubResource("RectangleShape2D_6nkbq")
 [node name="DebugLabel" parent="." instance=ExtResource("5_bjvvg")]
 offset_right = 66.0
 offset_bottom = 13.0
-channel = 1
+tag_postfix = "player"

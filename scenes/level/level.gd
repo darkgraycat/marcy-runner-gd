@@ -24,9 +24,6 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if (player):
-		player.input_move = Input.get_axis("move_left", "move_right")
-		player.input_jump = Input.is_action_pressed("jump")
-
 		if player.global_position.y > Globals.VIEWPORT_HEIGHT + Globals.TILE_SIZE:
 			player.die()
 

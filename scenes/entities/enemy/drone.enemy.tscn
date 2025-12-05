@@ -126,4 +126,4 @@ position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_y7108")
 
 [node name="DebugLabel" parent="." instance=ExtResource("6_5pdap")]
-channel = 13
+tag_postfix = "enemy_drone"

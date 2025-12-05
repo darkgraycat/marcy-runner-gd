@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	Events.emit_debug_message("INV_TIME: %s" % ceil(get_invincibility_time_sec()), 999)
+	pass
 
 
 func set_health(value: float) -> void:

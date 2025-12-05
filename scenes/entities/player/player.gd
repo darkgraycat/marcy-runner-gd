@@ -5,14 +5,12 @@ class_name Player extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var health_component: HealthComponent = $HealthComponent
-@onready var jumping_component: JumpingComponent = $JumpingComponent
-@onready var status_effect_component: StatusEffectComponent = $StatusEffectComponent
 
-@onready var c_attributes: CAttributes = $Components/CAttributes
-@onready var c_velocity: CVelocity = $Components/CVelocity
-@onready var c_jumping: CJumping = $Components/CJumping
-@onready var c_gravity: CGravity = $Components/CGravity
+@onready var movement: Movement = $Components/Movement
+@onready var jumping: Jumping = $Components/Jumping
+@onready var gravity: Gravity = $Components/Gravity
+@onready var health: Health = $Components/Health
+@onready var attributes: Attributes = $Components/Attributes
 
 enum State {Idle, Move, Jump, Die, Oiia}
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
@@ -25,49 +23,47 @@ var state: State = State.Idle: set = set_state
 
 
 func _ready() -> void:
-	c_velocity.target_speed = c_attributes.getv(AttrPlayer.Key.MoveVelocity)
-	c_velocity.acceleration = c_attributes.getv(AttrPlayer.Key.Acceleration)
-	c_jumping.jump_force = c_attributes.getv(AttrPlayer.Key.JumpVelocity)
-	c_jumping.jumps_max = c_attributes.geti(AttrPlayer.Key.JumpsAmount)
+	movement.target_speed = attributes.getv(AttrPlayer.Key.MoveVelocity)
+	movement.acceleration = attributes.getv(AttrPlayer.Key.Acceleration)
+	gravity.weight = attributes.getv(AttrPlayer.Key.BodyWeight)
+	health.maximum_health = attributes.getv(AttrPlayer.Key.Health)
+	jumping.target_force = attributes.getv(AttrPlayer.Key.JumpVelocity)
+	jumping.maximum_jumps = attributes.geti(AttrPlayer.Key.JumpsAmount)
+	gravity.landed.connect(func() -> void:
+		print("Landed")
+		animation_player.play(&"idle")
+	)
 
-	jumping_component.target_force = c_attributes.getv(AttrPlayer.Key.JumpVelocity)
-
-	health_component.health = c_attributes.getv(AttrPlayer.Key.Health)
-
-	health_component.died.connect(func() -> void:
+	health.died.connect(func() -> void:
 		die.call_deferred())
-	health_component.health_changed.connect(func(health: float) -> void:
-		c_attributes.setv(AttrPlayer.Key.Health, health)
+	health.changed.connect(func(health: float) -> void:
+		attributes.setv(AttrPlayer.Key.Health, health)
 		Events.emit_player_attr_updated(AttrPlayer.Key.Health, health))
 
-	c_attributes.changed.connect(Events.emit_player_attr_updated)
+	attributes.changed.connect(Events.emit_player_attr_updated)
 
-	c_controller.jump_started.connect(c_jumping.jump)
-	c_controller.jump_stopped.connect(c_jumping.stop)
-	c_controller.move_started.connect(c_velocity.move)
-	c_controller.move_stopped.connect(c_velocity.stop)
+	c_controller.jump_started.connect(func() -> void:
+		jumping.jump()
+		if is_on_floor(): animation_player.play(&"jump"))
 
-	# to deprecate
-	status_effect_component.status_effect_applied.connect(_on_status_effect_component_status_effect_changed.bind(true))
-	status_effect_component.status_effect_destroyed.connect(_on_status_effect_component_status_effect_changed.bind(false))
+	c_controller.jump_stopped.connect(func() -> void:
+		jumping.stop()
+		if !is_on_floor():
+			# TODO: add fall animation
+			animation_player.play(&"jump"))
 
+	c_controller.move_started.connect(func(direction: float) -> void:
+		movement.move(direction)
+		sprite_2d.flip_h = direction < 0
+		if is_on_floor(): animation_player.play(&"walk"))
 
-func _physics_process(delta: float) -> void:
-	# input_move = 1 # NOTE: make player always run
-	# movement_component.direction = input_move
-	# movement.direction = input_move
-	# movement.accelerate(input_move, delta).move()
-	c_gravity.apply_gravity(delta)
+	c_controller.move_stopped.connect(func() -> void:
+		movement.stop()
+		if is_on_floor(): animation_player.play(&"idle"))
+	
 
-	jumping_component.jumping = input_jump
-
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
-
-	if input_move:
-		sprite_2d.flip_h = input_move < 0
-
-	state = next_state()
-	Events.emit_debug_message("Xvel %.1f" % velocity.x)
 
 
 func set_state(new_state: State) -> void:
@@ -86,7 +82,8 @@ func next_state() -> State:
 		return State.Oiia
 	if !is_on_floor():
 		return State.Jump
-	elif abs(c_velocity._target_velocity) > 0.5:
+	#elif abs(c_velocity._target_velocity) > 0.5:
+	elif abs(movement.target_velocity) > 0.5:
 		return State.Move
 	else:
 		return State.Idle
@@ -102,7 +99,8 @@ func get_current_state() -> String:
 func die() -> void:
 	set_physics_process(false)
 	# movement_component.set_physics_process(false)
-	c_velocity.set_physics_process(false)
+	# c_velocity.set_physics_process(false)
+	movement.set_physics_process(false)
 
 	collision_shape_2d.disabled = true
 	animation_player.play("die")
@@ -114,11 +112,12 @@ func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
 	# movement_component.set_physics_process(true)
-	c_velocity.set_physics_process(true)
+	#c_velocity.set_physics_process(true)
+	movement.set_physics_process(false)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
 	state = State.Idle
-	status_effect_component.destroy_all_status_effects()
+	#status_effect_component.destroy_all_status_effects()
 	animation_player.play("RESET")
 	Events.emit_player_spawned(spawn_point)
 
@@ -134,4 +133,4 @@ func _on_state_machine_enter_state(_idx: int, state_name: StringName) -> void:
 func _on_status_effect_component_status_effect_changed(status_effect: StatusEffectResource, is_applied: bool) -> void:
 	match status_effect.name:
 		"Oiia": state = State.Oiia if is_applied else State.Idle
-	Events.emit_effects_updated(status_effect_component)
+	#Events.emit_effects_updated(status_effect_component)

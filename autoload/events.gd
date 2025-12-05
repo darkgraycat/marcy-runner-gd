@@ -2,8 +2,8 @@
 extends Node
 
 # System events
-signal debug_message(message: String, channel: int)
-func emit_debug_message(message: String, channel: int = 0) -> void: debug_message.emit(message, channel)
+signal global_event(message: String, tag: String)
+func emit(message: String, tag: String = "default") -> void: global_event.emit(message, tag)
 
 # Player events
 signal player_attr_updated(key: String, value: float)
@@ -18,17 +18,6 @@ func emit_player_died() -> void: player_died.emit()
 # UI events
 signal update_ui()
 func emit_update_ui() -> void: update_ui.emit()
-
-
-
-
-
-
-
-
-
-
-
 
 
 # TODO: deprecate
