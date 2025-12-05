@@ -8,8 +8,8 @@ class_name Enemy extends CharacterBody2D
 @export var hurbox_area_2d: Area2D
 @export var status_effects: Array[StatusEffectResource] = []
 
-@onready var c_velocity: CVelocity = $Components/CVelocity
-@onready var c_gravity: CGravity = $Components/CGravity
+@onready var movement: Movement = $Components/Movement
+@onready var gravity: Gravity = $Components/Gravity
 
 var is_dying: bool = false
 
@@ -20,14 +20,14 @@ func _ready() -> void:
 	hurbox_area_2d.body_entered.connect(_on_hurbox_area_2d_body_entered)
 	animation_player.play("idle")
 
-	if c_velocity: c_velocity.move(movement_direction)
+	if movement: movement.move(movement_direction)
 
 
 func _physics_process(delta: float) -> void:
 	# TODO: it just doesnt work
 	# solution: dont use Base classes on entities
 	# 			do a full composition instead
-	if c_gravity: c_gravity.apply_gravity(delta)
+	if gravity: gravity.apply_gravity(delta)
 	move_and_slide()
 
 

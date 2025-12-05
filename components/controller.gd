@@ -1,4 +1,5 @@
-class_name CController extends Control
+class_name Controller extends Control
+
 
 signal move_started(axis: float)
 signal move_stopped()
@@ -7,10 +8,10 @@ signal jump_stopped()
 
 enum Key { Left, Right, Jump }
 
-@export var scheme: Dictionary[CController.Key, StringName] = {
-	Key.Left: &"ui_left",
-	Key.Right: &"ui_right",
-	Key.Jump: &"ui_select",
+@export var scheme: Dictionary[Controller.Key, StringName] = {
+	Key.Left: &"move_left",
+	Key.Right: &"move_right",
+	Key.Jump: &"jump",
 }
 
 func _input(event: InputEvent) -> void:

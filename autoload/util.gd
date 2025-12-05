@@ -12,7 +12,7 @@ var time: float:
 
 func log(msg: String, ...rest: Array) -> void:
 	var time := float(Time.get_ticks_msec())
-	prints("%8.3f│%s" % [time / 1000, msg], rest)
+	prints("%8.3f│%s" % [time / 1000, msg], " ".join(rest))
 
 
 func notify(message: String, channel: int = 0) -> void:
@@ -97,10 +97,10 @@ func filter_nodes(nodes: Array[Node], type: Variant) -> Array[Variant]:
 		func(n: Node) -> bool: return is_instance_of(n, type)
 	)
 
-
-func sleep(delay: float) -> void:
-	await get_tree().create_timer(delay).timeout
-
+func sleep(seconds: float) -> void:
+	while seconds > 0.0:
+		await get_tree().process_frame
+		seconds -= get_process_delta_time()
 
 ## VALIDATION AND ERROR HANDLING ###############################################
 
