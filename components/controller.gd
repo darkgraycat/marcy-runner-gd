@@ -1,6 +1,5 @@
 class_name Controller extends Control
 
-
 signal move_started(axis: float)
 signal move_stopped()
 signal jump_started()

@@ -1,9 +1,16 @@
 [gd_scene load_steps=19 format=3 uid="uid://cusa4cpmqiqdn"]
 
 [ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/item/item.gd" id="1_xhpbm"]
-[ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_05psf"]
-[ext_resource type="Resource" uid="uid://v6vyyu75qn3d" path="res://resources/status_effects/speed_25_5s.status_effect.tres" id="3_xhpbm"]
+[ext_resource type="Script" uid="uid://s5r58fcw07e" path="res://components/attributes_effect.gd" id="2_odmfh"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="4_s2f34"]
+
+[sub_resource type="Resource" id="Resource_02kko"]
+script = ExtResource("2_odmfh")
+key = 3
+value = 25.0
+operation = 1
+duration = 5.0
+metadata/_custom_type_script = "uid://s5r58fcw07e"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]
 atlas = ExtResource("4_s2f34")
@@ -129,7 +136,7 @@ radius = 6.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_xhpbm")
-status_effects = Array[ExtResource("2_05psf")]([ExtResource("3_xhpbm")])
+attributes_effects = Array[ExtResource("2_odmfh")]([SubResource("Resource_02kko")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

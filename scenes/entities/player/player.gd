@@ -15,19 +15,17 @@ class_name Player extends CharacterBody2D
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
 
 func _ready() -> void:
-	movement.speed = attributes.getv(Attributes.Key.MoveSpeed)
+	movement.max_speed = attributes.getv(Attributes.Key.MoveSpeed)
 	movement.acceleration = attributes.getv(Attributes.Key.MoveAccel)
 	gravity.weight = attributes.getv(Attributes.Key.BodyWeight)
 	health.current = attributes.getv(Attributes.Key.Health)
 	health.maximum = attributes.getv(Attributes.Key.MaxHealth)
-	jumping.jump_velocity = attributes.getv(Attributes.Key.JumpForce)
-	jumping.maximum_jumps = attributes.geti(Attributes.Key.JumpAmount)
+	jumping.jump_force = attributes.getv(Attributes.Key.JumpForce)
+	jumping.max_jumps = int(attributes.getv(Attributes.Key.JumpAmount))
 	gravity.landed.connect(update_animation)
 
 	health.died.connect(func() -> void:
 		die.call_deferred())
-	health.changed.connect(func(_amount: float, value: float) -> void:
-		attributes.setv(Attributes.Key.Health, value))
 
 	controller.jump_started.connect(func() -> void:
 		jumping.jump()
@@ -51,12 +49,12 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	Events.emit("%s" % jumping.remaining, "debug_player")
+	Events.emit("%s" % jumping._remaining, "debug_player")
 
 func update_animation() -> void:
 	animation_player.play(
 		&"jump" if not is_on_floor() else
-		&"walk" if abs(movement.target_velocity) > 0.5 else
+		&"walk" if abs(movement._target_velocity) > 0.5 else
 		&"idle"
 	)
 
@@ -81,11 +79,10 @@ func respawn(spawn_point: Vector2) -> void:
 func _on_attributes_changed(key: int, value: float) -> void:
 	match key:
 		Attributes.Key.MoveAccel: movement.acceleration = value
-		Attributes.Key.MoveSpeed: movement.target_velocity = value
+		Attributes.Key.MoveSpeed: movement.max_speed = value
 		Attributes.Key.Health: health.current = value
 		Attributes.Key.MaxHealth: health.maximum = value
-		Attributes.Key.JumpAmount: jumping.maximum_jumps = int(value)
-		Attributes.Key.JumpForce: jumping.jump_velocity = value
+		Attributes.Key.JumpAmount: jumping.max_jumps = int(value)
+		Attributes.Key.JumpForce: jumping.jump_force = value
 
-	Utils.log("Player changed", key, "to", value)
 	Events.emit_player_attr_updated(key, value)

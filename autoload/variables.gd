@@ -2,6 +2,7 @@
 extends Node
 signal updated()
 
+# TODO: remove it
 
 var _state: Dictionary = {}
 

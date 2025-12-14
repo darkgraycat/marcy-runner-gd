@@ -23,11 +23,7 @@ func _ready() -> void:
 	if movement: movement.move(movement_direction)
 
 
-func _physics_process(delta: float) -> void:
-	# TODO: it just doesnt work
-	# solution: dont use Base classes on entities
-	# 			do a full composition instead
-	# if gravity: gravity.apply_gravity(delta)
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
