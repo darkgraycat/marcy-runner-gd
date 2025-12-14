@@ -2,26 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
+[ext_resource type="Script" uid="uid://s5r58fcw07e" path="res://components/attributes_effect.gd" id="3_5sj0x"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://components/gravity.gd" id="6_7wli1"]
 [ext_resource type="Script" uid="uid://bv604fxhqw8o1" path="res://components/attributes.gd" id="6_ovg4i"]
-[ext_resource type="Script" uid="uid://h2mdqe3frm8p" path="res://components/c_attributes.resource/attr.player.resource.gd" id="7_7wli1"]
 [ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://components/movement.gd" id="7_j0oqr"]
 [ext_resource type="Script" uid="uid://nkvpec60fwby" path="res://components/health.gd" id="7_xy2vv"]
 [ext_resource type="Script" uid="uid://bm1h5vp83em0t" path="res://components/jumping.gd" id="8_xy2vv"]
 
-[sub_resource type="Resource" id="Resource_j0oqr"]
-script = ExtResource("7_7wli1")
-attributes = Dictionary[String, float]({
-"Acceleration": 5.0,
-"BodyWeight": 1.25,
-"Health": 9.0,
-"Invincible": 0.0,
-"JumpVelocity": 250.0,
-"JumpsAmount": 2.0,
-"MoveVelocity": 150.0
-})
-metadata/_custom_type_script = "uid://h2mdqe3frm8p"
+[sub_resource type="Resource" id="Resource_ovg4i"]
+script = ExtResource("3_5sj0x")
+operation = 2
+metadata/_custom_type_script = "uid://s5r58fcw07e"
 
 [sub_resource type="Animation" id="Animation_8akj5"]
 length = 0.001
@@ -213,9 +205,19 @@ script = ExtResource("1_0v5uu")
 
 [node name="Components" type="Node" parent="."]
 
-[node name="Attributes" type="Node" parent="Components"]
+[node name="Attributes" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("6_ovg4i")
-attributes = SubResource("Resource_j0oqr")
+test = SubResource("Resource_ovg4i")
+body = NodePath("../..")
+values = Dictionary[int, float]({
+0: 9.0,
+1: 9.0,
+2: 5.0,
+3: 150.0,
+4: 250.0,
+5: 2.0,
+7: 1.25
+})
 metadata/_custom_type_script = "uid://bv604fxhqw8o1"
 
 [node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]

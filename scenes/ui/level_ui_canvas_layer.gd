@@ -8,8 +8,8 @@ class_name LevelUiCanvasLayer extends CanvasLayer
 func _ready() -> void:
 	Variables.updated.connect(_on_variables_updated)
 	Events.effects_updated.connect(_on_effects_updated)
-	Events.player_attr_updated.connect(func(key: String, value: float) -> void:
-		if key == AttrPlayer.Key.Health: set_lifes_value(value))
+	Events.player_attr_updated.connect(func(key: int, value: float) -> void:
+		if key == Attributes.Key.Health: set_lifes_value(value))
 
 	_on_variables_updated()
 	_on_effects_updated(null)

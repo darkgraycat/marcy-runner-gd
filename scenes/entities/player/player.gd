@@ -15,20 +15,19 @@ class_name Player extends CharacterBody2D
 const RAINBOW_MATERIAL = preload("res://scenes/entities/player/rainbow_material.tres")
 
 func _ready() -> void:
-	movement.target_speed = attributes.getv(AttrPlayer.Key.MoveVelocity)
-	movement.acceleration = attributes.getv(AttrPlayer.Key.Acceleration)
-	gravity.weight = attributes.getv(AttrPlayer.Key.BodyWeight)
-	health.maximum_health = attributes.getv(AttrPlayer.Key.Health)
-	jumping.target_force = attributes.getv(AttrPlayer.Key.JumpVelocity)
-	jumping.maximum_jumps = attributes.geti(AttrPlayer.Key.JumpsAmount)
-	gravity.landed.connect(func() -> void:
-		update_animation()
-	)
+	movement.speed = attributes.getv(Attributes.Key.MoveSpeed)
+	movement.acceleration = attributes.getv(Attributes.Key.MoveAccel)
+	gravity.weight = attributes.getv(Attributes.Key.BodyWeight)
+	health.current = attributes.getv(Attributes.Key.Health)
+	health.maximum = attributes.getv(Attributes.Key.MaxHealth)
+	jumping.jump_velocity = attributes.getv(Attributes.Key.JumpForce)
+	jumping.maximum_jumps = attributes.geti(Attributes.Key.JumpAmount)
+	gravity.landed.connect(update_animation)
 
 	health.died.connect(func() -> void:
 		die.call_deferred())
-	health.changed.connect(func(health: float) -> void:
-		attributes.setv(AttrPlayer.Key.Health, health))
+	health.changed.connect(func(_amount: float, value: float) -> void:
+		attributes.setv(Attributes.Key.Health, value))
 
 	controller.jump_started.connect(func() -> void:
 		jumping.jump()
@@ -48,14 +47,11 @@ func _ready() -> void:
 		update_animation())
 
 	attributes.changed.connect(_on_attributes_changed)
-	#attributes.seti(AttrPlayer.Key.JumpsAmount, 10)
 
-	await Utils.sleep(2)
-	attributes.seti_timed(AttrPlayer.Key.JumpsAmount, 10, 60)
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	Events.emit("%s" % jumping.jumps_remaining, "debug_player")
+	Events.emit("%s" % jumping.remaining, "debug_player")
 
 func update_animation() -> void:
 	animation_player.play(
@@ -75,24 +71,21 @@ func die() -> void:
 func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	set_physics_process(true)
-	# movement_component.set_physics_process(true)
-	#c_velocity.set_physics_process(true)
 	movement.set_physics_process(false)
 	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
-	#status_effect_component.destroy_all_status_effects()
 	animation_player.play("RESET")
 	update_animation()
 	Events.emit_player_spawned(spawn_point)
 
-
-func _on_attributes_changed(key: String, value: float) -> void:
+func _on_attributes_changed(key: int, value: float) -> void:
 	match key:
-		AttrPlayer.Key.MoveVelocity: movement.target_velocity = value
-		AttrPlayer.Key.MoveVelocity: movement.target_velocity = value
-		AttrPlayer.Key.Health: health.maximum_health = value
-		AttrPlayer.Key.JumpsAmount: jumping.maximum_jumps = int(value)
-		AttrPlayer.Key.JumpVelocity: jumping.target_force = value
+		Attributes.Key.MoveAccel: movement.acceleration = value
+		Attributes.Key.MoveSpeed: movement.target_velocity = value
+		Attributes.Key.Health: health.current = value
+		Attributes.Key.MaxHealth: health.maximum = value
+		Attributes.Key.JumpAmount: jumping.maximum_jumps = int(value)
+		Attributes.Key.JumpForce: jumping.jump_velocity = value
 
 	Utils.log("Player changed", key, "to", value)
 	Events.emit_player_attr_updated(key, value)

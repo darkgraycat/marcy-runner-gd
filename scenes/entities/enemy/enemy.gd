@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	# TODO: it just doesnt work
 	# solution: dont use Base classes on entities
 	# 			do a full composition instead
-	if gravity: gravity.apply_gravity(delta)
+	# if gravity: gravity.apply_gravity(delta)
 	move_and_slide()
 
 
