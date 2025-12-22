@@ -1,9 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://cir2e880om1ix"]
+[gd_scene load_steps=19 format=3 uid="uid://cir2e880om1ix"]
 
 [ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/item/item.gd" id="1_ch55q"]
-[ext_resource type="Script" uid="uid://bgls2w0utsm1a" path="res://components/status_effect/status_effect.resource.gd" id="2_d5kg2"]
-[ext_resource type="Resource" uid="uid://v6vyyu75qn3d" path="res://resources/status_effects/speed_25_5s.status_effect.tres" id="3_4ke8a"]
-[ext_resource type="Resource" uid="uid://g358lxep5nwp" path="res://resources/status_effects/score_10.status_effect.tres" id="4_ngm85"]
 [ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="5_mlj8a"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="6_46n2u"]
 
@@ -140,7 +137,6 @@ radius = 6.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_ch55q")
-status_effects = Array[ExtResource("2_d5kg2")]([ExtResource("3_4ke8a"), ExtResource("4_ngm85")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_53yl8")

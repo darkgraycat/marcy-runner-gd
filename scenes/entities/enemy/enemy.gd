@@ -6,7 +6,6 @@ class_name Enemy extends CharacterBody2D
 @export var sprite_2d: Sprite2D
 @export var animation_player: AnimationPlayer
 @export var hurbox_area_2d: Area2D
-@export var status_effects: Array[StatusEffectResource] = []
 
 @onready var movement: Movement = $Components/Movement
 @onready var gravity: Gravity = $Components/Gravity
@@ -37,17 +36,7 @@ func damage(body: CharacterBody2D) -> void:
 	is_dying = true
 	if !body.is_in_group(Globals.GROUP_NAME_PLAYER): return
 
-	var sec := StatusEffectComponent.find_status_effect_component(body)
-	if !sec:
-		die.call_deferred() # effect target is not found - do nothing
-		return
-
-	var health_component: HealthComponent = sec.get_component(HealthComponent)
-	if health_component && health_component.is_invincible():
-		die.call_deferred() # invincible
-		return
-
-	sec.apply_status_effects(status_effects)
+	# TODO: redo damage logic
 	die.call_deferred()
 
 func _on_hurbox_area_2d_body_entered(body: Node2D) -> void:
