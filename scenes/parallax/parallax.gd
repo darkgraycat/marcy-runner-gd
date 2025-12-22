@@ -8,7 +8,6 @@ class_name Parallax extends Node2D
 @onready var rows_root: Node2D = $RowsRoot
 @onready var source_parallax_2d: Parallax2D = $SourceParallax2D
 
-
 func set_configuration(value: ParallaxResource) -> void:
 	configuration = value
 	if !is_node_ready(): await ready
@@ -28,11 +27,10 @@ func set_configuration(value: ParallaxResource) -> void:
 		)
 		rows_root.add_child(row, true)
 
-
 func _create_row(
 	texture: Texture,
 	frame_size: Vector2i,
-	frame:  int,
+	frame: int,
 	color: Color,
 	offset: float,
 ) -> Parallax2D:
@@ -50,11 +48,9 @@ func _create_row(
 	color_rect.position = Vector2i(0, frame_size.y)
 	return row
 
-
 func _clear_rows() -> void:
 	for row: Parallax2D in rows_root.get_children():
 		row.queue_free()
-
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not source_sprite_2d:

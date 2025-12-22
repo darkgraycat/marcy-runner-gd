@@ -22,10 +22,8 @@ func _ready() -> void:
 
 	if movement: movement.move(movement_direction)
 
-
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-
 
 func die() -> void:
 	set_physics_process(false)
@@ -33,7 +31,6 @@ func die() -> void:
 	animation_player.play("die")
 	await animation_player.animation_finished
 	queue_free()
-
 
 func damage(body: CharacterBody2D) -> void:
 	if is_dying: return
@@ -52,7 +49,6 @@ func damage(body: CharacterBody2D) -> void:
 
 	sec.apply_status_effects(status_effects)
 	die.call_deferred()
-
 
 func _on_hurbox_area_2d_body_entered(body: Node2D) -> void:
 	damage(body)

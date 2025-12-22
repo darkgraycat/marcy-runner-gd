@@ -20,4 +20,3 @@ func _physics_process(delta: float) -> void:
 	else:
 		body.velocity.y += _gravity_force * delta
 		_is_on_ground = false
-

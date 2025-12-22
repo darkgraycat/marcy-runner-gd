@@ -2,30 +2,25 @@ class_name HealthComponent extends Component
 signal died()
 signal health_changed(health: float, prev_health: float)
 
-
 @export var max_health: float = 10
 @export var damage_interval_sec: float = 1
 var health: float: set = set_health
 var _last_hit_timestamp: float = 0
 var _original_modulate: Color = Color.WHITE
 
-
 func _ready() -> void:
 	health = max_health
 	_last_hit_timestamp = Utils.time
 	_original_modulate = parent.modulate
 
-
 func _process(_delta: float) -> void:
 	pass
-
 
 func set_health(value: float) -> void:
 	health = value
 	health_changed.emit(health)
 	if health <= 0:
 		died.emit()
-
 
 func damage(amount: float) -> void:
 	if is_invincible() && amount > 0: return
@@ -37,18 +32,14 @@ func damage(amount: float) -> void:
 	tween.tween_property(parent, ^"modulate", Color(1, 1, 1, 0.1), 0.2)
 	tween.tween_property(parent, ^"modulate", _original_modulate, 0.2)
 
-
 func heal(amount: float) -> void:
 	health = min(health + amount, max_health)
-
 
 func is_invincible() -> bool:
 	return _last_hit_timestamp + damage_interval_sec > Utils.time
 
-
 func set_invincibility_time_sec(seconds: float) -> void:
 	_last_hit_timestamp = Utils.time + seconds
-
 
 func get_invincibility_time_sec() -> float:
 	return max(0, _last_hit_timestamp + damage_interval_sec - Utils.time)

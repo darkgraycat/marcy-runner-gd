@@ -46,7 +46,6 @@ func _ready() -> void:
 
 	attributes.changed.connect(_on_attributes_changed)
 
-
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	Events.emit("%s" % jumping._remaining, "debug_player")

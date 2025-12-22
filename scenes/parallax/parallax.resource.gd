@@ -7,11 +7,9 @@ class_name ParallaxResource extends Resource
 @export var frames: Array[int] = []
 @export_range(0.0, 1.0, 0.01) var offsets: Array[float] = []
 
-
 func set_total_rows(value: int) -> void:
 	total_rows = value
 	colors.resize(value)
 	frames.resize(value)
 	offsets.resize(value)
 	notify_property_list_changed()
-

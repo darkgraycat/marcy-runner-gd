@@ -5,7 +5,7 @@ signal move_stopped()
 signal jump_started()
 signal jump_stopped()
 
-enum Key { Left, Right, Jump }
+enum Key {Left, Right, Jump}
 
 @export var scheme: Dictionary[Controller.Key, StringName] = {
 	Key.Left: &"move_left",
