@@ -22,8 +22,8 @@ enum Key {
 @export var values: Dictionary[Attributes.Key, float]
 
 func _ready() -> void:
-	assert(body, "CharacterBody2D is not defined")
-	assert(values, "AttributesResource is not defined")
+	assert(body, "body is not defined")
+	assert(values, "values is not defined")
 	body.add_to_group(GROUP_NAME)
 
 static func get_attributes(node: Node) -> Attributes:

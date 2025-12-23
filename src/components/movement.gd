@@ -9,7 +9,7 @@ var _target_velocity := 0.0
 var _direction := 0.0
 
 func _ready() -> void:
-	assert(body, "CharacterBody2D is not defined")
+	assert(body, "body is not defined")
 
 func move(new_direction: float) -> void:
 	_direction = new_direction

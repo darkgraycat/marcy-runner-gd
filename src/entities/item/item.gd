@@ -6,8 +6,8 @@ class_name Item extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
-	assert(animated_sprite_2d, "AnimatedSprite2D is not defined")
-	assert(collision_shape_2d, "CollisionShape2D is not defined")
+	assert(animated_sprite_2d, "animated_sprite_2d is not defined")
+	assert(collision_shape_2d, "collision_shape_2d is not defined")
 	body_entered.connect(_on_body_entered)
 	animated_sprite_2d.play("idle")
 

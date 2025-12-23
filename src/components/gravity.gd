@@ -10,7 +10,7 @@ var _gravity_force := 0.0
 var _is_on_ground := false
 
 func _ready() -> void:
-	assert(body, "CharacterBody2D is not defined")
+	assert(body, "body is not defined")
 	_gravity_force = weight * Global.GRAVITY
 
 func _physics_process(delta: float) -> void:

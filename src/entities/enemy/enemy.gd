@@ -13,9 +13,9 @@ class_name Enemy extends CharacterBody2D
 var is_dying: bool = false
 
 func _ready() -> void:
-	if !sprite_2d: return push_error(self, "Sprite2D is not defined")
-	if !animation_player: return push_error(self, "AnimationPlayer is not defined")
-	if !hurbox_area_2d: return push_error(self, "HurtBoxArea2D is not defined")
+	assert(sprite_2d, "sprite_2d is not defined")
+	assert(animation_player, "animation_player is not defined")
+	assert(hurbox_area_2d, "hurbox_area_2d is not defined")
 	hurbox_area_2d.body_entered.connect(_on_hurbox_area_2d_body_entered)
 	animation_player.play("idle")
 

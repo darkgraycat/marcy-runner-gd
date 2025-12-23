@@ -8,7 +8,7 @@ var _is_jumping := false
 var _remaining := 1
 
 func _ready() -> void:
-	assert(body, "CharacterBody2D is not defined")
+	assert(body, "body is not defined")
 
 func jump() -> void:
 	if _remaining > 0:

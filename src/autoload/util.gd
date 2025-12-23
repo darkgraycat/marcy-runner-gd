@@ -93,6 +93,11 @@ func sleep(seconds: float) -> void:
 		seconds -= get_process_delta_time()
 
 ## VALIDATION AND ERROR HANDLING ###############################################
+func get_configuration_warnings(node: Node, ...properties: Array) -> PackedStringArray:
+	var warnings: PackedStringArray = []
+	for prop: String in properties:
+		if not prop in node: warnings.append(prop + " property is not defined")
+	return warnings
 
 func generate_configuration_warnings(...bool_message_pairs: Array) -> PackedStringArray:
 	var warnings: PackedStringArray = []
