@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://scenes/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://scenes/ui/debug_label.tscn" id="5_bjvvg"]
-[ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://components/gravity.gd" id="6_7wli1"]
-[ext_resource type="Script" uid="uid://bv604fxhqw8o1" path="res://components/attributes.gd" id="6_ovg4i"]
-[ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://components/movement.gd" id="7_j0oqr"]
-[ext_resource type="Script" uid="uid://nkvpec60fwby" path="res://components/health.gd" id="7_xy2vv"]
-[ext_resource type="Script" uid="uid://bm1h5vp83em0t" path="res://components/jumping.gd" id="8_xy2vv"]
+[ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://src/components/gravity.gd" id="6_7wli1"]
+[ext_resource type="Script" uid="uid://bv604fxhqw8o1" path="res://src/components/attributes.gd" id="6_ovg4i"]
+[ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://src/components/movement.gd" id="7_j0oqr"]
+[ext_resource type="Script" uid="uid://nkvpec60fwby" path="res://src/components/health.gd" id="7_xy2vv"]
+[ext_resource type="Script" uid="uid://bm1h5vp83em0t" path="res://src/components/jumping.gd" id="8_xy2vv"]
 
 [sub_resource type="Animation" id="Animation_8akj5"]
 length = 0.001

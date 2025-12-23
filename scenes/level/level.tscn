@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://esk118apvowd" path="res://scenes/entities/enemy/slow_station.enemy.tscn" id="12_22udv"]
 [ext_resource type="PackedScene" uid="uid://dwvy3iglky6ea" path="res://scenes/entities/item/life.item.tscn" id="16_ra12g"]
 [ext_resource type="PackedScene" uid="uid://cu5doia18e8jp" path="res://scenes/parallax/parallax.tscn" id="16_xwduj"]
-[ext_resource type="Script" uid="uid://7uoop8neh54d" path="res://components/controller.gd" id="17_ss4b2"]
+[ext_resource type="Script" uid="uid://7uoop8neh54d" path="res://src/components/controller.gd" id="17_ss4b2"]
 [ext_resource type="PackedScene" uid="uid://cusa4cpmqiqdn" path="res://scenes/entities/item/bean.item.tscn" id="18_jpfpk"]
 [ext_resource type="PackedScene" uid="uid://cj2kxo8h6pjyr" path="res://scenes/tile_map_grid/tile_map_grid.tscn" id="18_ss4b2"]
 [ext_resource type="PackedScene" uid="uid://dclf27yij27b2" path="res://scenes/entities/item/panacat.item.tscn" id="19_eqy4y"]
