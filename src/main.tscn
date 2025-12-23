@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dmy71hjfr481k" path="res://src/scenes/level/level.tscn" id="2_kli8p"]
 [ext_resource type="PackedScene" uid="uid://iu2jwoplismj" path="res://src/debug/fps_heap_label.tscn" id="3_uyqow"]
 [ext_resource type="Script" uid="uid://cjfo4g5qkn56m" path="res://src/scenes/parallax/parallax.resource.gd" id="3_vcp6r"]
-[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/ui/debug_label.tscn" id="4_3k5nu"]
+[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/debug/debug_label.tscn" id="4_3k5nu"]
 [ext_resource type="Shader" uid="uid://1mtdvgwtv3pc" path="res://assets/shaders/screen_сrt_light.gdshader" id="4_ow5a4"]
 [ext_resource type="Resource" uid="uid://c1jtghnx2uynx" path="res://assets/resources/parallax/sunset_pine.parallax.tres" id="4_vcp6r"]
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="4_xryad"]
@@ -40,7 +40,6 @@ offset_left = 92.0
 offset_top = 2.0
 offset_right = 158.0
 offset_bottom = 25.0
-channel = 999
 
 [node name="ShaderColorRect" type="ColorRect" parent="DebugCanvasLayer"]
 material = SubResource("ShaderMaterial_hujxm")

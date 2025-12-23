@@ -34,7 +34,7 @@ func die() -> void:
 func damage(body: CharacterBody2D) -> void:
 	if is_dying: return
 	is_dying = true
-	if !body.is_in_group(Globals.GROUP_NAME_PLAYER): return
+	if !body.is_in_group(Global.GROUP_NAME_PLAYER): return
 
 	# TODO: redo damage logic
 	die.call_deferred()

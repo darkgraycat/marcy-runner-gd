@@ -18,7 +18,7 @@ func die() -> void:
 	queue_free()
 
 func collect(target: Node2D) -> void:
-	if !target.is_in_group(Globals.GROUP_NAME_PLAYER): return
+	if !target.is_in_group(Global.GROUP_NAME_PLAYER): return
 	if !target.is_in_group(Attributes.GROUP_NAME): return
 
 	var attributes := Attributes.get_attributes(target)

@@ -51,7 +51,7 @@ func switch(key: int, value: bool) -> void:
 func setv_timed(key: int, value: float, seconds: float) -> void:
 	var diff := getv(key) - value
 	setv(key, value)
-	await Utils.sleep(seconds)
+	await Util.sleep(seconds)
 	var v := getv(key) + diff
 	setv(key, v)
 	expired.emit()

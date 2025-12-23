@@ -40,7 +40,7 @@ func _extract_layer_patterns(tile_map: TileMapLayer) -> Array[TileMapPattern]:
 	for y in grid_size.y:
 		for x in grid_size.x:
 			var start_pos := Vector2i(x, y) * chunk_size
-			var coords := Utils.get_recti_coords(Rect2i(start_pos, chunk_size))
+			var coords := Util.get_recti_coords(Rect2i(start_pos, chunk_size))
 			patterns.append(tile_map.get_pattern(coords))
 	return patterns
 

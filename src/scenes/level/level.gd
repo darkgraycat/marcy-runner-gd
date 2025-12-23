@@ -15,12 +15,12 @@ var _parallax_idx: int = -1
 
 func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
-	player_camera.limit_bottom = Globals.VIEWPORT_HEIGHT
+	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
 	_tile_map_idxs.assign(range(0, tile_map_grid.get_patterns_amount()))
 
 func _physics_process(_delta: float) -> void:
 	if (player):
-		if player.global_position.y > Globals.VIEWPORT_HEIGHT + Globals.TILE_SIZE:
+		if player.global_position.y > Global.VIEWPORT_HEIGHT + Global.TILE_SIZE:
 			player.die()
 
 		if player.global_position.x > (_tile_map_next.x - 1) * 288:

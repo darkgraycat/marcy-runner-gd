@@ -4,14 +4,14 @@ signal landed()
 
 @export var body: CharacterBody2D
 @export var weight := 1.0:
-	set(v): weight = v; _gravity_force = v * Globals.GRAVITY
+	set(v): weight = v; _gravity_force = v * Global.GRAVITY
 
 var _gravity_force := 0.0
 var _is_on_ground := false
 
 func _ready() -> void:
 	assert(body, "CharacterBody2D is not defined")
-	_gravity_force = weight * Globals.GRAVITY
+	_gravity_force = weight * Global.GRAVITY
 
 func _physics_process(delta: float) -> void:
 	if body.is_on_floor():
