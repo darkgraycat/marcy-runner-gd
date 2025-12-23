@@ -4,7 +4,7 @@ class_name Level extends Node2D
 @onready var player: Player = %Player
 @onready var player_camera: Camera2D = %Player/Camera2D
 @onready var level_ui_canvas_layer: LevelUiCanvasLayer = %LevelUiCanvasLayer
-@onready var tile_map_grid: TileMapGrid = $TileMapGrid
+@onready var tile_map_grid: TileGrid = $TileGrid
 @onready var parallax: Parallax = $Parallax
 
 var _tile_map_idxs: Array[int] = [0]

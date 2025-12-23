@@ -1,5 +1,5 @@
 @tool
-class_name TileMapGrid extends Node2D
+class_name TileGrid extends Node2D
 
 @export var grid_size: Vector2i = Vector2i(4, 4):
 	set(v): grid_size = v; _hint_update()
