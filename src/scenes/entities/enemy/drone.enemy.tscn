@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://src/scenes/entities/enemy/enemy.gd" id="1_jsorr"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://src/components/movement.gd" id="5_ip72x"]
-[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/scenes/ui/debug_label.tscn" id="6_5pdap"]
+[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/ui/debug_label.tscn" id="6_5pdap"]
 
 [sub_resource type="Animation" id="Animation_goa2j"]
 length = 0.001
