@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnssyl4v6wjh8"]
 
 [ext_resource type="FontFile" uid="uid://7jyjmgob3rfr" path="res://assets/ui/monogram-extended.ttf" id="1_48i0q"]
-[ext_resource type="Script" uid="uid://biqvssrth5gs8" path="res://scenes/ui/debug_label.gd" id="2_lr2e3"]
+[ext_resource type="Script" uid="uid://biqvssrth5gs8" path="res://src/scenes/ui/debug_label.gd" id="2_lr2e3"]
 
 [node name="DebugLabel" type="Label"]
 offset_right = 40.0

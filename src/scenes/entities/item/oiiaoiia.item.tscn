@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://bprtmh0i55jgw"]
 
-[ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/item/item.gd" id="1_n36in"]
+[ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://src/scenes/entities/item/item.gd" id="1_n36in"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="4_h3i21"]
-[ext_resource type="Material" uid="uid://cbb7fhahhc1" path="res://scenes/entities/player/rainbow_material.tres" id="4_i1uql"]
+[ext_resource type="Material" uid="uid://cbb7fhahhc1" path="res://src/scenes/entities/player/rainbow_material.tres" id="4_i1uql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]
 atlas = ExtResource("4_h3i21")
