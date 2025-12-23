@@ -1,0 +1,23 @@
+extends CharacterBody2D
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+func _ready() -> void:
+	animation_player.play("idle")
+
+# func _physics_process(_delta: float) -> void:
+# 	move_and_slide()
+
+func die() -> void:
+	set_physics_process(false)
+	collision_shape_2d.disabled = true
+	animation_player.play("die")
+	await animation_player.animation_finished
+	queue_free.call_deferred()
+
+# TODO: move into Hurtbox component
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if body.is_in_group(Global.GROUP_NAME_PLAYER):
+		die.call_deferred()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://esk118apvowd"]
 
-[ext_resource type="Script" uid="uid://ci1vbr35wldyi" path="res://src/entities/enemy/enemy.gd" id="1_h4mso"]
+[ext_resource type="Script" uid="uid://bv8qw0hjgqsnn" path="res://src/entities/enemy_slower/enemy_slower.gd" id="1_dxk8a"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="2_qb5fb"]
 [ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://src/components/gravity.gd" id="5_nm7ey"]
 
@@ -67,15 +67,10 @@ size = Vector2(22, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4mso"]
 size = Vector2(18, 9.5)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape_2d", "sprite_2d", "animation_player", "hurbox_area_2d") groups=["Enemies"]]
+[node name="EnemySlower" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 9
 collision_mask = 2
-script = ExtResource("1_h4mso")
-collision_shape_2d = NodePath("CollisionShape2D")
-sprite_2d = NodePath("Sprite2D")
-animation_player = NodePath("AnimationPlayer")
-hurbox_area_2d = NodePath("Area2D")
-metadata/_custom_type_script = "uid://ci1vbr35wldyi"
+script = ExtResource("1_dxk8a")
 
 [node name="Components" type="Node" parent="."]
 
