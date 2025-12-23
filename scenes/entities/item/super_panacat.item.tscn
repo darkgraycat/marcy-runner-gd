@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://cir2e880om1ix"]
 
 [ext_resource type="Script" uid="uid://bo5obr2lnl7a6" path="res://scenes/entities/item/item.gd" id="1_ch55q"]
-[ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://shared/shaders/rainbow.gdshader" id="5_mlj8a"]
+[ext_resource type="Shader" uid="uid://cg57in0tlbbq2" path="res://assets/shaders/rainbow.gdshader" id="5_mlj8a"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="6_46n2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_53yl8"]
