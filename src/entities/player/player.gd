@@ -12,7 +12,7 @@ class_name Player extends CharacterBody2D
 @onready var health: Health = $Components/Health
 @onready var attributes: Attributes = $Components/Attributes
 
-const RAINBOW_MATERIAL = preload("res://src/scenes/entities/player/rainbow_material.tres")
+const RAINBOW_MATERIAL = preload("res://src/entities/player/rainbow_material.tres")
 
 func _ready() -> void:
 	movement.max_speed = attributes.getv(Attributes.Key.MoveSpeed)

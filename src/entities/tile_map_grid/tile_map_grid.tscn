@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj2kxo8h6pjyr"]
 
-[ext_resource type="Script" uid="uid://chixoddgcdr7j" path="res://src/scenes/tile_map_grid/tile_map_grid.gd" id="1_ho87i"]
-[ext_resource type="Shader" uid="uid://defsinfpv5qny" path="res://src/scenes/tile_map_grid/tile_map_grid.gdshader" id="2_hpybf"]
+[ext_resource type="Script" uid="uid://chixoddgcdr7j" path="res://src/entities/tile_map_grid/tile_map_grid.gd" id="1_ho87i"]
+[ext_resource type="Shader" uid="uid://defsinfpv5qny" path="res://src/entities/tile_map_grid/tile_map_grid.gdshader" id="2_hpybf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hhud0"]
 shader = ExtResource("2_hpybf")
