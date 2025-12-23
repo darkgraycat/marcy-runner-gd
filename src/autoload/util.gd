@@ -56,7 +56,6 @@ func get_recti_coords(rect: Rect2i) -> Array[Vector2i]:
 	return coords
 
 ## UTILS FOR NODES #############################################################
-
 func cast_type(value: Variant, type: int) -> Variant:
 	match type:
 		TYPE_INT: return int(value)

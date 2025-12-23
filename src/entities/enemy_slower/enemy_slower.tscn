@@ -68,8 +68,8 @@ size = Vector2(22, 6)
 size = Vector2(18, 9.5)
 
 [node name="EnemySlower" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 9
-collision_mask = 2
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_dxk8a")
 
 [node name="Components" type="Node" parent="."]

@@ -7,8 +7,9 @@ class_name TileGrid extends Node2D
 	set(v): cell_size = v; _hint_update()
 
 @onready var color_rect: ColorRect = $ColorRect
-var _tile_map_layers: Array[TileMapLayer] = []
-var _tile_map_patterns: Dictionary[String, Array] = {}
+
+var _layers: Array[TileMapLayer] = []
+var _patterns: Dictionary[String, Array] = {}
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -17,22 +18,22 @@ func _ready() -> void:
 
 	for node: Node in get_children():
 		if not node is TileMapLayer: continue
-		_tile_map_layers.append(node)
+		_layers.append(node)
 
-	for layer in _tile_map_layers:
-		_tile_map_patterns[layer.name] = _extract_layer_patterns(layer)
+	for layer in _layers:
+		_patterns[layer.name] = _extract_layer_patterns(layer)
 		layer.clear()
 
 func apply_pattern_at(idx: int, pos: Vector2i) -> void:
-	for tile_map in _tile_map_layers:
+	for tile_map in _layers:
 		var chunk_size := cell_size / tile_map.tile_set.tile_size
-		var pattern: TileMapPattern = _tile_map_patterns.get(tile_map.name, []).get(idx)
+		var pattern: TileMapPattern = _patterns.get(tile_map.name, []).get(idx)
 		if !pattern: continue
 		tile_map.set_pattern(pos * chunk_size, pattern)
 
 func get_patterns_amount() -> int:
-	return (0 if _tile_map_layers.is_empty()
-		else _tile_map_patterns[_tile_map_layers[0].name].size())
+	return (0 if _layers.is_empty()
+		else _patterns[_layers[0].name].size())
 
 func _extract_layer_patterns(tile_map: TileMapLayer) -> Array[TileMapPattern]:
 	var patterns: Array[TileMapPattern] = []

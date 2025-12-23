@@ -6,9 +6,10 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	animation_player.play("idle")
+	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
-# func _physics_process(_delta: float) -> void:
-# 	move_and_slide()
+func _physics_process(_delta: float) -> void:
+	move_and_slide()
 
 func die() -> void:
 	set_physics_process(false)
