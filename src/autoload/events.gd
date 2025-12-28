@@ -6,9 +6,6 @@ signal global_event(message: String, tag: String)
 func emit(message: String, tag: String = "default") -> void: global_event.emit(message, tag)
 
 # Player events
-signal player_attr_updated(key: int, value: float)
-func emit_player_attr_updated(key: int, value: float) -> void: player_attr_updated.emit(key, value)
-
 signal player_item_collected(item: Node2D)
 func emit_player_item_collected(item: Node2D) -> void: player_item_collected.emit(item)
 
