@@ -18,7 +18,6 @@ func notify(message: String, channel: int = 0) -> void:
 ## FILE MANAGEMENT #############################################################
 
 func load_as_text(path: String) -> String:
-	print("Loading text: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	var content: String = file.get_as_text()
@@ -26,22 +25,20 @@ func load_as_text(path: String) -> String:
 	return content
 
 func load_as_json(path: String) -> Dictionary:
-	print("Loading json: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	var json: JSON = JSON.new()
 	json.parse(file.get_as_text())
+	file.close()
 	return json.data
 
 func save_as_text(path: String, data: String) -> void:
-	print("Saving text: %s" % path)
 	assert(FileAccess.file_exists(path), "File is not exist: %s" % path)
 	var file: FileAccess = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(data)
 	file.close()
 
 func load_resource(path: String) -> Resource:
-	print("Loading resource: %s" % path)
 	assert(ResourceLoader.exists(path), "Resource is not exist: %s" % path)
 	var resource: Resource = load(path)
 	return resource

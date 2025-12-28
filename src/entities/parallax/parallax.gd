@@ -3,13 +3,13 @@ class_name Parallax extends Node2D
 
 @export var screen_size: Vector2i = Vector2.ZERO
 @export var source_sprite_2d: Sprite2D
-@export var configuration: ParallaxResource: set = set_configuration
+@export var config: ParallaxResource: set = apply_config
 
 @onready var rows_root: Node2D = $RowsRoot
 @onready var source_parallax_2d: Parallax2D = $SourceParallax2D
 
-func set_configuration(value: ParallaxResource) -> void:
-	configuration = value
+func apply_config(new_config: ParallaxResource) -> void:
+	config = new_config
 	if !is_node_ready(): await ready
 	assert(source_sprite_2d, "source_sprite_2d is not defined")
 
@@ -17,13 +17,13 @@ func set_configuration(value: ParallaxResource) -> void:
 	var source_frame_size := Vector2i(source_sprite_2d.texture.get_size()) / source_frame_count
 
 	_clear_rows()
-	for idx: int in configuration.total_rows:
+	for idx: int in config.total_rows:
 		var row := _create_row(
 			source_sprite_2d.texture,
 			source_frame_size,
-			configuration.frames[idx],
-			configuration.colors[idx],
-			configuration.offsets[idx],
+			config.frames[idx],
+			config.colors[idx],
+			config.offsets[idx],
 		)
 		rows_root.add_child(row, true)
 
@@ -52,5 +52,3 @@ func _clear_rows() -> void:
 	for row: Parallax2D in rows_root.get_children():
 		row.queue_free()
 
-func _get_configuration_warnings() -> PackedStringArray:
-	return Util.get_configuration_warnings(self, "source_sprite_2d")

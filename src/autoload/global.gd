@@ -7,11 +7,7 @@ var GRAVITY: float = ProjectSettings.get_setting("physics/2d/default_gravity", 5
 var VIEWPORT_WIDTH: int = ProjectSettings.get_setting("display/window/size/viewport_width", 320)
 var VIEWPORT_HEIGHT: int = ProjectSettings.get_setting("display/window/size/viewport_height", 180)
 
-const TILE_SIZE: int = 16
-
-const MOVE_VELOCITY: float = 100.0
-const JUMP_VELOCITY: float = 250.0
-const ACCELERATION: float = 5.0
+const DEFAULT_TILE_SIZE: int = 16
 
 const GROUP_NAME_PLAYER: StringName = "Player"
 const GROUP_NAME_ITEMS: StringName = "Items"

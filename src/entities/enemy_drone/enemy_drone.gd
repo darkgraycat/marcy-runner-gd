@@ -23,4 +23,4 @@ func die() -> void:
 # TODO: move into Hurtbox component
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group(Global.GROUP_NAME_PLAYER):
-		die.call_deferred()
+		die()

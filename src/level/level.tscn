@@ -1,26 +1,37 @@
-[gd_scene load_steps=21 format=4 uid="uid://dmy71hjfr481k"]
+[gd_scene load_steps=24 format=4 uid="uid://dmy71hjfr481k"]
 
 [ext_resource type="Script" uid="uid://brn0qv0lmbkne" path="res://src/level/level.gd" id="1_f7ki7"]
 [ext_resource type="PackedScene" uid="uid://7i1o65gxgnqa" path="res://src/entities/player/player.tscn" id="3_dlyvo"]
+[ext_resource type="Script" uid="uid://ygfq8rpo3avr" path="res://src/level/level.resource.gd" id="3_n7ksj"]
 [ext_resource type="PackedScene" uid="uid://difgvseqsh0oi" path="res://src/ui/level_ui_canvas_layer.tscn" id="4_83tuq"]
+[ext_resource type="Script" uid="uid://bo7pjgp4afm02" path="res://src/level/state.resource.gd" id="4_fghqq"]
 [ext_resource type="Resource" uid="uid://c1jtghnx2uynx" path="res://assets/resources/parallax/sunset_pine.parallax.tres" id="5_0f74w"]
 [ext_resource type="Texture2D" uid="uid://dc50gbja4k4b7" path="res://assets/sprites/backgrounds.png" id="7_k6plm"]
 [ext_resource type="Resource" uid="uid://d32vhuvt7e74y" path="res://assets/resources/parallax/outskirts.parallax.tres" id="8_0f74w"]
 [ext_resource type="PackedScene" uid="uid://nb7si673sijd" path="res://src/debug/resource_visualizer.tscn" id="8_ra12g"]
 [ext_resource type="TileSet" uid="uid://77i2lcgscs1j" path="res://assets/resources/tiles/level.tileset.tres" id="9_ivku7"]
-[ext_resource type="PackedScene" uid="uid://bprtmh0i55jgw" path="res://src/entities/item/oiiaoiia.item.tscn" id="11_k6plm"]
 [ext_resource type="PackedScene" uid="uid://din6bnv7nrd2n" path="res://src/entities/enemy_drone/enemy_drone.tscn" id="11_l1ony"]
 [ext_resource type="PackedScene" uid="uid://esk118apvowd" path="res://src/entities/enemy_slower/enemy_slower.tscn" id="12_22udv"]
-[ext_resource type="PackedScene" uid="uid://dwvy3iglky6ea" path="res://src/entities/item/life.item.tscn" id="16_ra12g"]
+[ext_resource type="PackedScene" uid="uid://dwvy3iglky6ea" path="res://src/entities/item_life/item_life.tscn" id="16_ra12g"]
 [ext_resource type="PackedScene" uid="uid://cu5doia18e8jp" path="res://src/entities/parallax/parallax.tscn" id="16_xwduj"]
 [ext_resource type="Script" uid="uid://7uoop8neh54d" path="res://src/components/controller.gd" id="17_ss4b2"]
-[ext_resource type="PackedScene" uid="uid://cusa4cpmqiqdn" path="res://src/entities/item/bean.item.tscn" id="18_jpfpk"]
+[ext_resource type="PackedScene" uid="uid://cusa4cpmqiqdn" path="res://src/entities/item_bean/item_bean.tscn" id="18_jpfpk"]
 [ext_resource type="PackedScene" uid="uid://cj2kxo8h6pjyr" path="res://src/entities/tile_map_grid/tile_grid.tscn" id="18_ss4b2"]
-[ext_resource type="PackedScene" uid="uid://dclf27yij27b2" path="res://src/entities/item/panacat.item.tscn" id="19_eqy4y"]
+[ext_resource type="PackedScene" uid="uid://dclf27yij27b2" path="res://src/entities/item_panacat/item_panacat.tscn" id="19_eqy4y"]
+
+[sub_resource type="Resource" id="Resource_ascnc"]
+script = ExtResource("4_fghqq")
+metadata/_custom_type_script = "uid://bo7pjgp4afm02"
+
+[sub_resource type="Resource" id="Resource_5eycd"]
+script = ExtResource("3_n7ksj")
+state = SubResource("Resource_ascnc")
+parallax = ExtResource("5_0f74w")
+grid_idxs = Array[int]([0, 1, 2, 3, 4, 5, 6, 7])
+metadata/_custom_type_script = "uid://ygfq8rpo3avr"
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hq6hr"]
 resource_name = "Collectables"
-scenes/1/scene = ExtResource("11_k6plm")
 scenes/7/scene = ExtResource("18_jpfpk")
 scenes/8/scene = ExtResource("19_eqy4y")
 scenes/9/scene = ExtResource("16_ra12g")
@@ -36,6 +47,7 @@ sources/1 = SubResource("TileSetScenesCollectionSource_k6plm")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_f7ki7")
+config = SubResource("Resource_5eycd")
 
 [node name="LevelUiCanvasLayer" parent="." instance=ExtResource("4_83tuq")]
 unique_name_in_owner = true
@@ -43,7 +55,6 @@ unique_name_in_owner = true
 [node name="Parallax" parent="." node_paths=PackedStringArray("source_sprite_2d") instance=ExtResource("16_xwduj")]
 screen_size = Vector2i(320, 180)
 source_sprite_2d = NodePath("Sprite2D")
-configuration = ExtResource("5_0f74w")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax"]
 visible = false
