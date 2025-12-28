@@ -226,9 +226,11 @@ metadata/_custom_type_script = "uid://bm1h5vp83em0t"
 [node name="Gravity" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("6_7wli1")
 body = NodePath("../..")
+weight = 1.25
 
 [node name="Health" type="Node" parent="Components"]
 script = ExtResource("7_xy2vv")
+maximum = 9.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

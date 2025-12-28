@@ -11,11 +11,17 @@ class_name Level extends Node2D
 var _grid_next_position: Vector2i = Vector2i(-1, 0)
 
 func _ready() -> void:
-	Events.player_died.connect(_on_player_died)
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
+	player.movement.max_speed = config.state.player_move_velocity
+	player.jumping.jump_force = config.state.player_jump_velocity
+	player.jumping.max_jumps = config.state.player_max_jumps
+
 	if not parallax.is_node_ready(): await parallax.ready
 	parallax.config = config.parallax;
-	print("GSx %s" % tile_grid.cell_size.x);
+
+	Events.player_died.connect(_on_player_died)
+	Events.player_item_collected.connect(_on_player_item_collected)
+
 
 func _physics_process(_delta: float) -> void:
 	if (player):
@@ -29,6 +35,12 @@ func _physics_process(_delta: float) -> void:
 
 func _on_player_died() -> void:
 	player.respawn(Vector2(player.global_position.x, 0))
+
+func _on_player_item_collected(item: Node2D) -> void:
+	if item is ItemPanacat: config.state.score_points += 10
+	elif item is ItemBean: print("Bean collected")
+	elif item is ItemLife: print("Life collected")
+	elif item is ItemSuperPanacat: print("SuperPanacat collected")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_action"):

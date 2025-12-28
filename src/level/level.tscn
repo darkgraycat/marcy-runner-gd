@@ -21,6 +21,7 @@
 
 [sub_resource type="Resource" id="Resource_ascnc"]
 script = ExtResource("4_fghqq")
+player_move_velocity = 150.0
 metadata/_custom_type_script = "uid://bo7pjgp4afm02"
 
 [sub_resource type="Resource" id="Resource_5eycd"]

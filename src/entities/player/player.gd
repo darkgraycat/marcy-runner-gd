@@ -10,18 +10,18 @@ class_name Player extends CharacterBody2D
 @onready var jumping: Jumping = $Components/Jumping
 @onready var gravity: Gravity = $Components/Gravity
 @onready var health: Health = $Components/Health
-@onready var attributes: Attributes = $Components/Attributes
+# @onready var attributes: Attributes = $Components/Attributes
 
 const RAINBOW_MATERIAL = preload("res://src/entities/player/rainbow_material.tres")
 
 func _ready() -> void:
-	movement.max_speed = attributes.getv(Attributes.Key.MoveSpeed)
-	movement.acceleration = attributes.getv(Attributes.Key.MoveAccel)
-	gravity.weight = attributes.getv(Attributes.Key.BodyWeight)
-	health.current = attributes.getv(Attributes.Key.Health)
-	health.maximum = attributes.getv(Attributes.Key.MaxHealth)
-	jumping.jump_force = attributes.getv(Attributes.Key.JumpForce)
-	jumping.max_jumps = int(attributes.getv(Attributes.Key.JumpAmount))
+	# movement.max_speed = attributes.getv(Attributes.Key.MoveSpeed)
+	# movement.acceleration = attributes.getv(Attributes.Key.MoveAccel)
+	# gravity.weight = attributes.getv(Attributes.Key.BodyWeight)
+	# health.current = attributes.getv(Attributes.Key.Health)
+	# health.maximum = attributes.getv(Attributes.Key.MaxHealth)
+	# jumping.jump_force = attributes.getv(Attributes.Key.JumpForce)
+	# jumping.max_jumps = int(attributes.getv(Attributes.Key.JumpAmount))
 	gravity.landed.connect(update_animation)
 
 	health.died.connect(func() -> void:
@@ -44,7 +44,7 @@ func _ready() -> void:
 		movement.stop()
 		update_animation())
 
-	attributes.changed.connect(_on_attributes_changed)
+	# attributes.changed.connect(_on_attributes_changed)
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -75,13 +75,13 @@ func respawn(spawn_point: Vector2) -> void:
 	update_animation()
 	Events.emit_player_spawned(spawn_point)
 
-func _on_attributes_changed(key: int, value: float) -> void:
-	match key:
-		Attributes.Key.MoveAccel: movement.acceleration = value
-		Attributes.Key.MoveSpeed: movement.max_speed = value
-		Attributes.Key.Health: health.current = value
-		Attributes.Key.MaxHealth: health.maximum = value
-		Attributes.Key.JumpAmount: jumping.max_jumps = int(value)
-		Attributes.Key.JumpForce: jumping.jump_force = value
-
-	Events.emit_player_attr_updated(key, value)
+	# func _on_attributes_changed(key: int, value: float) -> void:
+	# 	match key:
+	# 		Attributes.Key.MoveAccel: movement.acceleration = value
+	# 		Attributes.Key.MoveSpeed: movement.max_speed = value
+	# 		Attributes.Key.Health: health.current = value
+	# 		Attributes.Key.MaxHealth: health.maximum = value
+	# 		Attributes.Key.JumpAmount: jumping.max_jumps = int(value)
+	# 		Attributes.Key.JumpForce: jumping.jump_force = value
+	#
+	# 	Events.emit_player_attr_updated(key, value)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dclf27yij27b2"]
+[gd_scene load_steps=18 format=3 uid="uid://dclf27yij27b2"]
 
 [ext_resource type="Script" uid="uid://c7667iivbw452" path="res://src/entities/item_panacat/item_panacat.gd" id="1_jpck2"]
 [ext_resource type="Texture2D" uid="uid://daeouroohjn72" path="res://assets/sprites/collectables.png" id="1_t1u2x"]
+[ext_resource type="Script" uid="uid://dsoobnv6xyo1d" path="res://src/components/pickup_area.gd" id="3_04vpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqd7o"]
 atlas = ExtResource("1_t1u2x")
@@ -126,9 +127,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0s2ui"]
 radius = 6.0
 
-[node name="ItemPanacat" type="Area2D"]
-collision_layer = 4
-collision_mask = 2
+[node name="ItemPanacat" type="Node2D"]
 script = ExtResource("1_jpck2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -136,6 +135,13 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_x2uk8")
 animation = &"die"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_04vpm")
+filter_group = &"Player"
+metadata/_custom_type_script = "uid://dsoobnv6xyo1d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 position = Vector2(-1, -5)
 shape = SubResource("CircleShape2D_0s2ui")
