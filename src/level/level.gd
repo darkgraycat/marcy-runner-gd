@@ -1,5 +1,7 @@
 class_name Level extends Node2D
 
+signal state_updated(state: StateResource)
+
 @export var config: LevelResource
 
 @onready var player: Player = $Player
@@ -22,6 +24,7 @@ func _ready() -> void:
 	parallax.config = config.parallax;
 
 	level_ui_canvas_layer.update_labels(config.state)
+	state_updated.connect(level_ui_canvas_layer.update_labels)
 
 	tile_grid.apply_pattern_at(0, Vector2i(0, 0))
 	tile_grid.apply_pattern_at(0, Vector2i(1, 0))
@@ -37,11 +40,26 @@ func _on_player_died() -> void:
 	player.respawn(Vector2(player.global_position.x - 64, 0))
 
 func _on_player_item_collected(item: Node2D) -> void:
-	if item is ItemPanacat: config.state.score_points += 10
-	elif item is ItemBean: config.state.player_bonus_speed += 25
-	elif item is ItemLife: config.state.lifes_amount += 1
-	elif item is ItemSuperPanacat: print("SuperPanacat collected")
-	level_ui_canvas_layer.update_labels(config.state)
+	var s := config.state
+	if item is ItemPanacat:
+		s.score_points += 10
+	elif item is ItemBean:
+		s.player_bonus_speed += 25
+		player.movement.max_speed = s.player_move_velocity + s.player_bonus_speed
+		state_updated.emit(s)
+		await Util.sleep(5)
+		s.player_bonus_speed -= 25
+		if s.player_bonus_speed < 0:
+			s.player_bonus_speed = 0
+		player.movement.max_speed = s.player_move_velocity + s.player_bonus_speed
+		state_updated.emit(s)
+	elif item is ItemLife:
+		s.lifes_amount += 1
+		if s.lifes_amount > s.max_lifes_amount:
+			s.lifes_amount = s.max_lifes_amount
+	elif item is ItemSuperPanacat:
+		print("SuperPanacat collected")
+	state_updated.emit(s)
 
 func _on_level_bottom_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:

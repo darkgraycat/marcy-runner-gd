@@ -9,5 +9,6 @@ class_name StateResource extends Resource
 
 @export_group("State")
 @export var score_points: int = 0
-@export var lifes_amount: int = 9
+@export var lifes_amount: int = 3
+@export var max_lifes_amount: int = 9
 
