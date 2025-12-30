@@ -19,6 +19,7 @@ func _ready() -> void:
 	if not parallax.is_node_ready(): await parallax.ready
 	parallax.config = config.parallax;
 
+	level_ui_canvas_layer.update_labels(config.state)
 	Events.player_died.connect(_on_player_died)
 	Events.player_item_collected.connect(_on_player_item_collected)
 
@@ -38,9 +39,10 @@ func _on_player_died() -> void:
 
 func _on_player_item_collected(item: Node2D) -> void:
 	if item is ItemPanacat: config.state.score_points += 10
-	elif item is ItemBean: print("Bean collected")
-	elif item is ItemLife: print("Life collected")
+	elif item is ItemBean: config.state.player_bonus_speed += 25
+	elif item is ItemLife: config.state.lifes_amount += 1
 	elif item is ItemSuperPanacat: print("SuperPanacat collected")
+	level_ui_canvas_layer.update_labels(config.state)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_action"):
