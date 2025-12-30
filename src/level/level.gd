@@ -9,9 +9,8 @@ class_name Level extends Node2D
 @onready var parallax: Parallax = $Parallax
 
 @onready var level_ui_canvas_layer: LevelUiCanvasLayer = $LevelUiCanvasLayer
-@onready var level_bottom_area_2d: Area2D = $StaticLayer/LevelBottomArea2D
-
-var _grid_next_position: Vector2i = Vector2i(-1, 0)
+@onready var level_bottom_area_2d: Area2D = $LevelBottomArea2D
+@onready var level_side_area_2d: Area2D = $LevelSideArea2D
 
 func _ready() -> void:
 	player_camera.limit_bottom = Global.VIEWPORT_HEIGHT
@@ -23,25 +22,17 @@ func _ready() -> void:
 	parallax.config = config.parallax;
 
 	level_ui_canvas_layer.update_labels(config.state)
+
+	tile_grid.apply_pattern_at(0, Vector2i(0, 0))
+	tile_grid.apply_pattern_at(0, Vector2i(1, 0))
+	level_side_area_2d.position.x = tile_grid.cell_size.x
+	level_side_area_2d.body_entered.connect(_on_level_side_area_2d_body_entered)
+	level_bottom_area_2d.body_entered.connect(_on_level_bottom_area_2d_body_entered)
+
 	Events.player_died.connect(_on_player_died)
 	Events.player_item_collected.connect(_on_player_item_collected)
-	level_bottom_area_2d.body_entered.connect(func (body: Node2D) -> void:
-		print("Player fall")
-		if body is Player:
-			body.die.call_deferred()
-	)
-
-
-func _physics_process(_delta: float) -> void:
-	if (player):
-		# TODO: rework by doing right side area + signals
-		if player.global_position.x > _grid_next_position.x * tile_grid.cell_size.x:
-			var grid_idx: int = config.grid_idxs.pick_random()
-			_grid_next_position.x += 1
-			tile_grid.apply_pattern_at(grid_idx, _grid_next_position)
 
 func _on_player_died() -> void:
-	print("on player died")
 	await Util.sleep(1)
 	player.respawn(Vector2(player.global_position.x - 64, 0))
 
@@ -52,6 +43,13 @@ func _on_player_item_collected(item: Node2D) -> void:
 	elif item is ItemSuperPanacat: print("SuperPanacat collected")
 	level_ui_canvas_layer.update_labels(config.state)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_action"):
-		player.respawn(Vector2(player.global_position.x, 0))
+func _on_level_bottom_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.die.call_deferred()
+
+func _on_level_side_area_2d_body_entered(body: Node2D) -> void:
+	if body is Player:
+		level_side_area_2d.position.x += tile_grid.cell_size.x
+		var next_grid_idx: int = config.grid_idxs.pick_random()
+		var next_grid_pos := Vector2i(ceili(level_side_area_2d.position.x / tile_grid.cell_size.x), 0)
+		tile_grid.apply_pattern_at(next_grid_idx, next_grid_pos)
