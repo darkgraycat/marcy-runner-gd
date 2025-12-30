@@ -49,18 +49,16 @@ func update_animation() -> void:
 
 func die() -> void:
 	set_physics_process(false)
-	movement.set_physics_process(false)
-	collision_shape_2d.disabled = true
 	animation_player.play("die")
 	await animation_player.animation_finished
 	Events.emit_player_died()
 
 func respawn(spawn_point: Vector2) -> void:
-	global_position = spawn_point
+	print("respawn player")
 	set_physics_process(true)
-	movement.set_physics_process(false)
-	collision_shape_2d.disabled = false
 	velocity = Vector2.ZERO
-	animation_player.play("RESET")
-	update_animation()
+	global_position = spawn_point
+	animation_player.play(&"RESET")
+	await animation_player.animation_finished
 	Events.emit_player_spawned(spawn_point)
+	update_animation()
