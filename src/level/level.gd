@@ -36,6 +36,8 @@ func _ready() -> void:
 	Events.player_item_collected.connect(_on_player_item_collected)
 
 func _on_player_died() -> void:
+	config.state.lifes_amount -= 1
+	state_updated.emit(config.state)
 	await Util.sleep(1)
 	player.respawn(Vector2(player.global_position.x - 64, 0))
 
