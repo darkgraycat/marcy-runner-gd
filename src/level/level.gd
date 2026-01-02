@@ -35,20 +35,11 @@ func _ready() -> void:
 	level_side_area_2d.body_entered.connect(_on_level_side_area_2d_body_entered)
 	level_bottom_area_2d.body_entered.connect(_on_level_bottom_area_2d_body_entered)
 
-	#TODO hurtbox\hitbox will do the job
-	#Events.player_hit.connect(_on_player_hit)
-	Events.player_died.connect(_on_player_died)
 	Events.player_item_collected.connect(_on_player_item_collected)
 
 func _on_player_hit(value: float) -> void:
 	config.state.lifes_amount = int(value)
 	state_updated.emit(config.state)
-
-func _on_player_died() -> void:
-	config.state.lifes_amount -= 1
-	state_updated.emit(config.state)
-	await Util.sleep(1)
-	player.respawn(Vector2(player.global_position.x - 64, 0))
 
 func _on_player_item_collected(item: Node2D) -> void:
 	var s := config.state
@@ -72,7 +63,10 @@ func _on_player_item_collected(item: Node2D) -> void:
 
 func _on_level_bottom_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.die.call_deferred()
+		player.health.current -= 1
+		player.die()
+		await Util.sleep(1)
+		player.respawn(Vector2(player.global_position.x - 64, 0))
 
 func _on_level_side_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:

@@ -51,7 +51,6 @@ func die() -> void:
 	set_physics_process(false)
 	animation_player.play("die")
 	await animation_player.animation_finished
-	Events.emit_player_died()
 
 func respawn(spawn_point: Vector2) -> void:
 	print("respawn player")
@@ -60,5 +59,4 @@ func respawn(spawn_point: Vector2) -> void:
 	global_position = spawn_point
 	animation_player.play(&"RESET")
 	await animation_player.animation_finished
-	Events.emit_player_spawned(spawn_point)
 	update_animation()
