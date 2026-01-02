@@ -51,4 +51,3 @@ func _create_row(
 func _clear_rows() -> void:
 	for row: Parallax2D in rows_root.get_children():
 		row.queue_free()
-

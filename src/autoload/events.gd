@@ -15,6 +15,9 @@ func emit_player_spawned(position: Vector2) -> void: player_spawned.emit(positio
 signal player_died()
 func emit_player_died() -> void: player_died.emit()
 
+signal player_hit()
+func emit_player_hit() -> void: player_hit.emit()
+
 # UI events
 signal update_ui()
 func emit_update_ui() -> void: update_ui.emit()

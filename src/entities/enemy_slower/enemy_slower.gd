@@ -9,7 +9,8 @@ func _ready() -> void:
 	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	pass
+	#move_and_slide()
 
 func die() -> void:
 	set_physics_process(false)
@@ -21,4 +22,6 @@ func die() -> void:
 # TODO: move into Hurtbox component
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group(Global.GROUP_NAME_PLAYER):
+		body.velocity = Vector2(0, -600) # knockback
+		Events.emit_player_hit()
 		die.call_deferred()

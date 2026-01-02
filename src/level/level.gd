@@ -32,8 +32,13 @@ func _ready() -> void:
 	level_side_area_2d.body_entered.connect(_on_level_side_area_2d_body_entered)
 	level_bottom_area_2d.body_entered.connect(_on_level_bottom_area_2d_body_entered)
 
+	Events.player_hit.connect(_on_player_hit)
 	Events.player_died.connect(_on_player_died)
 	Events.player_item_collected.connect(_on_player_item_collected)
+
+func _on_player_hit() -> void:
+	config.state.lifes_amount -= 1
+	state_updated.emit(config.state)
 
 func _on_player_died() -> void:
 	config.state.lifes_amount -= 1

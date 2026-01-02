@@ -26,6 +26,7 @@ region = Rect2(24, 0, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nrkbq"]
 atlas = ExtResource("2_liwlu")
 region = Rect2(32, 0, 8, 8)
+filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7sx4"]
 atlas = ExtResource("2_liwlu")
