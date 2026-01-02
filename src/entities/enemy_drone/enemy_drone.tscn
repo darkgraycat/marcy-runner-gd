@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://din6bnv7nrd2n"]
+[gd_scene load_steps=12 format=3 uid="uid://din6bnv7nrd2n"]
 
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
 [ext_resource type="Script" uid="uid://cdccdd0ik7jco" path="res://src/entities/enemy_drone/enemy_drone.gd" id="1_v4l72"]
+[ext_resource type="Script" uid="uid://cnebtsxri8k56" path="res://src/components/hitbox.gd" id="5_7w23a"]
 [ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://src/components/movement.gd" id="5_ip72x"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/debug/debug_label.tscn" id="6_5pdap"]
 
@@ -98,14 +99,19 @@ position = Vector2(-2, -6)
 shape = SubResource("RectangleShape2D_eklmr")
 one_way_collision = true
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-3, -2)
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -0.5)
-shape = SubResource("RectangleShape2D_y7108")
-
 [node name="DebugLabel" parent="." instance=ExtResource("6_5pdap")]
 tag_postfix = "enemy_drone"
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("body")]
+position = Vector2(-4, -2)
+collision_layer = 8
+collision_mask = 2
+input_pickable = false
+script = ExtResource("5_7w23a")
+body = NodePath("..")
+damage = 1
+knockback = Vector2(-300, -200)
+metadata/_custom_type_script = "uid://cnebtsxri8k56"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_y7108")

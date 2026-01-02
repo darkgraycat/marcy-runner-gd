@@ -62,4 +62,3 @@ func respawn(spawn_point: Vector2) -> void:
 	await animation_player.animation_finished
 	Events.emit_player_spawned(spawn_point)
 	update_animation()
-

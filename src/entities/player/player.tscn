@@ -1,12 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://7i1o65gxgnqa"]
+[gd_scene load_steps=19 format=3 uid="uid://7i1o65gxgnqa"]
 
 [ext_resource type="Script" uid="uid://bume0mbttyflh" path="res://src/entities/player/player.gd" id="1_0v5uu"]
 [ext_resource type="Texture2D" uid="uid://syrf6g8dkf6e" path="res://assets/sprites/player.png" id="1_ag6t7"]
 [ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/debug/debug_label.tscn" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://src/components/gravity.gd" id="6_7wli1"]
+[ext_resource type="Script" uid="uid://b581ox0uysbcj" path="res://src/components/hurtbox.gd" id="6_eb65w"]
 [ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://src/components/movement.gd" id="7_j0oqr"]
 [ext_resource type="Script" uid="uid://nkvpec60fwby" path="res://src/components/health.gd" id="7_xy2vv"]
 [ext_resource type="Script" uid="uid://bm1h5vp83em0t" path="res://src/components/jumping.gd" id="8_xy2vv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4f0qm"]
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_8akj5"]
 length = 0.001
@@ -196,7 +200,7 @@ floor_stop_on_slope = false
 floor_snap_length = 5.0
 script = ExtResource("1_0v5uu")
 
-[node name="Components" type="Node" parent="."]
+[node name="Components" type="Node2D" parent="."]
 
 [node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]
 script = ExtResource("7_j0oqr")
@@ -216,6 +220,19 @@ weight = 1.25
 script = ExtResource("7_xy2vv")
 maximum = 9.0
 
+[node name="Hurtbox" type="Area2D" parent="Components" node_paths=PackedStringArray("body", "health")]
+position = Vector2(1, -8)
+collision_layer = 2
+collision_mask = 8
+input_pickable = false
+script = ExtResource("6_eb65w")
+body = NodePath("../..")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://b581ox0uysbcj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/Hurtbox"]
+shape = SubResource("CircleShape2D_4f0qm")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("1_ag6t7")
@@ -229,7 +246,7 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-1, -6.5)
+position = Vector2(-1, -6)
 shape = SubResource("RectangleShape2D_6nkbq")
 
 [node name="DebugLabel" parent="." instance=ExtResource("5_bjvvg")]

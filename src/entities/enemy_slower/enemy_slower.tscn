@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://esk118apvowd"]
+[gd_scene load_steps=11 format=3 uid="uid://esk118apvowd"]
 
 [ext_resource type="Script" uid="uid://bv8qw0hjgqsnn" path="res://src/entities/enemy_slower/enemy_slower.gd" id="1_dxk8a"]
 [ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="2_qb5fb"]
+[ext_resource type="Script" uid="uid://cnebtsxri8k56" path="res://src/components/hitbox.gd" id="4_tyy0w"]
 [ext_resource type="Script" uid="uid://c7o8ufu43hivi" path="res://src/components/gravity.gd" id="5_nm7ey"]
 
 [sub_resource type="Animation" id="Animation_y7108"]
@@ -97,10 +98,15 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_el2sj")
 one_way_collision = true
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -6)
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("body")]
 collision_layer = 8
 collision_mask = 2
+script = ExtResource("4_tyy0w")
+body = NodePath("..")
+damage = 1
+knockback = Vector2(0, -600)
+metadata/_custom_type_script = "uid://cnebtsxri8k56"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_h4mso")

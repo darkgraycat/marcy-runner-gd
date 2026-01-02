@@ -19,6 +19,9 @@ func _ready() -> void:
 	player.movement.max_speed = config.state.player_move_velocity
 	player.jumping.jump_force = config.state.player_jump_velocity
 	player.jumping.max_jumps = config.state.player_max_jumps
+	player.health.maximum = config.state.max_lifes_amount
+	player.health.current = config.state.lifes_amount
+	player.health.changed.connect(_on_player_hit)
 
 	if not parallax.is_node_ready(): await parallax.ready
 	parallax.config = config.parallax;
@@ -32,12 +35,13 @@ func _ready() -> void:
 	level_side_area_2d.body_entered.connect(_on_level_side_area_2d_body_entered)
 	level_bottom_area_2d.body_entered.connect(_on_level_bottom_area_2d_body_entered)
 
-	Events.player_hit.connect(_on_player_hit)
+	#TODO hurtbox\hitbox will do the job
+	#Events.player_hit.connect(_on_player_hit)
 	Events.player_died.connect(_on_player_died)
 	Events.player_item_collected.connect(_on_player_item_collected)
 
-func _on_player_hit() -> void:
-	config.state.lifes_amount -= 1
+func _on_player_hit(value: float) -> void:
+	config.state.lifes_amount = int(value)
 	state_updated.emit(config.state)
 
 func _on_player_died() -> void:
@@ -61,9 +65,7 @@ func _on_player_item_collected(item: Node2D) -> void:
 		player.movement.max_speed = s.player_move_velocity + s.player_bonus_speed
 		state_updated.emit(s)
 	elif item is ItemLife:
-		s.lifes_amount += 1
-		if s.lifes_amount > s.max_lifes_amount:
-			s.lifes_amount = s.max_lifes_amount
+		player.health.current += 1
 	elif item is ItemSuperPanacat:
 		print("SuperPanacat collected")
 	state_updated.emit(s)

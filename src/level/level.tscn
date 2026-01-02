@@ -22,6 +22,7 @@
 [sub_resource type="Resource" id="Resource_ascnc"]
 script = ExtResource("4_fghqq")
 player_move_velocity = 150.0
+player_max_jumps = 2
 metadata/_custom_type_script = "uid://bo7pjgp4afm02"
 
 [sub_resource type="Resource" id="Resource_5eycd"]
@@ -47,7 +48,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_hq6hr")
 sources/1 = SubResource("TileSetScenesCollectionSource_k6plm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ksj"]
-size = Vector2(8, 384)
+size = Vector2(8, 512)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n7ksj"]
 
@@ -106,7 +107,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="LevelSideArea2D" type="Area2D" parent="."]
-position = Vector2(336, 0)
+position = Vector2(336, -64)
 collision_layer = 0
 collision_mask = 2
 
