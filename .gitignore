@@ -7,3 +7,5 @@ addons
 
 .vscode
 .scripts
+
+docs/**

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctf3d4ixqnjgw"]
-
-[ext_resource type="Script" uid="uid://c0yh12glxrng3" path="res://scenes/tilemap_chunk/tile_map_chunk_root.gd" id="1_4g4dj"]
-
-[node name="TileMapChunkRoot" type="Node2D"]
-script = ExtResource("1_4g4dj")

@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://din6bnv7nrd2n"]
+
+[ext_resource type="Texture2D" uid="uid://bhfr557mvmy7c" path="res://assets/sprites/enemies.png" id="1_k12g4"]
+[ext_resource type="Script" uid="uid://cdccdd0ik7jco" path="res://src/entities/enemy_drone/enemy_drone.gd" id="1_v4l72"]
+[ext_resource type="Script" uid="uid://cnebtsxri8k56" path="res://src/components/hitbox.gd" id="5_7w23a"]
+[ext_resource type="Script" uid="uid://ducc4yyfp47p0" path="res://src/components/movement.gd" id="5_ip72x"]
+[ext_resource type="PackedScene" uid="uid://bnssyl4v6wjh8" path="res://src/debug/debug_label.tscn" id="6_5pdap"]
+
+[sub_resource type="Animation" id="Animation_goa2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_xouic"]
+resource_name = "die"
+length = 0.250006
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_y7108"]
+resource_name = "idle"
+length = 0.250006
+loop_mode = 1
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xouic"]
+_data = {
+&"RESET": SubResource("Animation_goa2j"),
+&"die": SubResource("Animation_xouic"),
+&"idle": SubResource("Animation_y7108")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eklmr"]
+size = Vector2(22, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7108"]
+size = Vector2(22, 5)
+
+[node name="EnemyDrone" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 9
+collision_mask = 2
+script = ExtResource("1_v4l72")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Movement" type="Node" parent="Components" node_paths=PackedStringArray("body")]
+script = ExtResource("5_ip72x")
+body = NodePath("../..")
+metadata/_custom_type_script = "uid://ducc4yyfp47p0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_k12g4")
+hframes = 7
+vframes = 2
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xouic")
+}
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -6)
+shape = SubResource("RectangleShape2D_eklmr")
+one_way_collision = true
+
+[node name="DebugLabel" parent="." instance=ExtResource("6_5pdap")]
+tag_postfix = "enemy_drone"
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("body")]
+position = Vector2(-4, -2)
+collision_layer = 8
+collision_mask = 2
+input_pickable = false
+script = ExtResource("5_7w23a")
+body = NodePath("..")
+damage = 1
+knockback = Vector2(-300, -200)
+metadata/_custom_type_script = "uid://cnebtsxri8k56"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_y7108")
