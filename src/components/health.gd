@@ -17,7 +17,7 @@ func heal(amount: float) -> void:
 	current = min(current + amount, maximum)
 
 func set_current(value: float) -> void:
-	if value >= maximum: return
+	if value > maximum: return
 	if current == value: return
 	current = value
 	changed.emit(current)

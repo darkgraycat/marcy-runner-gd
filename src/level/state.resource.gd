@@ -11,3 +11,4 @@ class_name StateResource extends Resource
 @export var score_points: int = 0
 @export var lifes_amount: int = 3
 @export var max_lifes_amount: int = 9
+
